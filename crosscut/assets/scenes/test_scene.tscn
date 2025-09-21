@@ -1,15 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccy5pg6ws1kk4"]
+[gd_scene load_steps=11 format=3 uid="uid://ccy5pg6ws1kk4"]
+
+[ext_resource type="PackedScene" uid="uid://x18icxf4xg6e" path="res://assets/scenes/first_person_player.tscn" id="1_41fjk"]
+[ext_resource type="Texture2D" uid="uid://cqedqgd8kybb0" path="res://assets/sky/DaySkyHDRI051B_2K-HDR.exr" id="1_376kr"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vio1o"]
+panorama = ExtResource("1_376kr")
+
+[sub_resource type="Sky" id="Sky_1npq7"]
+sky_material = SubResource("PanoramaSkyMaterial_vio1o")
+
+[sub_resource type="Environment" id="Environment_3f7cn"]
+background_mode = 2
+sky = SubResource("Sky_1npq7")
+tonemap_mode = 2
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_abcw6"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_41fjk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abcw6"]
-albedo_color = Color(0.0849873, 0.0857856, 0.0757987, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_abcw6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_41fjk"]
 
 [node name="Node3D" type="Node3D"]
 
-[node name="Floor" type="Node3D" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3f7cn")
+
+[node name="Floor" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape3D_abcw6")
@@ -17,4 +37,23 @@ shape = SubResource("WorldBoundaryShape3D_abcw6")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 transform = Transform3D(98.5637, 0, 0, 0, 1, 0, 0, 0, 171.665, 0, 0, 0)
 mesh = SubResource("PlaneMesh_41fjk")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_abcw6")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.94998, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_abcw6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("BoxMesh_41fjk")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_41fjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.33311, 0, 4.02174)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45076, 0)
+near = 0.587
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CharacterBody3D/Camera3D"]

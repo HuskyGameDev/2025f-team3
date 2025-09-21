@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="CrossCut"
+run/main_scene="uid://ccy5pg6ws1kk4"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
