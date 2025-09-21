@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccy5pg6ws1kk4"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_abcw6"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_41fjk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abcw6"]
+albedo_color = Color(0.0849873, 0.0857856, 0.0757987, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Floor" type="Node3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_abcw6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(98.5637, 0, 0, 0, 1, 0, 0, 0, 171.665, 0, 0, 0)
+mesh = SubResource("PlaneMesh_41fjk")
+surface_material_override/0 = SubResource("StandardMaterial3D_abcw6")
