@@ -12,19 +12,26 @@ sky_material = SubResource("PanoramaSkyMaterial_vio1o")
 [sub_resource type="Environment" id="Environment_3f7cn"]
 background_mode = 2
 sky = SubResource("Sky_1npq7")
+ambient_light_color = Color(1, 1, 1, 1)
 tonemap_mode = 2
+ssao_enabled = true
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_abcw6"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_41fjk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abcw6"]
+albedo_color = Color(0.281187, 0.281187, 0.281187, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_abcw6"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_41fjk"]
 
 [node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.411514, 0.585839, -0.698175, 0, 0.766044, 0.642788, 0.911403, 0.264516, -0.315238, 0, 0, 0)
+shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_3f7cn")
