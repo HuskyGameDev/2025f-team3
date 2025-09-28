@@ -1,0 +1,124 @@
+[gd_scene load_steps=7 format=3 uid="uid://dckpdofm2vrvg"]
+
+[ext_resource type="Script" uid="uid://bm6mfuiv07n35" path="res://assets/UI/3d_hud.gd" id="1_qfa3r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qfa3r"]
+content_margin_left = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sjvhx"]
+content_margin_right = 10.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_qfa3r"]
+font_size = 27
+outline_size = 2
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qfa3r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_puovb"]
+content_margin_top = 5.0
+
+[node name="3dHud" type="CanvasLayer"]
+script = ExtResource("1_qfa3r")
+
+[node name="TimePanel" type="PanelContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.5
+offset_top = 11.0
+offset_right = 160.5
+offset_bottom = 68.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TimePanel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Time" type="Label" parent="TimePanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qfa3r")
+text = "Time Elapsed:"
+vertical_alignment = 1
+
+[node name="Time2" type="Label" parent="TimePanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sjvhx")
+text = "##:##.##"
+label_settings = SubResource("LabelSettings_qfa3r")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HealthPanel" type="PanelContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = -68.0
+offset_right = 332.0
+offset_bottom = -11.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HealthPanel"]
+layout_mode = 2
+
+[node name="Time" type="Label" parent="HealthPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qfa3r")
+text = "Health:"
+vertical_alignment = 1
+
+[node name="HealthRect" type="TextureRect" parent="HealthPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("ViewportTexture_qfa3r")
+expand_mode = 1
+
+[node name="TimePanel2" type="PanelContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -229.0
+offset_top = 11.0
+offset_right = -11.0
+offset_bottom = 112.0
+grow_horizontal = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TimePanel2"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Time" type="Label" parent="TimePanel2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxEmpty_puovb")
+text = "Enemies Killed:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TimePanel2/VBoxContainer"]
+layout_direction = 2
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Time2" type="Label" parent="TimePanel2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 27
+text = "##"
+label_settings = SubResource("LabelSettings_qfa3r")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Time" type="Label" parent="TimePanel2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 27
+text = "/##"
+vertical_alignment = 1
