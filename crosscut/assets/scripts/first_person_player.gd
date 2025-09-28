@@ -1,9 +1,15 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
+# Movement variables
+var speed = 0
+const MAX_SPEED = 5.0
+const ACCELERATION = 0.3
+const DECELLERATION = 0.65
+
 const JUMP_VELOCITY = 4.5
 
+# Lookaround variables
 var mouse_sensitivity = 0.002
 
 func _ready():
@@ -29,10 +35,15 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-
+		speed = clamp(speed+ACCELERATION, 0, MAX_SPEED)
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
+	elif is_on_floor():
+		velocity *= DECELLERATION
+		#velocity.x = move_toward(velocity.x, 0, speed)
+		#velocity.z = move_toward(velocity.z, 0, speed)
+	
+	if direction.is_zero_approx():
+		speed = clamp(speed-DECELLERATION, 0, MAX_SPEED)
+	
 	move_and_slide()
