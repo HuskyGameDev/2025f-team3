@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqsanagid7lq8"]
+
+[ext_resource type="Script" uid="uid://b1immeqsxeuvc" path="res://tower1_stats.gd" id="1_08ph3"]
+[ext_resource type="PackedScene" uid="uid://dw40cmtrt8qw0" path="res://assets/3D assets/tower.blend" id="2_tgan8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tgan8"]
+size = Vector3(2.8, 7.5, 2.8)
+
+[node name="Tower1" type="CharacterBody3D"]
+script = ExtResource("1_08ph3")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="tower" parent="Pivot" instance=ExtResource("2_tgan8")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30802, 3.75225, 1.3331)
+shape = SubResource("BoxShape3D_tgan8")
