@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3oy2gcplojiq"]
+[gd_scene load_steps=5 format=3 uid="uid://b3oy2gcplojiq"]
 
 [ext_resource type="Script" uid="uid://bc0h2ikfpg18h" path="res://assets/UI/main_menu.gd" id="1_tdcik"]
+[ext_resource type="PackedScene" uid="uid://ikri6xa5ivlr" path="res://assets/UI/settings_menu.tscn" id="2_qsvht"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tdcik"]
 content_margin_left = 100.0
@@ -73,32 +74,9 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
 text = "Quit"
 
-[node name="Settings" type="PanelContainer" parent="MainPanel"]
+[node name="Settings" parent="MainPanel" instance=ExtResource("2_qsvht")]
 visible = false
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_tdcik")
-
-[node name="BoxContainer" type="BoxContainer" parent="MainPanel/Settings"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 240
-vertical = true
-
-[node name="Label" type="Label" parent="MainPanel/Settings/BoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 56
-text = "Settings"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Back" type="Button" parent="MainPanel/Settings/BoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 40
-text = "Back
-"
 
 [node name="Credits" type="PanelContainer" parent="MainPanel"]
 visible = false
@@ -109,7 +87,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_tdcik")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 240
+theme_override_constants/separation = 20
 vertical = true
 
 [node name="Label" type="Label" parent="MainPanel/Credits/BoxContainer"]
@@ -117,6 +95,21 @@ layout_mode = 2
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 56
 text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="MainPanel/Credits/BoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "Evan Zimmermann - Team Leader
+Alex Symanzik - Tester
+Andrew Sadler - Programmer/Tester
+Caeden Kidd - 3D Artist
+Collin McFarland - UI Artist
+Ezra Crocker - Programmer
+Kai Stack - Programmer
+Mason Connor - Programmer"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -131,5 +124,4 @@ text = "Back
 [connection signal="pressed" from="MainPanel/MainMenu/BoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MainPanel/MainMenu/BoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="MainPanel/MainMenu/BoxContainer/Quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="MainPanel/Settings/BoxContainer/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="MainPanel/Credits/BoxContainer/Back" to="." method="_on_back2_pressed"]
