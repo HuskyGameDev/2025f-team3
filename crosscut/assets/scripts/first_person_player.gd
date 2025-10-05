@@ -23,6 +23,12 @@ func _input(event):
 		rotate_y(-event.relative.x * mouse_sensitivity)
 		$Camera3D.rotate_x(-event.relative.y * mouse_sensitivity)
 		$Camera3D.rotation.x = clampf($Camera3D.rotation.x, -deg_to_rad(70), deg_to_rad(70))
+	
+	#handle pausing the game
+	if event.is_action_pressed("Pause"):
+		if get_tree().paused == false:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			get_tree().paused = true
 
 func _physics_process(delta: float) -> void:
 	print(grid_map.get_closest_position_on_grid(Vector2(position.x, position.z)))

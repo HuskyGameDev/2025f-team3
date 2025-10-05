@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://ccy5pg6ws1kk4"]
+[gd_scene load_steps=13 format=3 uid="uid://ccy5pg6ws1kk4"]
 
 [ext_resource type="PackedScene" uid="uid://x18icxf4xg6e" path="res://assets/scenes/first_person_player.tscn" id="1_41fjk"]
 [ext_resource type="Texture2D" uid="uid://cqedqgd8kybb0" path="res://assets/sky/DaySkyHDRI051B_2K-HDR.exr" id="1_376kr"]
 [ext_resource type="Script" uid="uid://by0kcrtjmydqp" path="res://assets/scripts/tower_grid.gd" id="3_vio1o"]
+[ext_resource type="PackedScene" uid="uid://cgudj1wf88k62" path="res://assets/UI/pause_menu.tscn" id="4_1npq7"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vio1o"]
 panorama = ExtResource("1_376kr")
@@ -28,7 +29,7 @@ albedo_color = Color(0.281187, 0.281187, 0.281187, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_41fjk"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D2" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.411514, 0.585839, -0.698175, 0, 0.766044, 0.642788, 0.911403, 0.264516, -0.315238, 0, 0, 0)
@@ -70,3 +71,6 @@ unique_name_in_owner = true
 cell_size = Vector3(5, 5, 5)
 script = ExtResource("3_vio1o")
 metadata/_editor_floor_ = Vector3(0, 4, 0)
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_1npq7")]
+process_mode = 3
