@@ -10,7 +10,7 @@ func _ready():
 	health_width = $HealthPanel/VBoxContainer/HealthRect.size.x
 
 func _process(delta: float) -> void:
-	time_elapsed += delta * 10
+	time_elapsed += delta
 	
 	# Calculate and display time to HUD
 	var seconds = snapped(fmod(time_elapsed, 60), 0.01)
