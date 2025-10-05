@@ -4,6 +4,12 @@ extends CharacterBody3D
 @onready var grid_map = %GridMap
 @onready var rigid_body_3d: RigidBody3D = $"../RigidBody3D"
 
+@onready var top_down_camera = $"../Top-down view/Camera3D"
+@onready var first_person_camera = $Camera3D
+
+@onready var top_down_HUD = $"../Top-down view/2dHud"
+@onready var first_person_HUD = $"../3dHud"
+
 # Movement variables
 var speed = 0
 const MAX_SPEED = 5.0
@@ -17,6 +23,7 @@ var mouse_sensitivity = 0.002
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	top_down_HUD.hide()
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -29,6 +36,19 @@ func _input(event):
 		if get_tree().paused == false:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			get_tree().paused = true
+
+	#TODO: REMOVE THIS, DEBUG STUFF
+	if event.is_action_pressed("View Map"):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		top_down_camera.make_current()
+		first_person_HUD.hide()
+		top_down_HUD.show()
+	if event.is_action_released("View Map"):
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		first_person_camera.make_current()
+		first_person_HUD.show()
+		top_down_HUD.hide()
+
 
 func _physics_process(delta: float) -> void:
 	print(grid_map.get_closest_position_on_grid(Vector2(position.x, position.z)))
