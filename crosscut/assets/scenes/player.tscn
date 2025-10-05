@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://dnmj5166vej6v"]
 
-[ext_resource type="Script" uid="uid://43kmmrsnwocl" path="res://player_stats.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://43kmmrsnwocl" path="res://assets/scripts/player_stats.gd" id="1_rwm0n"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_onrkg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i3pqv"]
 
 [node name="Player" type="CharacterBody3D"]
-script = ExtResource("1_4flbx")
+script = ExtResource("1_rwm0n")
 
 [node name="Pivot" type="Node3D" parent="."]
 
