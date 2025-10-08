@@ -19,3 +19,9 @@ func _input(event):
 	if event.is_action_pressed("Pause"):
 		if get_tree().paused == false:
 			show()
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE		
+			get_tree().paused = true
+		else: #Be able to hit escape again in order to exit the pause menu
+			hide()
+			get_tree().paused = false
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED 
