@@ -6,7 +6,7 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mo1vv"]
 
-[node name="Enemy1" type="CharacterBody3D"]
+[node name="Enemy1" type="CharacterBody3D" groups=["Enemy"]]
 script = ExtResource("1_wnmti")
 
 [node name="Pivot" type="Node3D" parent="."]

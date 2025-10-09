@@ -6,3 +6,13 @@ extends CharacterBody3D
 @export var speed = 10
 @export var atk = 10
 @export var atk_speed = 5
+
+"""
+func towerDamage(damage : int):
+	hp = hp - damage
+	if hp <= 0:
+		destory()
+
+func destory():
+	queue_free()
+"""
