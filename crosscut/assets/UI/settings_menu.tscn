@@ -92,6 +92,11 @@ value = 100.0
 tick_count = 100
 ticks_on_borders = true
 
+[node name="Reset" type="Button" parent="BoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Reset to Defaults"
+
 [node name="Back" type="Button" parent="BoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -102,4 +107,5 @@ text = "Back
 [connection signal="value_changed" from="BoxContainer/MainVolume/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="BoxContainer/MusicVolume/HSlider" to="." method="_on_h_slider_value_changed_music"]
 [connection signal="value_changed" from="BoxContainer/SFXVolume/HSlider" to="." method="_on_h_slider_value_changed_sfx"]
+[connection signal="pressed" from="BoxContainer/Reset" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="BoxContainer/Back" to="." method="_on_back_pressed"]

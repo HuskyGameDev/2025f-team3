@@ -92,7 +92,7 @@ size_flags_vertical = 4
 texture = ExtResource("1_76gra")
 expand_mode = 1
 
-[node name="Label2" type="Label" parent="LeftPanel/VBoxContainer"]
+[node name="Name" type="Label" parent="LeftPanel/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
@@ -100,7 +100,7 @@ text = "Name of currently selected tower"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Label3" type="Label" parent="LeftPanel/VBoxContainer"]
+[node name="Description" type="Label" parent="LeftPanel/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
@@ -108,12 +108,12 @@ text = "This is the description for the currently selected tower. It should be l
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/VBoxContainer"]
+[node name="Price" type="HBoxContainer" parent="LeftPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = -50
 
-[node name="TextureRect" type="TextureRect" parent="LeftPanel/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="LeftPanel/VBoxContainer/Price"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -122,7 +122,7 @@ texture = ExtResource("1_76gra")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label2" type="Label" parent="LeftPanel/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="LeftPanel/VBoxContainer/Price"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -153,16 +153,31 @@ size_flags_vertical = 4
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="Label2" type="Label" parent="RightPanel/VBoxContainer"]
+[node name="NextWave" type="HBoxContainer" parent="RightPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = -50
+
+[node name="Label2" type="Label" parent="RightPanel/VBoxContainer/NextWave"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 6
-theme_override_font_sizes/font_size = 28
-text = "Next wave: 999"
+theme_override_font_sizes/font_size = 27
+text = "Next wave:"
 horizontal_alignment = 1
-autowrap_mode = 3
 
-[node name="Button" type="Button" parent="RightPanel/VBoxContainer"]
+[node name="Label" type="Label" parent="RightPanel/VBoxContainer/NextWave"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 34
+text = "999"
+horizontal_alignment = 2
+
+[node name="StartWave" type="Button" parent="RightPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 40
