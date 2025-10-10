@@ -22,7 +22,7 @@ func get_closest_position_on_grid(place_pos: Vector2) -> Vector2i:
 	closest_pos.x = round(pos_x/cell_size.x)*cell_size.x
 	closest_pos.y = round(pos_y/cell_size.y)*cell_size.y
 	
-	print(closest_pos)
+	#print(closest_pos)
 	return closest_pos
 	
 func _init() -> void:

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://6eyynlw8urvy"]
+
+[ext_resource type="Script" uid="uid://c6sbbdhh1poc3" path="res://assets/scenes/projectiles/crossbow_bolt_projectile.gd" id="1_k51t3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_thkk1"]
+
+[node name="CrossbowBolt" type="Node3D"]
+script = ExtResource("1_k51t3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.58287, 0, 0, 0, 0.200814, 0, 0, 0, 0.200814, 0, 0, 0)
+mesh = SubResource("BoxMesh_thkk1")

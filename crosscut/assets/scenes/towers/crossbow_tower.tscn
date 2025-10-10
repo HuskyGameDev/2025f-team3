@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4mi06tvmdmoe"]
+
+[ext_resource type="Script" uid="uid://dy6py3ylmvkm5" path="res://assets/scripts/towers/crossbow_tower.gd" id="1_et1c7"]
+[ext_resource type="PackedScene" uid="uid://dw40cmtrt8qw0" path="res://assets/3D assets/tower.blend" id="2_30uou"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_chvo0"]
+size = Vector3(2.8, 7.5, 2.8)
+
+[sub_resource type="PrismMesh" id="PrismMesh_et1c7"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_et1c7"]
+
+[node name="CrossbowTower" type="StaticBody3D"]
+script = ExtResource("1_et1c7")
+
+[node name="Pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31, 0, -1.31)
+
+[node name="Tower" parent="Pivot" instance=ExtResource("2_30uou")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19209e-07, 3.752, 1.19209e-07)
+shape = SubResource("BoxShape3D_chvo0")
+
+[node name="TowerHead" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.442, 0)
+
+[node name="TowerHeadMesh" type="MeshInstance3D" parent="TowerHead"]
+transform = Transform3D(0.85497, 0, 0, 0, -8.73267e-08, -0.85497, 0, 1.9978, -3.73719e-08, 0, 0, 0)
+mesh = SubResource("PrismMesh_et1c7")
+
+[node name="IdleLookaroundTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="FiringTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AttackArea" type="Area3D" parent="." groups=["enemy"]]
+
+[node name="AttackShape" type="CollisionShape3D" parent="AttackArea"]
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0.9, 0)
+shape = SubResource("SphereShape3D_et1c7")
+debug_color = Color(0.918557, 0, 0.222529, 1)
+
+[connection signal="timeout" from="IdleLookaroundTimer" to="." method="_on_idle_lookaround_timer_timeout"]
+[connection signal="timeout" from="FiringTimer" to="." method="_on_firing_timer_timeout"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

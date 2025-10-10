@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://ccy5pg6ws1kk4"]
+[gd_scene load_steps=13 format=3 uid="uid://ccy5pg6ws1kk4"]
 
 [ext_resource type="PackedScene" uid="uid://x18icxf4xg6e" path="res://assets/scenes/first_person_player.tscn" id="1_41fjk"]
 [ext_resource type="Texture2D" uid="uid://cqedqgd8kybb0" path="res://assets/sky/DaySkyHDRI051B_2K-HDR.exr" id="1_376kr"]
 [ext_resource type="Script" uid="uid://by0kcrtjmydqp" path="res://assets/scripts/tower_grid.gd" id="3_vio1o"]
+[ext_resource type="PackedScene" uid="uid://d4mi06tvmdmoe" path="res://assets/scenes/towers/crossbow_tower.tscn" id="4_1npq7"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vio1o"]
 panorama = ExtResource("1_376kr")
@@ -48,25 +49,30 @@ mesh = SubResource("PlaneMesh_41fjk")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_abcw6")
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
+[node name="EvilBox" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.94998, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EvilBox"]
 shape = SubResource("BoxShape3D_abcw6")
+disabled = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EvilBox"]
 mesh = SubResource("BoxMesh_41fjk")
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("1_41fjk")]
+[node name="Player" parent="." groups=["enemy"] instance=ExtResource("1_41fjk")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.33311, 0, 4.02174)
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+[node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45076, 0)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="CharacterBody3D/Camera3D"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Player/Camera3D"]
 
 [node name="GridMap" type="GridMap" parent="."]
 unique_name_in_owner = true
 cell_size = Vector3(5, 5, 5)
 script = ExtResource("3_vio1o")
 metadata/_editor_floor_ = Vector3(0, 4, 0)
+
+[node name="CrossbowTower" parent="." instance=ExtResource("4_1npq7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.585982, 0.0230188, -10.9077)
