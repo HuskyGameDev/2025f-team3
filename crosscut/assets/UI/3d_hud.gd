@@ -15,11 +15,11 @@ func _process(delta: float) -> void:
 	# Calculate and display time to HUD
 	var seconds = snapped(fmod(time_elapsed, 60), 0.01)
 	var minutes = floor(time_elapsed / 60)
-	var time = str(str("%02d" % snapped(fmod(minutes, 2), 1)), ":", str("%05.2f" % seconds))
+	var time = str(str("%02d" % snapped(minutes, 1)), ":", str("%05.2f" % seconds))
 	$TimePanel/HBoxContainer/Time2.text = time
 	
 	# Decrease health bar just to show it works
-	print($HealthPanel/VBoxContainer/HealthRect.size.x)
+	#print($HealthPanel/VBoxContainer/HealthRect.size.x)
 	health -= 0.1
 	if (health < 1):
 		health = 100

@@ -24,6 +24,12 @@ window/size/viewport_height=720
 
 project/assembly_name="CrossCut"
 
+[global_group]
+
+Enemy=""
+player=""
+tower=""
+
 [input]
 
 ui_left={

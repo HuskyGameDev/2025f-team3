@@ -1,0 +1,111 @@
+[gd_scene load_steps=3 format=3 uid="uid://ikri6xa5ivlr"]
+
+[ext_resource type="StyleBox" uid="uid://dk1dg8em3lxgg" path="res://assets/UI/settings_menu_stylebox.tres" id="1_v7x8l"]
+[ext_resource type="Script" uid="uid://dqir6wj0tysun" path="res://assets/UI/settings_menu.gd" id="2_8oaw2"]
+
+[node name="SettingsMenu" type="PanelContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -348.0
+offset_top = -253.0
+offset_right = 348.0
+offset_bottom = 253.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_v7x8l")
+script = ExtResource("2_8oaw2")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 60
+vertical = true
+
+[node name="Label" type="Label" parent="BoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 56
+text = "              Settings              "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainVolume" type="HBoxContainer" parent="BoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="BoxContainer/MainVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "Main Volume"
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="BoxContainer/MainVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 100.0
+tick_count = 100
+ticks_on_borders = true
+
+[node name="MusicVolume" type="HBoxContainer" parent="BoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="BoxContainer/MusicVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "Music Volume"
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="BoxContainer/MusicVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 100.0
+tick_count = 100
+ticks_on_borders = true
+
+[node name="SFXVolume" type="HBoxContainer" parent="BoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="BoxContainer/SFXVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "Sound Effects Volume"
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="BoxContainer/SFXVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 100.0
+tick_count = 100
+ticks_on_borders = true
+
+[node name="Reset" type="Button" parent="BoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Reset to Defaults"
+
+[node name="Back" type="Button" parent="BoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
+text = "Back
+"
+
+[connection signal="value_changed" from="BoxContainer/MainVolume/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="BoxContainer/MusicVolume/HSlider" to="." method="_on_h_slider_value_changed_music"]
+[connection signal="value_changed" from="BoxContainer/SFXVolume/HSlider" to="." method="_on_h_slider_value_changed_sfx"]
+[connection signal="pressed" from="BoxContainer/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="BoxContainer/Back" to="." method="_on_back_pressed"]

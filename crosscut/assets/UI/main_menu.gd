@@ -6,9 +6,6 @@ func _on_play_pressed() -> void:
 func _on_settings_pressed() -> void:
 	$MainPanel/Settings.visible = true
 
-func _on_back_pressed() -> void:
-	$MainPanel/Settings.visible = false
-
 func _on_credits_pressed() -> void:
 	$MainPanel/Credits.visible = true
 

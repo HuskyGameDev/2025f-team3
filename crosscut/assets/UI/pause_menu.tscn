@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cgudj1wf88k62"]
+[gd_scene load_steps=4 format=3 uid="uid://cgudj1wf88k62"]
 
 [ext_resource type="Script" uid="uid://dvyxhx8p1r272" path="res://assets/UI/pause_menu.gd" id="1_82k73"]
+[ext_resource type="PackedScene" uid="uid://ikri6xa5ivlr" path="res://assets/UI/settings_menu.tscn" id="2_6jc1k"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_py84k"]
 font_size = 48
@@ -22,16 +23,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -181.0
+offset_top = -167.0
+offset_right = 181.0
+offset_bottom = 167.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 6
 text = "Paused"
 label_settings = SubResource("LabelSettings_py84k")
 horizontal_alignment = 1
@@ -39,13 +41,37 @@ vertical_alignment = 1
 
 [node name="Resume" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 36
 text = "Resume"
 
+[node name="Settings" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 36
+text = "Settings
+"
+
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 36
 text = "Quit"
 
+[node name="SettingsMenu" parent="." instance=ExtResource("2_6jc1k")]
+visible = false
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 215.0
+offset_top = 64.0
+offset_right = 1065.0
+offset_bottom = 656.0
+grow_horizontal = 1
+grow_vertical = 1
+
 [connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
