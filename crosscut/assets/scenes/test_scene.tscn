@@ -32,7 +32,7 @@ albedo_color = Color(0.281187, 0.281187, 0.281187, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_41fjk"]
 
-[node name="Node3D2" type="Node3D"]
+[node name="test_scene" type="Node3D"]
 
 [node name="CrossbowTower" parent="." instance=ExtResource("1_ics7i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.27332, 1.90735e-06, -17.26)

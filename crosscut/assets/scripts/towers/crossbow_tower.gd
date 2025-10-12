@@ -1,23 +1,35 @@
 extends StaticBody3D
 
 const debug = false
-var tower_lookaround_time_range = Vector2(1, 2)
-var tower_look_desired = Vector3(0, 0, 0)
-var tower_turnspeed = 4
 
+# Behavior settings
+var tower_lookaround_time_range = Vector2(1, 2) # The range of time intervals when looking around randomly
+var tower_turnspeed = 4 # How quickly the tower turns to where it wants to look
+
+# Attack settings
+var damage = 10
+var firing_speed = 1
+
+# Runtime variables
+var tower_look_desired = Vector3(0, 0, 0)
 var state: CrossbowState
 enum CrossbowState {IDLE, TRACKING}
 
+
+
+# Local References
 @onready var tower_head: Node3D = $TowerHead
 @onready var idle_lookaround_timer: Timer = $IdleLookaroundTimer
 @onready var firing_timer: Timer = $FiringTimer
 @onready var player: CharacterBody3D = %Player
 @onready var attack_area: Area3D = $AttackArea
 
+# Crossbow bolt packed scene
 var crossbow_bolt = preload("res://assets/scenes/projectiles/crossbow_bolt.tscn")
 
 
 func _ready() -> void:
+	set_firing_speed(firing_speed)
 	_transition_to_idle_state()
 	
 func _process(delta: float) -> void:
@@ -68,7 +80,7 @@ func _tracking_state():
 	
 	if debug: print("Target seen")
 	
-	tower_look_desired = position.direction_to(first_seen_enemy.position)
+	tower_look_desired = tower_head.global_position.direction_to(first_seen_enemy.global_position)
 
 func _on_firing_timer_timeout() -> void:
 	if state != CrossbowState.TRACKING: return
@@ -79,16 +91,16 @@ func _on_firing_timer_timeout() -> void:
 # Getters and setters
 func set_firing_speed(new_value):
 	firing_timer.wait_time = new_value
-	
+
 # Non-state-specific functions
 func _fire_bolt(bolt_target: Node3D):
 	var new_bolt = crossbow_bolt.instantiate()
-	new_bolt.position = tower_head.position
+	new_bolt.transform = tower_head.transform
 	new_bolt.target = bolt_target
-	new_bolt.reparent(get_tree().root.get_child(0))
-	print(get_tree().root.get_child(0).name)
+	new_bolt.damage = damage
+	add_child(new_bolt)
 	print("firing bolt")
-	
+
 func _get_target():
 	# Easily could implement bloons-type targeting (closest to tower, closest to base, etc)
 	return attack_area.get_overlapping_bodies().filter(func(b:Node3D): return b.is_in_group("enemy")).front()

@@ -1,29 +1,34 @@
 extends Node3D
-class_name CrossbowBolt
 
 const debug = true
-var speed = 0.2
+var speed = 30
 var damage = 10
 
 var target: Node3D
 
-func _ready():
-	print(target.name)
+#func _ready():
+	#position = target.position
+	#if debug: print(target.position)
+	#if debug: print(position)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	# Look at target
-	#var look_at = Basis.looking_at(target.position.normalized())
-	#basis = look_at
-	
+	# Destroy if the target is gone
+	if !target: #TODO: add enemy is dead condition
+		if debug: print("CBB: enemy is dead or does not exist")
+		queue_free() 
+		return
+		
 	# Move towards target
-	#position = position.move_toward(target.position, speed*delta)
-	position = target.position
+	global_position = global_position.move_toward(target.global_position, speed*delta)
+		
+	# Look at target
+	look_at(target.global_position)
+	
 	# Handle collision
-	if position.distance_to(target.position) < 1:
+	if global_position.distance_to(target.global_position) < 0.5:
 		_on_hit()
 
 func _on_hit():
-	return
-	if debug: print("crossbow hit target")
+	if debug: print("CBB: crossbow hit target")
 	queue_free()

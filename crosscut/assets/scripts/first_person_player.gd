@@ -2,13 +2,15 @@ extends CharacterBody3D
 
 
 @onready var grid_map = %GridMap
-@onready var evil_box: RigidBody3D = $"../EvilBox"
 
 @onready var top_down_camera = $"../Top-down view/Camera3D"
 @onready var first_person_camera = $Camera3D
 
 @onready var top_down_HUD = $"../Top-down view/2dHud"
 @onready var first_person_HUD = $"../3dHud"
+
+var crossbow_tower = preload("res://assets/scenes/towers/crossbow_tower.tscn")
+
 
 # Movement variables
 var speed = 0
@@ -47,9 +49,6 @@ func _input(event):
 
 
 func _physics_process(delta: float) -> void:
-	#print(grid_map.get_closest_position_on_grid(Vector2(position.x, position.z)))
-	#print(position)
-	grid_map.add_tower(evil_box, Vector2(position.x, position.z))
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -57,7 +56,12 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		grid_map.add_tower(evil_box, Vector2(position.x, position.z))
+	
+	if Input.is_action_just_pressed("ui_text_scroll_up"):
+		grid_map.add_tower(crossbow_tower, global_position)
+		
+	if Input.is_action_just_pressed("ui_text_scroll_down"):
+		grid_map.remove_tower_at_position(global_position)
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -76,3 +80,4 @@ func _physics_process(delta: float) -> void:
 		speed = clamp(speed-DECELLERATION, 0, MAX_SPEED)
 	
 	move_and_slide()
+	
