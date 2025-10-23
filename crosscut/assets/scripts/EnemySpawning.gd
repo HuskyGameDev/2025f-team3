@@ -1,25 +1,72 @@
 extends Node2D
 
-var enemyList = load("res://assets/scenes/enemy_list.tscn").instantiate().get_children()
+var spawnInfo = load("res://assets/scripts/enemySpawnInfo.gd")
 
-@onready var spawnDelay = $SpawnDelay
+@onready var levelDelay = $LevelDelay
 @onready var waveDelay = $WaveDelay
 
 var waves = []
+var currentLevelIndex = 0
 var currentWaveIndex = 0
-var currentEnemyIndex = 0
 
+var LEVELS = [
+	# Level 1
+	[
+		# Wave 1
+		[
+			EnemySpawnInfo.new(2, "test1", ["east", "north"], 1),
+			#EnemySpawnInfo.new(2, "test2", ["south"], 0.5)
+		],
+		# Wave 2
+		[
+			#EnemySpawnInfo.new(3, "test1", ["west"], 1),
+			EnemySpawnInfo.new(3, "test2", ["south"], 0.5)
+		],
+	],
+	# Level 2
+	[
+		# Wave 1
+		[
+			EnemySpawnInfo.new(3, "test1", ["south"], 0.5)
+		]
+	]
+]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#Testing the spawning for now
-	var test = calcWaveCount(10, [20, 30, 50])
-	waves = pickRandomEnemies(test)
+	
+	#var test = calcWaveCount(10, [20, 30, 50])
+	#waves = pickRandomEnemies(test)
 	startSpawning()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
+func startSpawning():
+	if currentLevelIndex + 1 <= LEVELS.size():
+		if currentWaveIndex < LEVELS[currentLevelIndex].size():
+			var currentWave = LEVELS[currentLevelIndex][currentWaveIndex]
+			for enemy in currentWave:
+				add_child(enemy)
+				enemy.startSpawning()
+			currentWaveIndex += 1
+			waveDelay.start()
+		else:	
+			levelDelay.start()
+
+func _on_wave_delay_timeout() -> void:
+	print("Wave Done")
+	startSpawning() # Replace with function body.
+
+func _on_level_delay_timeout() -> void:
+	currentLevelIndex +=1
+	currentWaveIndex = 0
+	print("Level Done")
+	startSpawning() # Replace with function body.
+
+
+'''
 func calcWaveCount(enemyCount: int, ratios: Array[int]) -> Array:
 	var waves = []
 	var totalEnemies = 0
@@ -38,7 +85,7 @@ func calcWaveCount(enemyCount: int, ratios: Array[int]) -> Array:
 	
 	print(waves)
 	return waves
-
+	
 func pickRandomEnemies(waveCount: Array) -> Array:
 	# List of valid enemies that can spawn
 	var waveSpawn = []
@@ -52,12 +99,18 @@ func pickRandomEnemies(waveCount: Array) -> Array:
 		waveSpawn[i] = currentWave
 	print(waveSpawn)
 	return waveSpawn
-	
-func startSpawning():
-	currentWaveIndex = 0
-	currentEnemyIndex = 0
-	spawnEnemy()
+'''
+"""
+	for level in LEVELS:
+		for wave in level:
+			for enemy in wave:
+				add_child(enemy)
+				enemy.startSpawning()
+			print("Wave Done")
+		print("Level Done")
+"""	
 
+"""
 func spawnEnemy():
 	if currentWaveIndex < waves.size():
 		var currentWave = waves[currentWaveIndex]
@@ -76,9 +129,4 @@ func spawnEnemy():
 				currentEnemyIndex = 0
 				print("Wave Done")
 				waveDelay.start()
-
-func _on_spawn_delay_timeout() -> void:
-	spawnEnemy()
-	
-func _on_wave_delay_timeout() -> void:
-	spawnEnemy() # Replace with function body.
+"""
