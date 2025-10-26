@@ -39,6 +39,8 @@ func _process(delta: float) -> void:
 		_tracking_state()
 	
 	# Always turn towards desired look position
+	if (tower_look_desired.normalized().is_zero_approx()):
+		return
 	var look_direction = Basis.looking_at(tower_look_desired.normalized())
 	tower_head.transform.basis = tower_head.transform.basis.slerp(look_direction, tower_turnspeed*delta)
 

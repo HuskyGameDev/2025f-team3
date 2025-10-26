@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 	$TimePanel/HBoxContainer/Time2.text = time
 	
 	# Decrease health bar just to show it works
-	print($HealthPanel/VBoxContainer/HealthRect.size.x)
+	# print($HealthPanel/VBoxContainer/HealthRect.size.x)
 	$HealthPanel/VBoxContainer/HealthRect.size.x = health_width - ((100 + (health * -1)) / 100) * health_width
 	
 func _update_health(value):
@@ -33,7 +33,6 @@ func _update_enemies_killed(value):
 func _update_enemies_left(value):
 	enemies_left = value
 
-func _on_player_damage_sig(damage) -> void:
-	health -= damage
-	print(damage)
+func _on_player_damage_sig(damage_taken, current_health) -> void:
+	health = current_health
 	print(health)

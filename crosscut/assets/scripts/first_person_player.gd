@@ -5,7 +5,7 @@ extends CharacterBody3D
 
 var crossbow_tower = preload("res://assets/scenes/towers/crossbow_tower.tscn")
 
-signal damage_sig(damage)
+signal damage_sig(damage_taken, current_health)
 signal dead_sig
 
 var disabled = false
@@ -26,7 +26,7 @@ var _health = 100
 
 func take_damage(damage_to_take):
 	_health -= damage_to_take
-	damage_sig.emit(damage_to_take)
+	damage_sig.emit(damage_to_take, _health)
 	if _health <= 0:
 		dead_sig.emit()
 	
