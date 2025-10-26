@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 var time_elapsed = 0
-var health = 100
+var health: float = 100
 var health_width
 var enemies_killed
 var enemies_left
@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 	$TimePanel/HBoxContainer/Time2.text = time
 	
 	# Decrease health bar just to show it works
-	#print($HealthPanel/VBoxContainer/HealthRect.size.x)
+	print($HealthPanel/VBoxContainer/HealthRect.size.x)
 	$HealthPanel/VBoxContainer/HealthRect.size.x = health_width - ((100 + (health * -1)) / 100) * health_width
 	
 func _update_health(value):
