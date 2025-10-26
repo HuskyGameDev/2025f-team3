@@ -68,27 +68,29 @@ disabled = true
 [node name="MeshInstance3D" type="MeshInstance3D" parent="EvilBox"]
 mesh = SubResource("BoxMesh_41fjk")
 
-[node name="Player" parent="." groups=["enemy"] instance=ExtResource("1_41fjk")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.33311, 0, 4.02174)
-
-[node name="PlayerCam" type="Camera3D" parent="Player"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45076, 0)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Player/PlayerCam"]
-
 [node name="GridMap" type="GridMap" parent="."]
 unique_name_in_owner = true
 cell_size = Vector3(5, 5, 5)
 script = ExtResource("3_vio1o")
 metadata/_editor_floor_ = Vector3(0, -19, 0)
 
-[node name="3dHud" parent="." instance=ExtResource("5_3f7cn")]
-unique_name_in_owner = true
-
 [node name="PauseMenu" parent="." instance=ExtResource("4_1npq7")]
 process_mode = 3
+
+[node name="First-Person view" type="Node" parent="."]
+
+[node name="Player" parent="First-Person view" groups=["enemy"] instance=ExtResource("1_41fjk")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.33311, 0, 4.02174)
+
+[node name="PlayerCam" type="Camera3D" parent="First-Person view/Player"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45076, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="First-Person view/Player/PlayerCam"]
+
+[node name="3dHud" parent="First-Person view" instance=ExtResource("5_3f7cn")]
+unique_name_in_owner = true
 
 [node name="Top-down view" type="Node" parent="."]
 
