@@ -99,7 +99,6 @@ func _fire_bolt(bolt_target: Node3D):
 	new_bolt.target = bolt_target
 	new_bolt.damage = damage
 	add_child(new_bolt)
-	print("firing bolt")
 
 func _get_target():
 	# Easily could implement bloons-type targeting (closest to tower, closest to base, etc)

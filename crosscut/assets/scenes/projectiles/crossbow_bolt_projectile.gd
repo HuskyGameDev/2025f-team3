@@ -6,11 +6,6 @@ var damage = 10
 
 var target: Node3D
 
-#func _ready():
-	#position = target.position
-	#if debug: print(target.position)
-	#if debug: print(position)
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# Destroy if the target is gone
@@ -30,5 +25,5 @@ func _process(delta: float) -> void:
 		_on_hit()
 
 func _on_hit():
-	if debug: print("CBB: crossbow hit target")
+	target.take_damage(damage)
 	queue_free()

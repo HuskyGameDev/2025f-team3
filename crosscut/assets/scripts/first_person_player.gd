@@ -5,6 +5,9 @@ extends CharacterBody3D
 
 var crossbow_tower = preload("res://assets/scenes/towers/crossbow_tower.tscn")
 
+signal damage_sig(damage)
+signal dead_sig
+
 var disabled = false
 
 # Movement variables
@@ -17,6 +20,16 @@ const JUMP_VELOCITY = 4.5
 
 # Lookaround variables
 var mouse_sensitivity = 0.002
+
+# Combat
+var _health = 100
+
+func take_damage(damage_to_take):
+	_health -= damage_to_take
+	damage_sig.emit(damage_to_take)
+	if _health <= 0:
+		dead_sig.emit()
+	
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -58,8 +71,6 @@ func _physics_process(delta: float) -> void:
 		velocity.z = direction.z * speed
 	elif is_on_floor():
 		velocity *= DECELLERATION
-		#velocity.x = move_toward(velocity.x, 0, speed)
-		#velocity.z = move_toward(velocity.z, 0, speed)
 	
 	if direction.is_zero_approx():
 		speed = clamp(speed-DECELLERATION, 0, MAX_SPEED)

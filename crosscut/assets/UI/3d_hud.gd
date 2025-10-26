@@ -22,9 +22,6 @@ func _process(delta: float) -> void:
 	
 	# Decrease health bar just to show it works
 	#print($HealthPanel/VBoxContainer/HealthRect.size.x)
-	health -= 0.1
-	if (health < 1):
-		health = 100
 	$HealthPanel/VBoxContainer/HealthRect.size.x = health_width - ((100 + (health * -1)) / 100) * health_width
 	
 func _update_health(value):
@@ -35,3 +32,8 @@ func _update_enemies_killed(value):
 
 func _update_enemies_left(value):
 	enemies_left = value
+
+func _on_player_damage_sig(damage) -> void:
+	health -= damage
+	print(damage)
+	print(health)

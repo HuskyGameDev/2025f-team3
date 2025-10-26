@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ccy5pg6ws1kk4"]
+[gd_scene load_steps=18 format=3 uid="uid://ccy5pg6ws1kk4"]
 
 [ext_resource type="PackedScene" uid="uid://qwd7i00v37t2" path="res://assets/scenes/game_manager.tscn" id="1_21mu2"]
 [ext_resource type="PackedScene" uid="uid://x18icxf4xg6e" path="res://assets/scenes/first_person_player.tscn" id="1_41fjk"]
@@ -32,6 +32,9 @@ albedo_color = Color(0.281187, 0.281187, 0.281187, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_abcw6"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_41fjk"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_21mu2"]
+allow_unpress = true
 
 [node name="test_scene" type="Node3D"]
 
@@ -97,12 +100,17 @@ unique_name_in_owner = true
 [node name="TopDownCam" type="Camera3D" parent="Top-down view"]
 unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 70, 0)
+projection = 1
+size = 100.0
 
 [node name="TowerPlacementRaycast" type="RayCast3D" parent="Top-down view/TopDownCam"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 target_position = Vector3(2, 0, 4)
 collision_mask = 15
 
 [node name="2dHud" parent="Top-down view" instance=ExtResource("6_22ejr")]
 unique_name_in_owner = true
+button_group = SubResource("ButtonGroup_21mu2")
+
+[connection signal="damage_sig" from="First-Person view/Player" to="GameManager" method="_on_player_damage_sig"]
+[connection signal="damage_sig" from="First-Person view/Player" to="First-Person view/3dHud" method="_on_player_damage_sig"]
