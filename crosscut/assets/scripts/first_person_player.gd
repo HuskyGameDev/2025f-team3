@@ -3,14 +3,9 @@ extends CharacterBody3D
 
 @onready var grid_map = %GridMap
 
-@onready var top_down_camera = $"../Top-down view/Camera3D"
-@onready var first_person_camera = $Camera3D
-
-@onready var top_down_HUD = $"../Top-down view/2dHud"
-@onready var first_person_HUD = $"../3dHud"
-
 var crossbow_tower = preload("res://assets/scenes/towers/crossbow_tower.tscn")
 
+var disabled = false
 
 # Movement variables
 var speed = 0
@@ -25,33 +20,23 @@ var mouse_sensitivity = 0.002
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	top_down_HUD.hide()
 
 func _input(event):
+	if disabled: 
+		return
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * mouse_sensitivity)
-		$Camera3D.rotate_x(-event.relative.y * mouse_sensitivity)
-		$Camera3D.rotation.x = clampf($Camera3D.rotation.x, -deg_to_rad(70), deg_to_rad(70))
-	
-	
-
-	#TODO: REMOVE THIS, DEBUG STUFF
-	if event.is_action_pressed("View Map"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		top_down_camera.make_current()
-		first_person_HUD.hide()
-		top_down_HUD.show()
-	if event.is_action_released("View Map"):
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		first_person_camera.make_current()
-		first_person_HUD.show()
-		top_down_HUD.hide()
+		$PlayerCam.rotate_x(-event.relative.y * mouse_sensitivity)
+		$PlayerCam.rotation.x = clampf($PlayerCam.rotation.x, -deg_to_rad(70), deg_to_rad(70))
 
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+
+	if disabled:
+		return
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
