@@ -88,6 +88,6 @@ process_mode = 3
 [node name="Top-down view" type="Node" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Top-down view"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20, 0)
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 70, 0)
 
 [node name="2dHud" parent="Top-down view" instance=ExtResource("6_22ejr")]
