@@ -3,6 +3,8 @@ extends CanvasLayer
 var time_elapsed = 0
 var health = 100
 var health_width
+var enemies_killed
+var enemies_left
 
 func _ready():
 	# health_width assignment doesn't occur unless we await
@@ -25,3 +27,11 @@ func _process(delta: float) -> void:
 		health = 100
 	$HealthPanel/VBoxContainer/HealthRect.size.x = health_width - ((100 + (health * -1)) / 100) * health_width
 	
+func _update_health(value):
+	health_width = value
+
+func _update_enemies_killed(value):
+	enemies_killed = value
+
+func _update_enemies_left(value):
+	enemies_left = value
