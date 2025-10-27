@@ -112,5 +112,4 @@ collision_mask = 15
 unique_name_in_owner = true
 button_group = SubResource("ButtonGroup_21mu2")
 
-[connection signal="damage_sig" from="First-Person view/Player" to="GameManager" method="_on_player_damage_sig"]
 [connection signal="damage_sig" from="First-Person view/Player" to="First-Person view/3dHud" method="_on_player_damage_sig"]

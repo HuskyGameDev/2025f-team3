@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://x18icxf4xg6e"]
+[gd_scene load_steps=5 format=3 uid="uid://x18icxf4xg6e"]
 
 [ext_resource type="Script" uid="uid://oljehg1xwmnr" path="res://assets/scripts/first_person_player.gd" id="1_nljuj"]
+[ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="2_6ra0c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6ra0c"]
 
@@ -8,6 +9,8 @@
 
 [node name="CharacterBody3D" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_nljuj")
+
+[node name="Health" parent="." instance=ExtResource("2_6ra0c")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
