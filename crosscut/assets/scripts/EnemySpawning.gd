@@ -12,6 +12,8 @@ var currentWaveIndex = 0
 var totalEnemies = 0
 var aliveEnemies = 0
 
+var doneSpawning = false
+
 var LEVELS = [
 	# Level 1
 	[
@@ -55,12 +57,19 @@ func startSpawning():
 				enemy.startSpawning()
 				totalEnemies += enemy.enemyCount
 				aliveEnemies += enemy.enemyCount
-			nextWave()
+			doneSpawning = true
 		else:	
 			nextLevel()
 
+func killedEnemy():
+	totalEnemies -= 1
+	print("Killed enemy ", totalEnemies, " remain")
+	if (totalEnemies == 0 && doneSpawning):
+		print("All enemies killed, going to next wave")
+		nextWave()
 func nextWave():
 	currentWaveIndex += 1
+	doneSpawning = false
 	waveDelay.start()
 
 func nextLevel():
@@ -73,6 +82,7 @@ func _on_wave_delay_timeout() -> void:
 func _on_level_delay_timeout() -> void:
 	currentLevelIndex +=1
 	currentWaveIndex = 0
+	totalEnemies = 0
 	print("Level Done")
 	startSpawning() # Replace with function body.
 
