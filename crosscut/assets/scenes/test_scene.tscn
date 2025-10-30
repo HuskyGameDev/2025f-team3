@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://ccy5pg6ws1kk4"]
 
 [ext_resource type="PackedScene" uid="uid://qwd7i00v37t2" path="res://assets/scenes/game_manager.tscn" id="1_21mu2"]
-[ext_resource type="PackedScene" uid="uid://x18icxf4xg6e" path="res://assets/scenes/first_person_player.tscn" id="1_41fjk"]
+[ext_resource type="PackedScene" uid="uid://x18icxf4xg6e" path="res://assets/scenes/player.tscn" id="1_41fjk"]
 [ext_resource type="Texture2D" uid="uid://cqedqgd8kybb0" path="res://assets/sky/DaySkyHDRI051B_2K-HDR.exr" id="1_376kr"]
 [ext_resource type="PackedScene" uid="uid://d4mi06tvmdmoe" path="res://assets/scenes/towers/crossbow_tower.tscn" id="1_ics7i"]
 [ext_resource type="PackedScene" uid="uid://c8vq7xm3p4r2a" path="res://assets/scenes/objective.tscn" id="2_objective"]

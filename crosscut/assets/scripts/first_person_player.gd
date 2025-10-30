@@ -1,11 +1,26 @@
 extends CharacterBody3D
 
+@export var max_hp = 100
+@export var hp = 100
+@export var atk = 10
+@export var atk_speed = 5
+
+func take_damage(damage):
+	hp -= damage
+	damage_sig.emit(damage, hp)
+	if hp <= 0:
+		dead_sig.emit()
+		destroy()
+
+func destroy():
+	queue_free()
+	# need a reviving script
 
 @onready var grid_map = %GridMap
 
 var crossbow_tower = preload("res://assets/scenes/towers/crossbow_tower.tscn")
 
-signal damage_sig(damage_taken, current_health)
+signal damage_sig(damage, hp)
 signal dead_sig
 
 var disabled = false
@@ -20,16 +35,6 @@ const JUMP_VELOCITY = 4.5
 
 # Lookaround variables
 var mouse_sensitivity = 0.002
-
-# Combat
-var _health = 100
-
-func take_damage(damage_to_take):
-	_health -= damage_to_take
-	damage_sig.emit(damage_to_take, _health)
-	if _health <= 0:
-		dead_sig.emit()
-	
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

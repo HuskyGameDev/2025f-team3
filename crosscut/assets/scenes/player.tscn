@@ -1,18 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnmj5166vej6v"]
+[gd_scene load_steps=5 format=3 uid="uid://x18icxf4xg6e"]
 
-[ext_resource type="Script" uid="uid://43kmmrsnwocl" path="res://assets/scripts/player_stats.gd" id="1_rwm0n"]
+[ext_resource type="Script" uid="uid://oljehg1xwmnr" path="res://assets/scripts/first_person_player.gd" id="1_nljuj"]
+[ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="2_6ra0c"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_onrkg"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6ra0c"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i3pqv"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3qeih"]
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
-script = ExtResource("1_rwm0n")
+script = ExtResource("1_nljuj")
 
-[node name="Pivot" type="Node3D" parent="."]
-
-[node name="ReplaceThisWithCharacterModel" type="MeshInstance3D" parent="Pivot"]
-mesh = SubResource("CapsuleMesh_onrkg")
+[node name="Health" parent="." instance=ExtResource("2_6ra0c")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_i3pqv")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_6ra0c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_3qeih")
