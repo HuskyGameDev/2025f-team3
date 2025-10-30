@@ -43,7 +43,7 @@ func spawn():
 		var enemyScene = enemyList[enemyName]
 		if enemyScene:
 			var enemyInstance = enemyScene.instantiate()
-			get_tree().currentScene.call_deferred("add_child", enemyInstance)
+			get_tree().current_scene.call_deferred("add_child", enemyInstance)
 			var spawnPos = spawnPoints[locations[spawnLocationIndex]].global_position
 			enemyInstance.call_deferred("set_global_position", spawnPos)
 

@@ -13,6 +13,7 @@ var totalEnemies = 0
 var aliveEnemies = 0
 
 var doneSpawning = false
+var levelDone = false
 
 var LEVELS = [
 	# Level 1
@@ -58,6 +59,8 @@ func startSpawning():
 				totalEnemies += enemy.enemyCount
 				aliveEnemies += enemy.enemyCount
 			doneSpawning = true
+		else:
+			levelDone = true
 
 func killedEnemy():
 	totalEnemies -= 1
@@ -74,8 +77,9 @@ func nextLevel():
 	levelDelay.start()
 	
 func _input(event):
-	if event.is_action_pressed("NextLevel") && totalEnemies == 0:
+	if event.is_action_pressed("NextLevel") && levelDone:
 		print("Starting Next Level")
+		levelDone = false
 		nextLevel()
 
 func _on_wave_delay_timeout() -> void:
