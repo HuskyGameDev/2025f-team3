@@ -9,25 +9,28 @@ var waves = []
 var currentLevelIndex = 0
 var currentWaveIndex = 0
 
+var totalEnemies = 0
+var aliveEnemies = 0
+
 var LEVELS = [
 	# Level 1
 	[
 		# Wave 1
 		[
-			EnemySpawnInfo.new(2, "test1", ["east", "north"], 1),
+			EnemySpawnInfo.new(2, "test1", ["test"], 1),
 			#EnemySpawnInfo.new(2, "test2", ["south"], 0.5)
 		],
 		# Wave 2
 		[
 			#EnemySpawnInfo.new(3, "test1", ["west"], 1),
-			EnemySpawnInfo.new(3, "test2", ["south"], 0.5)
+			EnemySpawnInfo.new(3, "test1", ["test"], 0.5)
 		],
 	],
 	# Level 2
 	[
 		# Wave 1
 		[
-			EnemySpawnInfo.new(3, "test1", ["south"], 0.5)
+			EnemySpawnInfo.new(3, "test1", ["test"], 0.5)
 		]
 	]
 ]
@@ -44,16 +47,24 @@ func _process(delta: float) -> void:
 	pass
 
 func startSpawning():
-	if currentLevelIndex + 1 <= LEVELS.size():
+	if currentLevelIndex < LEVELS.size():
 		if currentWaveIndex < LEVELS[currentLevelIndex].size():
 			var currentWave = LEVELS[currentLevelIndex][currentWaveIndex]
 			for enemy in currentWave:
 				add_child(enemy)
 				enemy.startSpawning()
-			currentWaveIndex += 1
-			waveDelay.start()
+				totalEnemies += enemy.enemyCount
+				aliveEnemies += enemy.enemyCount
+			nextWave()
 		else:	
-			levelDelay.start()
+			nextLevel()
+
+func nextWave():
+	currentWaveIndex += 1
+	waveDelay.start()
+
+func nextLevel():
+	levelDelay.start()
 
 func _on_wave_delay_timeout() -> void:
 	print("Wave Done")

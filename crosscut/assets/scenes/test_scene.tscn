@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ccy5pg6ws1kk4"]
+[gd_scene load_steps=20 format=3 uid="uid://ccy5pg6ws1kk4"]
 
 [ext_resource type="PackedScene" uid="uid://qwd7i00v37t2" path="res://assets/scenes/game_manager.tscn" id="1_21mu2"]
 [ext_resource type="PackedScene" uid="uid://x18icxf4xg6e" path="res://assets/scenes/first_person_player.tscn" id="1_41fjk"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cgudj1wf88k62" path="res://assets/UI/pause_menu.tscn" id="4_1npq7"]
 [ext_resource type="PackedScene" uid="uid://dckpdofm2vrvg" path="res://assets/UI/3d_hud.tscn" id="5_3f7cn"]
 [ext_resource type="PackedScene" uid="uid://dlichn2b72vr7" path="res://assets/UI/2d_hud.tscn" id="6_22ejr"]
+[ext_resource type="PackedScene" uid="uid://b5rhrfigqrejf" path="res://assets/scenes/spawn_library.tscn" id="10_m00bm"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vio1o"]
 panorama = ExtResource("1_376kr")
@@ -116,5 +117,10 @@ collision_mask = 15
 [node name="2dHud" parent="Top-down view" instance=ExtResource("6_22ejr")]
 unique_name_in_owner = true
 button_group = SubResource("ButtonGroup_21mu2")
+
+[node name="SpawnLibrary" parent="." instance=ExtResource("10_m00bm")]
+
+[node name="TESTSPAWN" type="Node3D" parent="SpawnLibrary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.12094, 0)
 
 [connection signal="damage_sig" from="First-Person view/Player" to="First-Person view/3dHud" method="_on_player_damage_sig"]

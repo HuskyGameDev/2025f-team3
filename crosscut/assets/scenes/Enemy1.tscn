@@ -14,5 +14,9 @@ script = ExtResource("1_wnmti")
 [node name="ReplaceThisWithEnemyModel" type="MeshInstance3D" parent="Pivot"]
 mesh = SubResource("BoxMesh_cj2mj")
 
+[node name="ReplaceThisWithEnemyModel" type="MeshInstance3D" parent="Pivot/ReplaceThisWithEnemyModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.885059, 0)
+mesh = SubResource("BoxMesh_cj2mj")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_mo1vv")

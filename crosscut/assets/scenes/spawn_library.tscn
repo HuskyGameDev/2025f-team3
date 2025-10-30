@@ -12,5 +12,7 @@ one_shot = true
 wait_time = 5.0
 one_shot = true
 
+[node name="AliveEnemies" type="Node2D" parent="."]
+
 [connection signal="timeout" from="LevelDelay" to="." method="_on_level_delay_timeout"]
 [connection signal="timeout" from="WaveDelay" to="." method="_on_wave_delay_timeout"]

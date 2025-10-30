@@ -1,9 +1,11 @@
 class_name EnemySpawnInfo extends Node
 
-var enemyListInstance = load("res://assets/scenes/enemy_list.tscn").instantiate()
+var spawnPoints = {}
+
+#var enemyListInstance = load("res://assets/scenes/enemy_list.tscn").instantiate()
 var enemyList = {
-	"test1": enemyListInstance.get_node("Enemy1"),
-	"test2": enemyListInstance.get_node("Enemy2")
+	"test1": preload("res://assets/scenes/Enemy1.tscn"),
+	#"test2": enemyListInstance.get_node("Enemy2")
 }
 
 var enemyCount = 0
@@ -23,6 +25,10 @@ func _init(countArg: int, nameArg: String,
 	delay = delayArg
 	spawnTimer = makeTimer()
 
+func _ready():
+	spawnPoints = {
+		"test": get_parent().get_node("TESTSPAWN")
+	}
 
 func startSpawning():
 	currentEnemyCount = 0
@@ -30,9 +36,18 @@ func startSpawning():
 		spawn()
 	
 func spawn():
-	if currentEnemyCount <= enemyCount:
+	if currentEnemyCount < enemyCount:
 		currentEnemyCount += 1
 		print("Spawning ", enemyList[enemyName], " at ", locations[spawnLocationIndex])
+		
+		var enemy_scene = enemyList[enemyName]
+		if enemy_scene:
+			var enemy_instance = enemy_scene.instantiate()
+			get_tree().current_scene.call_deferred("add_child", enemy_instance)
+			var spawnPos = spawnPoints[locations[spawnLocationIndex]].global_position
+			enemy_instance.call_deferred("set_global_position", spawnPos)
+
+			
 		spawnLocationIndex = (spawnLocationIndex + 1) % locations.size()
 		spawnTimer.start()
 	else:

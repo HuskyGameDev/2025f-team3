@@ -11,8 +11,12 @@ extends CharacterBody3D
 func towerDamage(damage : int):
 	hp = hp - damage
 	if hp <= 0:
-		destory()
-
-func destory():
-	queue_free()
+		destroy()
 """
+func destroy():
+	queue_free()
+
+func _input(event):
+	if event.is_action_pressed("Test"):
+		print("KILLING ENEMY")
+		destroy()
