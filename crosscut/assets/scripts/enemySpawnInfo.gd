@@ -40,12 +40,12 @@ func spawn():
 		currentEnemyCount += 1
 		print("Spawning ", enemyList[enemyName], " at ", locations[spawnLocationIndex])
 		
-		var enemy_scene = enemyList[enemyName]
-		if enemy_scene:
-			var enemy_instance = enemy_scene.instantiate()
-			get_tree().current_scene.call_deferred("add_child", enemy_instance)
+		var enemyScene = enemyList[enemyName]
+		if enemyScene:
+			var enemyInstance = enemyScene.instantiate()
+			get_tree().currentScene.call_deferred("add_child", enemyInstance)
 			var spawnPos = spawnPoints[locations[spawnLocationIndex]].global_position
-			enemy_instance.call_deferred("set_global_position", spawnPos)
+			enemyInstance.call_deferred("set_global_position", spawnPos)
 
 			
 		spawnLocationIndex = (spawnLocationIndex + 1) % locations.size()

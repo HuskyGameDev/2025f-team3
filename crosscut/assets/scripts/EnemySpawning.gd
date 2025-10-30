@@ -58,8 +58,6 @@ func startSpawning():
 				totalEnemies += enemy.enemyCount
 				aliveEnemies += enemy.enemyCount
 			doneSpawning = true
-		else:	
-			nextLevel()
 
 func killedEnemy():
 	totalEnemies -= 1
@@ -74,17 +72,22 @@ func nextWave():
 
 func nextLevel():
 	levelDelay.start()
+	
+func _input(event):
+	if event.is_action_pressed("NextLevel") && totalEnemies == 0:
+		print("Starting Next Level")
+		nextLevel()
 
 func _on_wave_delay_timeout() -> void:
 	print("Wave Done")
-	startSpawning() # Replace with function body.
+	startSpawning()
 
 func _on_level_delay_timeout() -> void:
 	currentLevelIndex +=1
 	currentWaveIndex = 0
 	totalEnemies = 0
 	print("Level Done")
-	startSpawning() # Replace with function body.
+	startSpawning()
 
 
 '''
