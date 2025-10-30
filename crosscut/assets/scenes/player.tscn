@@ -12,7 +12,7 @@ script = ExtResource("1_nljuj")
 
 [node name="Health" parent="." instance=ExtResource("2_6ra0c")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="ReplaceThisWithCharacterModel" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_6ra0c")
 

@@ -1,37 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://c68bb7h0pgpk1"]
+[gd_scene load_steps=6 format=3 uid="uid://c68bb7h0pgpk1"]
 
 [ext_resource type="Script" uid="uid://r4htfwbqu2dl" path="res://assets/scripts/enemy1_stats.gd" id="1_wnmti"]
+[ext_resource type="Script" uid="uid://bksnh1nri3ati" path="res://assets/scenes/damage_area.gd" id="2_hknbf"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_cj2mj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mo1vv"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_wnmti"]
-size = Vector3(1.07471, 1.94092, 1.07184)
+[sub_resource type="BoxShape3D" id="BoxShape3D_hknbf"]
+size = Vector3(1.05298, 1.0473, 1.02148)
 
 [node name="Enemy1" type="CharacterBody3D" groups=["Enemy"]]
 script = ExtResource("1_wnmti")
-hp = null
-speed = null
-atk = null
-atk_speed = null
 
 [node name="Pivot" type="Node3D" parent="."]
 
 [node name="ReplaceThisWithEnemyModel" type="MeshInstance3D" parent="Pivot"]
 mesh = SubResource("BoxMesh_cj2mj")
 
-[node name="ReplaceThisWithEnemyModel" type="MeshInstance3D" parent="Pivot/ReplaceThisWithEnemyModel"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.885059, 0)
-mesh = SubResource("BoxMesh_cj2mj")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_mo1vv")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="DamageArea" type="Area3D" parent="."]
+script = ExtResource("2_hknbf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0090332, 0.446533, 0.00228882)
-shape = SubResource("BoxShape3D_wnmti")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00549316, 0.00552368, 0.0107422)
+shape = SubResource("BoxShape3D_hknbf")
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
