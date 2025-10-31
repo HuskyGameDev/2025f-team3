@@ -13,6 +13,7 @@ enum WeaponType { MELEE, BOW }
 
 @export_category("damage")
 @export var damage: float = 10.0
+@export var headshot_multiplier: float = 1.5
 
 @export_category("range")
 @export_range(0.5, 200.0, 0.5) var range_m: float = 3.0 

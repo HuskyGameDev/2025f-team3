@@ -24,10 +24,6 @@ window/size/viewport_height=720
 
 project/assembly_name="CrossCut"
 
-[filesystem]
-
-import/blender/enabled=false
-
 [global_group]
 
 Enemy=""
