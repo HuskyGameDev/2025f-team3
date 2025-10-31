@@ -13,13 +13,14 @@ signal objective_destroyed
 # Reference to health component
 @onready var health_component = $Health
 
-func _ready():
+func _ready() -> void:
 	# Add to global group for easy reference by enemies
 	add_to_group(group_name)
 
 	# Setup health component
 	if health_component:
 		health_component.max_health = max_health
+		health_component.health = max_health
 		health_component.damage_taken.connect(_on_damage_taken)
 		health_component.dead.connect(_on_dead)
 	else:
@@ -31,30 +32,30 @@ func _ready():
 
 	print("Objective initialized with %d HP at position %s" % [max_health, global_position])
 
-func _on_damage_taken(amount):
+func _on_damage_taken(amount: float) -> void:
 	# Called when objective takes damage
 	if health_component:
-		objective_damaged.emit(health_component.current_health, health_component.max_health)
-		print("Objective damaged! Health: %d/%d" % [health_component.current_health, health_component.max_health])
+		objective_damaged.emit(health_component.health, health_component.max_health)
+		print("Objective damaged! Health: %d/%d" % [health_component.health, health_component.max_health])
 
-func _on_dead():
+func _on_dead() -> void:
 	# Called when objective is destroyed
 	objective_destroyed.emit()
 	print("OBJECTIVE DESTROYED - GAME OVER!")
 	# Could add effects, animations, etc. here
 	# For now, just keep it visible but mark as destroyed
 
-func get_health():
+func get_health() -> float:
 	# Returns current health - useful for UI
 	if health_component:
-		return health_component.current_health
+		return health_component.health
 	return 0
 
-func get_max_health():
+func get_max_health() -> float:
 	# Returns max health - useful for UI
 	return max_health
 
-func take_damage(amount):
+func take_damage(amount: float) -> void:
 	# Public method to damage the objective
 	if health_component:
 		health_component.take_damage(amount)

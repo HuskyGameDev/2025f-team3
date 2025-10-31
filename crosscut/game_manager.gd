@@ -22,6 +22,9 @@ var RAY_LENGTH = 500
 func _ready() -> void:
 	top_down_HUD.hide()
 
+	# Connect to objective for game over handling
+	_connect_to_objective()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -80,4 +83,21 @@ func _toggle_mode():
 		first_person_HUD.show()
 		top_down_HUD.hide()
 	print(control_mode)
-	
+
+func _connect_to_objective() -> void:
+	# Find and connect to the objective in the scene
+	var objectives = get_tree().get_nodes_in_group("objective")
+	if objectives.size() > 0:
+		var objective = objectives[0]
+		objective.objective_destroyed.connect(_on_objective_destroyed)
+		print("GameManager connected to objective")
+	else:
+		push_warning("GameManager: No objective found in scene!")
+
+func _on_objective_destroyed() -> void:
+	print("GAME OVER - OBJECTIVE DESTROYED!")
+	# Pause the game
+	get_tree().paused = true
+	# TODO: Show game over screen UI
+	# TODO: Stop enemy spawning
+	# For now, just print a message
