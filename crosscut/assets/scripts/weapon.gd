@@ -39,11 +39,8 @@ func _do_bow_hitscan(origin: Vector3, dir: Vector3) -> void:
 	if hit:
 		_apply_damage(hit)
 
-func _apply_damage(hit: Dictionary) -> void:
-	var collider := hit.get("collider")
-	if collider and collider.has_method("apply_damage"):
-		var dmg := data.damage
-		collider.apply_damage(dmg)
+func _apply_damage(hit: Dictionary) -> void: pass
+	
 
 func _play_random_attack_sound() -> void:
 	if data.attack_sounds.is_empty(): return
