@@ -10,7 +10,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_hknbf"]
 size = Vector3(1.05298, 1.0473, 1.02148)
 
-[node name="Enemy1" type="CharacterBody3D" groups=["Enemy"]]
+[node name="Enemy1" type="CharacterBody3D" groups=["enemy"]]
 script = ExtResource("1_wnmti")
 
 [node name="Pivot" type="Node3D" parent="."]
