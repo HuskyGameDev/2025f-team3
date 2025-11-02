@@ -49,7 +49,7 @@ func _input(event):
 	if control_mode == ControlMode.TOPDOWN and event is InputEventMouseButton and event.pressed and event.button_index == 1:
 		var position = _get_mouse_position_on_board()
 		if buying_tower:
-			if grid_map.add_tower(crossbow_tower, position) != Vector3(-1, -1, -1):
+			if grid_map.add_tower(crossbow_tower, position) != null:
 				buying_tower = false
 				end_buying.emit()
 				print(str("You just bought tower "), selected_tower)
@@ -60,7 +60,7 @@ func _input(event):
 			
 	elif control_mode == ControlMode.TOPDOWN and event is InputEventMouseButton and event.pressed and event.button_index == 2:
 		var position = _get_mouse_position_on_board()
-		if grid_map.remove_tower_at_position(position) != Vector3(-1, -1, -1):
+		if grid_map.remove_tower_at_position(position) != null:
 			# Gain back half the cost of a tower when you sell it
 			gold += 50
 			update_gold.emit(gold)

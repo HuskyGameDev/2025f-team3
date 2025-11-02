@@ -28,7 +28,7 @@ func add_tower(tower: PackedScene, pos: Vector3):
 	# Check if the grid position is already filled
 	if towers.has(closest_pos):
 		if debug: print("GRID: tower already exists at pos")
-		return
+		return null
 	
 	# Otherwise, add the tower
 	var new_tower = tower.instantiate()
@@ -44,7 +44,7 @@ func remove_tower_at_position(pos: Vector3):
 	var closest_pos = get_closest_position_on_grid(position_2D)
 	if !towers.has(closest_pos):
 		if debug: print("GRID: no tower to delete at pos")
-		return
+		return null
 	
 	var the_tower: Node3D = towers[closest_pos]
 	the_tower.queue_free()
