@@ -7,16 +7,20 @@ extends Node3D
 @onready var first_person_HUD: CanvasLayer = %"3dHud"
 @onready var top_down_HUD: CanvasLayer = %"2dHud"
 
-
+# Game state enums
+enum GameState { PRE_WAVE, WAVE_STARTING, DURING_WAVE }
 enum ControlMode { PLAYER, TOPDOWN }
+
+# Game state variables
 var control_mode = ControlMode.PLAYER
+var game_state = GameState.DURING_WAVE
+
 @onready var grid_map = %GridMap
 var crossbow_tower = preload("res://assets/scenes/towers/crossbow_tower.tscn")
 
-
 # Raycasting
 @onready var tower_placement_raycast: RayCast3D = %TowerPlacementRaycast
-var RAY_LENGTH = 500
+const RAY_LENGTH = 500
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
