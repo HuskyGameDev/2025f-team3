@@ -47,10 +47,6 @@ func _update_enemies_killed(value):
 func _update_enemies_left(value):
 	enemies_left = value
 
-func _on_player_damage_sig(damage_taken, current_health) -> void:
-	health = current_health
-	print(health)
-
 func _connect_to_objective() -> void:
 	# Find and connect to the objective in the scene
 	var objectives = get_tree().get_nodes_in_group("objective")
@@ -66,3 +62,7 @@ func _connect_to_objective() -> void:
 func _on_objective_damaged(current_health: float, max_health: float) -> void:
 	objective_health = current_health
 	objective_max_health = max_health
+
+
+func _on_health_damaged_sig(damage_taken: Variant, current_health: Variant) -> void:
+	health = current_health

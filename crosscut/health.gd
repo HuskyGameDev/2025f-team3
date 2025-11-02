@@ -1,13 +1,13 @@
 extends Node
 
-signal damage_taken(damage, health)
-signal dead
+signal damaged_sig(damage_taken, health_after_damage)
+signal killed_sig
 
 @export var max_health = 100
 @export var health = 100
 
 func take_damage(damage):
 	health -= damage
-	damage_taken.emit(damage, health)
+	damaged_sig.emit(damage, health)
 	if health <= 0:
-		dead.emit()
+		killed_sig.emit()

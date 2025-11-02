@@ -25,5 +25,5 @@ func _process(delta: float) -> void:
 		_on_hit()
 
 func _on_hit():
-	target.take_damage(damage)
+	target.health.take_damage(damage)
 	queue_free()

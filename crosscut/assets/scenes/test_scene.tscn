@@ -127,4 +127,6 @@ button_group = SubResource("ButtonGroup_21mu2")
 [node name="TESTSPAWN" type="Node3D" parent="SpawnLibrary"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.12094, 0)
 
-[connection signal="damage_sig" from="First-Person view/Player" to="First-Person view/3dHud" method="_on_player_damage_sig"]
+[connection signal="damaged_sig" from="First-Person view/Player/Health" to="First-Person view/3dHud" method="_on_health_damaged_sig"]
+
+[editable path="First-Person view/Player"]

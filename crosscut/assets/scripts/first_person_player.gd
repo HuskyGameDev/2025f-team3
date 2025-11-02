@@ -1,27 +1,13 @@
 extends CharacterBody3D
 
-@export var max_hp = 100
-@export var hp = 100
-@export var atk = 10
-@export var atk_speed = 5
-
-func take_damage(damage):
-	hp -= damage
-	damage_sig.emit(damage, hp)
-	if hp <= 0:
-		dead_sig.emit()
-		destroy()
-
-func destroy():
-	queue_free()
-	# need a reviving script
-
 @onready var grid_map = %GridMap
 
-var crossbow_tower = preload("res://assets/scenes/towers/crossbow_tower.tscn")
+# Exposing child health node to other scripts
+@onready var health: Node3D = $Health
 
-signal damage_sig(damage, hp)
-signal dead_sig
+# Just here for spawning towers at player pos with keys. Keeping here for testing.
+#var crossbow_tower = preload("res://assets/scenes/towers/crossbow_tower.tscn")
+
 
 var disabled = false
 
@@ -60,11 +46,11 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
-	if Input.is_action_just_pressed("ui_text_scroll_up"):
-		grid_map.add_tower(crossbow_tower, global_position)
-		
-	if Input.is_action_just_pressed("ui_text_scroll_down"):
-		grid_map.remove_tower_at_position(global_position)
+	#if Input.is_action_just_pressed("ui_text_scroll_up"):
+		#grid_map.add_tower(crossbow_tower, global_position)
+		#
+	#if Input.is_action_just_pressed("ui_text_scroll_down"):
+		#grid_map.remove_tower_at_position(global_position)
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.

@@ -26,7 +26,7 @@ func _input(event):
 # enemy attack, currently only deal damage when collide with the player
 func _on_damage_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		body.take_damage(atk)
+		body.health.take_damage(atk)
 
 # from down here, it is enemy movement
 @onready var player = get_parent().get_node("First-Person view").get_child(0)

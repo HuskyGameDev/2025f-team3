@@ -21,8 +21,8 @@ func _ready() -> void:
 	if health_component:
 		health_component.max_health = max_health
 		health_component.health = max_health
-		health_component.damage_taken.connect(_on_damage_taken)
-		health_component.dead.connect(_on_dead)
+		health_component.damaged_sig.connect(_on_damage_taken)
+		health_component.killed_sig.connect(_on_dead)
 	else:
 		push_error("Objective: Health component not found!")
 
