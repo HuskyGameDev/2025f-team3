@@ -26,9 +26,9 @@ project/assembly_name="CrossCut"
 
 [global_group]
 
-Enemy=""
 player=""
 tower=""
+enemy=""
 
 [input]
 
