@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c68bb7h0pgpk1"]
+[gd_scene load_steps=7 format=3 uid="uid://c68bb7h0pgpk1"]
 
 [ext_resource type="Script" uid="uid://r4htfwbqu2dl" path="res://assets/scripts/enemy1_stats.gd" id="1_wnmti"]
 [ext_resource type="Script" uid="uid://bksnh1nri3ati" path="res://assets/scenes/damage_area.gd" id="2_hknbf"]
+[ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="2_nrve6"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_cj2mj"]
 
@@ -12,6 +13,10 @@ size = Vector3(1.05298, 1.0473, 1.02148)
 
 [node name="Enemy1" type="CharacterBody3D" groups=["enemy"]]
 script = ExtResource("1_wnmti")
+
+[node name="Health" parent="." instance=ExtResource("2_nrve6")]
+max_health = 10
+health = 10
 
 [node name="Pivot" type="Node3D" parent="."]
 
@@ -28,4 +33,5 @@ script = ExtResource("2_hknbf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00549316, 0.00552368, 0.0107422)
 shape = SubResource("BoxShape3D_hknbf")
 
+[connection signal="killed_sig" from="Health" to="." method="_on_health_killed_sig"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

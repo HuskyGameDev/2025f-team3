@@ -2,27 +2,20 @@ extends CharacterBody3D
 
 # just put variables that I can think of.
 # let me know if there's more that need to be added or deleted.
-@export var hp = 10
 @export var speed = 4
 @export var rotation_speed = 5
 @export var atk = 10
 @export var atk_speed = 5
 
+# exposing health node
+@onready var health: Node3D = $Health
 
-func take_damage(damage : int):
-	hp = hp - damage
-	if hp <= 0:
-		get_parent().get_node("SpawnLibrary").killedEnemy()
-		destroy()
-
-func destroy():
-	queue_free()
 
 func _input(event):
 	if event.is_action_pressed("Test"):
 		print("KILLING ENEMY")
 		get_parent().get_node("SpawnLibrary").killedEnemy()
-		destroy()
+		queue_free()
 
 # enemy attack, currently only deal damage when collide with the player
 func _on_damage_area_body_entered(body: Node3D) -> void:
@@ -47,3 +40,6 @@ func _physics_process(delta):
 	else:
 		velocity = Vector3.ZERO
 		move_and_slide()
+		
+func _on_health_killed_sig() -> void:
+	queue_free()
