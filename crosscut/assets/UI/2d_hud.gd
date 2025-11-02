@@ -1,7 +1,9 @@
 extends CanvasLayer
 
 @export var button_group: ButtonGroup
-var selected_tower
+var selected_tower = "-1"
+var buying_tower = false
+signal begin_buying(selected)
 
 # Objective health tracking
 var objective_health: float = 500
@@ -39,12 +41,26 @@ func _ready() -> void:
 	# Connect to objective signals
 	_connect_to_objective()
 
+var t = 0.0
+
 func _process(delta: float) -> void:
+	t += delta
+	
 	# Update objective health bar
 	if objective_health_width > 0:
 		var health_percent = objective_health / objective_max_health
 		$ObjectivePanel/VBoxContainer/ObjectiveHealthRect.size.x = objective_health_width * health_percent
 		$ObjectivePanel/VBoxContainer/HBoxContainer/ObjectiveHealthLabel.text = str(int(objective_health), "/", int(objective_max_health))
+	# Update position of buying panel
+	if buying_tower:
+		$BuyingPanel.visible = true#position = $BuyingPanel.position.lerp(Vector2(389, 622), t)
+	else:
+		$BuyingPanel.visible = false#position = $BuyingPanel.position.lerp(Vector2(389, 722), t)\
+	
+	if selected_tower == "-1" or buying_tower == true:
+		$LeftPanel/VBoxContainer/Buy.disabled = true
+	else:
+		$LeftPanel/VBoxContainer/Buy.disabled = false
 
 func _on_button_pressed() -> void:
 	if button_group.get_pressed_button() == null:
@@ -55,8 +71,12 @@ func _on_button_pressed() -> void:
 	_select_tower(selected_tower)
 
 func _on_buy_pressed() -> void:
-	print(str("You just bought tower "), selected_tower)
-
+	$BuyingPanel/Label.text = str("Currently buying tower ", selected_tower, ". Click anywhere on the map to place the tower or press ESC to cancel tower placement.")
+	print(str("Currently buying tower ", selected_tower, ". Click anywhere on the map to place the tower or press ESC to cancel tower placement."))
+	buying_tower = true
+	begin_buying.emit(selected_tower)
+	$LeftPanel/VBoxContainer/Buy.disabled = true
+	
 func _connect_to_objective() -> void:
 	# Find and connect to the objective in the scene
 	var objectives = get_tree().get_nodes_in_group("objective")
@@ -72,3 +92,10 @@ func _connect_to_objective() -> void:
 func _on_objective_damaged(current_health: float, max_health: float) -> void:
 	objective_health = current_health
 	objective_max_health = max_health
+
+func _on_game_manager_end_buying() -> void:
+	$LeftPanel/VBoxContainer/Buy.disabled = false
+	buying_tower = false
+	
+func _on_game_manager_update_gold(value: Variant) -> void:
+	$LeftPanel/VBoxContainer/GoldBox/Gold.text = str(value)

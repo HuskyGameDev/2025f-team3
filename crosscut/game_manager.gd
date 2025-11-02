@@ -7,8 +7,16 @@ extends Node3D
 @onready var first_person_HUD: CanvasLayer = %"3dHud"
 @onready var top_down_HUD: CanvasLayer = %"2dHud"
 
+
 # Game state enums
 enum GameState { PRE_WAVE, WAVE_STARTING, DURING_WAVE }
+var buying_tower = false
+var selected_tower
+signal end_buying
+
+var gold = 1000
+signal update_gold(value)
+
 enum ControlMode { PLAYER, TOPDOWN }
 
 # Game state variables
@@ -25,6 +33,7 @@ const RAY_LENGTH = 500
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	top_down_HUD.hide()
+	update_gold.emit(gold)
 
 	# Connect to objective for game over handling
 	_connect_to_objective()
@@ -39,10 +48,24 @@ func _input(event):
 	
 	if control_mode == ControlMode.TOPDOWN and event is InputEventMouseButton and event.pressed and event.button_index == 1:
 		var position = _get_mouse_position_on_board()
-		grid_map.add_tower(crossbow_tower, position)
+		if buying_tower:
+			if grid_map.add_tower(crossbow_tower, position) != Vector3(-1, -1, -1):
+				buying_tower = false
+				end_buying.emit()
+				print(str("You just bought tower "), selected_tower)
+				gold -= 100
+				update_gold.emit(gold)
+			else:
+				print("Buying error")
+			
 	elif control_mode == ControlMode.TOPDOWN and event is InputEventMouseButton and event.pressed and event.button_index == 2:
 		var position = _get_mouse_position_on_board()
-		grid_map.remove_tower_at_position(position)
+		if grid_map.remove_tower_at_position(position) != Vector3(-1, -1, -1):
+			# Gain back half the cost of a tower when you sell it
+			gold += 50
+			update_gold.emit(gold)
+		else:
+			print("Selling error")
 		
 func _get_mouse_position_on_board():
 	var space_state = get_world_3d().direct_space_state
@@ -105,3 +128,9 @@ func _on_objective_destroyed() -> void:
 	# TODO: Show game over screen UI
 	# TODO: Stop enemy spawning
 	# For now, just print a message
+
+# Enables buying mode when you click Buy in the 2D HUD.
+func _on_d_hud_begin_buying(selected) -> void:
+	print("Begin buying")
+	buying_tower = true
+	selected_tower = selected

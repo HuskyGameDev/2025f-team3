@@ -317,6 +317,28 @@ layout_mode = 2
 size_flags_vertical = 3
 color = Color(1, 0, 0, 1)
 
+[node name="BuyingPanel" type="PanelContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -251.0
+offset_top = -98.0
+offset_right = 251.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="BuyingPanel"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "Currently buying tower 1. Click anywhere on the map to place the tower or press ESC to cancel tower placement."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
 [connection signal="pressed" from="LeftPanel/VBoxContainer/GridContainer/0" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="LeftPanel/VBoxContainer/GridContainer/1" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="LeftPanel/VBoxContainer/GridContainer/2" to="." method="_on_button_pressed"]
