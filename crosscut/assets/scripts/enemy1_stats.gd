@@ -19,8 +19,8 @@ func destroy():
 
 func _input(event):
 	if event.is_action_pressed("Test"):
-		get_parent().get_node("SpawnLibrary").killedEnemy()
 		print("KILLING ENEMY")
+		get_parent().get_node("SpawnLibrary").killedEnemy()
 		destroy()
 
 # enemy attack, currently only deal damage when collide with the player
