@@ -28,9 +28,8 @@ func _on_damage_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		body.take_damage(atk)
 
-"""
 # from down here, it is enemy movement
-@onready var player = %Player
+@onready var player = get_parent().get_node("First-Person view").get_child(0)
 
 func _physics_process(delta):
 	var direction = (player.global_transform.origin - global_transform.origin)
@@ -47,4 +46,3 @@ func _physics_process(delta):
 	else:
 		velocity = Vector3.ZERO
 		move_and_slide()
-"""

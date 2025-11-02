@@ -46,6 +46,7 @@ func spawn():
 			get_tree().current_scene.call_deferred("add_child", enemyInstance)
 			var spawnPos = spawnPoints[locations[spawnLocationIndex]].global_position
 			enemyInstance.call_deferred("set_global_position", spawnPos)
+			enemyInstance.name = enemyName
 
 			
 		spawnLocationIndex = (spawnLocationIndex + 1) % locations.size()

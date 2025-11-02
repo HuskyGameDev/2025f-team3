@@ -58,6 +58,8 @@ func startSpawning():
 				enemy.startSpawning()
 				totalEnemies += enemy.enemyCount
 				aliveEnemies += enemy.enemyCount
+				print("There are now ", totalEnemies, " total Enemies")
+				print("There are now ", aliveEnemies, " alive Enemies")
 			doneSpawning = true
 		else:
 			levelDone = true
