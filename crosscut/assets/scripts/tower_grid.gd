@@ -49,6 +49,7 @@ func remove_tower_at_position(pos: Vector3):
 	var the_tower: Node3D = towers[closest_pos]
 	the_tower.queue_free()
 	towers.erase(closest_pos)
+	return 0
 	
 func get_closest_position_on_grid(place_pos: Vector2):
 	var pos_x = place_pos.x

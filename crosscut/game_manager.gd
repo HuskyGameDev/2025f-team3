@@ -10,18 +10,18 @@ extends Node3D
 
 # Game state enums
 enum GameState { PRE_WAVE, WAVE_STARTING, DURING_WAVE }
+enum ControlMode { PLAYER, TOPDOWN }
+
+# Game state variables
+var control_mode = ControlMode.PLAYER
+var game_state = GameState.DURING_WAVE
+
 var buying_tower = false
 var selected_tower
 signal end_buying
 
 var gold = 1000
 signal update_gold(value)
-
-enum ControlMode { PLAYER, TOPDOWN }
-
-# Game state variables
-var control_mode = ControlMode.PLAYER
-var game_state = GameState.DURING_WAVE
 
 @onready var grid_map = %GridMap
 var crossbow_tower = preload("res://assets/scenes/towers/crossbow_tower.tscn")
@@ -53,7 +53,7 @@ func _input(event):
 				buying_tower = false
 				end_buying.emit()
 				print(str("You just bought tower "), selected_tower)
-				gold -= 100
+				gold -= %"2dHud"._get_price(int(selected_tower))
 				update_gold.emit(gold)
 			else:
 				print("Buying error")
@@ -62,10 +62,16 @@ func _input(event):
 		var position = _get_mouse_position_on_board()
 		if grid_map.remove_tower_at_position(position) != null:
 			# Gain back half the cost of a tower when you sell it
+			# TODO: Determine the ID of the sold tower and subtract the corresponding price / 2
 			gold += 50
 			update_gold.emit(gold)
 		else:
 			print("Selling error")
+			
+	if event.is_action_pressed("Cancel"):
+		print("Buying cancelled")
+		buying_tower = false
+		end_buying.emit()
 		
 func _get_mouse_position_on_board():
 	var space_state = get_world_3d().direct_space_state

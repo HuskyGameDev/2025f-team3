@@ -10,29 +10,57 @@ var objective_health: float = 500
 var objective_max_health: float = 500
 var objective_health_width
 
+# Dictionary containing info for available towers.
+# Info is accessed with tower_info[x][y] such that x is the dictionary key and y is the tower ID.
+@export var tower_info = {
+	# Name
+	0: [
+		"Tower 0",
+		"Tower 1",
+		"Tower 2",
+		"Tower 3"
+	],
+	# Health
+	1: [1, 2, 3, 4],
+	# Damage
+	2: [2, 3, 4, 5],
+	# Speed
+	3: [3, 4, 5, 6],
+	# Description
+	4: [
+		"This is tower 0. It's a tower. Yeah!",
+		"This is tower 1. It's a tower. Yeah!",
+		"This is tower 2. It's a tower. Yeah!",
+		"This is tower 3. It's a tower. Yeah!"
+	],
+	# Price
+	5: [100, 200, 300, 400]
+}
+
+func _get_price(i):
+	return tower_info[5][i]
+
 func _select_tower(i):
 	if i == "-1":
-		$LeftPanel/VBoxContainer/Name.text = "No tower selected"
-		$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/HealthBox/Health.text = "N/A"
-		$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/DamageBox/Damage.text = "N/A"
-		$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/SpeedBox/Speed.text = "N/A"
-		$LeftPanel/VBoxContainer/Description.text = "Select a tower to see its statistics, description, and price."
-		$LeftPanel/VBoxContainer/Price/Label.text = "N/A"
-	if i == "0":
-		$LeftPanel/VBoxContainer/Name.text = "Tower 0"
-		$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/HealthBox/Health.text = "1"
-		$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/DamageBox/Damage.text = "2"
-		$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/SpeedBox/Speed.text = "3"
-		$LeftPanel/VBoxContainer/Description.text = "This is tower 0. It's a tower. Yeah!"
-		$LeftPanel/VBoxContainer/Price/Label.text = "100"
-
-func _ready() -> void:
+		_reset_tower_values()
+	else:
+		$LeftPanel/VBoxContainer/Name.text = str(tower_info[0][int(i)])
+		$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/HealthBox/Health.text = str(tower_info[1][int(i)])
+		$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/DamageBox/Damage.text = str(tower_info[2][int(i)])
+		$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/SpeedBox/Speed.text = str(tower_info[3][int(i)])
+		$LeftPanel/VBoxContainer/Description.text = str(tower_info[4][int(i)])
+		$LeftPanel/VBoxContainer/Price/Label.text = str(tower_info[5][int(i)])
+		
+func _reset_tower_values():
 	$LeftPanel/VBoxContainer/Name.text = "No tower selected"
 	$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/HealthBox/Health.text = "N/A"
 	$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/DamageBox/Damage.text = "N/A"
 	$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/SpeedBox/Speed.text = "N/A"
 	$LeftPanel/VBoxContainer/Description.text = "Select a tower to see its statistics, description, and price."
 	$LeftPanel/VBoxContainer/Price/Label.text = "N/A"
+
+func _ready() -> void:
+	_reset_tower_values()
 
 	# Initialize objective health bar
 	await get_tree().process_frame
