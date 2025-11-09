@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4mi06tvmdmoe"]
+[gd_scene load_steps=7 format=3 uid="uid://d4mi06tvmdmoe"]
 
 [ext_resource type="Script" uid="uid://dy6py3ylmvkm5" path="res://assets/scripts/towers/crossbow_tower.gd" id="1_et1c7"]
 [ext_resource type="PackedScene" uid="uid://dw40cmtrt8qw0" path="res://assets/3D assets/tower.blend" id="2_30uou"]
+[ext_resource type="PackedScene" uid="uid://dwkn0f665rhs7" path="res://assets/3D assets/ak47.blend" id="3_30uou"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_chvo0"]
 size = Vector3(2.8, 7.5, 2.8)
@@ -28,7 +29,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.442, 0)
 
 [node name="TowerHeadMesh" type="MeshInstance3D" parent="TowerHead"]
 transform = Transform3D(0.85497, 0, 0, 0, -8.73267e-08, -0.85497, 0, 1.9978, -3.73719e-08, 0, 0, 0)
+visible = false
 mesh = SubResource("PrismMesh_et1c7")
+
+[node name="ak47" parent="TowerHead" instance=ExtResource("3_30uou")]
+transform = Transform3D(5, -4.37114e-07, -4.37114e-07, -4.37114e-07, -5, 0, -4.37114e-07, 3.82137e-14, -5, 0, 0, 0)
 
 [node name="IdleLookaroundTimer" type="Timer" parent="."]
 autostart = true

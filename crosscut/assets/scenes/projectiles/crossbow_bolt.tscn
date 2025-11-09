@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://6eyynlw8urvy"]
+[gd_scene load_steps=4 format=3 uid="uid://6eyynlw8urvy"]
 
 [ext_resource type="Script" uid="uid://c6sbbdhh1poc3" path="res://assets/scenes/projectiles/crossbow_bolt_projectile.gd" id="1_k51t3"]
+[ext_resource type="PackedScene" uid="uid://cecxymrl40f5h" path="res://assets/3D assets/arrow.blend" id="2_ka6rj"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_thkk1"]
 
@@ -9,4 +10,8 @@ script = ExtResource("1_k51t3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 2.5, 0, 0, 0)
+visible = false
 mesh = SubResource("BoxMesh_thkk1")
+
+[node name="arrow" parent="." instance=ExtResource("2_ka6rj")]
+transform = Transform3D(0.3, 0, 0, 0, -1.31134e-08, 0.3, 0, -0.3, -1.31134e-08, 0, 0, 0)
