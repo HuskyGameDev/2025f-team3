@@ -18,14 +18,14 @@ script = ExtResource("1_et1c7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31, 0, -1.31)
 
 [node name="Tower" parent="Pivot" instance=ExtResource("2_30uou")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -1.36919, 0, 1.21323)
 
 [node name="TowerBodyCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19209e-07, 3.752, 1.19209e-07)
 shape = SubResource("BoxShape3D_chvo0")
 
 [node name="TowerHead" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.442, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.75, 0)
 
 [node name="TowerHeadMesh" type="MeshInstance3D" parent="TowerHead"]
 transform = Transform3D(0.85497, 0, 0, 0, -8.73267e-08, -0.85497, 0, 1.9978, -3.73719e-08, 0, 0, 0)
