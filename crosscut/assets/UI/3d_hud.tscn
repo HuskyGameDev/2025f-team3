@@ -64,7 +64,10 @@ grow_vertical = 0
 [node name="VBoxContainer" type="VBoxContainer" parent="HealthPanel"]
 layout_mode = 2
 
-[node name="Time" type="Label" parent="HealthPanel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HealthPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Time" type="Label" parent="HealthPanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 27
@@ -72,7 +75,17 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_qfa3r")
 text = "Health:"
 vertical_alignment = 1
 
+[node name="HealthLabel" type="Label" parent="HealthPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 27
+text = "100/100 "
+label_settings = SubResource("LabelSettings_qfa3r")
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="HealthRect" type="TextureRect" parent="HealthPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("2_sjvhx")
@@ -106,7 +119,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 27
-text = "500/500"
+text = "500/500 "
 label_settings = SubResource("LabelSettings_qfa3r")
 horizontal_alignment = 2
 vertical_alignment = 1
