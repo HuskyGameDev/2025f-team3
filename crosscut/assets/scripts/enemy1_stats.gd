@@ -47,4 +47,5 @@ func _physics_process(delta):
 		move_and_slide()
 
 func _on_health_killed_sig() -> void:
+	get_parent().get_node("SpawnLibrary").killedEnemy()
 	queue_free()

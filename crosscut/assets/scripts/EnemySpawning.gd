@@ -1,5 +1,5 @@
 extends Node2D
-
+@onready var playerUI = %"3dHud"
 var spawnInfo = load("res://assets/scripts/enemySpawnInfo.gd")
 
 @onready var levelDelay = $LevelDelay
@@ -14,6 +14,9 @@ var aliveEnemies = 0
 
 var doneSpawning = false
 var levelDone = false
+
+var waveTimer
+var levelTimer
 
 var LEVELS = [
 	# Level 1
@@ -57,7 +60,9 @@ func startSpawning():
 				add_child(enemy)
 				enemy.startSpawning()
 				totalEnemies += enemy.enemyCount
+				playerUI._update_enemies_left(totalEnemies)
 				aliveEnemies += enemy.enemyCount
+				playerUI._update_enemies_killed(aliveEnemies)
 				print("There are now ", totalEnemies, " total Enemies")
 				print("There are now ", aliveEnemies, " alive Enemies")
 			doneSpawning = true
@@ -65,9 +70,10 @@ func startSpawning():
 			levelDone = true
 
 func killedEnemy():
-	totalEnemies -= 1
-	print("Killed enemy ", totalEnemies, " remain")
-	if (totalEnemies == 0 && doneSpawning):
+	aliveEnemies -= 1
+	playerUI._update_enemies_killed(aliveEnemies)
+	print("Killed enemy ", aliveEnemies, " remain")
+	if (aliveEnemies == 0 && doneSpawning):
 		print("All enemies killed, going to next wave")
 		nextWave()
 func nextWave():
@@ -94,7 +100,6 @@ func _on_level_delay_timeout() -> void:
 	totalEnemies = 0
 	print("Level Done")
 	startSpawning()
-
 
 '''
 func calcWaveCount(enemyCount: int, ratios: Array[int]) -> Array:

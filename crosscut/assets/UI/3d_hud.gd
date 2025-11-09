@@ -32,6 +32,8 @@ func _process(delta: float) -> void:
 	# Update player health bar
 	$HealthPanel/VBoxContainer/HealthRect.size.x = health_width - ((100 + (health * -1)) / 100) * health_width
 
+	$EnemyPanel/VBoxContainer/HBoxContainer/EnemiesKilled.text = str(enemies_killed) + " / "
+	$EnemyPanel/VBoxContainer/HBoxContainer/TotalEnemies.text = str(enemies_left)
 	# Update objective health bar
 	if objective_health_width > 0:
 		var health_percent = objective_health / objective_max_health
