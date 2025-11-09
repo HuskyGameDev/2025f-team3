@@ -88,7 +88,7 @@ process_mode = 3
 
 [node name="First-Person view" type="Node" parent="."]
 
-[node name="Player" parent="First-Person view" groups=["enemy"] instance=ExtResource("1_41fjk")]
+[node name="Player" parent="First-Person view" instance=ExtResource("1_41fjk")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.33311, 0, 4.02174)
 

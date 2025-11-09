@@ -10,6 +10,8 @@ extends CharacterBody3D
 # exposing health node
 @onready var health: Node3D = $Health
 
+# exposing objective node 
+#@onready var objective = %Objective #TODO: FIX THIS
 
 func _input(event):
 	if event.is_action_pressed("Test"):
@@ -21,13 +23,16 @@ func _input(event):
 func _on_damage_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		body.health.take_damage(atk)
+	elif body.is_in_group("objective"): #TODO: Fix objective not taking damage from enemies
+		body.health.take_damage(atk)
 
 # from down here, it is enemy movement
-@onready var player = get_parent().get_node("First-Person view").get_child(0)
+#@onready var player = get_parent().get_node("First-Person view").get_child(0)
+@onready var obj = get_parent().get_node("Objective").get_child(0)
 const GRAVITY = -300
 
 func _physics_process(delta):
-	var direction = (player.global_transform.origin - global_transform.origin)
+	var direction = (obj.global_transform.origin - global_transform.origin)
 	direction.y = 0
 	var distance = direction.length()
 	

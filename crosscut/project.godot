@@ -29,6 +29,7 @@ project/assembly_name="CrossCut"
 player=""
 tower=""
 enemy=""
+objective=""
 
 [input]
 

@@ -12,7 +12,7 @@ height = 5.0
 height = 5.0
 radius = 2.0
 
-[node name="Objective" type="Node3D"]
+[node name="Objective" type="Node3D" groups=["objective"]]
 script = ExtResource("1_objective")
 
 [node name="Health" parent="." instance=ExtResource("2_health")]

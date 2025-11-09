@@ -15,7 +15,7 @@ signal objective_destroyed
 
 func _ready() -> void:
 	# Add to global group for easy reference by enemies
-	add_to_group(group_name)
+	#add_to_group(group_name)
 
 	# Setup health component
 	if health_component:
