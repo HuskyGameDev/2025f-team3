@@ -99,8 +99,8 @@ func _on_button_pressed() -> void:
 	_select_tower(selected_tower)
 
 func _on_buy_pressed() -> void:
-	$BuyingPanel/Label.text = str("Currently buying tower ", selected_tower, ". Click anywhere on the map to place the tower or press ESC to cancel tower placement.")
-	print(str("Currently buying tower ", selected_tower, ". Click anywhere on the map to place the tower or press ESC to cancel tower placement."))
+	$BuyingPanel/Label.text = str("Currently buying tower ", selected_tower, ". Click anywhere on the map to place the tower or press the X key to cancel tower placement.")
+	print(str("Currently buying tower ", selected_tower, ". Click anywhere on the map to place the tower or press the X key to cancel tower placement."))
 	buying_tower = true
 	begin_buying.emit(selected_tower)
 	$LeftPanel/VBoxContainer/Buy.disabled = true

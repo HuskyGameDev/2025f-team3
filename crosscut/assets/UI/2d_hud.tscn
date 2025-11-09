@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dlichn2b72vr7"]
+[gd_scene load_steps=8 format=3 uid="uid://dlichn2b72vr7"]
 
-[ext_resource type="Texture2D" uid="uid://64vl8dhjq5xi" path="res://icon.svg" id="1_76gra"]
 [ext_resource type="Script" uid="uid://bo63nho4fqqub" path="res://assets/UI/2d_hud.gd" id="1_r3mer"]
 [ext_resource type="ButtonGroup" uid="uid://dgoxbso65ctny" path="res://assets/UI/tower_button_group.tres" id="2_q2cnw"]
-[ext_resource type="Texture2D" uid="uid://cqedqgd8kybb0" path="res://assets/sky/DaySkyHDRI051B_2K-HDR.exr" id="4_vb5t4"]
-[ext_resource type="Texture2D" uid="uid://c3hm3lf8v05wr" path="res://assets/sky/EveningSkyHDRI041B_2K-HDR.exr" id="5_mpv6s"]
+[ext_resource type="Texture2D" uid="uid://b5sefhq3c5os5" path="res://assets/UI/icons/tower 1.png" id="3_bkq4m"]
+[ext_resource type="Texture2D" uid="uid://d2wf4r7to1idh" path="res://assets/UI/icons/tower 1 selected.png" id="4_x7j0p"]
+[ext_resource type="Texture2D" uid="uid://totq1vd5blq5" path="res://assets/UI/icons/tower 1 hover.png" id="5_lfxb3"]
+[ext_resource type="Texture2D" uid="uid://g412d3xa78ih" path="res://assets/UI/icons/locked icon.png" id="6_m37x7"]
+[ext_resource type="Texture2D" uid="uid://cvudq3jua4401" path="res://assets/UI/icons/gold.png" id="7_bkq4m"]
 
 [node name="2dHud" type="CanvasLayer"]
 script = ExtResource("1_r3mer")
@@ -65,9 +67,9 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 toggle_mode = true
 button_group = ExtResource("2_q2cnw")
-texture_normal = ExtResource("1_76gra")
-texture_pressed = ExtResource("4_vb5t4")
-texture_hover = ExtResource("5_mpv6s")
+texture_normal = ExtResource("3_bkq4m")
+texture_pressed = ExtResource("4_x7j0p")
+texture_hover = ExtResource("5_lfxb3")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -76,11 +78,10 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
+disabled = true
 toggle_mode = true
 button_group = ExtResource("2_q2cnw")
-texture_normal = ExtResource("1_76gra")
-texture_pressed = ExtResource("4_vb5t4")
-texture_hover = ExtResource("5_mpv6s")
+texture_normal = ExtResource("6_m37x7")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -89,11 +90,10 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
+disabled = true
 toggle_mode = true
 button_group = ExtResource("2_q2cnw")
-texture_normal = ExtResource("1_76gra")
-texture_pressed = ExtResource("4_vb5t4")
-texture_hover = ExtResource("5_mpv6s")
+texture_normal = ExtResource("6_m37x7")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -102,11 +102,10 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
+disabled = true
 toggle_mode = true
 button_group = ExtResource("2_q2cnw")
-texture_normal = ExtResource("1_76gra")
-texture_pressed = ExtResource("4_vb5t4")
-texture_hover = ExtResource("5_mpv6s")
+texture_normal = ExtResource("6_m37x7")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -215,7 +214,7 @@ custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-texture = ExtResource("1_76gra")
+texture = ExtResource("7_bkq4m")
 expand_mode = 1
 stretch_mode = 5
 
@@ -287,7 +286,7 @@ anchor_right = 0.5
 offset_left = -160.0
 offset_top = 11.0
 offset_right = 160.0
-offset_bottom = 88.0
+offset_bottom = 72.0
 grow_horizontal = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ObjectivePanel"]
@@ -324,8 +323,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -251.0
-offset_top = -98.0
+offset_top = -112.0
 offset_right = 251.0
+offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 0
 

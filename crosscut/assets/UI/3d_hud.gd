@@ -31,6 +31,7 @@ func _process(delta: float) -> void:
 
 	# Update player health bar
 	$HealthPanel/VBoxContainer/HealthRect.size.x = health_width - ((100 + (health * -1)) / 100) * health_width
+	$HealthPanel/VBoxContainer/HBoxContainer/HealthLabel.text = str(int(health), "/100 ")
 
 	$EnemyPanel/VBoxContainer/HBoxContainer/EnemiesKilled.text = str(enemies_killed) + " / "
 	$EnemyPanel/VBoxContainer/HBoxContainer/TotalEnemies.text = str(enemies_left)
@@ -41,7 +42,7 @@ func _process(delta: float) -> void:
 		$ObjectivePanel/VBoxContainer/HBoxContainer/ObjectiveHealthLabel.text = str(int(objective_health), "/", int(objective_max_health))
 	
 func _update_health(value):
-	health_width = value
+	health = value
 
 func _update_enemies_killed(value):
 	enemies_killed = value

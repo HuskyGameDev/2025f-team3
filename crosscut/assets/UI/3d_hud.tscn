@@ -1,6 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dckpdofm2vrvg"]
 
 [ext_resource type="Script" uid="uid://bm6mfuiv07n35" path="res://assets/UI/3d_hud.gd" id="1_qfa3r"]
+[ext_resource type="Texture2D" uid="uid://bv5o3hvvsrwsh" path="res://assets/UI/icons/health.png" id="2_sjvhx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qfa3r"]
 content_margin_left = 10.0
@@ -11,8 +12,6 @@ content_margin_right = 10.0
 [sub_resource type="LabelSettings" id="LabelSettings_qfa3r"]
 font_size = 27
 outline_size = 2
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_qfa3r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_puovb"]
 content_margin_top = 5.0
@@ -25,9 +24,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -160.5
-offset_top = 95.0
+offset_top = 80.0
 offset_right = 160.5
-offset_bottom = 152.0
+offset_bottom = 137.0
 grow_horizontal = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TimePanel"]
@@ -76,17 +75,17 @@ vertical_alignment = 1
 [node name="HealthRect" type="TextureRect" parent="HealthPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = SubResource("ViewportTexture_qfa3r")
+texture = ExtResource("2_sjvhx")
 expand_mode = 1
 
 [node name="ObjectivePanel" type="PanelContainer" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -160.5
+offset_left = -160.0
 offset_top = 11.0
-offset_right = 160.5
-offset_bottom = 88.0
+offset_right = 161.0
+offset_bottom = 72.0
 grow_horizontal = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ObjectivePanel"]
@@ -116,7 +115,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(300, 20)
 layout_mode = 2
 size_flags_vertical = 3
-texture = SubResource("ViewportTexture_qfa3r")
+texture = ExtResource("2_sjvhx")
 expand_mode = 1
 
 [node name="EnemyPanel" type="PanelContainer" parent="."]
