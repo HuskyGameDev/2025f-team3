@@ -24,22 +24,27 @@ func _on_damage_area_body_entered(body: Node3D) -> void:
 
 # from down here, it is enemy movement
 @onready var player = get_parent().get_node("First-Person view").get_child(0)
+const GRAVITY = -300
 
 func _physics_process(delta):
 	var direction = (player.global_transform.origin - global_transform.origin)
 	direction.y = 0
 	var distance = direction.length()
-
-	if distance > 0:
+	
+	if not is_on_floor():
+		velocity.y += GRAVITY * delta
+		move_and_slide()
+	
+	if distance > 0 && is_on_floor():
 		var move_dir = direction.normalized()
 		velocity = move_dir * speed
 		move_and_slide()
-
+	
 		var target_rotation = Vector3(0, atan2(move_dir.x, move_dir.z), 0)
 		rotation.y = lerp_angle(rotation.y, target_rotation.y, rotation_speed * delta)
 	else:
 		velocity = Vector3.ZERO
 		move_and_slide()
-		
+
 func _on_health_killed_sig() -> void:
 	queue_free()

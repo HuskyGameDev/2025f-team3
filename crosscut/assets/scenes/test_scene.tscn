@@ -121,7 +121,7 @@ button_group = SubResource("ButtonGroup_21mu2")
 [node name="SpawnLibrary" parent="." instance=ExtResource("10_m00bm")]
 
 [node name="TESTSPAWN" type="Node3D" parent="SpawnLibrary"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.12094, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2619, 9.14011, -30.1094)
 
 [connection signal="end_buying" from="GameManager" to="Top-down view/2dHud" method="_on_game_manager_end_buying"]
 [connection signal="update_gold" from="GameManager" to="Top-down view/2dHud" method="_on_game_manager_update_gold"]
