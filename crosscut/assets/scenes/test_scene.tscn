@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ccy5pg6ws1kk4"]
+[gd_scene load_steps=21 format=3 uid="uid://ccy5pg6ws1kk4"]
 
 [ext_resource type="PackedScene" uid="uid://qwd7i00v37t2" path="res://assets/scenes/game_manager.tscn" id="1_21mu2"]
 [ext_resource type="PackedScene" uid="uid://x18icxf4xg6e" path="res://assets/scenes/player.tscn" id="1_41fjk"]
@@ -37,6 +37,8 @@ albedo_color = Color(0.281187, 0.281187, 0.281187, 1)
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_21mu2"]
 allow_unpress = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m00bm"]
 
 [node name="test_scene" type="Node3D"]
 
@@ -122,6 +124,15 @@ button_group = SubResource("ButtonGroup_21mu2")
 
 [node name="TESTSPAWN" type="Node3D" parent="SpawnLibrary"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.2472, -0.26542, 66.7604)
+
+[node name="SpectatorCam" type="CharacterBody3D" parent="."]
+unique_name_in_owner = true
+motion_mode = 1
+
+[node name="Camera3D" type="Camera3D" parent="SpectatorCam"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpectatorCam"]
+shape = SubResource("CapsuleShape3D_m00bm")
 
 [connection signal="end_buying" from="GameManager" to="Top-down view/2dHud" method="_on_game_manager_end_buying"]
 [connection signal="update_gold" from="GameManager" to="Top-down view/2dHud" method="_on_game_manager_update_gold"]

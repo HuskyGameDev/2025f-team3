@@ -104,4 +104,7 @@ func _fire_bolt(bolt_target: Node3D):
 
 func _get_target():
 	# Easily could implement bloons-type targeting (closest to tower, closest to base, etc)
-	return attack_area.get_overlapping_bodies().filter(func(b:Node3D): return b.is_in_group("enemy")).front()
+	var enemies = attack_area.get_overlapping_bodies().filter(func(b:Node3D): return b.is_in_group("enemy"))
+	if enemies.is_empty():
+		return null
+	return enemies.front()

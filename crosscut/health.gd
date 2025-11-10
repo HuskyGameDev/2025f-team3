@@ -9,5 +9,7 @@ signal killed_sig
 func take_damage(damage):
 	health -= damage
 	damaged_sig.emit(damage, health)
+	print("Health after damage: ", health, " (max: ", max_health, ")")
 	if health <= 0:
+		print("HEALTH ZERO - EMITTING KILLED SIGNAL for: ", get_parent().name)
 		killed_sig.emit()
