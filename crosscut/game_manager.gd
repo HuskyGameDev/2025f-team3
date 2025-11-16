@@ -32,6 +32,8 @@ signal update_gold(value)
 
 @onready var grid_map = %GridMap
 var crossbow_tower = preload("res://assets/scenes/towers/crossbow_tower.tscn")
+var highlight_tile_y = preload("res://assets/scenes/highlight_tile_yellow.tscn")
+var highlight_tile_r = preload("res://assets/scenes/highlight_tile_red.tscn")
 
 # Raycasting
 @onready var tower_placement_raycast: RayCast3D = %TowerPlacementRaycast
@@ -88,6 +90,11 @@ func _input(event):
 		spectator_camera.rotation.x = clampf(spectator_camera.rotation.x, -deg_to_rad(89), deg_to_rad(89))
 		spectator_camera.rotation.z = 0  # Lock roll to prevent tilting
 	
+	#highlight currently hovered tile
+	if control_mode == ControlMode.TOPDOWN:
+		var position = _get_mouse_position_on_board()
+		grid_map.highlight_tile(highlight_tile_y, highlight_tile_r, position)
+	
 	if control_mode == ControlMode.TOPDOWN and event is InputEventMouseButton and event.pressed and event.button_index == 1:
 		var position = _get_mouse_position_on_board()
 		if buying_tower:
@@ -143,6 +150,7 @@ func _toggle_mode():
 		
 		# Change huds
 		first_person_HUD.hide()
+		grid_map.toggle_highlight()
 		top_down_HUD.show()
 	elif control_mode == ControlMode.TOPDOWN:
 		control_mode = ControlMode.PLAYER
@@ -156,6 +164,7 @@ func _toggle_mode():
 		
 		# Change huds
 		first_person_HUD.show()
+		grid_map.toggle_highlight()
 		top_down_HUD.hide()
 	print(control_mode)
 
