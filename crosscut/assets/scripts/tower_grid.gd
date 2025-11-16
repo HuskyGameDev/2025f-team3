@@ -7,7 +7,9 @@ const debug = true
 
 # Map from vector2 to tower node
 var size_across = 50 # NOTE: Odd amounts do not work.
+var hidden_hl = true;
 var towers: Dictionary[Vector2i, Node3D] = {}
+var highlights:  Dictionary[Vector2i, Node3D] = {} #TODO: remove the Node3d portion????
 
 func _ready():
 	pass
@@ -15,6 +17,57 @@ func _ready():
 func get_grid_center():
 	return position;
 	
+func highlight_tile(highlight_y: PackedScene, highlight_r: PackedScene, pos: Vector3):
+	var position_2D = Vector2(pos.x, pos.z)
+	
+	var closest_pos = get_closest_position_on_grid(position_2D)
+	
+	# Check if desired position is out of bounds
+	if not closest_pos:
+		return
+	
+	# Check if the grid position is already highlighted
+	if highlights.has(closest_pos):
+		return null
+	
+	# TODO: check if tower alredy there, highlight red
+	if towers.has(closest_pos):
+		for hl in highlights:
+			var last_hl: Node3D = highlights[hl]
+			last_hl.queue_free()
+			highlights.erase(hl)
+		
+		var new_highlight = highlight_r.instantiate()
+		add_child(new_highlight)
+	
+		new_highlight.global_position = Vector3(closest_pos.x, position.y, closest_pos.y)
+		highlights[closest_pos] = new_highlight
+		return position
+
+	for hl in highlights:
+		var last_hl: Node3D = highlights[hl]
+		last_hl.queue_free()
+		highlights.erase(hl)
+		
+	var new_highlight = highlight_y.instantiate()
+	add_child(new_highlight)
+	
+	new_highlight.global_position = Vector3(closest_pos.x, position.y, closest_pos.y)
+	highlights[closest_pos] = new_highlight
+	return position
+
+func toggle_highlight():
+	if (hidden_hl == true):
+		hidden_hl = false
+		for hl in highlights:
+			var current_hl: Node3D = highlights[hl]
+			current_hl.show();
+	else:
+		hidden_hl = true
+		for hl in highlights:
+			var current_hl: Node3D = highlights[hl]
+			current_hl.hide();
+
 # Adds a tower on the closest spot in the grid
 func add_tower(tower: PackedScene, pos: Vector3):
 	var position_2D = Vector2(pos.x, pos.z)
