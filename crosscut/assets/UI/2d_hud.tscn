@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bo63nho4fqqub" path="res://assets/UI/2d_hud.gd" id="1_r3mer"]
 [ext_resource type="ButtonGroup" uid="uid://dgoxbso65ctny" path="res://assets/UI/tower_button_group.tres" id="2_q2cnw"]
-[ext_resource type="Texture2D" uid="uid://b5sefhq3c5os5" path="res://assets/UI/icons/tower 1.png" id="3_bkq4m"]
-[ext_resource type="Texture2D" uid="uid://d2wf4r7to1idh" path="res://assets/UI/icons/tower 1 selected.png" id="4_x7j0p"]
-[ext_resource type="Texture2D" uid="uid://totq1vd5blq5" path="res://assets/UI/icons/tower 1 hover.png" id="5_lfxb3"]
+[ext_resource type="Texture2D" uid="uid://bj7nkebgabu2i" path="res://assets/UI/icons/crossbowtower.png" id="3_bkq4m"]
+[ext_resource type="Texture2D" uid="uid://b2wtjqy40thta" path="res://assets/UI/icons/crossbowtower selected.png" id="4_x7j0p"]
+[ext_resource type="Texture2D" uid="uid://bx1ul34tuvpkx" path="res://assets/UI/icons/crossbowtower hover.png" id="5_lfxb3"]
 [ext_resource type="Texture2D" uid="uid://g412d3xa78ih" path="res://assets/UI/icons/locked icon.png" id="6_m37x7"]
 [ext_resource type="Texture2D" uid="uid://cvudq3jua4401" path="res://assets/UI/icons/gold.png" id="7_bkq4m"]
 
@@ -61,7 +61,7 @@ size_flags_vertical = 4
 columns = 4
 
 [node name="0" type="TextureButton" parent="LeftPanel/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -74,7 +74,7 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="1" type="TextureButton" parent="LeftPanel/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -86,7 +86,7 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="2" type="TextureButton" parent="LeftPanel/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -98,7 +98,7 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="3" type="TextureButton" parent="LeftPanel/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6

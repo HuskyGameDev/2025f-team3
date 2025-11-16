@@ -3,6 +3,7 @@ extends CanvasLayer
 var time_elapsed = 0
 var health: float = 100
 var health_width
+var max_health = 100
 var enemies_killed
 var enemies_left
 
@@ -31,15 +32,15 @@ func _process(delta: float) -> void:
 
 	# Update player health bar
 	$HealthPanel/VBoxContainer/HealthRect.size.x = health_width - ((100 + (health * -1)) / 100) * health_width
-	$HealthPanel/VBoxContainer/HBoxContainer/HealthLabel.text = str(int(health), "/100 ")
+	$HealthPanel/VBoxContainer/HBoxContainer/HealthLabel.text = str(int(health), "/", int(max_health), " ")
 
-	$EnemyPanel/VBoxContainer/HBoxContainer/EnemiesKilled.text = str(enemies_killed) + " / "
-	$EnemyPanel/VBoxContainer/HBoxContainer/TotalEnemies.text = str(enemies_left)
+	$EnemyPanel/VBoxContainer/HBoxContainer/EnemiesKilled.text = str(enemies_killed, " ")
+	$EnemyPanel/VBoxContainer/HBoxContainer/TotalEnemies.text = str("/ ", enemies_left)
 	# Update objective health bar
 	if objective_health_width > 0:
 		var health_percent = objective_health / objective_max_health
 		$ObjectivePanel/VBoxContainer/ObjectiveHealthRect.size.x = objective_health_width * health_percent
-		$ObjectivePanel/VBoxContainer/HBoxContainer/ObjectiveHealthLabel.text = str(int(objective_health), "/", int(objective_max_health))
+		$ObjectivePanel/VBoxContainer/HBoxContainer/ObjectiveHealthLabel.text = str(int(objective_health), "/", int(objective_max_health), " ")
 	
 func _update_health(value):
 	health = value
