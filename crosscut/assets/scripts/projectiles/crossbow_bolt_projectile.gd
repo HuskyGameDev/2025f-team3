@@ -1,6 +1,6 @@
 extends Node3D
 
-const debug = true
+const debug = false
 var speed = 30
 var damage = 10
 

@@ -3,12 +3,12 @@ extends StaticBody3D
 const debug = false
 
 # Behavior settings
-var tower_lookaround_time_range = Vector2(1, 2) # The range of time intervals when looking around randomly
-var tower_turnspeed = 4 # How quickly the tower turns to where it wants to look
+@export var tower_lookaround_time_range = Vector2(1, 2) # The range of time intervals when looking around randomly
+@export var tower_turnspeed = 4 # How quickly the tower turns to where it wants to look
 
 # Attack settings
-var damage = 10
-var firing_speed = 1
+@export var damage = 10
+@export var firing_speed = 1
 # NOTE: Attack radius can be adjusted with the attack area node child
 
 # Runtime variables
