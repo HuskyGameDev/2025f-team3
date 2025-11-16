@@ -60,17 +60,6 @@ text = "Quit"
 
 [node name="SettingsMenu" parent="." instance=ExtResource("2_6jc1k")]
 visible = false
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 215.0
-offset_top = 64.0
-offset_right = 1065.0
-offset_bottom = 656.0
-grow_horizontal = 1
-grow_vertical = 1
 
 [connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]

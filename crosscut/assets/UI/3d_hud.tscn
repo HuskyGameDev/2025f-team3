@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dckpdofm2vrvg"]
 
 [ext_resource type="Script" uid="uid://bm6mfuiv07n35" path="res://assets/UI/3d_hud.gd" id="1_qfa3r"]
-[ext_resource type="Texture2D" uid="uid://d0r1npmbbxuwe" path="res://assets/UI/icons/health.png" id="2_sjvhx"]
+[ext_resource type="Texture2D" uid="uid://bv5o3hvvsrwsh" path="res://assets/UI/icons/health.png" id="2_sjvhx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qfa3r"]
 content_margin_left = 10.0

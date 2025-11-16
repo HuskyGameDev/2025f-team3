@@ -32,6 +32,7 @@ signal update_gold(value)
 
 @onready var grid_map = %GridMap
 var crossbow_tower = preload("res://assets/scenes/towers/crossbow_tower.tscn")
+var cauldron_tower = preload("res://assets/scenes/towers/cauldron_tower.tscn")
 var highlight_tile_y = preload("res://assets/scenes/highlight_tile_yellow.tscn")
 var highlight_tile_r = preload("res://assets/scenes/highlight_tile_red.tscn")
 
@@ -98,7 +99,14 @@ func _input(event):
 	if control_mode == ControlMode.TOPDOWN and event is InputEventMouseButton and event.pressed and event.button_index == 1:
 		var position = _get_mouse_position_on_board()
 		if buying_tower:
-			if grid_map.add_tower(crossbow_tower, position) != null:
+			var bought_position
+			match selected_tower:
+				"0":
+					bought_position = grid_map.add_tower(crossbow_tower, position)
+				"1":
+					bought_position = grid_map.add_tower(cauldron_tower, position)
+			
+			if bought_position != null:
 				buying_tower = false
 				end_buying.emit()
 				print(str("You just bought tower "), selected_tower)
@@ -122,6 +130,9 @@ func _input(event):
 		buying_tower = false
 		end_buying.emit()
 		
+	if event.is_action_pressed("Test2"):
+		_change_gold(100)
+	
 func _get_mouse_position_on_board():
 	var space_state = get_world_3d().direct_space_state
 	var mousepos = get_viewport().get_mouse_position()
@@ -312,3 +323,7 @@ func _on_wave_ended() -> void:
 	# Only switch to top-down if we're in spectator mode
 	if control_mode == ControlMode.SPECTATOR:
 		_switch_to_topdown_from_spectator()
+
+func _change_gold(value):
+	gold += value
+	update_gold.emit(gold)

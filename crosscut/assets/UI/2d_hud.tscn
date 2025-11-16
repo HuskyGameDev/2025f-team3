@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dlichn2b72vr7"]
+[gd_scene load_steps=12 format=3 uid="uid://dlichn2b72vr7"]
 
 [ext_resource type="Script" uid="uid://bo63nho4fqqub" path="res://assets/UI/2d_hud.gd" id="1_r3mer"]
 [ext_resource type="ButtonGroup" uid="uid://dgoxbso65ctny" path="res://assets/UI/tower_button_group.tres" id="2_q2cnw"]
@@ -6,7 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://b2wtjqy40thta" path="res://assets/UI/icons/crossbowtower selected.png" id="4_x7j0p"]
 [ext_resource type="Texture2D" uid="uid://bx1ul34tuvpkx" path="res://assets/UI/icons/crossbowtower hover.png" id="5_lfxb3"]
 [ext_resource type="Texture2D" uid="uid://g412d3xa78ih" path="res://assets/UI/icons/locked icon.png" id="6_m37x7"]
+[ext_resource type="Texture2D" uid="uid://b5sefhq3c5os5" path="res://assets/UI/icons/tower 1.png" id="6_rgo4r"]
 [ext_resource type="Texture2D" uid="uid://cvudq3jua4401" path="res://assets/UI/icons/gold.png" id="7_bkq4m"]
+[ext_resource type="Texture2D" uid="uid://d2wf4r7to1idh" path="res://assets/UI/icons/tower 1 selected.png" id="7_f1en0"]
+[ext_resource type="Texture2D" uid="uid://totq1vd5blq5" path="res://assets/UI/icons/tower 1 hover.png" id="8_hj2vv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bkq4m"]
+font_size = 27
+outline_size = 2
 
 [node name="2dHud" type="CanvasLayer"]
 script = ExtResource("1_r3mer")
@@ -78,10 +85,11 @@ custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-disabled = true
 toggle_mode = true
 button_group = ExtResource("2_q2cnw")
-texture_normal = ExtResource("6_m37x7")
+texture_normal = ExtResource("6_rgo4r")
+texture_pressed = ExtResource("7_f1en0")
+texture_hover = ExtResource("8_hj2vv")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -299,19 +307,20 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 27
-text = "Objective:"
+text = " Objective:"
 vertical_alignment = 1
 
 [node name="ObjectiveHealthLabel" type="Label" parent="ObjectivePanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 27
-text = "500/500"
+text = "500/500 "
+label_settings = SubResource("LabelSettings_bkq4m")
 horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="ObjectiveHealthRect" type="ColorRect" parent="ObjectivePanel/VBoxContainer"]
-custom_minimum_size = Vector2(300, 20)
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_vertical = 3
 color = Color(1, 0, 0, 1)

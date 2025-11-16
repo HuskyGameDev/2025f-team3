@@ -15,21 +15,21 @@ var objective_health_width
 @export var tower_info = {
 	# Name
 	0: [
-		"Tower 0",
-		"Tower 1",
+		"Crossbow Tower",
+		"Cauldron Tower",
 		"Tower 2",
 		"Tower 3"
 	],
 	# Health
 	1: [1, 2, 3, 4],
 	# Damage
-	2: [2, 3, 4, 5],
+	2: [10, 6, 4, 5],
 	# Speed
-	3: [3, 4, 5, 6],
+	3: [1, 3, 5, 6],
 	# Description
 	4: [
-		"This is tower 0. It's a tower. Yeah!",
-		"This is tower 1. It's a tower. Yeah!",
+		"The crossbow tower fires arrows at the nearest enemy.",
+		"The cauldron tower pours down boiling oil onto surrounding enemies.",
 		"This is tower 2. It's a tower. Yeah!",
 		"This is tower 3. It's a tower. Yeah!"
 	],
@@ -78,7 +78,7 @@ func _process(delta: float) -> void:
 	if objective_health_width > 0:
 		var health_percent = objective_health / objective_max_health
 		$ObjectivePanel/VBoxContainer/ObjectiveHealthRect.size.x = objective_health_width * health_percent
-		$ObjectivePanel/VBoxContainer/HBoxContainer/ObjectiveHealthLabel.text = str(int(objective_health), "/", int(objective_max_health))
+		$ObjectivePanel/VBoxContainer/HBoxContainer/ObjectiveHealthLabel.text = str(int(objective_health), "/", int(objective_max_health), " ")
 	# Update position of buying panel
 	if buying_tower:
 		$BuyingPanel.visible = true#position = $BuyingPanel.position.lerp(Vector2(389, 622), t)
@@ -99,8 +99,7 @@ func _on_button_pressed() -> void:
 	_select_tower(selected_tower)
 
 func _on_buy_pressed() -> void:
-	$BuyingPanel/Label.text = str("Currently buying tower ", selected_tower, ". Click anywhere on the map to place the tower or press the X key to cancel tower placement.")
-	print(str("Currently buying tower ", selected_tower, ". Click anywhere on the map to place the tower or press the X key to cancel tower placement."))
+	$BuyingPanel/Label.text = str("Currently buying ", str(tower_info[0][int(selected_tower)]), ". Click anywhere on the map to place the tower or press the X key to cancel tower placement.")
 	buying_tower = true
 	begin_buying.emit(selected_tower)
 	$LeftPanel/VBoxContainer/Buy.disabled = true
