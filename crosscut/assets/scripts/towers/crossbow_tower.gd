@@ -9,6 +9,7 @@ var tower_turnspeed = 4 # How quickly the tower turns to where it wants to look
 # Attack settings
 var damage = 10
 var firing_speed = 1
+# NOTE: Attack radius can be adjusted with the attack area node child
 
 # Runtime variables
 var tower_look_desired = Vector3(0, 0, 0)

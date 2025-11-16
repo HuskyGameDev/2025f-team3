@@ -1,23 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://d4mi06tvmdmoe"]
+[gd_scene load_steps=6 format=3 uid="uid://24rx1xopqqrv"]
 
-[ext_resource type="Script" uid="uid://dy6py3ylmvkm5" path="res://assets/scripts/towers/crossbow_tower.gd" id="1_et1c7"]
-[ext_resource type="PackedScene" uid="uid://dw40cmtrt8qw0" path="res://assets/3D assets/tower.blend" id="2_30uou"]
-[ext_resource type="PackedScene" uid="uid://dwkn0f665rhs7" path="res://assets/3D assets/ak47.blend" id="3_30uou"]
+[ext_resource type="Script" uid="uid://gqm3f8mtgyof" path="res://assets/scripts/towers/cauldron_tower.gd" id="1_uoh5i"]
+[ext_resource type="PackedScene" uid="uid://dw40cmtrt8qw0" path="res://assets/3D assets/tower.blend" id="2_5vs04"]
+[ext_resource type="PackedScene" uid="uid://dls216ngqyqkm" path="res://assets/3D assets/bucket.blend" id="3_uoh5i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_chvo0"]
 size = Vector3(2.8, 7.5, 2.8)
 
-[sub_resource type="PrismMesh" id="PrismMesh_et1c7"]
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_et1c7"]
 
 [node name="CrossbowTower" type="StaticBody3D"]
-script = ExtResource("1_et1c7")
+script = ExtResource("1_uoh5i")
+damage = 6
+firing_speed = 3
 
 [node name="Pivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31, 0, -1.31)
 
-[node name="Tower" parent="Pivot" instance=ExtResource("2_30uou")]
+[node name="Tower" parent="Pivot" instance=ExtResource("2_5vs04")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -1.36919, 0, 1.21323)
 
 [node name="TowerBodyCollision" type="CollisionShape3D" parent="."]
@@ -27,16 +27,7 @@ shape = SubResource("BoxShape3D_chvo0")
 [node name="TowerHead" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.75, 0)
 
-[node name="TowerHeadMesh" type="MeshInstance3D" parent="TowerHead"]
-transform = Transform3D(0.85497, 0, 0, 0, -8.73267e-08, -0.85497, 0, 1.9978, -3.73719e-08, 0, 0, 0)
-visible = false
-mesh = SubResource("PrismMesh_et1c7")
-
-[node name="ak47" parent="TowerHead" instance=ExtResource("3_30uou")]
-transform = Transform3D(5, -4.37114e-07, -4.37114e-07, -4.37114e-07, -5, 0, -4.37114e-07, 3.82137e-14, -5, 0, 0, 0)
-
-[node name="IdleLookaroundTimer" type="Timer" parent="."]
-autostart = true
+[node name="bucket" parent="TowerHead" instance=ExtResource("3_uoh5i")]
 
 [node name="FiringTimer" type="Timer" parent="."]
 one_shot = true
@@ -48,6 +39,7 @@ transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
 shape = SubResource("SphereShape3D_et1c7")
 debug_color = Color(0.918557, 0, 0.222529, 1)
 
-[connection signal="timeout" from="IdleLookaroundTimer" to="." method="_on_idle_lookaround_timer_timeout"]
+[node name="SplashSource" type="Node3D" parent="."]
+
 [connection signal="timeout" from="FiringTimer" to="." method="_on_firing_timer_timeout"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
