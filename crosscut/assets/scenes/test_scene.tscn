@@ -66,39 +66,6 @@ mesh = SubResource("PlaneMesh_41fjk")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_abcw6")
 
-<<<<<<< Updated upstream
-=======
-[node name="Mapborder" type="Node3D" parent="."]
-
-[node name="posX_wall" type="StaticBody3D" parent="Mapborder"]
-transform = Transform3D(-2.18557e-07, -5, 0, 5, -2.18557e-07, 0, 0, 0, 5, 30, 8, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mapborder/posX_wall"]
-shape = SubResource("WorldBoundaryShape3D_m00bm")
-debug_color = Color(0, 0.6, 0.701961, 0.890196)
-
-[node name="minX_wall" type="StaticBody3D" parent="Mapborder"]
-transform = Transform3D(-2.18557e-07, 5, 0, -5, -2.18557e-07, 0, 0, 0, 5, -30, 8, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mapborder/minX_wall"]
-shape = SubResource("WorldBoundaryShape3D_m00bm")
-debug_color = Color(0, 0.6, 0.701961, 0.890196)
-
-[node name="posZ_wall" type="StaticBody3D" parent="Mapborder"]
-transform = Transform3D(5, 0, 0, 0, -2.18557e-07, 5, 0, -5, -2.18557e-07, 0, 8, 30)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mapborder/posZ_wall"]
-shape = SubResource("WorldBoundaryShape3D_m00bm")
-debug_color = Color(0, 0.6, 0.701961, 0.890196)
-
-[node name="minZ_wall" type="StaticBody3D" parent="Mapborder"]
-transform = Transform3D(5, 0, 0, 0, -2.18557e-07, -5, 0, 5, -2.18557e-07, 0, 8, -30)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mapborder/minZ_wall"]
-shape = SubResource("WorldBoundaryShape3D_m00bm")
-debug_color = Color(0, 0.6, 0.701961, 0.890196)
-
->>>>>>> Stashed changes
 [node name="GridMap" type="GridMap" parent="."]
 unique_name_in_owner = true
 cell_size = Vector3(5, 5, 5)
