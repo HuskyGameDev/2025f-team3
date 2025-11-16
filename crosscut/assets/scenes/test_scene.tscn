@@ -32,6 +32,7 @@ ssao_enabled = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abcw6"]
 albedo_color = Color(0.281187, 0.281187, 0.281187, 1)
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_m00bm"]
 [sub_resource type="ButtonGroup" id="ButtonGroup_21mu2"]
 allow_unpress = true
 
@@ -43,7 +44,6 @@ allow_unpress = true
 
 [node name="Objective" parent="." instance=ExtResource("2_objective")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 
 [node name="CrossbowTower" parent="." instance=ExtResource("1_ics7i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.27332, 1.90735e-06, -17.26)
@@ -66,6 +66,35 @@ mesh = SubResource("PlaneMesh_41fjk")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_abcw6")
 
+[node name="Mapborder" type="Node3D" parent="."]
+
+[node name="posX_wall" type="StaticBody3D" parent="Mapborder"]
+transform = Transform3D(-2.18557e-07, -5, 0, 5, -2.18557e-07, 0, 0, 0, 5, 30, 8, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mapborder/posX_wall"]
+shape = SubResource("WorldBoundaryShape3D_m00bm")
+debug_color = Color(0, 0.6, 0.701961, 0.890196)
+
+[node name="minX_wall" type="StaticBody3D" parent="Mapborder"]
+transform = Transform3D(-2.18557e-07, 5, 0, -5, -2.18557e-07, 0, 0, 0, 5, -30, 8, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mapborder/minX_wall"]
+shape = SubResource("WorldBoundaryShape3D_m00bm")
+debug_color = Color(0, 0.6, 0.701961, 0.890196)
+
+[node name="posZ_wall" type="StaticBody3D" parent="Mapborder"]
+transform = Transform3D(5, 0, 0, 0, -2.18557e-07, 5, 0, -5, -2.18557e-07, 0, 8, 30)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mapborder/posZ_wall"]
+shape = SubResource("WorldBoundaryShape3D_m00bm")
+debug_color = Color(0, 0.6, 0.701961, 0.890196)
+
+[node name="minZ_wall" type="StaticBody3D" parent="Mapborder"]
+transform = Transform3D(5, 0, 0, 0, -2.18557e-07, -5, 0, 5, -2.18557e-07, 0, 8, -30)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mapborder/minZ_wall"]
+shape = SubResource("WorldBoundaryShape3D_m00bm")
+debug_color = Color(0, 0.6, 0.701961, 0.890196)
 [node name="GridMap" type="GridMap" parent="."]
 unique_name_in_owner = true
 cell_size = Vector3(5, 5, 5)
