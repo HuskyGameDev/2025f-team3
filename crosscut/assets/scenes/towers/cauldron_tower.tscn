@@ -9,10 +9,11 @@ size = Vector3(2.8, 7.5, 2.8)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_et1c7"]
 
-[node name="CrossbowTower" type="StaticBody3D"]
+[node name="CauldronTower" type="StaticBody3D"]
 script = ExtResource("1_uoh5i")
 damage = 6
 firing_speed = 3
+splash_radius_vision_offset = 2.0
 
 [node name="Pivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31, 0, -1.31)
@@ -35,7 +36,7 @@ one_shot = true
 [node name="AttackArea" type="Area3D" parent="." groups=["enemy"]]
 
 [node name="AttackShape" type="CollisionShape3D" parent="AttackArea"]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 shape = SubResource("SphereShape3D_et1c7")
 debug_color = Color(0.918557, 0, 0.222529, 1)
 

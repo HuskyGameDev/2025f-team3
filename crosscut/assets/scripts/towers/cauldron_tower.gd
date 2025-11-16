@@ -5,7 +5,9 @@ const debug = false
 # Attack settings
 @export var damage = 10
 @export var firing_speed = 6
-# NOTE: Attack radius can be adjusted with the attack area node child
+
+# This tower's splash radius is taken from the sight radius + this variable
+@export var splash_radius_vision_offset: float
 
 # Runtime variables
 var state: CauldronState
@@ -16,6 +18,7 @@ enum CauldronState {IDLE, SPLASHING}
 @onready var player: CharacterBody3D = %Player
 @onready var attack_area: Area3D = $AttackArea
 @onready var splash_source: Node3D = $SplashSource
+@onready var attack_shape: CollisionShape3D = $AttackArea/AttackShape
 
 # Crossbow bolt packed scene
 var cauldron_splash = preload("res://assets/scenes/projectiles/cauldron_splash.tscn")
@@ -60,10 +63,11 @@ func set_firing_speed(new_value):
 
 # Non-state-specific functions
 func _splash():
-	print("splashing")
+	# print("splashing")
 	var new_splash = cauldron_splash.instantiate()
 	new_splash.transform = splash_source.transform
 	new_splash.damage = damage
+	new_splash.splash_radius = splash_radius_vision_offset+attack_shape.scale.x
 	add_child(new_splash)
 
 func _get_target():
