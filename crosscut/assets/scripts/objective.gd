@@ -1,42 +1,30 @@
-extends Node3D
-class_name Objective
+extends CharacterBody3D
 
-# Signals for game manager and UI
 signal objective_damaged(current_health, max_health)
 signal objective_destroyed
 
-# Export variables for designer tweaking
-@export var max_health = 500
-@export var visual_scale = 1.0
-@export var group_name = "objective"
+@onready var grid_map = %GridMap
 
-# Reference to health component
-@onready var health_component = $Health
+# Exposing child health node to other scripts
+@onready var health: Node3D = $Health
+@export var max_health = 500
 
 func _ready() -> void:
-	# Add to global group for easy reference by enemies
-	#add_to_group(group_name)
-
 	# Setup health component
-	if health_component:
-		health_component.max_health = max_health
-		health_component.health = max_health
-		health_component.damaged_sig.connect(_on_damage_taken)
-		health_component.killed_sig.connect(_on_dead)
+	if health:
+		health.max_health = max_health
+		health.health = max_health
+		health.damaged_sig.connect(_on_damage_taken)
+		health.killed_sig.connect(_on_dead)
 	else:
 		push_error("Objective: Health component not found!")
 
-	# Apply visual scale if mesh exists
-	if has_node("MeshInstance3D"):
-		$MeshInstance3D.scale = Vector3.ONE * visual_scale
-
-	print("Objective initialized with %d HP at position %s" % [max_health, global_position])
 
 func _on_damage_taken(amount: float) -> void:
 	# Called when objective takes damage
-	if health_component:
-		objective_damaged.emit(health_component.health, health_component.max_health)
-		print("Objective damaged! Health: %d/%d" % [health_component.health, health_component.max_health])
+	if health:
+		objective_damaged.emit(health.health, health.max_health)
+		print("Objective damaged! Health: %d/%d" % [health.health, health.max_health])
 
 func _on_dead() -> void:
 	# Called when objective is destroyed
@@ -47,15 +35,8 @@ func _on_dead() -> void:
 
 func get_health() -> float:
 	# Returns current health - useful for UI
-	if health_component:
-		return health_component.health
-	return 0
+	return health.health
 
 func get_max_health() -> float:
 	# Returns max health - useful for UI
-	return max_health
-
-func take_damage(amount: float) -> void:
-	# Public method to damage the objective
-	if health_component:
-		health_component.take_damage(amount)
+	return health.max_health

@@ -67,6 +67,5 @@ func _on_objective_damaged(current_health: float, max_health: float) -> void:
 	objective_health = current_health
 	objective_max_health = max_health
 
-
 func _on_health_damaged_sig(damage_taken: Variant, current_health: Variant) -> void:
 	health = current_health
