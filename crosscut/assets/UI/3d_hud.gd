@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 		var health_percent = objective_health / objective_max_health
 		$ObjectivePanel/VBoxContainer/ObjectiveHealthRect.size.x = objective_health_width * health_percent
 		$ObjectivePanel/VBoxContainer/HBoxContainer/ObjectiveHealthLabel.text = str(int(objective_health), "/", int(objective_max_health), " ")
-	
+
 func _update_health(value):
 	health = value
 
@@ -58,14 +58,13 @@ func _connect_to_objective() -> void:
 		var objective = objectives[0]
 		objective_max_health = objective.get_max_health()
 		objective_health = objective.get_health()
-		objective.objective_damaged.connect(_on_objective_damaged)
 		print("3D HUD connected to objective")
 	else:
 		push_warning("3D HUD: No objective found in scene!")
 
-func _on_objective_damaged(current_health: float, max_health: float) -> void:
-	objective_health = current_health
-	objective_max_health = max_health
-
 func _on_health_damaged_sig(damage_taken: Variant, current_health: Variant) -> void:
 	health = current_health
+
+# Update UI health on objective health change
+func _on_objective_damaged_sig(damage_taken: Variant, health_after_damage: Variant) -> void:
+	objective_health = health_after_damage

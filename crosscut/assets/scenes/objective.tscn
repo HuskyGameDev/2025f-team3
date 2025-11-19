@@ -21,3 +21,5 @@ shape = SubResource("CylinderShape3D_fcofd")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 mesh = SubResource("CylinderMesh_fg1lp")
+
+[connection signal="damaged_sig" from="Health" to="." method="_on_health_damaged_sig"]

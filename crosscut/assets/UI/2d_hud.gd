@@ -64,8 +64,9 @@ func _ready() -> void:
 
 	# Initialize objective health bar
 	await get_tree().process_frame
-	objective_health_width = $ObjectivePanel/VBoxContainer/ObjectiveHealthRect.size.x
-
+	objective_health_width = 320 # NOTE: Hard coded because it ended up being zero every time
+	print("objective_health_width:")
+	print(objective_health_width)
 	# Connect to objective signals
 	_connect_to_objective()
 
@@ -111,14 +112,9 @@ func _connect_to_objective() -> void:
 		var objective = objectives[0]
 		objective_max_health = objective.get_max_health()
 		objective_health = objective.get_health()
-		objective.objective_damaged.connect(_on_objective_damaged)
 		print("2D HUD connected to objective")
 	else:
 		push_warning("2D HUD: No objective found in scene!")
-
-func _on_objective_damaged(current_health: float, max_health: float) -> void:
-	objective_health = current_health
-	objective_max_health = max_health
 
 func _on_game_manager_end_buying() -> void:
 	$LeftPanel/VBoxContainer/Buy.disabled = false
@@ -126,3 +122,7 @@ func _on_game_manager_end_buying() -> void:
 	
 func _on_game_manager_update_gold(value: Variant) -> void:
 	$LeftPanel/VBoxContainer/GoldBox/Gold.text = str(value)
+
+# Update UI health on objective health change
+func _on_objective_damaged_sig(damage_taken: Variant, health_after_damage: Variant) -> void:
+	objective_health = health_after_damage
