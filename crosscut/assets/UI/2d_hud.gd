@@ -56,7 +56,7 @@ func _reset_tower_values():
 	$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/HealthBox/Health.text = "N/A"
 	$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/DamageBox/Damage.text = "N/A"
 	$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/SpeedBox/Speed.text = "N/A"
-	$LeftPanel/VBoxContainer/Description.text = "Select a tower to see its statistics, description, and price."
+	$LeftPanel/VBoxContainer/Description.text = "Select a tower to see its statistics, description, and price. Click Buy to place the tower on the map."
 	$LeftPanel/VBoxContainer/Price/Label.text = "N/A"
 
 func _ready() -> void:

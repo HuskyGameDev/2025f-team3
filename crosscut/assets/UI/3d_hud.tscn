@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dckpdofm2vrvg"]
+[gd_scene load_steps=8 format=3 uid="uid://dckpdofm2vrvg"]
 
 [ext_resource type="Script" uid="uid://bm6mfuiv07n35" path="res://assets/UI/3d_hud.gd" id="1_qfa3r"]
-[ext_resource type="Texture2D" uid="uid://d0r1npmbbxuwe" path="res://assets/UI/icons/health.png" id="2_sjvhx"]
+[ext_resource type="Texture2D" uid="uid://bv5o3hvvsrwsh" path="res://assets/UI/icons/health.png" id="2_sjvhx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qfa3r"]
 content_margin_left = 10.0
@@ -15,6 +15,9 @@ outline_size = 2
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_puovb"]
 content_margin_top = 5.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_sjvhx"]
+font_size = 18
 
 [node name="3dHud" type="CanvasLayer"]
 script = ExtResource("1_qfa3r")
@@ -174,3 +177,28 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 27
 text = "/##"
 vertical_alignment = 1
+
+[node name="RightPanel" type="PanelContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -131.0
+offset_right = -11.0
+offset_bottom = -11.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Label2" type="Label" parent="RightPanel"]
+custom_minimum_size = Vector2(230.265, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 27
+text = "(Playtesting only)
+Press M to switch between 2D (between waves) and 3D (during waves) perspective."
+label_settings = SubResource("LabelSettings_sjvhx")
+horizontal_alignment = 1
+autowrap_mode = 2
