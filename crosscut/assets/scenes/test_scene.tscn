@@ -44,6 +44,7 @@ allow_unpress = true
 
 [node name="Objective" parent="." instance=ExtResource("2_objective")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.44662, 0, 4.10327)
+max_health = 500
 
 [node name="CrossbowTower" parent="." instance=ExtResource("1_ics7i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.27332, 1.90735e-06, -17.26)
@@ -153,7 +154,10 @@ shape = SubResource("CapsuleShape3D_m00bm")
 
 [connection signal="end_buying" from="GameManager" to="Top-down view/2dHud" method="_on_game_manager_end_buying"]
 [connection signal="update_gold" from="GameManager" to="Top-down view/2dHud" method="_on_game_manager_update_gold"]
+[connection signal="damaged_sig" from="Objective/Health" to="First-Person view/3dHud" method="_on_objective_damaged_sig"]
+[connection signal="damaged_sig" from="Objective/Health" to="Top-down view/2dHud" method="_on_objective_damaged_sig"]
 [connection signal="damaged_sig" from="First-Person view/Player/Health" to="First-Person view/3dHud" method="_on_health_damaged_sig"]
 [connection signal="begin_buying" from="Top-down view/2dHud" to="GameManager" method="_on_d_hud_begin_buying"]
 
+[editable path="Objective"]
 [editable path="First-Person view/Player"]
