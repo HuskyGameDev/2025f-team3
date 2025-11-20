@@ -2,7 +2,6 @@ class_name EnemySpawnInfo extends Node
 
 var spawnPoints = {}
 
-#var enemyListInstance = load("res://assets/scenes/enemy_list.tscn").instantiate()
 var enemyList = {
 	"test1": preload("res://assets/scenes/Enemy1.tscn"),
 	#"test2": enemyListInstance.get_node("Enemy2")

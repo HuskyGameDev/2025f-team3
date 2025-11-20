@@ -137,7 +137,7 @@ collision_mask = 15
 unique_name_in_owner = true
 button_group = SubResource("ButtonGroup_21mu2")
 
-[node name="SpawnLibrary" parent="." instance=ExtResource("10_m00bm")]
+[node name="SpawnLibrary" parent="." groups=["spawnLibrary"] instance=ExtResource("10_m00bm")]
 
 [node name="TESTSPAWN" type="Node3D" parent="SpawnLibrary"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.2472, -0.26542, 66.7604)

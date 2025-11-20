@@ -1,5 +1,5 @@
 extends CanvasLayer
-
+var library
 @export var button_group: ButtonGroup
 var selected_tower = "-1"
 var buying_tower = false
@@ -69,6 +69,7 @@ func _ready() -> void:
 	# Connect to objective signals
 	_connect_to_objective()
 
+	_connect_to_spawnManager()
 var t = 0.0
 
 func _process(delta: float) -> void:
@@ -116,6 +117,14 @@ func _connect_to_objective() -> void:
 	else:
 		push_warning("2D HUD: No objective found in scene!")
 
+func _connect_to_spawnManager() -> void:
+	var spawn_managers = get_tree().get_nodes_in_group("spawnLibrary")
+	if spawn_managers.size() > 0:
+		library = spawn_managers[0]
+		print("HUD Connected to spawn manager")
+	else:
+		push_warning("2D HUD: No spawn manager found in scene!")
+	
 func _on_objective_damaged(current_health: float, max_health: float) -> void:
 	objective_health = current_health
 	objective_max_health = max_health
@@ -126,3 +135,7 @@ func _on_game_manager_end_buying() -> void:
 	
 func _on_game_manager_update_gold(value: Variant) -> void:
 	$LeftPanel/VBoxContainer/GoldBox/Gold.text = str(value)
+
+
+func _on_start_wave_pressed() -> void:
+	library.nextLevel()

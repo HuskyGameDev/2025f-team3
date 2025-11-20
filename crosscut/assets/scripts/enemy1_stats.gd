@@ -15,7 +15,6 @@ extends CharacterBody3D
 
 func _input(event):
 	if event.is_action_pressed("Test"):
-		print("KILLING ENEMY")
 		get_parent().get_node("SpawnLibrary").killedEnemy()
 		queue_free()
 

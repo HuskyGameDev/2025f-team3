@@ -30,6 +30,7 @@ player=""
 tower=""
 enemy=""
 objective=""
+spawnLibrary=""
 
 [input]
 

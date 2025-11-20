@@ -150,7 +150,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 27
 theme_override_styles/normal = SubResource("StyleBoxEmpty_puovb")
-text = "Enemies Killed:"
+text = "Enemies Left:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
