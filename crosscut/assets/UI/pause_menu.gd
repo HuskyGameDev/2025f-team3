@@ -25,3 +25,9 @@ func _input(event):
 			hide()
 			get_tree().paused = false
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED 
+
+func _on_controls_pressed() -> void:
+	$Controls.visible = true
+
+func _on_back_pressed() -> void:
+	$Controls.visible = false

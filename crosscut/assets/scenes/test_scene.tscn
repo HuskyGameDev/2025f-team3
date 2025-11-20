@@ -44,7 +44,6 @@ allow_unpress = true
 
 [node name="Objective" parent="." instance=ExtResource("2_objective")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.44662, 0, 4.10327)
-max_health = 500
 
 [node name="CrossbowTower" parent="." instance=ExtResource("1_ics7i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.27332, 1.90735e-06, -17.26)

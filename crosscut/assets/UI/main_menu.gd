@@ -14,3 +14,9 @@ func _on_back2_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+func _on_controls_pressed() -> void:
+	$MainPanel/Controls.visible = true
+
+func _on_back3_pressed() -> void:
+	$MainPanel/Controls.visible = false
