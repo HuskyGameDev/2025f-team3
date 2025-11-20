@@ -153,11 +153,13 @@ theme_override_font_sizes/font_size = 30
 text = "WASD: Move
 Space: Jump
 Mouse: Interact with menus
+X: Cancel tower buying
 Esc: Pause
 
 (Playtesting-only controls below)
 M: Switch perspectives
-G: Add 100 Gold (to test tower buying)"
+G: Add 100 Gold (to test tower buying)
+L: Advance to next wave"
 horizontal_alignment = 1
 vertical_alignment = 1
 
