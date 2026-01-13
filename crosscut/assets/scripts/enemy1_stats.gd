@@ -2,10 +2,10 @@ extends CharacterBody3D
 
 # just put variables that I can think of.
 # let me know if there's more that need to be added or deleted.
-@export var speed = 4
-@export var rotation_speed = 5
-@export var atk = 10
-@export var atk_speed = 5
+@export var speed: int = 4
+@export var rotation_speed: int = 5
+@export var atk: int = 10
+@export var atk_speed: int = 5
 
 # exposing health node
 @onready var health: Node3D = $Health
@@ -13,7 +13,7 @@ extends CharacterBody3D
 # exposing objective node 
 #@onready var objective = %Objective #TODO: FIX THIS
 
-func _input(event):
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Test"):
 		get_parent().get_node("SpawnLibrary").killedEnemy()
 		queue_free()
@@ -27,24 +27,24 @@ func _on_damage_area_body_entered(body: Node3D) -> void:
 
 # from down here, it is enemy movement
 #@onready var player = get_parent().get_node("First-Person view").get_child(0)
-@onready var obj = get_parent().get_node("Objective").get_child(0)
-const GRAVITY = -300
+@onready var obj: = get_parent().get_node("Objective").get_child(0)
+const GRAVITY: int = -300
 
-func _physics_process(delta):
-	var direction = (obj.global_transform.origin - global_transform.origin)
+func _physics_process(delta:=) -> void:
+	var direction: Node3D = (obj.global_transform.origin - global_transform.origin)
 	direction.y = 0
-	var distance = direction.length()
+	var distance: float = direction.length()
 	
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 		move_and_slide()
 	
 	if distance > 0 && is_on_floor():
-		var move_dir = direction.normalized()
+		var move_dir: Vector3 = direction.normalized()
 		velocity = move_dir * speed
 		move_and_slide()
 	
-		var target_rotation = Vector3(0, atan2(move_dir.x, move_dir.z), 0)
+		var target_rotation: = Vector3(0, atan2(move_dir.x, move_dir.z), 0)
 		rotation.y = lerp_angle(rotation.y, target_rotation.y, rotation_speed * delta)
 	else:
 		velocity = Vector3.ZERO

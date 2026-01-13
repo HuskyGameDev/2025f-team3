@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@onready var grid_map = %GridMap
+@onready var grid_map: Node3D = %GridMap
 
 # Exposing child health node to other scripts
 @onready var health: Node3D = $Health
@@ -9,23 +9,23 @@ extends CharacterBody3D
 #var crossbow_tower = preload("res://assets/scenes/towers/crossbow_tower.tscn")
 
 
-var disabled = false
+var disabled: bool = false
 
 # Movement variables
-var speed = 0
-const MAX_SPEED = 5.0
-const ACCELERATION = 0.3
-const DECELLERATION = 0.65 # Applied when no keys are pressed and on ground 
+var speed: float = 0
+const MAX_SPEED: float = 5.0
+const ACCELERATION: float = 0.3
+const DECELLERATION: float = 0.65 # Applied when no keys are pressed and on ground 
 
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY: float = 4.5
 
 # Lookaround variables
-var mouse_sensitivity = 0.002
+var mouse_sensitivity: float = 0.002
 
-func _ready():
+func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-func _input(event):
+func _input(event: InputEvent) -> void:
 	if disabled: 
 		return
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:

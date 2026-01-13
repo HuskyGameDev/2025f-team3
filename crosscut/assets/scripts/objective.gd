@@ -1,13 +1,13 @@
 extends CharacterBody3D
 
-signal objective_damaged(damage_taken, health_after_damage, max_health)
+signal objective_damaged(damage_taken: int, health_after_damage: int, max_health: int)
 signal objective_destroyed
 
-@onready var grid_map = %GridMap
+@onready var grid_map: Node3D = %GridMap
 
 # Exposing child health node to other scripts
 @onready var health: Node3D = $Health
-@export var max_health = 500
+@export var max_health: int = 500
 
 func _ready() -> void:
 	# Setup health component

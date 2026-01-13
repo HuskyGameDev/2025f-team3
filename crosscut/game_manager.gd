@@ -13,28 +13,28 @@ extends Node3D
 const SPECTATOR_SPEED = 10.0
 const SPECTATOR_SPRINT_MULTIPLIER = 2.0
 const SPECTATOR_MOUSE_SENSITIVITY = 0.002
-var spectator_velocity = Vector3.ZERO
+var spectator_velocity: Vector3 = Vector3.ZERO
 
 # Game state enums
 enum GameState { PRE_WAVE, WAVE_STARTING, DURING_WAVE }
 enum ControlMode { PLAYER, TOPDOWN, SPECTATOR }
 
 # Game state variables
-var control_mode = ControlMode.PLAYER
-var game_state = GameState.DURING_WAVE
+var control_mode: = ControlMode.PLAYER
+var game_state: = GameState.DURING_WAVE
 
-var buying_tower = false
-var selected_tower
+var buying_tower: = false
+var selected_tower: String
 signal end_buying
 
-var gold = 1000
-signal update_gold(value)
+var gold: int = 1000
+signal update_gold(value: int)
 
-@onready var grid_map = %GridMap
-var crossbow_tower = preload("res://assets/scenes/towers/crossbow_tower.tscn")
-var cauldron_tower = preload("res://assets/scenes/towers/cauldron_tower.tscn")
-var highlight_tile_y = preload("res://assets/scenes/highlight_tile_yellow.tscn")
-var highlight_tile_r = preload("res://assets/scenes/highlight_tile_red.tscn")
+@onready var grid_map: = %GridMap
+var crossbow_tower: = preload("res://assets/scenes/towers/crossbow_tower.tscn")
+var cauldron_tower: = preload("res://assets/scenes/towers/cauldron_tower.tscn")
+var highlight_tile_y: = preload("res://assets/scenes/highlight_tile_yellow.tscn")
+var highlight_tile_r: = preload("res://assets/scenes/highlight_tile_red.tscn")
 
 # Raycasting
 @onready var tower_placement_raycast: RayCast3D = %TowerPlacementRaycast
@@ -75,7 +75,7 @@ func _physics_process(delta: float) -> void:
 		# When NOT in spectator mode, park it far away to avoid collision issues
 		spectator_camera_body.global_position = player.global_position + Vector3(0, 1000, 0)  # Way above, out of the way
 	
-func _input(event):
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("View Map") and control_mode != ControlMode.SPECTATOR:
 		_toggle_mode()
 
@@ -93,13 +93,13 @@ func _input(event):
 	
 	#highlight currently hovered tile
 	if control_mode == ControlMode.TOPDOWN:
-		var position = _get_mouse_position_on_board()
+		var position: Node3D = _get_mouse_position_on_board()
 		grid_map.highlight_tile(highlight_tile_y, highlight_tile_r, position)
 	
 	if control_mode == ControlMode.TOPDOWN and event is InputEventMouseButton and event.pressed and event.button_index == 1:
-		var position = _get_mouse_position_on_board()
+		var position: Node3D = _get_mouse_position_on_board()
 		if buying_tower:
-			var bought_position
+			var bought_position: Node3D 
 			match selected_tower:
 				"0":
 					bought_position = grid_map.add_tower(crossbow_tower, position)
@@ -116,7 +116,7 @@ func _input(event):
 				print("Buying error")
 			
 	elif control_mode == ControlMode.TOPDOWN and event is InputEventMouseButton and event.pressed and event.button_index == 2:
-		var position = _get_mouse_position_on_board()
+		var position: Node3D = _get_mouse_position_on_board()
 		if grid_map.remove_tower_at_position(position) != null:
 			# Gain back half the cost of a tower when you sell it
 			# TODO: Determine the ID of the sold tower and subtract the corresponding price / 2
@@ -133,21 +133,21 @@ func _input(event):
 	if event.is_action_pressed("Test2"):
 		_change_gold(100)
 	
-func _get_mouse_position_on_board():
-	var space_state = get_world_3d().direct_space_state
-	var mousepos = get_viewport().get_mouse_position()
+func _get_mouse_position_on_board() -> Node3D:
+	var space_state: = get_world_3d().direct_space_state
+	var mousepos: = get_viewport().get_mouse_position()
 	
-	var origin = top_down_camera.project_ray_origin(mousepos)
-	var end = origin + top_down_camera.project_ray_normal(mousepos) * RAY_LENGTH
-	var collision_mask = 1
-	var query = PhysicsRayQueryParameters3D.create(origin, end, collision_mask, [self])
+	var origin: = top_down_camera.project_ray_origin(mousepos)
+	var end: = origin + top_down_camera.project_ray_normal(mousepos) * RAY_LENGTH
+	var collision_mask: = 1
+	var query: = PhysicsRayQueryParameters3D.create(origin, end, collision_mask, [self])
 	query.collide_with_areas = true
 	
-	var result = space_state.intersect_ray(query)
+	var result: = space_state.intersect_ray(query)
 	
 	return result["position"]
 	
-func _toggle_mode():
+func _toggle_mode() -> void:
 	print(control_mode)
 	if control_mode == ControlMode.PLAYER:
 		control_mode = ControlMode.TOPDOWN
@@ -181,9 +181,9 @@ func _toggle_mode():
 
 func _connect_to_objective() -> void:
 	# Find and connect to the objective in the scene
-	var objectives = get_tree().get_nodes_in_group("objective")
+	var objectives: = get_tree().get_nodes_in_group("objective")
 	if objectives.size() > 0:
-		var objective = objectives[0]
+		var objective: = objectives[0]
 		objective.objective_destroyed.connect(_on_objective_destroyed)
 		print("GameManager connected to objective")
 	else:
@@ -198,7 +198,7 @@ func _on_objective_destroyed() -> void:
 	# For now, just print a message
 
 # Enables buying mode when you click Buy in the 2D HUD.
-func _on_d_hud_begin_buying(selected) -> void:
+func _on_d_hud_begin_buying(selected: String) -> void:
 	print("Begin buying")
 	buying_tower = true
 	selected_tower = selected
@@ -209,13 +209,13 @@ func _handle_spectator_movement(delta: float) -> void:
 
 	# Calculate movement direction based on camera orientation
 	# Move in the exact direction the camera is looking (no horizontal projection)
-	var forward = -spectator_camera_body.global_transform.basis.z
-	var right = spectator_camera_body.global_transform.basis.x
+	var forward: = -spectator_camera_body.global_transform.basis.z
+	var right: = spectator_camera_body.global_transform.basis.x
 
-	var direction = (right * input_dir.x + forward * input_dir.y).normalized()
+	var direction: = (right * input_dir.x + forward * input_dir.y).normalized()
 
 	# Calculate speed with sprint
-	var current_speed = SPECTATOR_SPEED
+	var current_speed: = SPECTATOR_SPEED
 	if Input.is_physical_key_pressed(KEY_SHIFT):
 		current_speed *= SPECTATOR_SPRINT_MULTIPLIER
 
@@ -286,7 +286,7 @@ func _connect_to_player() -> void:
 		print("Player children: ", player.get_children())
 
 		# Try to find health component
-		var health_node = player.get_node_or_null("Health")
+		var health_node: = player.get_node_or_null("Health")
 		if health_node == null:
 			# Try lowercase
 			health_node = player.get_node_or_null("health")
@@ -304,7 +304,7 @@ func _connect_to_player() -> void:
 		push_warning("GameManager: Player node not found!")
 
 func _connect_to_spawner() -> void:
-	var spawner = get_node_or_null("%EnemySpawning")
+	var spawner: = get_node_or_null("%EnemySpawning")
 	if spawner:
 		# We'll connect to the wave delay timeout to detect wave ends
 		spawner.get_node("WaveDelay").timeout.connect(_on_wave_ended)
@@ -324,6 +324,6 @@ func _on_wave_ended() -> void:
 	if control_mode == ControlMode.SPECTATOR:
 		_switch_to_topdown_from_spectator()
 
-func _change_gold(value):
+func _change_gold(value: int) -> void:
 	gold += value
 	update_gold.emit(gold)
