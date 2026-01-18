@@ -22,6 +22,7 @@ Collin McFarland - UI Artist
 Ezra Crocker - Programmer
 Kai Stack - Programmer
 Mason Connor - Programmer
+Nathan Brewer - Programmer
 
 Instructions:
 Unzip CrossCut.zip and run CrossCut.exe within the build directory to play.
