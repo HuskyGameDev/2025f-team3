@@ -74,7 +74,7 @@ ticks_on_borders = true
 
 [node name="SFXVolume" type="HBoxContainer" parent="BoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="BoxContainer/SFXVolume"]
 layout_mode = 2
