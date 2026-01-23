@@ -1,8 +1,8 @@
 extends Node3D
 
 const debug = false
-var speed = 30
-var damage = 10
+var speed: float = 30
+var damage: int = 10
 
 var target: Node3D
 
@@ -24,6 +24,6 @@ func _process(delta: float) -> void:
 	if global_position.distance_to(target.global_position) < 0.5:
 		_on_hit()
 
-func _on_hit():
+func _on_hit() -> void:
 	target.health.take_damage(damage)
 	queue_free()

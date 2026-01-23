@@ -3,16 +3,16 @@ extends StaticBody3D
 const debug = false
 
 # Behavior settings
-@export var tower_lookaround_time_range = Vector2(1, 2) # The range of time intervals when looking around randomly
-@export var tower_turnspeed = 4 # How quickly the tower turns to where it wants to look
+@export var tower_lookaround_time_range: Vector2 = Vector2(1, 2) # The range of time intervals when looking around randomly
+@export var tower_turnspeed: float = 4 # How quickly the tower turns to where it wants to look
 
 # Attack settings
-@export var damage = 10
-@export var firing_speed = 1
+@export var damage: int = 10
+@export var firing_speed: float = 1
 # NOTE: Attack radius can be adjusted with the attack area node child
 
 # Runtime variables
-var tower_look_desired = Vector3(0, 0, 0)
+var tower_look_desired: Vector3 = Vector3(0, 0, 0)
 var state: CrossbowState
 enum CrossbowState {IDLE, TRACKING}
 
@@ -26,7 +26,7 @@ enum CrossbowState {IDLE, TRACKING}
 @onready var attack_area: Area3D = $AttackArea
 
 # Crossbow bolt packed scene
-var crossbow_bolt = preload("res://assets/scenes/projectiles/crossbow_bolt.tscn")
+var crossbow_bolt: PackedScene = preload("res://assets/scenes/projectiles/crossbow_bolt.tscn")
 
 
 func _ready() -> void:
@@ -42,15 +42,15 @@ func _process(delta: float) -> void:
 	# Always turn towards desired look position
 	if (tower_look_desired.normalized().is_zero_approx()):
 		return
-	var look_direction = Basis.looking_at(tower_look_desired.normalized())
+	var look_direction: Basis = Basis.looking_at(tower_look_desired.normalized())
 	tower_head.transform.basis = tower_head.transform.basis.slerp(look_direction, tower_turnspeed*delta)
 
 # Idle state:
 #	Maybe look around in random directions every couple seconds
-func _transition_to_idle_state():
+func _transition_to_idle_state() -> void:
 	state = CrossbowState.IDLE
 
-func _idle_state():
+func _idle_state() -> void:
 	# Idle state can be empty for now since everything is signal-based
 	pass
 	
@@ -70,12 +70,12 @@ func _on_idle_lookaround_timer_timeout() -> void:
 
 # Tracking state:
 # 	Constantly look at the enemy and fire every few seconds
-func _transition_to_tracking_state():
+func _transition_to_tracking_state() -> void:
 	state = CrossbowState.TRACKING
 	firing_timer.start()
 	
-func _tracking_state():
-	var first_seen_enemy = _get_target()
+func _tracking_state() -> void:
+	var first_seen_enemy: Node3D = _get_target()
 	if !first_seen_enemy:
 		if debug: print("No tower target, transitioning to idle")
 		_transition_to_idle_state()
@@ -92,20 +92,20 @@ func _on_firing_timer_timeout() -> void:
 
 
 # Getters and setters
-func set_firing_speed(new_value):
+func set_firing_speed(new_value: float) -> void:
 	firing_timer.wait_time = new_value
 
 # Non-state-specific functions
-func _fire_bolt(bolt_target: Node3D):
-	var new_bolt = crossbow_bolt.instantiate()
+func _fire_bolt(bolt_target: Node3D) -> void:
+	var new_bolt: Node3D = crossbow_bolt.instantiate()
 	new_bolt.transform = tower_head.transform
 	new_bolt.target = bolt_target
 	new_bolt.damage = damage
 	add_child(new_bolt)
 
-func _get_target():
+func _get_target() -> Node3D:
 	# Easily could implement bloons-type targeting (closest to tower, closest to base, etc)
-	var enemies = attack_area.get_overlapping_bodies().filter(func(b:Node3D): return b.is_in_group("enemy"))
+	var enemies: Array[Node3D] = attack_area.get_overlapping_bodies().filter(func(b:Node3D)->bool: return b.is_in_group("enemy"))
 	if enemies.is_empty():
 		return null
 	return enemies.front()
