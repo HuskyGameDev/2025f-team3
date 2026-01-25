@@ -1,8 +1,8 @@
 extends Node2D
-@onready var playerUI: Object = %"3dHud"
+@onready var playerUI: CanvasLayer = %"3dHud"
 
-@onready var levelDelay: Object = $LevelDelay
-@onready var waveDelay: Object = $WaveDelay
+@onready var levelDelay: Timer = $LevelDelay
+@onready var waveDelay: Timer = $WaveDelay
 
 var currentLevelIndex: int = 0
 var currentWaveIndex: int = 0

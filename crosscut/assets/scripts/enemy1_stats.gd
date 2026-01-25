@@ -2,10 +2,10 @@ extends CharacterBody3D
 
 # just put variables that I can think of.
 # let me know if there's more that need to be added or deleted.
-@export var speed: int = 4
-@export var rotation_speed: int = 5
-@export var atk: int = 10
-@export var atk_speed: int = 5
+@export var speed: float = 4
+@export var rotation_speed: float = 5
+@export var atk: float = 10
+@export var atk_speed: float = 5
 
 # exposing health node
 @onready var health: Node3D = $Health

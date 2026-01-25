@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 var time_elapsed: float = 0
-var health: int = 100
+var health: float = 100
 var health_width: float
 var max_health: float = 100
 var enemies_killed: int
