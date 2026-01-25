@@ -7,7 +7,7 @@ const debug = false
 @export var tower_turnspeed: float = 4 # How quickly the tower turns to where it wants to look
 
 # Attack settings
-@export var damage: int = 10
+@export var damage: float = 10
 @export var firing_speed: float = 1
 # NOTE: Attack radius can be adjusted with the attack area node child
 

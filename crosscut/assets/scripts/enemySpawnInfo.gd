@@ -1,49 +1,49 @@
 class_name EnemySpawnInfo extends Node
 
-var spawnPoints = {}
+var spawnPoints: Dictionary = {}
 
-var enemyList = {
+var enemyList: Dictionary = {
 	"test1": preload("res://assets/scenes/Enemy1.tscn"),
 	#"test2": enemyListInstance.get_node("Enemy2")
 }
 
-var enemyCount = 0
-var enemyName = ""
-var locations = []
-var delay = 0.0
+var enemyCount: int = 0
+var enemyName: String = ""
+var locations: Array[String] = []
+var delay: float = 0.0
 
-var currentEnemyCount = 0
-var spawnLocationIndex = 0
-var spawnTimer
+var currentEnemyCount: int = 0
+var spawnLocationIndex: int = 0
+var spawnTimer: Object
 
 func _init(countArg: int, nameArg: String, 
-					spawnArg: Array[String], delayArg: float):
+					spawnArg: Array[String], delayArg: float) -> void:
 	enemyCount = countArg
 	enemyName = nameArg
 	locations = spawnArg
 	delay = delayArg
 	spawnTimer = makeTimer()
 
-func _ready():
+func _ready() -> void:
 	spawnPoints = {
 		"test": get_parent().get_node("TESTSPAWN")
 	}
 
-func startSpawning():
+func startSpawning() -> void:
 	currentEnemyCount = 0
 	if (enemyList[enemyName] != null):
 		spawn()
 	
-func spawn():
+func spawn() -> void:
 	if currentEnemyCount < enemyCount:
 		currentEnemyCount += 1
 		print("Spawning ", enemyList[enemyName], " at ", locations[spawnLocationIndex])
 		
-		var enemyScene = enemyList[enemyName]
+		var enemyScene: Object = enemyList[enemyName]
 		if enemyScene:
-			var enemyInstance = enemyScene.instantiate()
+			var enemyInstance: Object = enemyScene.instantiate()
 			get_tree().current_scene.call_deferred("add_child", enemyInstance)
-			var spawnPos = spawnPoints[locations[spawnLocationIndex]].global_position
+			var spawnPos: Vector3 = spawnPoints[locations[spawnLocationIndex]].global_position
 			enemyInstance.call_deferred("set_global_position", spawnPos)
 			enemyInstance.name = enemyName
 
@@ -53,7 +53,7 @@ func spawn():
 	else:
 		queue_free()
 		
-func makeTimer():
+func makeTimer() -> Object:
 	var timer := Timer.new()
 	add_child(timer)
 	timer.wait_time = delay

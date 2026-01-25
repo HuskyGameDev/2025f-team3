@@ -1,15 +1,15 @@
 extends Node2D
-@onready var playerUI = %"3dHud"
+@onready var playerUI: Object = %"3dHud"
 
-@onready var levelDelay = $LevelDelay
-@onready var waveDelay = $WaveDelay
+@onready var levelDelay: Object = $LevelDelay
+@onready var waveDelay: Object = $WaveDelay
 
-var currentLevelIndex = 0
-var currentWaveIndex = 0
-var totalEnemies = 0
-var aliveEnemies = 0
-var doneSpawning = false
-var levelDone = false
+var currentLevelIndex: int = 0
+var currentWaveIndex: int = 0
+var totalEnemies: int = 0
+var aliveEnemies: int = 0
+var doneSpawning: bool = false
+var levelDone: bool = false
 
 var levelGenerator: LevelGenerator
 
@@ -19,18 +19,20 @@ func _ready() -> void:
 	
 	startSpawning()
 
-func startSpawning():
-	var currentLevel = getCurrentLevel()
+func startSpawning() -> void:
+	var currentLevel: Array = getCurrentLevel()
 	
 	if currentWaveIndex < currentLevel.size():
-		var currentWave = currentLevel[currentWaveIndex]
+		var currentWave: Array = currentLevel[currentWaveIndex]
 		startWave(currentWave)
+	
 	else:
 		levelDone = true
 		print("Level ", currentLevelIndex, " completed!")
+	
 
 func getCurrentLevel() -> Array:
-	var presetLevel = LevelData.getDefaultLevel(currentLevelIndex)
+	var presetLevel: Array = LevelData.getDefaultLevel(currentLevelIndex)
 	if not presetLevel.is_empty():
 		print("Using premade level ", currentLevelIndex)
 		return presetLevel
@@ -38,11 +40,11 @@ func getCurrentLevel() -> Array:
 	print("Generating level ", currentLevelIndex)
 	return levelGenerator.generateLevel(currentLevelIndex)
 
-func startWave(waveInfo: Array):
+func startWave(waveInfo: Array) -> void:
 	totalEnemies = 0
 	aliveEnemies = 0
 	
-	for enemy in waveInfo:
+	for enemy: Object in waveInfo:
 		add_child(enemy)
 		enemy.startSpawning()
 		totalEnemies += enemy.enemyCount
@@ -54,7 +56,7 @@ func startWave(waveInfo: Array):
 	print("Wave started: ", totalEnemies, " total enemies, ", aliveEnemies, " alive enemies")
 	doneSpawning = true
 
-func killedEnemy():
+func killedEnemy() -> void:
 	aliveEnemies -= 1
 	playerUI._update_enemies_killed(aliveEnemies)
 	print("Killed enemy ", aliveEnemies, " remain")
@@ -63,26 +65,26 @@ func killedEnemy():
 		print("All enemies killed, going to next wave")
 		nextWave()
 
-func nextWave():
+func nextWave() -> void:
 	currentWaveIndex += 1
 	doneSpawning = false
 	waveDelay.start()
 
-func nextLevel():
+func nextLevel() -> void:
 	currentLevelIndex += 1
 	currentWaveIndex = 0
 	levelDelay.start()
 
-func _input(event):
-	if event.is_action_pressed("NextLevel") && levelDone:
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("NextLevel") && levelDone && aliveEnemies == 0:
 		print("Starting Next Level")
 		levelDone = false
 		nextLevel()
 
-func _on_wave_delay_timeout():
+func _on_wave_delay_timeout() -> void:
 	print("Wave delay finished")
 	startSpawning()
 
-func _on_level_delay_timeout():
+func _on_level_delay_timeout() -> void:
 	print("Level delay finished")
 	startSpawning()

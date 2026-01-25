@@ -1,34 +1,34 @@
 class_name LevelGenerator extends Node
 
-var minWaves = 2
-var maxWaves = 5
-var baseEnemies = 2
-var levelScalingMult = 1.2
+var minWaves: int = 2
+var maxWaves: int = 5
+var baseEnemies: int = 2
+var levelScalingMult: float = 1.2
 
 # Available enemies and spawn locations
-var availableEnemies = ["test1"]
-var availableLocations = ["test"]
+var availableEnemies: Array[String] = ["test1"]
+var availableLocations: Array[String] = ["test"]
 
 func generateLevel(level: int) -> Array:
-	var generatedLevel = []
+	var generatedLevel: Array = []
 	
-	var waveCount = calculateWaveCount(level)
+	var waveCount: int = calculateWaveCount(level)
 	
 	for wave in range(waveCount):
-		var generatedWave = generateWave(level, wave)
+		var generatedWave: Array = generateWave(level, wave)
 		generatedLevel.append(generatedWave)
 	
 	print("Generated level ", level, " with ", waveCount, " waves")
 	return generatedLevel
 
 func calculateWaveCount(level: int) -> int:
-	var waves = minWaves + (level / 5)
+	var waves: int = minWaves + (level / 5)
 	return clamp(waves, minWaves, maxWaves)
 
 func generateWave(level: int, wave: int) -> Array:
-	var generatedWave = []
+	var generatedWave: Array = []
 	
-	var maxVariation
+	var maxVariation: int
 	if level < 5:
 		maxVariation = ceil(availableEnemies.size() * .2)
 	elif level < 10:
@@ -38,28 +38,28 @@ func generateWave(level: int, wave: int) -> Array:
 	
 	maxVariation = clamp(maxVariation, 1, availableEnemies.size())
 	
-	var numberOfTypes = randi() % int(maxVariation) + 1
+	var numberOfTypes: int = randi() % int(maxVariation) + 1
 	
-	var randomizedEnemies = availableEnemies.duplicate()
+	var randomizedEnemies: Array = availableEnemies.duplicate()
 	randomizedEnemies.shuffle()
 	
-	var totalEnemies = calculateEnemyCount(level, wave)
+	var totalEnemies: int = calculateEnemyCount(level, wave)
 	
-	var enemiesPerType = max(1, totalEnemies / numberOfTypes)
+	var enemiesPerType: int = max(1, totalEnemies / numberOfTypes)
 	
 	for i in range(numberOfTypes):
-		var enemyType = randomizedEnemies[i]
-		var enemiesForThisType = enemiesPerType
+		var enemyType: String = randomizedEnemies[i]
+		var enemiesForThisType: int = enemiesPerType
 		
 		if i == numberOfTypes - 1:
-			var enemiesAlreadyAssigned = enemiesPerType * (numberOfTypes - 1)
+			var enemiesAlreadyAssigned: int = enemiesPerType * (numberOfTypes - 1)
 			enemiesForThisType = totalEnemies - enemiesAlreadyAssigned
 		
 		if enemiesForThisType > 0:
-			var spawnLocations = pickSpawnLocations()
-			var spawnDelay = calculateSpawnDelay(level)
+			var spawnLocations: Array[String] = pickSpawnLocations()
+			var spawnDelay: float = calculateSpawnDelay(level)
 			
-			var spawnInfo = preload("res://assets/scripts/enemySpawnInfo.gd").new(
+			var spawnInfo: Object = preload("res://assets/scripts/enemySpawnInfo.gd").new(
 				enemiesForThisType,
 				enemyType,
 				spawnLocations,
@@ -70,32 +70,32 @@ func generateWave(level: int, wave: int) -> Array:
 	return generatedWave
 
 func calculateEnemyCount(level: int, wave: int) -> int:
-	var base = baseEnemies * pow(levelScalingMult, level)
-	var waveMulti = wave * 0.2 
-	var total = base * (1 + waveMulti)
+	var base: float = baseEnemies * pow(levelScalingMult, level)
+	var waveMulti: float = wave * 0.2 
+	var total: float = base * (1 + waveMulti)
 	
-	var randomVariation = 0
+	var randomVariation: int = 0
 	if wave > 0:
 		randomVariation = randi() % wave
 	
-	var finalAmount = int(total) + randomVariation
+	var finalAmount: int = int(total) + randomVariation
 	
 	return finalAmount
 
 func pickSpawnLocations() -> Array[String]:
-	var locationCount = randi() % 2 + 1
-	var tempLocation = availableLocations.duplicate()
+	var locationCount: int = randi() % 2 + 1
+	var tempLocation: Array[String] = availableLocations.duplicate()
 	var selectedLocations: Array[String] = []
 	
 	locationCount = min(locationCount, tempLocation.size())
 	
 	for i in range(locationCount):
-		var index = randi() % tempLocation.size()
+		var index: int = randi() % tempLocation.size()
 		selectedLocations.append(tempLocation[index])
 		tempLocation.remove_at(index)
 		
 	return selectedLocations
 
 func calculateSpawnDelay(level: int) -> float:
-	var delay = 1.0 - (level * 0.05)
+	var delay: float = 1.0 - (level * 0.05)
 	return clamp(delay, 0.3, 1.5)
