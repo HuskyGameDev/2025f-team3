@@ -31,7 +31,7 @@ func _on_damage_area_body_entered(body: Node3D) -> void:
 const GRAVITY: int = -300
 
 func _physics_process(delta:=) -> void:
-	var direction: Node3D = (obj.global_transform.origin - global_transform.origin)
+	var direction: Vector3 = (obj.global_transform.origin - global_transform.origin)
 	direction.y = 0
 	var distance: float = direction.length()
 	
