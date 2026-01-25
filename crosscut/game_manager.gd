@@ -99,14 +99,14 @@ func _input(event: InputEvent) -> void:
 	if control_mode == ControlMode.TOPDOWN and event is InputEventMouseButton and event.pressed and event.button_index == 1:
 		var position: Node3D = _get_mouse_position_on_board()
 		if buying_tower:
-			var bought_position: Node3D 
+			var bought_position: Vector3
 			match selected_tower:
 				"0":
 					bought_position = grid_map.add_tower(crossbow_tower, position)
 				"1":
 					bought_position = grid_map.add_tower(cauldron_tower, position)
 			
-			if bought_position != null:
+			if bought_position.is_finite():
 				buying_tower = false
 				end_buying.emit()
 				print(str("You just bought tower "), selected_tower)
@@ -117,7 +117,7 @@ func _input(event: InputEvent) -> void:
 			
 	elif control_mode == ControlMode.TOPDOWN and event is InputEventMouseButton and event.pressed and event.button_index == 2:
 		var position: Node3D = _get_mouse_position_on_board()
-		if grid_map.remove_tower_at_position(position) != null:
+		if grid_map.remove_tower_at_position(position) != -1:
 			# Gain back half the cost of a tower when you sell it
 			# TODO: Determine the ID of the sold tower and subtract the corresponding price / 2
 			gold += 50

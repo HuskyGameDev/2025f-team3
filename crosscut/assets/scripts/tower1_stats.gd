@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 # just put variables that I can think of.
 # let me know if there's more that need to be added or deleted.
-@export var hp = 100
+@export var hp: int = 100
 
 """
 func enemyDamage(damage : int):
