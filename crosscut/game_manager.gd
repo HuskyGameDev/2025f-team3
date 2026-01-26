@@ -93,11 +93,11 @@ func _input(event: InputEvent) -> void:
 	
 	#highlight currently hovered tile
 	if control_mode == ControlMode.TOPDOWN:
-		var position: Node3D = _get_mouse_position_on_board()
+		var position: Vector3 = _get_mouse_position_on_board()
 		grid_map.highlight_tile(highlight_tile_y, highlight_tile_r, position)
 	
 	if control_mode == ControlMode.TOPDOWN and event is InputEventMouseButton and event.pressed and event.button_index == 1:
-		var position: Node3D = _get_mouse_position_on_board()
+		var position: Vector3 = _get_mouse_position_on_board()
 		if buying_tower:
 			var bought_position: Vector3
 			match selected_tower:
@@ -116,7 +116,7 @@ func _input(event: InputEvent) -> void:
 				print("Buying error")
 			
 	elif control_mode == ControlMode.TOPDOWN and event is InputEventMouseButton and event.pressed and event.button_index == 2:
-		var position: Node3D = _get_mouse_position_on_board()
+		var position: Vector3 = _get_mouse_position_on_board()
 		if grid_map.remove_tower_at_position(position) != -1:
 			# Gain back half the cost of a tower when you sell it
 			# TODO: Determine the ID of the sold tower and subtract the corresponding price / 2
@@ -133,7 +133,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Test2"):
 		_change_gold(100)
 	
-func _get_mouse_position_on_board() -> Node3D:
+func _get_mouse_position_on_board() -> Vector3:
 	var space_state: = get_world_3d().direct_space_state
 	var mousepos: = get_viewport().get_mouse_position()
 	
@@ -209,7 +209,7 @@ func _handle_spectator_movement(delta: float) -> void:
 
 	# Calculate movement direction based on camera orientation
 	# Move in the exact direction the camera is looking (no horizontal projection)
-	var forward: = -spectator_camera_body.global_transform.basis.z
+	var forward: = spectator_camera_body.global_transform.basis.z
 	var right: = spectator_camera_body.global_transform.basis.x
 
 	var direction: = (right * input_dir.x + forward * input_dir.y).normalized()

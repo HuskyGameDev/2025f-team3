@@ -8,9 +8,9 @@ var settings: ConfigFile
 
 func _ready() -> void:
 	settings = ConfigFile.new()
-	var main_volume: int = $BoxContainer/MainVolume/HSlider.value
-	var music_volume: int = $BoxContainer/MusicVolume/HSlider.value
-	var sfx_volume: int = $BoxContainer/SFXVolume/HSlider.value
+	main_volume = $BoxContainer/MainVolume/HSlider.value
+	music_volume = $BoxContainer/MusicVolume/HSlider.value
+	sfx_volume = $BoxContainer/SFXVolume/HSlider.value
 	
 	if settings.load("res://assets/settings.cfg") != OK:
 		settings.set_value("settings", "main_volume", main_volume)

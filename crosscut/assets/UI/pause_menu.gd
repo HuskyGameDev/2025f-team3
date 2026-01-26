@@ -6,7 +6,8 @@ func _ready() -> void:
 func _on_resume_pressed() -> void:
 	hide()
 	get_tree().paused = false
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED #go back to mouse camera controls
+	if $"../GameManager".control_mode != 1:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED # Only return to mouse camera controls if not in 2D
 
 func _on_settings_pressed() -> void:
 	$SettingsMenu.visible = true
@@ -19,12 +20,13 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Pause"):
 		if get_tree().paused == false:
 			show()
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE		
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			get_tree().paused = true
 		else: #Be able to hit escape again in order to exit the pause menu
 			hide()
 			get_tree().paused = false
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED 
+			if $"../GameManager".control_mode != 1:
+				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _on_controls_pressed() -> void:
 	$Controls.visible = true
