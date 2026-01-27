@@ -5,31 +5,37 @@ extends CharacterBody3D
 @export var speed: float = 4
 @export var rotation_speed: float = 5
 @export var atk: float = 10
-@export var atk_speed: float = 5
+@export var atk_cooldown: int = 20 # how many frames between damage ticks
 
 # exposing health node
 @onready var health: Node3D = $Health
 
-#flag for contact damage
-var in_contact: bool = false
+#array to hold bodies in contact with enemy
+var in_contact_arr: Array[Node3D] = []
+
+#flags for contact damage
+var in_contact_player: bool = false
+var in_contact_objective: bool = false
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Test"):
 		get_parent().get_node("SpawnLibrary").killedEnemy()
 		queue_free()
 
-# enemy attack, currently only deal damage when collide with the player
+# enemy attack based on cooldown
 func _on_damage_area_body_entered(body: Node3D) -> void:
-	in_contact = true
-	while in_contact:
-		if body.is_in_group("player"):
-			body.health.take_damage(atk)
-		elif body.is_in_group("objective"):
-			body.health.take_damage(atk)
-		await get_tree().create_timer(1.0).timeout
+	if body.is_in_group("player"):
+		in_contact_arr.append(body)
+	elif body.is_in_group("objective"):
+		in_contact_arr.append(body)
 
+# detect player or objective leaving contact
 func _on_damage_area_body_exited(body: Node3D) -> void:
-	in_contact = false
+	if body.is_in_group("player"):
+		in_contact_arr.erase(body)
+	elif body.is_in_group("objective"):
+		in_contact_arr.erase(body)
+
 
 # from down here, it is enemy movement
 #@onready var player = get_parent().get_node("First-Person view").get_child(0)
@@ -55,6 +61,12 @@ func _physics_process(delta:=) -> void:
 	else:
 		velocity = Vector3.ZERO
 		move_and_slide()
+	
+	#handle damaging player & objective
+	if (Engine.get_physics_frames() % atk_cooldown == 0): #attack cooldown is based on delta % attack cooldown
+		for body: Node3D in in_contact_arr:
+			body.health.take_damage(atk)
+			#await get_tree().create_timer(atk_cooldown).timeout
 
 func _on_health_killed_sig() -> void:
 	get_parent().get_node("SpawnLibrary").killedEnemy()
