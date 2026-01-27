@@ -1,3 +1,4 @@
 *.tmp
 *.import
-settings.cfg
+crosscut/assets/settings.cfg
+crosscut\assets\settings.cfg
