@@ -1,9 +1,7 @@
 extends CanvasLayer
 
-@onready var menu_music: AudioStreamPlayer = get_parent().get_node("MenuMusic")
-
 func _ready() -> void: 
-	menu_music.play()
+	AudioManager.play_music("menu")
 
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://assets/scenes/test_scene.tscn")
