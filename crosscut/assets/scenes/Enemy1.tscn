@@ -33,5 +33,6 @@ script = ExtResource("2_hknbf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00549316, 0.00552368, 0.0107422)
 shape = SubResource("BoxShape3D_hknbf")
 
+[connection signal="killed_sig" from="Health" to="." method="_on_health_killed_sig"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]

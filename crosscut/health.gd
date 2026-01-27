@@ -5,7 +5,7 @@ signal killed_sig
 
 @export var debug: bool = false
 @export var max_health: int = 100
-@export var health: int = 100
+@export var health: float = 100
 
 func take_damage(damage: int) -> void:
 	health -= damage

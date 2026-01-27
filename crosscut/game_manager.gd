@@ -14,6 +14,7 @@ const SPECTATOR_SPEED = 10.0
 const SPECTATOR_SPRINT_MULTIPLIER = 2.0
 const SPECTATOR_MOUSE_SENSITIVITY = 0.002
 var spectator_velocity: Vector3 = Vector3.ZERO
+signal player_died
 
 # Game state enums
 enum GameState { PRE_WAVE, WAVE_STARTING, DURING_WAVE }
@@ -230,6 +231,7 @@ func _handle_spectator_movement(delta: float) -> void:
 	spectator_camera_body.move_and_slide()
 
 func _switch_to_spectator_mode() -> void:
+	player_died.emit()
 	print("Switching to spectator mode - Player died!")
 
 	if spectator_camera == null or spectator_camera_body == null:
