@@ -6,7 +6,7 @@ extends GridMap
 const debug = true
 
 # Map from vector2 to tower node
-var size_across: int = 50 # NOTE: Odd amounts do not work.
+var size_across: float = 50 # NOTE: Odd amounts do not work.
 var hidden_hl: bool = true;
 var towers: Dictionary[Vector2i, Node3D] = {}
 var highlights:  Dictionary[Vector2i, Node3D] = {} #TODO: remove the Node3d portion????
@@ -98,7 +98,7 @@ func remove_tower_at_position(pos: Vector3) -> int:
 	if !towers.has(closest_pos):
 		if debug: print("GRID: no tower to delete at pos")
 		return -1
-	
+	size_across
 	var the_tower: Node3D = towers[closest_pos]
 	the_tower.queue_free()
 	towers.erase(closest_pos)
@@ -114,8 +114,8 @@ func get_closest_position_on_grid(place_pos: Vector2) -> Vector2i:
 	closest_pos.y = round(pos_y/cell_size.y)*cell_size.y
 	
 	# Clamp to dimensions
-	var out_of_bounds_x: = closest_pos.x > size_across/2 || closest_pos.x < -size_across/2 
-	var out_of_bounds_y: = closest_pos.y > size_across/2 || closest_pos.y < -size_across/2
+	var out_of_bounds_x: bool = closest_pos.x > size_across/2 || closest_pos.x < -size_across/2 
+	var out_of_bounds_y: bool = closest_pos.y > size_across/2 || closest_pos.y < -size_across/2
 	
 	if out_of_bounds_x || out_of_bounds_y:
 		return Vector2.INF

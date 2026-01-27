@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b3j6n1d7ef0th"]
 
 [ext_resource type="PackedScene" uid="uid://b3oy2gcplojiq" path="res://assets/UI/main_menu.tscn" id="1_rop5i"]
-[ext_resource type="AudioStream" uid="uid://di8rtubwn0e8t" path="res://assets/audio/music/Crosscut Main Theme Demo.mp3" id="2_edxnd"]
+[ext_resource type="AudioStream" uid="uid://cxnb68yncelua" path="res://assets/audio/music/Crosscut Main Theme Demo.mp3" id="2_edxnd"]
 
 [node name="MainMenuScene" type="Node3D"]
 

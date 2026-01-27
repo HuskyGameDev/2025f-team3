@@ -10,8 +10,8 @@ extends CharacterBody3D
 # exposing health node
 @onready var health: Node3D = $Health
 
-# exposing objective node 
-#@onready var objective = %Objective #TODO: FIX THIS
+#flag for contact damage
+var in_contact: bool = false
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Test"):
@@ -20,10 +20,16 @@ func _input(event: InputEvent) -> void:
 
 # enemy attack, currently only deal damage when collide with the player
 func _on_damage_area_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
-		body.health.take_damage(atk)
-	elif body.is_in_group("objective"): #TODO: Fix objective not taking damage from enemies
-		body.health.take_damage(atk)
+	in_contact = true
+	while in_contact:
+		if body.is_in_group("player"):
+			body.health.take_damage(atk)
+		elif body.is_in_group("objective"):
+			body.health.take_damage(atk)
+		await get_tree().create_timer(1.0).timeout
+
+func _on_damage_area_body_exited(body: Node3D) -> void:
+	in_contact = false
 
 # from down here, it is enemy movement
 #@onready var player = get_parent().get_node("First-Person view").get_child(0)
