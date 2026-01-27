@@ -1,11 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://d4mi06tvmdmoe"]
+[gd_scene load_steps=6 format=3 uid="uid://d4mi06tvmdmoe"]
 
 [ext_resource type="Script" uid="uid://dy6py3ylmvkm5" path="res://assets/scripts/towers/crossbow_tower.gd" id="1_et1c7"]
 [ext_resource type="PackedScene" uid="uid://dw40cmtrt8qw0" path="res://assets/3D assets/tower.blend" id="2_30uou"]
-[ext_resource type="AudioStream" uid="uid://bqlcfah1s776g" path="res://assets/audio/sfx/Crossbow/Crossbow Firing - 1.wav" id="4_4wlgf"]
 [ext_resource type="PackedScene" uid="uid://q0thqxbphcej" path="res://assets/3D assets/Crossbow.blend" id="4_pqafd"]
-[ext_resource type="AudioStream" uid="uid://8eyqdsq1wvo" path="res://assets/audio/sfx/Crossbow/Crossbow Firing - 2.wav" id="5_4p57x"]
-[ext_resource type="AudioStream" uid="uid://bbtj0j8ga5v7w" path="res://assets/audio/sfx/Crossbow/Crossbow Firing - 3.wav" id="6_fblty"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_chvo0"]
 size = Vector3(2.8, 7.5, 2.8)
@@ -43,15 +40,6 @@ one_shot = true
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
 shape = SubResource("SphereShape3D_et1c7")
 debug_color = Color(0.918557, 0, 0.222529, 1)
-
-[node name="CrossbowSound1" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_4wlgf")
-
-[node name="CrossbowSound2" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("5_4p57x")
-
-[node name="CrossbowSound3" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("6_fblty")
 
 [connection signal="timeout" from="IdleLookaroundTimer" to="." method="_on_idle_lookaround_timer_timeout"]
 [connection signal="timeout" from="FiringTimer" to="." method="_on_firing_timer_timeout"]

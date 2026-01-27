@@ -107,14 +107,11 @@ func _fire_bolt(bolt_target: Node3D) -> void:
 	# Play one of three random sounds.
 	var sound: int = rng.randi_range(1, 3)
 	if sound == 1: 
-		var CrossbowSound: AudioStreamPlayer3D = get_node("CrossbowSound1")
-		CrossbowSound.play();
+		AudioManager.play_sfx("crossbow1")
 	elif sound == 2:
-		var CrossbowSound: AudioStreamPlayer3D = get_node("CrossbowSound2")
-		CrossbowSound.play();
+		AudioManager.play_sfx("crossbow2")
 	elif sound == 3:
-		var CrossbowSound: AudioStreamPlayer3D = get_node("CrossbowSound3")
-		CrossbowSound.play();
+		AudioManager.play_sfx("crossbow3")
 	else:
 		pass
 	
