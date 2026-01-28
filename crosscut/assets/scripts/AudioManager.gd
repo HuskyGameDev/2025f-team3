@@ -10,8 +10,8 @@ var sfx_dict := {}
 func _ready() -> void: 
 	add_child(sfx_player)
 	add_child(music_player)
-	
-	sfx_dict["ui_click"] = preload("res://assets/audio/sfx/ui button click/ui button click.wav")
+
+	sfx_dict["ui_click"] = preload("res://assets/audio/sfx/UI Button Click/UI Button Click.wav")
 	
 	sfx_dict["crossbow1"] = preload("res://assets/audio/sfx/Crossbow/Crossbow Firing - 1.wav")
 	sfx_dict["crossbow2"] = preload("res://assets/audio/sfx/Crossbow/Crossbow Firing - 2.wav")
