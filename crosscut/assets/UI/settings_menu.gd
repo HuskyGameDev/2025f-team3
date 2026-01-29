@@ -1,8 +1,8 @@
 extends PanelContainer
 
-var main_volume: int
-var music_volume: int
-var sfx_volume: int
+var main_volume: float
+var music_volume: float
+var sfx_volume: float
 
 var settings: ConfigFile
 
@@ -31,6 +31,7 @@ func _ready() -> void:
 	settings.save("res://assets/settings.cfg")
 
 func _on_back_pressed() -> void:
+	AudioManager.play_sfx("ui_click")
 	visible = false
 
 #!# When volume sliders are changed, the value will determine the volume variables in the prefs file.
@@ -42,6 +43,8 @@ func _on_h_slider_value_changed(value: float) -> void:
 	$BoxContainer/MainVolume/HSlider.value = main_volume
 	settings.set_value("settings", "main_volume", main_volume)
 	settings.save("res://assets/settings.cfg")
+	
+	AudioManager.update_volume(main_volume, music_volume, sfx_volume)
 
 # Music volume slider
 func _on_h_slider_value_changed_music(value: float) -> void:
@@ -49,6 +52,8 @@ func _on_h_slider_value_changed_music(value: float) -> void:
 	$BoxContainer/MusicVolume/HSlider.value = music_volume
 	settings.set_value("settings", "music_volume", music_volume)
 	settings.save("res://assets/settings.cfg")
+	
+	AudioManager.update_volume(main_volume, music_volume, sfx_volume)
 
 # SFX volume slider
 func _on_h_slider_value_changed_sfx(value: float) -> void:
@@ -56,6 +61,8 @@ func _on_h_slider_value_changed_sfx(value: float) -> void:
 	$BoxContainer/SFXVolume/HSlider.value = sfx_volume
 	settings.set_value("settings", "sfx_volume", sfx_volume)
 	settings.save("res://assets/settings.cfg")
+	
+	AudioManager.update_volume(main_volume, music_volume, sfx_volume)
 
 func _on_reset_pressed() -> void:
 	main_volume = 100
@@ -68,3 +75,5 @@ func _on_reset_pressed() -> void:
 	settings.set_value("settings", "music_volume", music_volume)
 	settings.set_value("settings", "sfx_volume", sfx_volume)
 	settings.save("res://assets/settings.cfg")
+	
+	AudioManager.play_sfx("ui_click")
