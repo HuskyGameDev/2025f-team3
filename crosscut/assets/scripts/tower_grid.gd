@@ -11,6 +11,7 @@ var hidden_hl: bool = true;
 var towers: Dictionary[Vector2i, Node3D] = {}
 var highlights:  Dictionary[Vector2i, Node3D] = {} #TODO: remove the Node3d portion????
 
+@onready var navigationThing: NavigationRegion3D = $"../NavigationRegion3D"
 func _ready() -> void:
 	pass
 	
@@ -89,6 +90,9 @@ func add_tower(tower: PackedScene, pos: Vector3) -> Vector3:
 	
 	new_tower.global_position = Vector3(closest_pos.x, position.y, closest_pos.y)
 	towers[closest_pos] = new_tower
+	
+	navigationThing.bake_navigation_mesh()
+	
 	return position
 
 func remove_tower_at_position(pos: Vector3) -> int:

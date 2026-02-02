@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ccy5pg6ws1kk4"]
+[gd_scene load_steps=21 format=3 uid="uid://ccy5pg6ws1kk4"]
 
 [ext_resource type="PackedScene" uid="uid://qwd7i00v37t2" path="res://assets/scenes/game_manager.tscn" id="1_21mu2"]
 [ext_resource type="PackedScene" uid="uid://x18icxf4xg6e" path="res://assets/scenes/player.tscn" id="1_41fjk"]
@@ -26,17 +26,21 @@ ssao_enabled = true
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_abcw6"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_41fjk"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abcw6"]
-albedo_color = Color(0.281187, 0.281187, 0.281187, 1)
-
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_m00bm"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_21mu2"]
 allow_unpress = true
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m00bm"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_m00bm"]
+vertices = PackedVector3Array(-98.0637, 0.5, -17.165, 2.1863, 0.5, -17.165, 2.1863, 0.5, -18.915, 4.1863, 0.5, -19.165, 4.1863, 0.5, -171.165, -98.0637, 0.5, -171.165, 5.9363, 0.5, -19.165, 6.1863, 0.5, -17.165, 98.1863, 0.5, -17.165, 98.1863, 0.5, -171.165, 3.1863, 8.75, -18.165, 3.1863, 8.75, -16.165, 5.1863, 8.75, -16.165, 5.1863, 8.75, -18.165, 3.6863, 0.5, -17.665, 3.6863, 0.5, -16.665, 4.6863, 0.5, -16.665, 4.6863, 0.5, -17.665, 2.1863, 0.5, -15.415, 3.9363, 0.5, -15.165, -98.0637, 0.5, 171.085, 3.6863, 0.5, 171.085, 5.9363, 0.5, -15.165, 98.1863, 0.5, 171.085)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(4, 0, 5), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(9, 6, 4), PackedInt32Array(6, 3, 4), PackedInt32Array(13, 12, 10), PackedInt32Array(10, 12, 11), PackedInt32Array(17, 16, 14), PackedInt32Array(14, 16, 15), PackedInt32Array(0, 1, 18), PackedInt32Array(18, 19, 0), PackedInt32Array(0, 19, 21), PackedInt32Array(0, 21, 20), PackedInt32Array(7, 8, 22), PackedInt32Array(22, 8, 23), PackedInt32Array(22, 23, 21), PackedInt32Array(21, 19, 22)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_41fjk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abcw6"]
+albedo_color = Color(0.281187, 0.281187, 0.281187, 1)
 
 [node name="test_scene" type="Node3D"]
 
@@ -45,8 +49,7 @@ allow_unpress = true
 [node name="Objective" parent="." instance=ExtResource("2_objective")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.44662, 0, 4.10327)
 
-[node name="CrossbowTower" parent="." instance=ExtResource("1_ics7i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.27332, 1.90735e-06, -17.26)
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Objective"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.411514, 0.585839, -0.698175, 0, 0.766044, 0.642788, 0.911403, 0.264516, -0.315238, 0, 0, 0)
@@ -59,12 +62,6 @@ environment = SubResource("Environment_3f7cn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape3D_abcw6")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(98.5637, 0, 0, 0, 1, 0, 0, 0, 171.665, 0, 0, 0)
-mesh = SubResource("PlaneMesh_41fjk")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_abcw6")
 
 [node name="Mapborder" type="Node3D" parent="."]
 
@@ -140,7 +137,7 @@ button_group = SubResource("ButtonGroup_21mu2")
 [node name="SpawnLibrary" parent="." groups=["spawnLibrary"] instance=ExtResource("10_m00bm")]
 
 [node name="TESTSPAWN" type="Node3D" parent="SpawnLibrary"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.2472, -0.26542, 66.7604)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.58475, -0.26542, -39.0837)
 
 [node name="SpectatorCam" type="CharacterBody3D" parent="."]
 unique_name_in_owner = true
@@ -150,6 +147,23 @@ motion_mode = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SpectatorCam"]
 shape = SubResource("CapsuleShape3D_m00bm")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_m00bm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(98.5637, 0, 0, 0, 1, 0, 0, 0, 171.665, 0, 0, 0)
+mesh = SubResource("PlaneMesh_41fjk")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_abcw6")
+
+[node name="CrossbowTower" parent="NavigationRegion3D" instance=ExtResource("1_ics7i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.27332, 1.90735e-06, -17.26)
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="NavigationRegion3D/CrossbowTower"]
+radius = 2.5
+affect_navigation_mesh = true
+carve_navigation_mesh = true
 
 [connection signal="end_buying" from="GameManager" to="Top-down view/2dHud" method="_on_game_manager_end_buying"]
 [connection signal="player_died" from="GameManager" to="First-Person view/3dHud" method="_on_game_manager_player_died"]

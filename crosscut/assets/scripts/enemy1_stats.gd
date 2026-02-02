@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 # just put variables that I can think of.
 # let me know if there's more that need to be added or deleted.
-@export var speed: float = 4
+@export var speed: float = 15 #was 4
 @export var rotation_speed: float = 5
 @export var atk: float = 10
 @export var atk_cooldown: int = 20 # how many frames between damage ticks
@@ -17,6 +17,13 @@ var in_contact_arr: Array[Node3D] = []
 var in_contact_player: bool = false
 var in_contact_objective: bool = false
 
+@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
+
+var target_pos: Vector3
+var has_target: bool = false
+func _ready() -> void:
+	has_target = true
+	target_pos = Vector3(0.0,1.0,0.0)
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Test"):
 		get_parent().get_node("SpawnLibrary").killedEnemy()
@@ -43,30 +50,43 @@ func _on_damage_area_body_exited(body: Node3D) -> void:
 const GRAVITY: int = -300
 
 func _physics_process(delta:=) -> void:
-	var direction: Vector3 = (obj.global_transform.origin - global_transform.origin)
-	direction.y = 0
-	var distance: float = direction.length()
-	
-	if not is_on_floor():
-		velocity.y += GRAVITY * delta
-		move_and_slide()
-	
-	if distance > 0 && is_on_floor():
-		var move_dir: Vector3 = direction.normalized()
-		velocity = move_dir * speed
-		move_and_slide()
-	
-		var target_rotation: = Vector3(0, atan2(move_dir.x, move_dir.z), 0)
-		rotation.y = lerp_angle(rotation.y, target_rotation.y, rotation_speed * delta)
-	else:
-		velocity = Vector3.ZERO
-		move_and_slide()
-	
-	#handle damaging player & objective
-	if (Engine.get_physics_frames() % atk_cooldown == 0): #attack cooldown is based on delta % attack cooldown
-		for body: Node3D in in_contact_arr:
-			body.health.take_damage(atk)
-			#await get_tree().create_timer(atk_cooldown).timeout
+	if has_target:
+		nav_agent.target_position = target_pos
+		var next_path_pos := nav_agent.get_next_path_position()
+		var direction := global_position.direction_to(next_path_pos)
+		velocity = direction * speed
+		
+		var ROTATION_SPEED: float = 4
+		var target_rotation := direction.signed_angle_to(Vector3.MODEL_FRONT, Vector3.DOWN)
+		if abs(target_rotation - rotation.y) > deg_to_rad(60):
+			ROTATION_SPEED = 20
+		rotation.y = move_toward(rotation.y, target_rotation, delta * ROTATION_SPEED)
+		
+	move_and_slide()
+	#var direction: Vector3 = (obj.global_transform.origin - global_transform.origin)
+	#direction.y = 0
+	#var distance: float = direction.length()
+	#
+	#if not is_on_floor():
+		#velocity.y += GRAVITY * delta
+		#move_and_slide()
+	#
+	#if distance > 0 && is_on_floor():
+		#var move_dir: Vector3 = direction.normalized()
+		#velocity = move_dir * speed
+		#move_and_slide()
+	#
+		#var target_rotation: = Vector3(0, atan2(move_dir.x, move_dir.z), 0)
+		#rotation.y = lerp_angle(rotation.y, target_rotation.y, rotation_speed * delta)
+	#else:
+		#velocity = Vector3.ZERO
+		#move_and_slide()
+	#
+	##handle damaging player & objective
+	#if (Engine.get_physics_frames() % atk_cooldown == 0): #attack cooldown is based on delta % attack cooldown
+		#for body: Node3D in in_contact_arr:
+			#body.health.take_damage(atk)
+			##await get_tree().create_timer(atk_cooldown).timeout
 
 func _on_health_killed_sig() -> void:
 	get_parent().get_node("SpawnLibrary").killedEnemy()
