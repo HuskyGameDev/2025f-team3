@@ -4,6 +4,7 @@ var library: Node
 var selected_tower: String = "-1"
 var buying_tower: bool = false
 signal begin_buying(selected: String)
+signal end_buying
 
 # Objective health tracking
 var objective_health: float = 500
@@ -43,6 +44,8 @@ func _get_price(i: int) -> int:
 func _select_tower(i: String) -> void:
 	if i == "-1":
 		_reset_tower_values()
+		buying_tower = false
+		end_buying.emit()
 	else:
 		$LeftPanel/VBoxContainer/Name.text = str(tower_info[0][int(i)])
 		$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/HealthBox/Health.text = str(tower_info[1][int(i)])
@@ -50,6 +53,7 @@ func _select_tower(i: String) -> void:
 		$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/SpeedBox/Speed.text = str(tower_info[3][int(i)])
 		$LeftPanel/VBoxContainer/Description.text = str(tower_info[4][int(i)])
 		$LeftPanel/VBoxContainer/Price/Label.text = str(tower_info[5][int(i)])
+		_on_buy_pressed()
 		
 func _reset_tower_values() -> void:
 	$LeftPanel/VBoxContainer/Name.text = "No tower selected"
@@ -85,12 +89,7 @@ func _process(delta: float) -> void:
 	if buying_tower:
 		$BuyingPanel.visible = true#position = $BuyingPanel.position.lerp(Vector2(389, 622), t)
 	else:
-		$BuyingPanel.visible = false#position = $BuyingPanel.position.lerp(Vector2(389, 722), t)\
-	
-	if selected_tower == "-1" or buying_tower == true:
-		$LeftPanel/VBoxContainer/Buy.disabled = true
-	else:
-		$LeftPanel/VBoxContainer/Buy.disabled = false
+		$BuyingPanel.visible = false#position = $BuyingPanel.position.lerp(Vector2(389, 722), t)
 
 func _on_button_pressed() -> void:
 	if button_group.get_pressed_button() == null:
@@ -101,10 +100,9 @@ func _on_button_pressed() -> void:
 	_select_tower(selected_tower)
 
 func _on_buy_pressed() -> void:
-	$BuyingPanel/Label.text = str("Currently buying ", str(tower_info[0][int(selected_tower)]), ". Click anywhere on the map to place the tower or press the X key to cancel tower placement.")
+	$BuyingPanel/Label.text = str(str(tower_info[0][int(selected_tower)]), " is selected. Click on any valid area of the map to buy the tower. Select the tower again to cancel tower placement.")
 	buying_tower = true
 	begin_buying.emit(selected_tower)
-	$LeftPanel/VBoxContainer/Buy.disabled = true
 	
 func _connect_to_objective() -> void:
 	# Find and connect to the objective in the scene
@@ -130,8 +128,7 @@ func _on_objective_damaged(current_health: float, max_health: float) -> void:
 	objective_max_health = max_health
 
 func _on_game_manager_end_buying() -> void:
-	$LeftPanel/VBoxContainer/Buy.disabled = false
-	buying_tower = false
+	pass
 	
 func _on_game_manager_update_gold(value: Variant) -> void:
 	$LeftPanel/VBoxContainer/GoldBox/Gold.text = str(value)

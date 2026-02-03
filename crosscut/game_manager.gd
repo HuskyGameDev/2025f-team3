@@ -101,20 +101,22 @@ func _input(event: InputEvent) -> void:
 		var position: Vector3 = _get_mouse_position_on_board()
 		if buying_tower:
 			var bought_position: Vector3
-			match selected_tower:
-				"0":
-					bought_position = grid_map.add_tower(crossbow_tower, position)
-				"1":
-					bought_position = grid_map.add_tower(cauldron_tower, position)
+			var price: int = %"2dHud"._get_price(int(selected_tower))
 			
-			if bought_position.is_finite():
-				buying_tower = false
-				end_buying.emit()
-				print(str("You just bought tower "), selected_tower)
-				gold -= %"2dHud"._get_price(int(selected_tower))
-				update_gold.emit(gold)
+			if gold >= price:
+				match selected_tower:
+					"0":
+						bought_position = grid_map.add_tower(crossbow_tower, position)
+					"1":
+						bought_position = grid_map.add_tower(cauldron_tower, position)
+				if bought_position.is_finite():
+					print(str("You just bought tower "), selected_tower)
+					gold -= %"2dHud"._get_price(int(selected_tower))
+					update_gold.emit(gold)
+				else:
+					print("Buying error: Cannot place tower")
 			else:
-				print("Buying error")
+				print("Buying error: Not enough gold")
 			
 	elif control_mode == ControlMode.TOPDOWN and event is InputEventMouseButton and event.pressed and event.button_index == 2:
 		var position: Vector3 = _get_mouse_position_on_board()
@@ -203,6 +205,10 @@ func _on_d_hud_begin_buying(selected: String) -> void:
 	print("Begin buying")
 	buying_tower = true
 	selected_tower = selected
+	
+func _on_d_hud_end_buying() -> void:
+	buying_tower = false
+	selected_tower = "-1"
 
 func _handle_spectator_movement(delta: float) -> void:
 	# Get input direction

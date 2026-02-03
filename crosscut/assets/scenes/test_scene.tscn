@@ -172,6 +172,7 @@ carve_navigation_mesh = true
 [connection signal="damaged_sig" from="Objective/Health" to="Top-down view/2dHud" method="_on_objective_damaged_sig"]
 [connection signal="damaged_sig" from="First-Person view/Player/Health" to="First-Person view/3dHud" method="_on_health_damaged_sig"]
 [connection signal="begin_buying" from="Top-down view/2dHud" to="GameManager" method="_on_d_hud_begin_buying"]
+[connection signal="end_buying" from="Top-down view/2dHud" to="GameManager" method="_on_d_hud_end_buying"]
 
 [editable path="Objective"]
 [editable path="First-Person view/Player"]
