@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8vq7xm3p4r2a"]
+[gd_scene load_steps=6 format=3 uid="uid://c8vq7xm3p4r2a"]
 
 [ext_resource type="Script" uid="uid://dsxrafvbul5yb" path="res://assets/scripts/objective.gd" id="1_objective"]
 [ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="2_health"]
+[ext_resource type="PackedScene" uid="uid://dkyva43vjhxlu" path="res://assets/3D assets/meme.blend" id="3_fg1lp"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_fcofd"]
 height = 2.04248
@@ -20,6 +21,10 @@ shape = SubResource("CylinderShape3D_fcofd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+visible = false
 mesh = SubResource("CylinderMesh_fg1lp")
+
+[node name="meme" parent="." instance=ExtResource("3_fg1lp")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.00111678, 0, 1.97629)
 
 [connection signal="damaged_sig" from="Health" to="." method="_on_health_damaged_sig"]
