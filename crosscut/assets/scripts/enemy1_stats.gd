@@ -82,11 +82,10 @@ func _physics_process(delta:=) -> void:
 		#velocity = Vector3.ZERO
 		#move_and_slide()
 	#
-	##handle damaging player & objective
-	#if (Engine.get_physics_frames() % atk_cooldown == 0): #attack cooldown is based on delta % attack cooldown
-		#for body: Node3D in in_contact_arr:
-			#body.health.take_damage(atk)
-			##await get_tree().create_timer(atk_cooldown).timeout
+	#handle damaging player & objective
+	if (Engine.get_physics_frames() % atk_cooldown == 0): #attack cooldown is based on delta % attack cooldown
+		for body: Node3D in in_contact_arr:
+			body.health.take_damage(atk)
 
 func _on_health_killed_sig() -> void:
 	get_parent().get_node("SpawnLibrary").killedEnemy()
