@@ -42,15 +42,10 @@ func _ready() -> void:
 	
 func play_sfx(name: String) -> void: 
 	if sfx_dict.has(name):
-		var played: bool = false
-		var i: int = 0
-		while not played: 
-			if sfx_player[i].playing:
-				i = i+1
-			else:
-				sfx_player[i].stream = sfx_dict[name]
-				sfx_player[i].play()
-				played = true
+		for player in sfx_player:
+			if not player.playing:
+				player.stream = sfx_dict[name]
+				player.play()
 
 func play_music(name: String) -> void:
 	if score_dict.has(name):
