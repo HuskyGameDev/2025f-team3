@@ -3,7 +3,7 @@ extends Node
 var score_dict := {}
 var sfx_dict := {}
 
-@onready var sfx_player := AudioStreamPlayer.new()
+@onready var sfx_player: Array[AudioStreamPlayer] = [AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new()]
 @onready var music_player := AudioStreamPlayer.new()
 
 var sfx_volume: float = 1.0
@@ -11,7 +11,8 @@ var music_volume: float = 1.0
 var master_volume:float = 1.0
 
 func _ready() -> void: 
-	add_child(sfx_player)
+	for player in sfx_player: 
+		add_child(player)
 	add_child(music_player)
 
 	sfx_dict["ui_click"] = preload("res://assets/audio/sfx/UI Button Click/UI Button Click.wav")
@@ -41,8 +42,15 @@ func _ready() -> void:
 	
 func play_sfx(name: String) -> void: 
 	if sfx_dict.has(name):
-		sfx_player.stream = sfx_dict[name]
-		sfx_player.play()
+		var played: bool = false
+		var i: int = 0
+		while not played: 
+			if sfx_player[i].playing:
+				i = i+1
+			else:
+				sfx_player[i].stream = sfx_dict[name]
+				sfx_player[i].play()
+				played = true
 
 func play_music(name: String) -> void:
 	if score_dict.has(name):
@@ -59,4 +67,5 @@ func update_volume(master_vol: float, music_vol: float, sfx_vol: float,) -> void
 	sfx_volume = (sfx_vol/100)
 		
 	music_player.volume_db = linear_to_db(master_volume * music_volume)
-	sfx_player.volume_db = linear_to_db(master_volume * sfx_volume)
+	for player in sfx_player:
+		player.volume_db = linear_to_db(master_volume * sfx_volume)
