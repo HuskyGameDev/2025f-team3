@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dy6py3ylmvkm5" path="res://assets/scripts/towers/crossbow_tower.gd" id="1_et1c7"]
 [ext_resource type="PackedScene" uid="uid://dw40cmtrt8qw0" path="res://assets/3D assets/tower.blend" id="2_30uou"]
-[ext_resource type="PackedScene" uid="uid://q0thqxbphcej" path="res://assets/3D assets/Crossbow.blend" id="4_pqafd"]
+[ext_resource type="PackedScene" uid="uid://dgdes3bah2fep" path="res://assets/3D assets/Crossbow.blend" id="4_pqafd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_chvo0"]
 size = Vector3(2.8, 7.5, 2.8)
@@ -40,6 +40,11 @@ one_shot = true
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
 shape = SubResource("SphereShape3D_et1c7")
 debug_color = Color(0.918557, 0, 0.222529, 1)
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+radius = 2.5
+affect_navigation_mesh = true
+carve_navigation_mesh = true
 
 [connection signal="timeout" from="IdleLookaroundTimer" to="." method="_on_idle_lookaround_timer_timeout"]
 [connection signal="timeout" from="FiringTimer" to="." method="_on_firing_timer_timeout"]

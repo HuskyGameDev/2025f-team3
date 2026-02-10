@@ -15,7 +15,8 @@ enum CauldronState {IDLE, SPLASHING}
 
 # Local References
 @onready var firing_timer: Timer = $FiringTimer
-@onready var player: CharacterBody3D = %Player
+#@onready var player: CharacterBody3D = %Player
+@onready var player: CharacterBody3D = get_tree().get_nodes_in_group("player").front()
 @onready var attack_area: Area3D = $AttackArea
 @onready var splash_source: Node3D = $SplashSource
 @onready var attack_shape: CollisionShape3D = $AttackArea/AttackShape

@@ -9,6 +9,7 @@ extends CharacterBody3D
 
 # exposing health node
 @onready var health: Node3D = $Health
+@onready var obj: Node3D = get_tree().get_nodes_in_group("objective").front() #TODO: make this pick just the objective
 
 #array to hold bodies in contact with enemy
 var in_contact_arr: Array[Node3D] = []
@@ -23,7 +24,8 @@ var target_pos: Vector3
 var has_target: bool = false
 func _ready() -> void:
 	has_target = true
-	target_pos = Vector3(0.0,1.0,0.0)
+	#target_pos = Vector3(0.0,1.0,0.0)
+	target_pos = obj.position
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Test"):
 		get_parent().get_node("SpawnLibrary").killedEnemy()
@@ -46,7 +48,7 @@ func _on_damage_area_body_exited(body: Node3D) -> void:
 
 # from down here, it is enemy movement
 #@onready var player = get_parent().get_node("First-Person view").get_child(0)
-@onready var obj: = get_parent().get_node("Objective").get_child(0)
+
 const GRAVITY: int = -300
 
 func _physics_process(delta:=) -> void:

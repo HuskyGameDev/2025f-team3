@@ -47,6 +47,7 @@ albedo_color = Color(0.281187, 0.281187, 0.281187, 1)
 [node name="GameManager" parent="." instance=ExtResource("1_21mu2")]
 
 [node name="Objective" parent="." instance=ExtResource("2_objective")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.030894, 0, -0.0147674)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="Objective"]
@@ -160,7 +161,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_abcw6")
 [node name="CrossbowTower" parent="NavigationRegion3D" instance=ExtResource("1_ics7i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.27332, 1.90735e-06, -17.26)
 
-[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="NavigationRegion3D/CrossbowTower"]
+[node name="NavigationObstacle3D2" type="NavigationObstacle3D" parent="NavigationRegion3D/CrossbowTower"]
 radius = 2.5
 affect_navigation_mesh = true
 carve_navigation_mesh = true
