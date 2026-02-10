@@ -1,7 +1,7 @@
 extends Node3D
 
 const debug = false
-var speed: float = 30
+var speed: float = 60 #was 30
 var damage: int = 10
 
 var target: Node3D

@@ -28,7 +28,7 @@ func _ready() -> void:
 	set_firing_speed(firing_speed)
 	_transition_to_idle_state()
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if state == CauldronState.IDLE:
 		_idle_state()
 	elif state == CauldronState.SPLASHING:

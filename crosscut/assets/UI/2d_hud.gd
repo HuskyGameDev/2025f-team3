@@ -137,5 +137,5 @@ func _on_game_manager_update_gold(value: Variant) -> void:
 func _on_start_wave_pressed() -> void:
 	library.nextLevel()
 # Update UI health on objective health change
-func _on_objective_damaged_sig(damage_taken: Variant, health_after_damage: Variant) -> void:
+func _on_objective_damaged_sig(_damage_taken: Variant, health_after_damage: Variant) -> void:
 	objective_health = health_after_damage

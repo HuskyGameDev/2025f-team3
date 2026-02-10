@@ -62,7 +62,7 @@ func _ready() -> void:
 	_connect_to_spawner()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
@@ -210,7 +210,7 @@ func _on_d_hud_end_buying() -> void:
 	buying_tower = false
 	selected_tower = "-1"
 
-func _handle_spectator_movement(delta: float) -> void:
+func _handle_spectator_movement(_delta: float) -> void:
 	# Get input direction
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 

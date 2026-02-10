@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 # just put variables that I can think of.
 # let me know if there's more that need to be added or deleted.
-@export var speed: float = 15 #was 4
+@export var speed: float = 5 #was 4
 @export var rotation_speed: float = 5
 @export var atk: float = 10
 @export var atk_cooldown: int = 20 # how many frames between damage ticks
@@ -24,7 +24,6 @@ var target_pos: Vector3
 var has_target: bool = false
 func _ready() -> void:
 	has_target = true
-	#target_pos = Vector3(0.0,1.0,0.0)
 	target_pos = obj.position
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Test"):
@@ -58,7 +57,7 @@ func _physics_process(delta:=) -> void:
 		var direction := global_position.direction_to(next_path_pos)
 		velocity = direction * speed
 		
-		var ROTATION_SPEED: float = 4
+		var ROTATION_SPEED: float = rotation_speed
 		var target_rotation := direction.signed_angle_to(Vector3.MODEL_FRONT, Vector3.DOWN)
 		if abs(target_rotation - rotation.y) > deg_to_rad(60):
 			ROTATION_SPEED = 20

@@ -8,7 +8,7 @@ const debug = false
 
 # Attack settings
 @export var damage: float = 10
-@export var firing_speed: float = 1
+@export var firing_speed: float = 1.5 #was 1
 # NOTE: Attack radius can be adjusted with the attack area node child
 
 # Runtime variables

@@ -62,11 +62,11 @@ func _connect_to_objective() -> void:
 	else:
 		push_warning("3D HUD: No objective found in scene!")
 
-func _on_health_damaged_sig(damage_taken: Variant, current_health: Variant) -> void:
+func _on_health_damaged_sig(_damage_taken: Variant, current_health: Variant) -> void:
 	health = current_health
 
 # Update UI health on objective health change
-func _on_objective_damaged_sig(damage_taken: Variant, health_after_damage: Variant) -> void:
+func _on_objective_damaged_sig(_damage_taken: Variant, health_after_damage: Variant) -> void:
 	objective_health = health_after_damage
 
 func _on_game_manager_player_died() -> void:

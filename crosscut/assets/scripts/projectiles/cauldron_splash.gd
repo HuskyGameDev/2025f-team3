@@ -22,7 +22,7 @@ func _ready() -> void:
 	tween.tween_callback(_cleanup)
 	
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if tick_counter % ticks_per_damage_tick == 0:
 		_damage_enemies()
 	tick_counter = tick_counter + 1
