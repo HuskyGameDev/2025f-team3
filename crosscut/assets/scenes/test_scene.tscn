@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ccy5pg6ws1kk4"]
+[gd_scene load_steps=25 format=3 uid="uid://ccy5pg6ws1kk4"]
 
 [ext_resource type="PackedScene" uid="uid://qwd7i00v37t2" path="res://assets/scenes/game_manager.tscn" id="1_21mu2"]
 [ext_resource type="PackedScene" uid="uid://x18icxf4xg6e" path="res://assets/scenes/player.tscn" id="1_41fjk"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dckpdofm2vrvg" path="res://assets/UI/3d_hud.tscn" id="5_3f7cn"]
 [ext_resource type="PackedScene" uid="uid://dlichn2b72vr7" path="res://assets/UI/2d_hud.tscn" id="6_22ejr"]
 [ext_resource type="PackedScene" uid="uid://b5rhrfigqrejf" path="res://assets/scenes/spawn_library.tscn" id="10_m00bm"]
+[ext_resource type="Shader" uid="uid://blaja5xkgy2c5" path="res://assets/shaders/grass_map.gdshader" id="11_shader"]
+[ext_resource type="Texture2D" uid="uid://ds4ec4lj4w2if" path="res://assets/3D assets/rocky_terrain_02_diff_4k.jpg" id="12_texture"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vio1o"]
 panorama = ExtResource("1_376kr")
@@ -23,6 +25,17 @@ sky = SubResource("Sky_1npq7")
 ambient_light_color = Color(1, 1, 1, 1)
 tonemap_mode = 2
 ssao_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_map"]
+size = Vector2(100, 100)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_map"]
+render_priority = 0
+shader = ExtResource("11_shader")
+shader_parameter/grass_texture = ExtResource("12_texture")
+shader_parameter/tile_scale = 5.0
+shader_parameter/noise_strength = 0.5
+shader_parameter/noise_scale = 5.0
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_abcw6"]
 
@@ -58,6 +71,10 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_3f7cn")
+
+[node name="Map" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_map")
+surface_material_override/0 = SubResource("ShaderMaterial_map")
 
 [node name="Floor" type="StaticBody3D" parent="."]
 
@@ -154,6 +171,7 @@ navigation_mesh = SubResource("NavigationMesh_m00bm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(98.5637, 0, 0, 0, 1, 0, 0, 0, 171.665, 0, 0, 0)
+visible = false
 mesh = SubResource("PlaneMesh_41fjk")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_abcw6")
