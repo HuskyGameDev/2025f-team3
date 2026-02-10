@@ -266,38 +266,42 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 100
+theme_override_constants/separation = 25
 alignment = 1
 
-[node name="NextWave" type="HBoxContainer" parent="RightPanel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/separation = -50
-
-[node name="Label2" type="Label" parent="RightPanel/VBoxContainer/NextWave"]
+[node name="Label2" type="Label" parent="RightPanel/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 27
-text = "Next wave:"
+text = "Next level:"
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="RightPanel/VBoxContainer/NextWave"]
+[node name="Label" type="Label" parent="RightPanel/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 34
-text = "999"
-horizontal_alignment = 2
+text = "1"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="RightPanel/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "with 999 waves"
+horizontal_alignment = 1
 
 [node name="StartWave" type="Button" parent="RightPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 40
-text = "Start Wave"
+text = "Start Level"
 
 [node name="ObjectivePanel" type="PanelContainer" parent="."]
 anchors_preset = 5
