@@ -60,6 +60,8 @@ func _ready() -> void:
 
 	# Connect to enemy spawner for wave end detection
 	_connect_to_spawner()
+	
+	_toggle_mode.call_deferred()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

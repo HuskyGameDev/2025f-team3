@@ -4,7 +4,7 @@ extends Node2D
 @onready var levelDelay: Timer = $LevelDelay
 @onready var waveDelay: Timer = $WaveDelay
 
-var currentLevelIndex: int = 0
+var currentLevelIndex: int = -1
 var currentWaveIndex: int = 0
 var totalEnemies: int = 0
 var aliveEnemies: int = 0
@@ -17,7 +17,7 @@ func _ready() -> void:
 	levelGenerator = LevelGenerator.new()
 	add_child(levelGenerator)
 	
-	startSpawning()
+	#startSpawning()
 
 func startSpawning() -> void:
 	var currentLevel: Array = getCurrentLevel()
@@ -29,6 +29,8 @@ func startSpawning() -> void:
 	else:
 		levelDone = true
 		print("Level ", currentLevelIndex, " completed!")
+		%"2dHud"._update_next_level_text(currentLevelIndex)
+		$"../GameManager"._toggle_mode()
 	
 
 func getCurrentLevel() -> Array:
@@ -88,3 +90,6 @@ func _on_wave_delay_timeout() -> void:
 func _on_level_delay_timeout() -> void:
 	print("Level delay finished")
 	startSpawning()
+	
+func _get_next_level_size() -> int:
+	return LevelData.getDefaultLevel(currentLevelIndex + 1).size()
