@@ -3,7 +3,7 @@ extends Node
 var score_dict := {}
 var sfx_dict := {}
 
-@onready var sfx_player: Array[AudioStreamPlayer] = [AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new()]
+@onready var sfx_player: Array[AudioStreamPlayer] = [AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(),  AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new()]
 @onready var music_player := AudioStreamPlayer.new()
 
 var sfx_volume: float = 1.0
@@ -17,25 +17,37 @@ func _ready() -> void:
 
 	sfx_dict["ui_click"] = preload("res://assets/audio/sfx/UI Button Click/UI Button Click.wav")
 	
-	sfx_dict["crossbow1"] = preload("res://assets/audio/sfx/Crossbow/Crossbow Firing - 1.wav")
-	sfx_dict["crossbow2"] = preload("res://assets/audio/sfx/Crossbow/Crossbow Firing - 2.wav")
-	sfx_dict["crossbow3"] = preload("res://assets/audio/sfx/Crossbow/Crossbow Firing - 3.wav")
+	#Crossbow sounds
+	var crossbow_rand := AudioStreamRandomizer.new() 
+	crossbow_rand.add_stream(0, preload("res://assets/audio/sfx/Crossbow/Crossbow Firing - 1.wav"), 1.0)
+	crossbow_rand.add_stream(1, preload("res://assets/audio/sfx/Crossbow/Crossbow Firing - 2.wav"), 1.0)
+	crossbow_rand.add_stream(3, preload("res://assets/audio/sfx/Crossbow/Crossbow Firing - 3.wav"), 1.0)
+	crossbow_rand.random_pitch = .05
+	sfx_dict["crossbow"] = crossbow_rand
 	
-	sfx_dict["enemy_hit1"] = preload("res://assets/audio/sfx/Goblin Hit/Goblin Hit1.wav")
-	sfx_dict["enemy_hit2"] = preload("res://assets/audio/sfx/Goblin Hit/Goblin Hit2.wav")
-	sfx_dict["enemy_hit3"] = preload("res://assets/audio/sfx/Goblin Hit/Goblin Hit3.wav")
-	sfx_dict["enemy_hit4"] = preload("res://assets/audio/sfx/Goblin Hit/Goblin Hit4.wav")
-	sfx_dict["enemy_hit5"] = preload("res://assets/audio/sfx/Goblin Hit/Goblin Hit5.wav")
-	sfx_dict["enemy_hit6"] = preload("res://assets/audio/sfx/Goblin Hit/Goblin Hit6.wav")
-	sfx_dict["enemy_hit7"] = preload("res://assets/audio/sfx/Goblin Hit/Goblin Hit7.wav")
-	sfx_dict["enemy_hit8"] = preload("res://assets/audio/sfx/Goblin Hit/Goblin Hit8.wav")
-	sfx_dict["enemy_hit9"] = preload("res://assets/audio/sfx/Goblin Hit/Goblin Hit 9.mp3")
+	#Goblin hit sounds
+	var goblin_hit_rand := AudioStreamRandomizer.new()
+	goblin_hit_rand.add_stream(0, preload("res://assets/audio/sfx/Goblin Hit/Goblin Hit1.wav"), 1.0)
+	goblin_hit_rand.add_stream(1, preload("res://assets/audio/sfx/Goblin Hit/Goblin Hit2.wav"), 1.0)
+	goblin_hit_rand.add_stream(2, preload("res://assets/audio/sfx/Goblin Hit/Goblin Hit3.wav"), 1.0)
+	goblin_hit_rand.add_stream(3, preload("res://assets/audio/sfx/Goblin Hit/Goblin Hit4.wav"), 1.0)
+	goblin_hit_rand.add_stream(4, preload("res://assets/audio/sfx/Goblin Hit/Goblin Hit5.wav"), 1.0)
+	goblin_hit_rand.add_stream(5, preload("res://assets/audio/sfx/Goblin Hit/Goblin Hit6.wav"), 1.0)
+	goblin_hit_rand.add_stream(6, preload("res://assets/audio/sfx/Goblin Hit/Goblin Hit7.wav"), 1.0)
+	goblin_hit_rand.add_stream(7, preload("res://assets/audio/sfx/Goblin Hit/Goblin Hit8.wav"), 1.0)
+	goblin_hit_rand.add_stream(8, preload("res://assets/audio/sfx/Goblin Hit/Goblin Hit 9.mp3"), 1.0)
+	goblin_hit_rand.random_pitch = .05
+	sfx_dict["goblin_hit"] = goblin_hit_rand
 	
-	sfx_dict["enemy_death1"] = preload("res://assets/audio/sfx/Goblin Death/Goblin Death1.wav")
-	sfx_dict["enemy_death2"] = preload("res://assets/audio/sfx/Goblin Death/Goblin Death2.wav")
-	sfx_dict["enemy_death3"] = preload("res://assets/audio/sfx/Goblin Death/Goblin Death3.wav")	
-	sfx_dict["enemy_death4"] = preload("res://assets/audio/sfx/Goblin Death/Goblin Death4.mp3")
-	sfx_dict["enemy_death5"] = preload("res://assets/audio/sfx/Goblin Death/Goblin Death5.mp3")
+	#Goblin Death sounds
+	var goblin_death_rand := AudioStreamRandomizer.new()
+	goblin_death_rand.add_stream(0, preload("res://assets/audio/sfx/Goblin Death/Goblin Death1.wav"), 1.0)
+	goblin_death_rand.add_stream(1, preload("res://assets/audio/sfx/Goblin Death/Goblin Death2.wav"), 1.0)
+	goblin_death_rand.add_stream(2, preload("res://assets/audio/sfx/Goblin Death/Goblin Death3.wav"), 1.0)	
+	goblin_death_rand.add_stream(3, preload("res://assets/audio/sfx/Goblin Death/Goblin Death4.mp3"), 1.0)
+	goblin_death_rand.add_stream(4, preload("res://assets/audio/sfx/Goblin Death/Goblin Death5.mp3"), 1.0)
+	goblin_death_rand.random_pitch = .05
+	sfx_dict["goblin_death"] = goblin_death_rand
 	
 	score_dict["menu"] = preload("res://assets/audio/music/Crosscut Main Theme Demo.mp3")
 	score_dict["placement"] = preload("res://assets/audio/music/Crosscut Placement Theme.mp3")
@@ -46,6 +58,7 @@ func play_sfx(name: String) -> void:
 			if not player.playing:
 				player.stream = sfx_dict[name]
 				player.play()
+				break
 
 func play_music(name: String) -> void:
 	if score_dict.has(name):

@@ -95,8 +95,6 @@ func _on_firing_timer_timeout() -> void:
 func set_firing_speed(new_value: float) -> void:
 	firing_timer.wait_time = new_value
 
-var rng: RandomNumberGenerator = RandomNumberGenerator.new()
-
 # Non-state-specific functions
 func _fire_bolt(bolt_target: Node3D) -> void:
 	var new_bolt: Node3D = crossbow_bolt.instantiate()
@@ -104,16 +102,8 @@ func _fire_bolt(bolt_target: Node3D) -> void:
 	new_bolt.target = bolt_target
 	new_bolt.damage = damage
 	add_child(new_bolt)
-	# Play one of three random sounds.
-	var sound: int = rng.randi_range(1, 3)
-	if sound == 1: 
-		AudioManager.play_sfx("crossbow1")
-	elif sound == 2:
-		AudioManager.play_sfx("crossbow2")
-	elif sound == 3:
-		AudioManager.play_sfx("crossbow3")
-	else:
-		pass
+	# Play crossbow sound
+	AudioManager.play_sfx("crossbow")
 	
 
 func _get_target() -> Node3D:

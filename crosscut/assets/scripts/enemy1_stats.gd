@@ -89,5 +89,6 @@ func _physics_process(delta:=) -> void:
 			body.health.take_damage(atk)
 
 func _on_health_killed_sig() -> void:
+	AudioManager.play_sfx("goblin_death")
 	get_parent().get_node("SpawnLibrary").killedEnemy()
 	queue_free()
