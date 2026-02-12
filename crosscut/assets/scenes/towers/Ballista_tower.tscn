@@ -1,33 +1,36 @@
-[gd_scene load_steps=7 format=3 uid="uid://d4mi06tvmdmoe"]
+[gd_scene load_steps=7 format=3 uid="uid://cfikctct4bdl1"]
 
-[ext_resource type="Script" uid="uid://dy6py3ylmvkm5" path="res://assets/scripts/towers/crossbow_tower.gd" id="1_et1c7"]
-[ext_resource type="PackedScene" uid="uid://dw40cmtrt8qw0" path="res://assets/3D assets/tower.blend" id="2_30uou"]
-[ext_resource type="PackedScene" uid="uid://6eyynlw8urvy" path="res://assets/scenes/projectiles/crossbow_bolt.tscn" id="2_pqafd"]
-[ext_resource type="PackedScene" uid="uid://cr285eam1cjjx" path="res://assets/3D assets/Crossbow.blend" id="4_pqafd"]
+[ext_resource type="Script" uid="uid://dy6py3ylmvkm5" path="res://assets/scripts/towers/crossbow_tower.gd" id="1_wvwoq"]
+[ext_resource type="PackedScene" uid="uid://b2ppkux2l3rph" path="res://assets/scenes/projectiles/ballista_bolt.tscn" id="2_wvwoq"]
+[ext_resource type="PackedScene" uid="uid://dw40cmtrt8qw0" path="res://assets/3D assets/tower.blend" id="3_jxrch"]
+[ext_resource type="PackedScene" uid="uid://cr285eam1cjjx" path="res://assets/3D assets/Crossbow.blend" id="4_mo7ky"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_chvo0"]
-size = Vector3(2.8, 7.5, 2.8)
+size = Vector3(2.8, 1.93896, 2.8)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_et1c7"]
 
 [node name="CrossbowTower" type="StaticBody3D" groups=["tower"]]
-script = ExtResource("1_et1c7")
-tower_Attack_Visual = ExtResource("2_pqafd")
+script = ExtResource("1_wvwoq")
+tower_turnspeed = 5.0
+targeting = 1
+firing_speed = 2.5
+tower_Attack_Visual = ExtResource("2_wvwoq")
 
 [node name="Pivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31, 0, -1.31)
 
-[node name="Tower" parent="Pivot" instance=ExtResource("2_30uou")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -1.36919, 0, 1.21323)
+[node name="Tower" parent="Pivot" instance=ExtResource("3_jxrch")]
+transform = Transform3D(0.1, 0, 0, 0, 0.0176983, 0, 0, 0, 0.1, -1.36919, 0, 1.21323)
 
 [node name="TowerBodyCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19209e-07, 3.752, 1.19209e-07)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19209e-07, 0.971483, 1.19209e-07)
 shape = SubResource("BoxShape3D_chvo0")
 
 [node name="TowerHead" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57711, 0)
 
-[node name="Crossbow" parent="TowerHead" instance=ExtResource("4_pqafd")]
+[node name="Crossbow" parent="TowerHead" instance=ExtResource("4_mo7ky")]
 transform = Transform3D(-1.31134e-07, -2.62268e-07, -3, 0, -3, 2.62268e-07, -3, 1.14641e-14, 1.31134e-07, 0, 0, -0.495)
 
 [node name="IdleLookaroundTimer" type="Timer" parent="."]

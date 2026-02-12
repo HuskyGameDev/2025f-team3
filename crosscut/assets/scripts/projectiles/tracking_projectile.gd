@@ -1,10 +1,4 @@
-extends Node3D
-
-const debug = false
-var speed: float = 60 #was 30
-var damage: int = 10
-
-var target: Node3D
+extends ProjectileBase
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

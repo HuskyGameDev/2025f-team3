@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2ppkux2l3rph"]
+
+[ext_resource type="Script" uid="uid://bcdutwbssjy3m" path="res://assets/scripts/projectiles/piercing_projectile.gd" id="1_2ybqr"]
+[ext_resource type="PackedScene" uid="uid://brrw7s6m6ah3t" path="res://assets/3D assets/arrow.blend" id="2_4yi8s"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_thkk1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ybqr"]
+size = Vector3(0.49501, 0.477905, 2.94763)
+
+[node name="BalistaBolt" type="Node3D"]
+script = ExtResource("1_2ybqr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 2.5, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_thkk1")
+
+[node name="arrow" parent="." instance=ExtResource("2_4yi8s")]
+transform = Transform3D(0.3, 0, 0, 0, -1.31134e-08, 0.3, 0, -0.3, -1.31134e-08, 0, 0, 0)
+
+[node name="attack_area" type="Area3D" parent="."]
+
+[node name="attack_shape" type="CollisionShape3D" parent="attack_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00325775, -0.00372314, -0.100891)
+shape = SubResource("BoxShape3D_2ybqr")
+
+[connection signal="body_entered" from="attack_area" to="." method="_on_attack_area_body_entered"]
