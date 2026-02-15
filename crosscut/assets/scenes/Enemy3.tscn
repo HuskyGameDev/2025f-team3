@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://xg2jxg4h1xna"]
+
+[ext_resource type="Script" uid="uid://hjydycdj4n18" path="res://assets/scripts/enemy3_stats.gd" id="1_rram2"]
+[ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="2_ot5xq"]
+[ext_resource type="Script" uid="uid://bksnh1nri3ati" path="res://assets/scenes/damage_area.gd" id="3_fgdkg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4i0at"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2xnwa"]
+material = SubResource("StandardMaterial3D_4i0at")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_skmw1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mkjcs"]
+size = Vector3(1.0556, 1, 1.08734)
+
+[node name="Enemy3" type="CharacterBody3D" groups=["enemy"]]
+script = ExtResource("1_rram2")
+
+[node name="Health" parent="." instance=ExtResource("2_ot5xq")]
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="ReplaceThisWithEnemy3Model" type="MeshInstance3D" parent="Pivot"]
+mesh = SubResource("BoxMesh_2xnwa")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_skmw1")
+
+[node name="DamageArea" type="Area3D" parent="."]
+script = ExtResource("3_fgdkg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00350952, 0, -0.0027771)
+shape = SubResource("BoxShape3D_mkjcs")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[connection signal="killed_sig" from="Health" to="." method="_on_health_killed_sig"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]
