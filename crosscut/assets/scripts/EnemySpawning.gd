@@ -14,6 +14,8 @@ var levelDone: bool = false
 var levelGenerator: LevelGenerator
 
 func _ready() -> void:
+	currentLevelIndex = -1
+	currentWaveIndex = 0
 	levelGenerator = LevelGenerator.new()
 	add_child(levelGenerator)
 	
@@ -47,6 +49,8 @@ func startWave(waveInfo: Array) -> void:
 	aliveEnemies = 0
 	
 	for enemy: Object in waveInfo:
+		if enemy == null:
+			continue
 		add_child(enemy)
 		enemy.startSpawning()
 		totalEnemies += enemy.enemyCount

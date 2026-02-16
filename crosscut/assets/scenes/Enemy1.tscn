@@ -13,6 +13,7 @@ size = Vector3(1.05298, 1.0473, 1.02148)
 
 [node name="Enemy1" type="CharacterBody3D" groups=["enemy"]]
 script = ExtResource("1_wnmti")
+speed = 50.0
 
 [node name="Health" parent="." instance=ExtResource("2_nrve6")]
 max_health = 10

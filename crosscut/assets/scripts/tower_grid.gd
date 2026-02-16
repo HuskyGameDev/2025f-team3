@@ -11,7 +11,7 @@ var hidden_hl: bool = true;
 var towers: Dictionary[Vector2i, Node3D] = {}
 var highlights:  Dictionary[Vector2i, Node3D] = {} #TODO: remove the Node3d portion????
 
-@onready var navigationThing: NavigationRegion3D = $"../NavigationRegion3D"
+@onready var navigationThing: NavigationRegion3D = $".."
 func _ready() -> void:
 	pass
 	
