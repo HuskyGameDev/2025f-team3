@@ -7,7 +7,7 @@ var levelScalingMult: float = 1.2
 
 # Available enemies and spawn locations
 var availableEnemies: Array[String] = ["test1"]
-var availableLocations: Array[String] = ["test"]
+var availableLocations: Array[String] = ["north", "south", "west", "east"]
 
 func generateLevel(level: int) -> Array:
 	var generatedLevel: Array = []
@@ -83,7 +83,7 @@ func calculateEnemyCount(level: int, wave: int) -> int:
 	return finalAmount
 
 func pickSpawnLocations() -> Array[String]:
-	var locationCount: int = randi() % 2 + 1
+	var locationCount: int = randi() % 4 + 1
 	var tempLocation: Array[String] = availableLocations.duplicate()
 	var selectedLocations: Array[String] = []
 	

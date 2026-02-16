@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dlichn2b72vr7" path="res://assets/UI/2d_hud.tscn" id="6_22ejr"]
 [ext_resource type="PackedScene" uid="uid://b5rhrfigqrejf" path="res://assets/scenes/spawn_library.tscn" id="10_m00bm"]
 [ext_resource type="Shader" uid="uid://blaja5xkgy2c5" path="res://assets/shaders/grass_map.gdshader" id="11_shader"]
-[ext_resource type="Texture2D" uid="uid://cv6ihr745ybm8" path="res://assets/3D assets/rocky_terrain_02_diff_4k.jpg" id="12_texture"]
+[ext_resource type="Texture2D" uid="uid://dsy23jl5fjgfs" path="res://assets/3D assets/rocky_terrain_02_diff_4k.jpg" id="12_texture"]
 [ext_resource type="PackedScene" uid="uid://128v07ijnbt2" path="res://assets/scenes/Enemy2.tscn" id="13_r8v3n"]
 [ext_resource type="PackedScene" uid="uid://xg2jxg4h1xna" path="res://assets/scenes/Enemy3.tscn" id="14_kaujs"]
 
@@ -158,6 +158,18 @@ button_group = SubResource("ButtonGroup_21mu2")
 
 [node name="TESTSPAWN" type="Node3D" parent="SpawnLibrary"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.58475, -0.26542, -39.0837)
+
+[node name="NorthSpawn" type="Node3D" parent="SpawnLibrary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.9411, 0, 0)
+
+[node name="SouthSpawn" type="Node3D" parent="SpawnLibrary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.8258, 0, 0)
+
+[node name="WestSpawn" type="Node3D" parent="SpawnLibrary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 29.5778)
+
+[node name="EastSpawn" type="Node3D" parent="SpawnLibrary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -29.9688)
 
 [node name="SpectatorCam" type="CharacterBody3D" parent="."]
 unique_name_in_owner = true

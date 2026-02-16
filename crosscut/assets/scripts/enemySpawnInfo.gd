@@ -26,7 +26,10 @@ func _init(countArg: int, nameArg: String,
 
 func _ready() -> void:
 	spawnPoints = {
-		"test": get_parent().get_node("TESTSPAWN")
+		"north": get_parent().get_node("NorthSpawn"),
+		"south": get_parent().get_node("SouthSpawn"),
+		"west": get_parent().get_node("WestSpawn"),
+		"east": get_parent().get_node("EastSpawn")
 	}
 
 func startSpawning() -> void:
@@ -46,8 +49,7 @@ func spawn() -> void:
 			var spawnPos: Vector3 = spawnPoints[locations[spawnLocationIndex]].global_position
 			enemyInstance.call_deferred("set_global_position", spawnPos)
 			enemyInstance.name = enemyName
-
-			
+		
 		spawnLocationIndex = (spawnLocationIndex + 1) % locations.size()
 		spawnTimer.start()
 	else:
