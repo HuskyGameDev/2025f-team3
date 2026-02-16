@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://t4rpgnwied1k"]
+
+[ext_resource type="Script" uid="uid://b15k1fk0t46v0" path="res://assets/scenes/myHero.gd" id="1_s3u75"]
+[ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="2_o55pu"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_cj2mj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mo1vv"]
+
+[node name="Coconut" type="CharacterBody3D"]
+script = ExtResource("1_s3u75")
+
+[node name="Health" parent="." instance=ExtResource("2_o55pu")]
+max_health = 10
+health = 10
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="ReplaceThisWithEnemyModel" type="MeshInstance3D" parent="Pivot"]
+mesh = SubResource("BoxMesh_cj2mj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_mo1vv")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[connection signal="killed_sig" from="Health" to="." method="_on_health_killed_sig"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ccy5pg6ws1kk4"]
+[gd_scene load_steps=28 format=3 uid="uid://ccy5pg6ws1kk4"]
 
 [ext_resource type="PackedScene" uid="uid://qwd7i00v37t2" path="res://assets/scenes/game_manager.tscn" id="1_21mu2"]
 [ext_resource type="PackedScene" uid="uid://x18icxf4xg6e" path="res://assets/scenes/player.tscn" id="1_41fjk"]
@@ -11,9 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://dlichn2b72vr7" path="res://assets/UI/2d_hud.tscn" id="6_22ejr"]
 [ext_resource type="PackedScene" uid="uid://b5rhrfigqrejf" path="res://assets/scenes/spawn_library.tscn" id="10_m00bm"]
 [ext_resource type="Shader" uid="uid://blaja5xkgy2c5" path="res://assets/shaders/grass_map.gdshader" id="11_shader"]
-[ext_resource type="Texture2D" uid="uid://dsy23jl5fjgfs" path="res://assets/3D assets/rocky_terrain_02_diff_4k.jpg" id="12_texture"]
+[ext_resource type="Texture2D" uid="uid://dquuj7674551w" path="res://assets/3D assets/rocky_terrain_02_diff_4k.jpg" id="12_texture"]
 [ext_resource type="PackedScene" uid="uid://128v07ijnbt2" path="res://assets/scenes/Enemy2.tscn" id="13_r8v3n"]
 [ext_resource type="PackedScene" uid="uid://xg2jxg4h1xna" path="res://assets/scenes/Enemy3.tscn" id="14_kaujs"]
+[ext_resource type="PackedScene" uid="uid://t4rpgnwied1k" path="res://assets/scenes/myHero.tscn" id="15_v6yin"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vio1o"]
 panorama = ExtResource("1_376kr")
@@ -205,6 +206,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9455, 1.26441, 29.5)
 
 [node name="Enemy3" parent="." instance=ExtResource("14_kaujs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.4196, 0.5, 25.1135)
+
+[node name="NorthCoconut" parent="." instance=ExtResource("15_v6yin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
+
+[node name="EastCoconut" parent="." instance=ExtResource("15_v6yin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
+
+[node name="SouthCoconut" parent="." instance=ExtResource("15_v6yin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0)
+
+[node name="WestCoconut" parent="." instance=ExtResource("15_v6yin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)
 
 [connection signal="end_buying" from="GameManager" to="Top-down view/2dHud" method="_on_game_manager_end_buying"]
 [connection signal="player_died" from="GameManager" to="First-Person view/3dHud" method="_on_game_manager_player_died"]

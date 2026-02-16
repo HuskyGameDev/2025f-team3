@@ -20,11 +20,18 @@ var in_contact_objective: bool = false
 
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 
-var target_pos: Vector3
+@export var target_pos: Vector3
 var has_target: bool = false
+
 func _ready() -> void:
+	print("Enemy spawned at: ", global_position)
+	print("Objective found: ", obj)
+	if obj:
+		print("Objective position: ", obj.global_position)
+
 	has_target = true
-	target_pos = obj.position
+	target_pos = obj.global_position
+	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Test"):
 		get_parent().get_node("SpawnLibrary").killedEnemy()
@@ -50,10 +57,15 @@ func _on_damage_area_body_exited(body: Node3D) -> void:
 
 const GRAVITY: int = -300
 
+		
 func _physics_process(delta:=) -> void:
+	target_pos = obj.global_position
+	print("New Target is " + str(target_pos))
 	if has_target:
 		nav_agent.target_position = target_pos
 		var next_path_pos := nav_agent.get_next_path_position()
+		print(next_path_pos)
+		
 		var direction := global_position.direction_to(next_path_pos)
 		velocity = direction * speed
 		
