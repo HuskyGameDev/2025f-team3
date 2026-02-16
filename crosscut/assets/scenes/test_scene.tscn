@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dlichn2b72vr7" path="res://assets/UI/2d_hud.tscn" id="6_22ejr"]
 [ext_resource type="PackedScene" uid="uid://b5rhrfigqrejf" path="res://assets/scenes/spawn_library.tscn" id="10_m00bm"]
 [ext_resource type="Shader" uid="uid://blaja5xkgy2c5" path="res://assets/shaders/grass_map.gdshader" id="11_shader"]
-[ext_resource type="Texture2D" uid="uid://dquuj7674551w" path="res://assets/3D assets/rocky_terrain_02_diff_4k.jpg" id="12_texture"]
+[ext_resource type="Texture2D" uid="uid://dsy23jl5fjgfs" path="res://assets/3D assets/rocky_terrain_02_diff_4k.jpg" id="12_texture"]
 [ext_resource type="PackedScene" uid="uid://128v07ijnbt2" path="res://assets/scenes/Enemy2.tscn" id="13_r8v3n"]
 [ext_resource type="PackedScene" uid="uid://xg2jxg4h1xna" path="res://assets/scenes/Enemy3.tscn" id="14_kaujs"]
 
@@ -64,16 +64,16 @@ allow_unpress = true
 [node name="SpawnLibrary" parent="." groups=["spawnLibrary"] instance=ExtResource("10_m00bm")]
 
 [node name="NorthSpawn" type="Node3D" parent="SpawnLibrary"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.9411, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
 
 [node name="SouthSpawn" type="Node3D" parent="SpawnLibrary"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.8258, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0)
 
 [node name="WestSpawn" type="Node3D" parent="SpawnLibrary"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 29.5778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)
 
 [node name="EastSpawn" type="Node3D" parent="SpawnLibrary"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -29.9688)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
 
 [node name="Objective" parent="." instance=ExtResource("2_objective")]
 unique_name_in_owner = true
@@ -101,6 +101,7 @@ shape = SubResource("WorldBoundaryShape3D_abcw6")
 
 [node name="posX_wall" type="StaticBody3D" parent="Mapborder"]
 transform = Transform3D(-2.18557e-07, -5, 0, 5, -2.18557e-07, 0, 0, 0, 5, 30, 8, 0)
+collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mapborder/posX_wall"]
 shape = SubResource("WorldBoundaryShape3D_m00bm")
@@ -108,6 +109,7 @@ debug_color = Color(0, 0.6, 0.701961, 0.890196)
 
 [node name="minX_wall" type="StaticBody3D" parent="Mapborder"]
 transform = Transform3D(-2.18557e-07, 5, 0, -5, -2.18557e-07, 0, 0, 0, 5, -30, 8, 0)
+collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mapborder/minX_wall"]
 shape = SubResource("WorldBoundaryShape3D_m00bm")
@@ -115,6 +117,7 @@ debug_color = Color(0, 0.6, 0.701961, 0.890196)
 
 [node name="posZ_wall" type="StaticBody3D" parent="Mapborder"]
 transform = Transform3D(5, 0, 0, 0, -2.18557e-07, 5, 0, -5, -2.18557e-07, 0, 8, 30)
+collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mapborder/posZ_wall"]
 shape = SubResource("WorldBoundaryShape3D_m00bm")
@@ -122,6 +125,7 @@ debug_color = Color(0, 0.6, 0.701961, 0.890196)
 
 [node name="minZ_wall" type="StaticBody3D" parent="Mapborder"]
 transform = Transform3D(5, 0, 0, 0, -2.18557e-07, -5, 0, 5, -2.18557e-07, 0, 8, -30)
+collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mapborder/minZ_wall"]
 shape = SubResource("WorldBoundaryShape3D_m00bm")
@@ -135,6 +139,7 @@ process_mode = 3
 [node name="Player" parent="First-Person view" instance=ExtResource("1_41fjk")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.33311, 0, 4.02174)
+collision_mask = 3
 
 [node name="PlayerCam" type="Camera3D" parent="First-Person view/Player"]
 unique_name_in_owner = true
