@@ -50,6 +50,9 @@ func _update_enemies_killed(value: int) -> void:
 
 func _update_enemies_left(value: int) -> void:
 	enemies_left = value
+	
+func _update_wave_number(value: int) -> void:
+	$WavePanel/VBoxContainer/HBoxContainer/Wave.text = str(value)
 
 func _connect_to_objective() -> void:
 	# Find and connect to the objective in the scene

@@ -76,8 +76,6 @@ func _ready() -> void:
 
 	_connect_to_spawnManager()
 	
-	_update_waves_text($"../../SpawnLibrary"._get_next_level_size())
-	
 var t: float = 0.0
 
 func _process(delta: float) -> void:
@@ -129,9 +127,6 @@ func _connect_to_spawnManager() -> void:
 func _update_next_level_text(next_level: int) -> void:
 	$RightPanel/VBoxContainer/Label.text = str(next_level + 2)
 	
-func _update_waves_text(waves: int) -> void:
-	$RightPanel/VBoxContainer/Label3.text = str("with ", waves, " waves")
-	
 func _on_objective_damaged(current_health: float, max_health: float) -> void:
 	objective_health = current_health
 	objective_max_health = max_health
@@ -142,11 +137,9 @@ func _on_game_manager_end_buying() -> void:
 func _on_game_manager_update_gold(value: Variant) -> void:
 	$LeftPanel/VBoxContainer/GoldBox/Gold.text = str(value)
 
-
 func _on_start_wave_pressed() -> void:
 	$"../../GameManager"._toggle_mode()
 	library.nextLevel()
-	_update_waves_text($"../../SpawnLibrary"._get_next_level_size())
 	
 # Update UI health on objective health change
 func _on_objective_damaged_sig(_damage_taken: Variant, health_after_damage: Variant) -> void:

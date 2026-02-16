@@ -80,6 +80,7 @@ func nextLevel() -> void:
 	currentLevelIndex += 1
 	currentWaveIndex = 0
 	levelDelay.start()
+	%"3dHud"._update_wave_number(currentWaveIndex + 1)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("NextLevel") && levelDone && aliveEnemies == 0:
@@ -89,6 +90,7 @@ func _input(event: InputEvent) -> void:
 
 func _on_wave_delay_timeout() -> void:
 	print("Wave delay finished")
+	%"3dHud"._update_wave_number(currentWaveIndex + 1)
 	startSpawning()
 
 func _on_level_delay_timeout() -> void:
