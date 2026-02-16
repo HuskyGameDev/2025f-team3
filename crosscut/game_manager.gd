@@ -122,11 +122,19 @@ func _input(event: InputEvent) -> void:
 			
 	elif control_mode == ControlMode.TOPDOWN and event is InputEventMouseButton and event.pressed and event.button_index == 2:
 		var position: Vector3 = _get_mouse_position_on_board()
-		if grid_map.remove_tower_at_position(position) != -1:
-			# Gain back half the cost of a tower when you sell it
-			# TODO: Determine the ID of the sold tower and subtract the corresponding price / 2
-			gold += 50
-			update_gold.emit(gold)
+		var price: int = 50
+		var tower: Tower = grid_map.get_tower_at_position(position)
+		if (tower != null):
+			# check what this tower is
+			if(tower.name.to_lower().contains("crossbow")):
+				price = (%"2dHud"._get_price(int(0))) / 2
+			elif(tower.name.to_lower().contains("cauldron")):
+				price = (%"2dHud"._get_price(int(1))) / 2
+			if grid_map.remove_tower_at_position(position) != -1:
+				# Gain back half the cost of a tower when you sell it
+				# TODO: Determine the ID of the sold tower and subtract the corresponding price / 2
+				gold += price
+				update_gold.emit(gold)
 		else:
 			print("Selling error")
 			

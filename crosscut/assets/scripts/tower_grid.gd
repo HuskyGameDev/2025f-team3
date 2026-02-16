@@ -86,7 +86,7 @@ func add_tower(tower: PackedScene, pos: Vector3) -> Vector3:
 	
 	# Otherwise, add the tower
 	var new_tower: = tower.instantiate()
-	add_child(new_tower)
+	add_child(new_tower, true)
 	
 	new_tower.global_position = Vector3(closest_pos.x, position.y, closest_pos.y)
 	towers[closest_pos] = new_tower
@@ -107,6 +107,16 @@ func remove_tower_at_position(pos: Vector3) -> int:
 	the_tower.queue_free()
 	towers.erase(closest_pos)
 	return 0
+	
+func get_tower_at_position(pos: Vector3) -> Tower:
+	var position_2D: = Vector2(pos.x, pos.z)
+	
+	var closest_pos: = get_closest_position_on_grid(position_2D)
+	if !towers.has(closest_pos):
+		if debug: print("GRID: no tower at pos")
+		return null
+	var the_tower: Node3D = towers[closest_pos]
+	return the_tower
 	
 func get_closest_position_on_grid(place_pos: Vector2) -> Vector2i:
 	var pos_x: = place_pos.x
