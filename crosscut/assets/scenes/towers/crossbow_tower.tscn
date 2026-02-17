@@ -19,6 +19,7 @@ disable_mode = 1
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_et1c7")
+firing_speed = 1.5
 tower_Attack_Visual = ExtResource("2_pqafd")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
@@ -41,7 +42,6 @@ transform = Transform3D(-1.31134e-07, -2.62268e-07, -3, 0, -3, 2.62268e-07, -3, 
 autostart = true
 
 [node name="FiringTimer" type="Timer" parent="."]
-wait_time = 1.5
 one_shot = true
 
 [node name="AttackArea" type="Area3D" parent="." groups=["enemy"]]
