@@ -60,11 +60,9 @@ const GRAVITY: int = -300
 		
 func _physics_process(delta:=) -> void:
 	target_pos = obj.global_position
-	print("New Target is " + str(target_pos))
 	if has_target:
 		nav_agent.target_position = target_pos
 		var next_path_pos := nav_agent.get_next_path_position()
-		print(next_path_pos)
 		
 		var direction := global_position.direction_to(next_path_pos)
 		velocity = direction * speed

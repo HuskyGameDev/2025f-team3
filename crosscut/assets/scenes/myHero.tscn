@@ -13,7 +13,6 @@ script = ExtResource("1_s3u75")
 
 [node name="Health" parent="." instance=ExtResource("2_o55pu")]
 max_health = 10
-health = 10
 
 [node name="Pivot" type="Node3D" parent="."]
 
