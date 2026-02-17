@@ -28,7 +28,7 @@ var buying_tower: = false
 var selected_tower: String
 signal end_buying
 
-var gold: int = 200
+var gold: int = 250
 signal update_gold(value: int)
 
 @onready var grid_map: = %GridMap

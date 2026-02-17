@@ -24,9 +24,9 @@ var objective_health_width: float
 	# Health
 	1: [1, 2, 3, 4],
 	# Damage
-	2: [10, 6, 4, 5],
+	2: [15, 5, 4, 5],
 	# Speed
-	3: [1, 3, 5, 6],
+	3: [1.5, 1.0, 5, 6],
 	# Description
 	4: [
 		"The crossbow tower fires arrows at the nearest enemy.",
@@ -35,7 +35,7 @@ var objective_health_width: float
 		"This is tower 3. It's a tower. Yeah!"
 	],
 	# Price
-	5: [100, 200, 300, 400]
+	5: [75, 200, 300, 400]
 }
 
 func _get_price(i: int) -> int:
