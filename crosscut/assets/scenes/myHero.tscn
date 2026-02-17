@@ -8,6 +8,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_mo1vv"]
 
 [node name="Coconut" type="CharacterBody3D"]
+collision_mask = 4
 script = ExtResource("1_s3u75")
 
 [node name="Health" parent="." instance=ExtResource("2_o55pu")]
@@ -23,6 +24,8 @@ mesh = SubResource("BoxMesh_cj2mj")
 shape = SubResource("BoxShape3D_mo1vv")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+navigation_layers = 8
+radius = 10.0
 debug_enabled = true
 
 [connection signal="killed_sig" from="Health" to="." method="_on_health_killed_sig"]

@@ -151,26 +151,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45076, 0)
 [node name="3dHud" parent="First-Person view" instance=ExtResource("5_3f7cn")]
 unique_name_in_owner = true
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+[node name="NavigationArea" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_m00bm")
+navigation_layers = 8
 
-[node name="GridMap" type="GridMap" parent="NavigationRegion3D"]
+[node name="GridMap" type="GridMap" parent="NavigationArea"]
 unique_name_in_owner = true
 cell_size = Vector3(5, 5, 5)
 script = ExtResource("3_vio1o")
 metadata/_editor_floor_ = Vector3(0, -19, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationArea"]
 transform = Transform3D(98.5637, 0, 0, 0, 1, 0, 0, 0, 171.665, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_41fjk")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_abcw6")
 
-[node name="CrossbowTower" parent="NavigationRegion3D" instance=ExtResource("1_ics7i")]
+[node name="CrossbowTower" parent="NavigationArea" instance=ExtResource("1_ics7i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.27332, 1.90735e-06, -17.26)
 
-[node name="NavigationObstacle3D2" type="NavigationObstacle3D" parent="NavigationRegion3D/CrossbowTower"]
+[node name="NavigationObstacle3D2" type="NavigationObstacle3D" parent="NavigationArea/CrossbowTower"]
 radius = 2.5
 affect_navigation_mesh = true
 carve_navigation_mesh = true

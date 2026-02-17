@@ -24,6 +24,11 @@ var in_contact_objective: bool = false
 var has_target: bool = false
 
 func _ready() -> void:
+	nav_agent.process_mode = Node.PROCESS_MODE_DISABLED
+	get_tree().process_frame
+	get_tree().process_frame
+	nav_agent.process_mode = Node.PROCESS_MODE_INHERIT
+	
 	print("Enemy spawned at: ", global_position)
 	print("Objective found: ", obj)
 	if obj:

@@ -12,6 +12,7 @@
 size = Vector3(1.05298, 1.0473, 1.02148)
 
 [node name="Enemy1" type="CharacterBody3D" groups=["enemy"]]
+collision_mask = 4
 script = ExtResource("1_wnmti")
 speed = 50.0
 
@@ -35,6 +36,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00549316, 0.00552368, 0.01
 shape = SubResource("BoxShape3D_hknbf")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+navigation_layers = 8
+avoidance_enabled = true
+radius = 10.0
+use_3d_avoidance = true
 debug_enabled = true
 
 [connection signal="killed_sig" from="Health" to="." method="_on_health_killed_sig"]

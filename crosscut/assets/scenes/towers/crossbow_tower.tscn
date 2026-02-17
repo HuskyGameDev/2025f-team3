@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dy6py3ylmvkm5" path="res://assets/scripts/towers/crossbow_tower.gd" id="1_et1c7"]
 [ext_resource type="PackedScene" uid="uid://dw40cmtrt8qw0" path="res://assets/3D assets/tower.blend" id="2_30uou"]
 [ext_resource type="PackedScene" uid="uid://6eyynlw8urvy" path="res://assets/scenes/projectiles/crossbow_bolt.tscn" id="2_pqafd"]
-[ext_resource type="PackedScene" uid="uid://cr285eam1cjjx" path="res://assets/3D assets/Crossbow.blend" id="4_pqafd"]
+[ext_resource type="PackedScene" uid="uid://v2sr7dbr4dfi" path="res://assets/3D assets/Crossbow.blend" id="4_pqafd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_chvo0"]
 size = Vector3(2.8, 7.5, 2.8)
@@ -11,6 +11,7 @@ size = Vector3(2.8, 7.5, 2.8)
 [sub_resource type="SphereShape3D" id="SphereShape3D_et1c7"]
 
 [node name="CrossbowTower" type="StaticBody3D" groups=["tower"]]
+disable_mode = 1
 script = ExtResource("1_et1c7")
 tower_Attack_Visual = ExtResource("2_pqafd")
 
@@ -44,9 +45,11 @@ shape = SubResource("SphereShape3D_et1c7")
 debug_color = Color(0.918557, 0, 0.222529, 1)
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
-radius = 2.5
+radius = 5.0
+height = 10.0
 affect_navigation_mesh = true
 carve_navigation_mesh = true
+use_3d_avoidance = true
 
 [connection signal="timeout" from="IdleLookaroundTimer" to="." method="_on_idle_lookaround_timer_timeout"]
 [connection signal="timeout" from="FiringTimer" to="." method="_on_firing_timer_timeout"]
