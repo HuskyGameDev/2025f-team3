@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dy6py3ylmvkm5" path="res://assets/scripts/towers/crossbow_tower.gd" id="1_et1c7"]
 [ext_resource type="PackedScene" uid="uid://dw40cmtrt8qw0" path="res://assets/3D assets/tower.blend" id="2_30uou"]
 [ext_resource type="PackedScene" uid="uid://6eyynlw8urvy" path="res://assets/scenes/projectiles/crossbow_bolt.tscn" id="2_pqafd"]
-[ext_resource type="PackedScene" uid="uid://v2sr7dbr4dfi" path="res://assets/3D assets/Crossbow.blend" id="4_pqafd"]
+[ext_resource type="PackedScene" uid="uid://dgdes3bah2fep" path="res://assets/3D assets/Crossbow.blend" id="4_pqafd"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_pqafd"]
 height = 3.0
@@ -41,6 +41,7 @@ transform = Transform3D(-1.31134e-07, -2.62268e-07, -3, 0, -3, 2.62268e-07, -3, 
 autostart = true
 
 [node name="FiringTimer" type="Timer" parent="."]
+wait_time = 1.5
 one_shot = true
 
 [node name="AttackArea" type="Area3D" parent="." groups=["enemy"]]
