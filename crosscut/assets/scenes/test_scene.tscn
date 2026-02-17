@@ -40,6 +40,11 @@ shader_parameter/grass_texture = ExtResource("12_texture")
 shader_parameter/tile_scale = 5.0
 shader_parameter/noise_strength = 0.5
 shader_parameter/noise_scale = 5.0
+shader_parameter/grid_cell_size = 5.0
+shader_parameter/map_size = 100.0
+shader_parameter/grid_opacity = 0.5
+shader_parameter/line_width = 0.1
+shader_parameter/grid_color = Color(0.1, 0.15, 0.05, 1)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_abcw6"]
 
