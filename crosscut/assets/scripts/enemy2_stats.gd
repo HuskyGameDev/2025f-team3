@@ -4,7 +4,6 @@ extends CharacterBody3D
 @export var rotation_speed: float = 5
 @export var atk: float = 2
 @export var atk_cooldown: int = 15 # how many frames between damage ticks
-@export var max_health: int = 30
 
 # exposing health node
 @onready var health: Node3D = $Health
@@ -62,26 +61,6 @@ func _on_damage_area_body_exited(body: Node3D) -> void:
 
 const GRAVITY: int = -300
 
-
-#func _physics_process(delta:=) -> void:
-	#target_pos = obj.global_position
-	#print("New Target is " + str(target_pos))
-	#if has_target:
-		#nav_agent.target_position = target_pos
-		#var next_path_pos := nav_agent.get_next_path_position()
-		#print(next_path_pos)
-		#
-		#var direction := global_position.direction_to(next_path_pos)
-		#velocity = direction * speed
-		#
-		#var ROTATION_SPEED: float = rotation_speed
-		#var target_rotation := direction.signed_angle_to(Vector3.MODEL_FRONT, Vector3.DOWN)
-		#if abs(target_rotation - rotation.y) > deg_to_rad(60):
-			#ROTATION_SPEED = 20
-		#rotation.y = move_toward(rotation.y, target_rotation, delta * ROTATION_SPEED)
-		#
-	#move_and_slide()
-	
 func _physics_process(delta:=) -> void:
 	if has_target:
 		if player_exist and player_exist.get_node("Health").health > 0:

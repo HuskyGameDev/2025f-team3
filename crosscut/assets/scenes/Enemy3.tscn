@@ -19,6 +19,7 @@ size = Vector3(1.0556, 1, 1.08734)
 script = ExtResource("1_rram2")
 
 [node name="Health" parent="." instance=ExtResource("2_ot5xq")]
+max_health = 100
 
 [node name="Pivot" type="Node3D" parent="."]
 
