@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ccy5pg6ws1kk4"]
+[gd_scene load_steps=29 format=3 uid="uid://ccy5pg6ws1kk4"]
 
 [ext_resource type="PackedScene" uid="uid://qwd7i00v37t2" path="res://assets/scenes/game_manager.tscn" id="1_21mu2"]
 [ext_resource type="PackedScene" uid="uid://x18icxf4xg6e" path="res://assets/scenes/player.tscn" id="1_41fjk"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b5rhrfigqrejf" path="res://assets/scenes/spawn_library.tscn" id="10_m00bm"]
 [ext_resource type="Shader" uid="uid://blaja5xkgy2c5" path="res://assets/shaders/grass_map.gdshader" id="11_shader"]
 [ext_resource type="Texture2D" uid="uid://dquuj7674551w" path="res://assets/3D assets/rocky_terrain_02_diff_4k.jpg" id="12_texture"]
+[ext_resource type="PackedScene" uid="uid://c68bb7h0pgpk1" path="res://assets/scenes/Enemy1.tscn" id="13_n6pjd"]
 [ext_resource type="PackedScene" uid="uid://128v07ijnbt2" path="res://assets/scenes/Enemy2.tscn" id="13_r8v3n"]
 [ext_resource type="PackedScene" uid="uid://xg2jxg4h1xna" path="res://assets/scenes/Enemy3.tscn" id="14_kaujs"]
 [ext_resource type="PackedScene" uid="uid://t4rpgnwied1k" path="res://assets/scenes/myHero.tscn" id="15_v6yin"]
@@ -45,6 +46,8 @@ shader_parameter/noise_scale = 5.0
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_m00bm"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_m00bm"]
+vertices = PackedVector3Array(-98.0637, 0.5, -17.165, -0.313698, 0.5, -17.165, 0.186302, 0.5, -19.915, 1.6863, 0.5, -21.415, 4.1863, 0.5, -21.915, 4.1863, 0.5, -171.165, -98.0637, 0.5, -171.165, 8.6863, 0.5, -19.165, 8.9363, 0.5, -17.165, 98.1863, 0.5, -17.165, 7.1863, 0.5, -21.165, 98.1863, 0.5, -171.165, 2.6863, 3.5, -18.665, 2.1863, 3.5, -20.415, 0.686302, 3.5, -18.415, 0.686302, 3.5, -16.165, 1.1863, 3.5, -15.165, 2.9363, 3.5, -15.665, 4.9363, 3.5, -20.915, 5.6863, 3.5, -18.915, 7.1863, 3.5, -19.665, 3.1863, 3.5, -13.665, 6.4363, 3.5, -14.165, 5.9363, 3.5, -15.915, 7.9363, 3.5, -16.415, 7.9363, 3.5, -17.915, 2.4363, 0.5, -18.915, 2.4363, 0.5, -20.165, 0.936302, 0.5, -18.165, 4.6863, 0.5, -20.665, 5.9363, 0.5, -19.165, 6.9363, 0.5, -19.415, 2.6863, 0.5, -15.415, 1.4363, 0.5, -15.415, 3.4363, 0.5, -13.915, 6.1863, 0.5, -14.415, 6.1863, 0.5, -15.665, 7.6863, 0.5, -16.665, 3.1863, 8.75, -18.165, 3.1863, 8.75, -16.165, 5.1863, 8.75, -16.165, 5.1863, 8.75, -18.165, 3.6863, 0.5, -17.665, 3.6863, 0.5, -16.665, 4.6863, 0.5, -16.665, 4.6863, 0.5, -17.665, 3.9363, 3.5, -17.415, 3.9363, 3.5, -16.915, 4.4363, 3.5, -16.915, 4.4363, 3.5, -17.665, 0.186302, 0.5, -14.665, 1.6863, 0.5, -13.165, 4.1863, 0.5, -12.665, -98.0637, 0.5, 171.085, 3.9363, 0.5, 171.085, 8.4363, 0.5, -14.665, 6.9363, 0.5, -13.165, 98.1863, 0.5, 171.085)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 3, 2), PackedInt32Array(3, 0, 4), PackedInt32Array(4, 0, 5), PackedInt32Array(5, 0, 6), PackedInt32Array(9, 8, 7), PackedInt32Array(9, 7, 10), PackedInt32Array(10, 4, 9), PackedInt32Array(9, 4, 5), PackedInt32Array(9, 5, 11), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 14), PackedInt32Array(17, 14, 12), PackedInt32Array(12, 14, 13), PackedInt32Array(20, 19, 18), PackedInt32Array(18, 19, 12), PackedInt32Array(18, 12, 13), PackedInt32Array(16, 17, 21), PackedInt32Array(21, 17, 23), PackedInt32Array(21, 23, 22), PackedInt32Array(20, 25, 19), PackedInt32Array(19, 25, 24), PackedInt32Array(19, 24, 23), PackedInt32Array(23, 24, 22), PackedInt32Array(28, 27, 26), PackedInt32Array(31, 30, 29), PackedInt32Array(29, 30, 27), PackedInt32Array(27, 30, 26), PackedInt32Array(33, 28, 32), PackedInt32Array(32, 28, 26), PackedInt32Array(35, 34, 36), PackedInt32Array(36, 34, 32), PackedInt32Array(31, 37, 30), PackedInt32Array(30, 37, 36), PackedInt32Array(32, 34, 33), PackedInt32Array(36, 37, 35), PackedInt32Array(41, 40, 38), PackedInt32Array(38, 40, 39), PackedInt32Array(45, 44, 42), PackedInt32Array(42, 44, 43), PackedInt32Array(47, 46, 48), PackedInt32Array(48, 46, 49), PackedInt32Array(50, 0, 1), PackedInt32Array(0, 50, 51), PackedInt32Array(51, 52, 0), PackedInt32Array(0, 52, 54), PackedInt32Array(0, 54, 53), PackedInt32Array(55, 8, 9), PackedInt32Array(9, 56, 55), PackedInt32Array(56, 9, 52), PackedInt32Array(52, 9, 54), PackedInt32Array(54, 9, 57)]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_41fjk"]
 
@@ -63,16 +66,16 @@ allow_unpress = true
 [node name="SpawnLibrary" parent="." groups=["spawnLibrary"] instance=ExtResource("10_m00bm")]
 
 [node name="NorthSpawn" type="Node3D" parent="SpawnLibrary"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0.5, 0)
 
 [node name="SouthSpawn" type="Node3D" parent="SpawnLibrary"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0.5, 0)
 
 [node name="WestSpawn" type="Node3D" parent="SpawnLibrary"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 40)
 
 [node name="EastSpawn" type="Node3D" parent="SpawnLibrary"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -40)
 
 [node name="Objective" parent="." instance=ExtResource("2_objective")]
 unique_name_in_owner = true
@@ -133,25 +136,25 @@ debug_color = Color(0, 0.6, 0.701961, 0.890196)
 [node name="PauseMenu" parent="." instance=ExtResource("4_1npq7")]
 process_mode = 3
 
-[node name="First-Person view" type="Node" parent="."]
+[node name="NavigationArea" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_m00bm")
+navigation_layers = 8
 
-[node name="Player" parent="First-Person view" instance=ExtResource("1_41fjk")]
+[node name="First-Person view" type="Node" parent="NavigationArea"]
+
+[node name="Player" parent="NavigationArea/First-Person view" instance=ExtResource("1_41fjk")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.33311, 0, 4.02174)
 collision_mask = 3
 
-[node name="PlayerCam" type="Camera3D" parent="First-Person view/Player"]
+[node name="PlayerCam" type="Camera3D" parent="NavigationArea/First-Person view/Player"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45076, 0)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="First-Person view/Player/PlayerCam"]
+[node name="OmniLight3D" type="OmniLight3D" parent="NavigationArea/First-Person view/Player/PlayerCam"]
 
-[node name="3dHud" parent="First-Person view" instance=ExtResource("5_3f7cn")]
+[node name="3dHud" parent="NavigationArea/First-Person view" instance=ExtResource("5_3f7cn")]
 unique_name_in_owner = true
-
-[node name="NavigationArea" type="NavigationRegion3D" parent="."]
-navigation_mesh = SubResource("NavigationMesh_m00bm")
-navigation_layers = 8
 
 [node name="GridMap" type="GridMap" parent="NavigationArea"]
 unique_name_in_owner = true
@@ -162,17 +165,13 @@ metadata/_editor_floor_ = Vector3(0, -19, 0)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationArea"]
 transform = Transform3D(98.5637, 0, 0, 0, 1, 0, 0, 0, 171.665, 0, 0, 0)
 visible = false
+layers = 8
 mesh = SubResource("PlaneMesh_41fjk")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_abcw6")
 
 [node name="CrossbowTower" parent="NavigationArea" instance=ExtResource("1_ics7i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.27332, 1.90735e-06, -17.26)
-
-[node name="NavigationObstacle3D2" type="NavigationObstacle3D" parent="NavigationArea/CrossbowTower"]
-radius = 2.5
-affect_navigation_mesh = true
-carve_navigation_mesh = true
+transform = Transform3D(1.00293, 0, 0, 0, 1.00293, 0, 0, 0, 1.00293, 4.27332, 1.90735e-06, -17.26)
 
 [node name="Top-down view" type="Node" parent="."]
 
@@ -200,6 +199,8 @@ motion_mode = 1
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SpectatorCam"]
 shape = SubResource("CapsuleShape3D_m00bm")
 
+[node name="Enemy1" parent="." instance=ExtResource("13_n6pjd")]
+
 [node name="Enemy2" parent="." instance=ExtResource("13_r8v3n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9455, 1.26441, 29.5)
 
@@ -219,13 +220,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)
 
 [connection signal="end_buying" from="GameManager" to="Top-down view/2dHud" method="_on_game_manager_end_buying"]
-[connection signal="player_died" from="GameManager" to="First-Person view/3dHud" method="_on_game_manager_player_died"]
+[connection signal="player_died" from="GameManager" to="NavigationArea/First-Person view/3dHud" method="_on_game_manager_player_died"]
 [connection signal="update_gold" from="GameManager" to="Top-down view/2dHud" method="_on_game_manager_update_gold"]
-[connection signal="damaged_sig" from="Objective/Health" to="First-Person view/3dHud" method="_on_objective_damaged_sig"]
+[connection signal="damaged_sig" from="Objective/Health" to="NavigationArea/First-Person view/3dHud" method="_on_objective_damaged_sig"]
 [connection signal="damaged_sig" from="Objective/Health" to="Top-down view/2dHud" method="_on_objective_damaged_sig"]
-[connection signal="damaged_sig" from="First-Person view/Player/Health" to="First-Person view/3dHud" method="_on_health_damaged_sig"]
+[connection signal="damaged_sig" from="NavigationArea/First-Person view/Player/Health" to="NavigationArea/First-Person view/3dHud" method="_on_health_damaged_sig"]
 [connection signal="begin_buying" from="Top-down view/2dHud" to="GameManager" method="_on_d_hud_begin_buying"]
 [connection signal="end_buying" from="Top-down view/2dHud" to="GameManager" method="_on_d_hud_end_buying"]
 
 [editable path="Objective"]
-[editable path="First-Person view/Player"]
+[editable path="NavigationArea/First-Person view/Player"]

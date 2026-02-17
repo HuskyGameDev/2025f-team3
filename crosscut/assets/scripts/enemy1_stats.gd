@@ -28,11 +28,6 @@ func _ready() -> void:
 	get_tree().process_frame
 	get_tree().process_frame
 	nav_agent.process_mode = Node.PROCESS_MODE_INHERIT
-	
-	print("Enemy spawned at: ", global_position)
-	print("Objective found: ", obj)
-	if obj:
-		print("Objective position: ", obj.global_position)
 
 	has_target = true
 	target_pos = obj.global_position
@@ -81,26 +76,7 @@ func _physics_process(delta:=) -> void:
 		rotation.y = move_toward(rotation.y, target_rotation, delta * ROTATION_SPEED)
 		
 	move_and_slide()
-	#var direction: Vector3 = (obj.global_transform.origin - global_transform.origin)
-	#direction.y = 0
-	#var distance: float = direction.length()
-	#
-	#if not is_on_floor():
-		#velocity.y += GRAVITY * delta
-		#move_and_slide()
-	#
-	#if distance > 0 && is_on_floor():
-		#var move_dir: Vector3 = direction.normalized()
-		#velocity = move_dir * speed
-		#move_and_slide()
-	#
-		#var target_rotation: = Vector3(0, atan2(move_dir.x, move_dir.z), 0)
-		#rotation.y = lerp_angle(rotation.y, target_rotation.y, rotation_speed * delta)
-	#else:
-		#velocity = Vector3.ZERO
-		#move_and_slide()
-	#
-	#handle damaging player & objective
+	
 	if (Engine.get_physics_frames() % atk_cooldown == 0): #attack cooldown is based on delta % attack cooldown
 		for body: Node3D in in_contact_arr:
 			body.health.take_damage(atk)

@@ -16,6 +16,7 @@ material = SubResource("StandardMaterial3D_xd48f")
 size = Vector3(1.04517, 1, 1.04352)
 
 [node name="Enemy2" type="CharacterBody3D" groups=["enemy"]]
+collision_mask = 4
 script = ExtResource("1_3850e")
 
 [node name="Health" parent="." instance=ExtResource("2_bp46k")]
@@ -36,6 +37,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00524902, 0, -0.00601196)
 shape = SubResource("BoxShape3D_lvmi4")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+navigation_layers = 8
+debug_enabled = true
 
 [connection signal="killed_sig" from="Health" to="." method="_on_health_killed_sig"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
