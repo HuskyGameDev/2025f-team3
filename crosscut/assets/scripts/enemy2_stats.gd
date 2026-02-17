@@ -8,7 +8,7 @@ extends CharacterBody3D
 
 # exposing health node
 @onready var health: Node3D = $Health
-@onready var obj: Node3D = get_tree().get_nodes_in_group("player").front() #TODO: make this pick just the objective
+@onready var obj: Node3D = get_tree().get_nodes_in_group("objective").front() #TODO: make this pick just the objective
 
 #array to hold bodies in contact with enemy
 var in_contact_arr: Array[Node3D] = []
@@ -63,45 +63,45 @@ func _on_damage_area_body_exited(body: Node3D) -> void:
 const GRAVITY: int = -300
 
 
-func _physics_process(delta:=) -> void:
-	target_pos = obj.global_position
-	print("New Target is " + str(target_pos))
-	if has_target:
-		nav_agent.target_position = target_pos
-		var next_path_pos := nav_agent.get_next_path_position()
-		print(next_path_pos)
-		
-		var direction := global_position.direction_to(next_path_pos)
-		velocity = direction * speed
-		
-		var ROTATION_SPEED: float = rotation_speed
-		var target_rotation := direction.signed_angle_to(Vector3.MODEL_FRONT, Vector3.DOWN)
-		if abs(target_rotation - rotation.y) > deg_to_rad(60):
-			ROTATION_SPEED = 20
-		rotation.y = move_toward(rotation.y, target_rotation, delta * ROTATION_SPEED)
-		
-	move_and_slide()
-	
 #func _physics_process(delta:=) -> void:
+	#target_pos = obj.global_position
+	#print("New Target is " + str(target_pos))
 	#if has_target:
-		#if player_exist and player_exist.get_node("Health").health > 0:
-			#nav_agent.target_position = player_exist.global_position
-			#var next_path_pos := nav_agent.get_next_path_position()
-			#var direction := global_position.direction_to(next_path_pos)
-			#velocity = direction * speed
-		#else:
-			#nav_agent.target_position = target_pos
-			#var next_path_pos := nav_agent.get_next_path_position()
-			#var direction := global_position.direction_to(next_path_pos)
-			#velocity = direction * speed
+		#nav_agent.target_position = target_pos
+		#var next_path_pos := nav_agent.get_next_path_position()
+		#print(next_path_pos)
 		#
-			#var ROTATION_SPEED: float = rotation_speed
-			#var target_rotation := direction.signed_angle_to(Vector3.MODEL_FRONT, Vector3.DOWN)
-			#if abs(target_rotation - rotation.y) > deg_to_rad(60):
-				#ROTATION_SPEED = 20
-			#rotation.y = move_toward(rotation.y, target_rotation, delta * ROTATION_SPEED)
-	#
+		#var direction := global_position.direction_to(next_path_pos)
+		#velocity = direction * speed
+		#
+		#var ROTATION_SPEED: float = rotation_speed
+		#var target_rotation := direction.signed_angle_to(Vector3.MODEL_FRONT, Vector3.DOWN)
+		#if abs(target_rotation - rotation.y) > deg_to_rad(60):
+			#ROTATION_SPEED = 20
+		#rotation.y = move_toward(rotation.y, target_rotation, delta * ROTATION_SPEED)
+		#
 	#move_and_slide()
+	
+func _physics_process(delta:=) -> void:
+	if has_target:
+		if player_exist and player_exist.get_node("Health").health > 0:
+			nav_agent.target_position = player_exist.global_position
+			var next_path_pos := nav_agent.get_next_path_position()
+			var direction := global_position.direction_to(next_path_pos)
+			velocity = direction * speed
+		else:
+			nav_agent.target_position = target_pos
+			var next_path_pos := nav_agent.get_next_path_position()
+			var direction := global_position.direction_to(next_path_pos)
+			velocity = direction * speed
+		
+			var ROTATION_SPEED: float = rotation_speed
+			var target_rotation := direction.signed_angle_to(Vector3.MODEL_FRONT, Vector3.DOWN)
+			if abs(target_rotation - rotation.y) > deg_to_rad(60):
+				ROTATION_SPEED = 20
+			rotation.y = move_toward(rotation.y, target_rotation, delta * ROTATION_SPEED)
+	
+	move_and_slide()
 	
 	if (Engine.get_physics_frames() % atk_cooldown == 0): #attack cooldown is based on delta % attack cooldown
 		for body: Node3D in in_contact_arr:
