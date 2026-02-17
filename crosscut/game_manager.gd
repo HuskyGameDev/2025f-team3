@@ -101,24 +101,26 @@ func _input(event: InputEvent) -> void:
 	
 	if control_mode == ControlMode.TOPDOWN and event is InputEventMouseButton and event.pressed and event.button_index == 1:
 		var position: Vector3 = _get_mouse_position_on_board()
-		if buying_tower:
-			var bought_position: Vector3
-			var price: int = %"2dHud"._get_price(int(selected_tower))
-			
-			if gold >= price:
-				match selected_tower:
-					"0":
-						bought_position = grid_map.add_tower(crossbow_tower, position)
-					"1":
-						bought_position = grid_map.add_tower(cauldron_tower, position)
-				if bought_position.is_finite():
-					print(str("You just bought tower "), selected_tower)
-					gold -= %"2dHud"._get_price(int(selected_tower))
-					update_gold.emit(gold)
+		if (position.x >= -27 and position.x <= 27) and (position.z >= -27 and position.z <= 27):
+			print(position)
+			if buying_tower:
+				var bought_position: Vector3
+				var price: int = %"2dHud"._get_price(int(selected_tower))
+				
+				if gold >= price:
+					match selected_tower:
+						"0":
+							bought_position = grid_map.add_tower(crossbow_tower, position)
+						"1":
+							bought_position = grid_map.add_tower(cauldron_tower, position)
+					if bought_position.is_finite():
+						print(str("You just bought tower "), selected_tower)
+						gold -= %"2dHud"._get_price(int(selected_tower))
+						update_gold.emit(gold)
+					else:
+						print("Buying error: Cannot place tower")
 				else:
-					print("Buying error: Cannot place tower")
-			else:
-				print("Buying error: Not enough gold")
+					print("Buying error: Not enough gold")
 			
 	elif control_mode == ControlMode.TOPDOWN and event is InputEventMouseButton and event.pressed and event.button_index == 2:
 		var position: Vector3 = _get_mouse_position_on_board()

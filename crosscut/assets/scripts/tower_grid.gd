@@ -92,6 +92,7 @@ func add_tower(tower: PackedScene, pos: Vector3) -> Vector3:
 	towers[closest_pos] = new_tower
 	
 	navigationThing.bake_navigation_mesh()
+	print("I AM BAKING")
 	
 	return position
 
