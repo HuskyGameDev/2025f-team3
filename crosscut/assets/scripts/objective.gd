@@ -16,6 +16,11 @@ func _ready() -> void:
 		health.health = max_health
 	else:
 		push_error("Objective: Health component not found!")
+		
+func _process(delta: float) -> void:
+	if health.health <= 0:
+		objective_destroyed.emit()
+		health.health = 1 # To prevent an infinite loop
 
 func get_health() -> float:
 	# Returns current health - useful for UI
