@@ -13,7 +13,8 @@ size = Vector3(2.8, 7.5, 2.8)
 [node name="CauldronTower" type="StaticBody3D" groups=["tower"]]
 script = ExtResource("1_uoh5i")
 splash_radius_vision_offset = 2.0
-damage = 5.0
+damage = 4.0
+firing_speed = 2.0
 tower_Attack_Visual = ExtResource("2_vmgpg")
 
 [node name="Pivot" type="Node3D" parent="."]
@@ -32,7 +33,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.75, 0)
 [node name="bucket" parent="TowerHead" instance=ExtResource("3_uoh5i")]
 
 [node name="FiringTimer" type="Timer" parent="."]
-wait_time = 2.0
 one_shot = true
 
 [node name="AttackArea" type="Area3D" parent="." groups=["enemy"]]
