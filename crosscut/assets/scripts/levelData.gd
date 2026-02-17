@@ -8,19 +8,25 @@ static var DEFAULT_LEVELS: Array = [
 	[
 		# Wave 1
 		[
-			spawn(10, "test1", ["north"], 1),
+			spawn(10, "test1", ["north"], 0.3),
+			spawn(7, "test1", ["east"], 0.5),
 		],
 		# Wave 2
 		[
-			spawn(3, "test1", ["east"], 0.5)
+			spawn(9, "test1", ["west"], 0.3)
 		],
 	],
 	# Level 2
 	[
 		# Wave 1
 		[
-			spawn(3, "test1", ["south"], 0.5)
-		]
+			spawn(10, "test1", ["south", "north"], 0.1),
+			spawn(10, "test1", ["east", "west"], 0.1),
+		],
+		# Wave 2
+		[
+			spawn(20, "test1", ["east"], 0.2)
+		],
 	]
 ]
 
