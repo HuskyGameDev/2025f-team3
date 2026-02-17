@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ccy5pg6ws1kk4"]
+[gd_scene load_steps=26 format=3 uid="uid://ccy5pg6ws1kk4"]
 
 [ext_resource type="PackedScene" uid="uid://qwd7i00v37t2" path="res://assets/scenes/game_manager.tscn" id="1_21mu2"]
 [ext_resource type="PackedScene" uid="uid://x18icxf4xg6e" path="res://assets/scenes/player.tscn" id="1_41fjk"]
@@ -8,9 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://cgudj1wf88k62" path="res://assets/UI/pause_menu.tscn" id="4_1npq7"]
 [ext_resource type="PackedScene" uid="uid://dckpdofm2vrvg" path="res://assets/UI/3d_hud.tscn" id="5_3f7cn"]
 [ext_resource type="PackedScene" uid="uid://dlichn2b72vr7" path="res://assets/UI/2d_hud.tscn" id="6_22ejr"]
+[ext_resource type="PackedScene" uid="uid://b304tw4wnh0i1" path="res://assets/UI/game_over.tscn" id="8_n6pjd"]
 [ext_resource type="PackedScene" uid="uid://b5rhrfigqrejf" path="res://assets/scenes/spawn_library.tscn" id="10_m00bm"]
 [ext_resource type="Shader" uid="uid://blaja5xkgy2c5" path="res://assets/shaders/grass_map.gdshader" id="11_shader"]
-[ext_resource type="Texture2D" uid="uid://dquuj7674551w" path="res://assets/3D assets/rocky_terrain_02_diff_4k.jpg" id="12_texture"]
+[ext_resource type="Texture2D" uid="uid://b8hwevivbl2vb" path="res://assets/3D assets/rocky_terrain_02_diff_4k.jpg" id="12_texture"]
 [ext_resource type="PackedScene" uid="uid://t4rpgnwied1k" path="res://assets/scenes/myHero.tscn" id="15_v6yin"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vio1o"]
@@ -152,6 +153,9 @@ debug_color = Color(0, 0.6, 0.701961, 0.890196)
 
 [node name="PauseMenu" parent="." instance=ExtResource("4_1npq7")]
 process_mode = 3
+
+[node name="GameOver" parent="." instance=ExtResource("8_n6pjd")]
+unique_name_in_owner = true
 
 [node name="NavigationArea" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_m00bm")

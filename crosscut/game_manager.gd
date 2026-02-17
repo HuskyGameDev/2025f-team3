@@ -28,7 +28,7 @@ var buying_tower: = false
 var selected_tower: String
 signal end_buying
 
-var gold: int = 1000
+var gold: int = 200
 signal update_gold(value: int)
 
 @onready var grid_map: = %GridMap
@@ -206,11 +206,14 @@ func _connect_to_objective() -> void:
 
 func _on_objective_destroyed() -> void:
 	print("GAME OVER - OBJECTIVE DESTROYED!")
-	# Pause the game
+	# Pause the game and show game over UI
 	get_tree().paused = true
-	# TODO: Show game over screen UI
+	%"3dHud".visible = false
+	%"2dHud".visible = false
+	$"../PauseMenu".queue_free()
+	%GameOver.visible = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	# TODO: Stop enemy spawning
-	# For now, just print a message
 
 # Enables buying mode when you click Buy in the 2D HUD.
 func _on_d_hud_begin_buying(selected: String) -> void:

@@ -32,6 +32,7 @@ func startSpawning() -> void:
 		levelDone = true
 		print("Level ", currentLevelIndex, " completed!")
 		%"2dHud"._update_next_level_text(currentLevelIndex)
+		$"../GameManager"._change_gold(200)
 		$"../GameManager"._toggle_mode()
 	
 
