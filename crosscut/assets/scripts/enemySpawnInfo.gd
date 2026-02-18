@@ -4,7 +4,8 @@ var spawnPoints: Dictionary = {}
 
 var enemyList: Dictionary = {
 	"test1": preload("res://assets/scenes/Enemy1.tscn"),
-	"test2": preload("res://assets/scenes/Enemy2.tscn")
+	"test2": preload("res://assets/scenes/Enemy2.tscn"),
+	"test3": preload("res://assets/scenes/Enemy3.tscn")
 }
 
 var enemyCount: int = 0
