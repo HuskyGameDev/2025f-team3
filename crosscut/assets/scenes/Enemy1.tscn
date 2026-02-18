@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://r4htfwbqu2dl" path="res://assets/scripts/enemy1_stats.gd" id="1_wnmti"]
 [ext_resource type="Script" uid="uid://bksnh1nri3ati" path="res://assets/scenes/damage_area.gd" id="2_hknbf"]
 [ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="2_nrve6"]
-[ext_resource type="PackedScene" uid="uid://d2vwxfjd2rcsq" path="res://assets/3D assets/Goblin.glb" id="3_7adb0"]
+[ext_resource type="PackedScene" uid="uid://bglfwnu6lseeb" path="res://assets/3D assets/Goblin.glb" id="3_7adb0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mo1vv"]
 
@@ -13,6 +13,7 @@ size = Vector3(1.05298, 1.0473, 1.02148)
 [node name="Enemy1" type="CharacterBody3D" groups=["enemy"]]
 collision_mask = 4
 script = ExtResource("1_wnmti")
+speed = 3.3
 
 [node name="Health" parent="." instance=ExtResource("2_nrve6")]
 max_health = 30

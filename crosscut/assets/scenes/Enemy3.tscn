@@ -16,10 +16,12 @@ material = SubResource("StandardMaterial3D_4i0at")
 size = Vector3(1.0556, 1, 1.08734)
 
 [node name="Enemy3" type="CharacterBody3D" groups=["enemy"]]
+collision_mask = 4
 script = ExtResource("1_rram2")
+speed = 2.0
 
 [node name="Health" parent="." instance=ExtResource("2_ot5xq")]
-max_health = 100
+max_health = 300
 
 [node name="Pivot" type="Node3D" parent="."]
 
