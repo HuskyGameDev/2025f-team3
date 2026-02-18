@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" uid="uid://bo63nho4fqqub" path="res://assets/UI/2d_hud.gd" id="1_r3mer"]
 [ext_resource type="ButtonGroup" uid="uid://dgoxbso65ctny" path="res://assets/UI/tower_button_group.tres" id="2_q2cnw"]
-[ext_resource type="Texture2D" uid="uid://bj7nkebgabu2i" path="res://assets/UI/icons/crossbowtower.png" id="3_bkq4m"]
-[ext_resource type="Texture2D" uid="uid://b2wtjqy40thta" path="res://assets/UI/icons/crossbowtower selected.png" id="4_x7j0p"]
-[ext_resource type="Texture2D" uid="uid://bx1ul34tuvpkx" path="res://assets/UI/icons/crossbowtower hover.png" id="5_lfxb3"]
-[ext_resource type="Texture2D" uid="uid://g412d3xa78ih" path="res://assets/UI/icons/locked icon.png" id="6_m37x7"]
-[ext_resource type="Texture2D" uid="uid://b5sefhq3c5os5" path="res://assets/UI/icons/tower 1.png" id="6_rgo4r"]
-[ext_resource type="Texture2D" uid="uid://cvudq3jua4401" path="res://assets/UI/icons/gold.png" id="7_bkq4m"]
-[ext_resource type="Texture2D" uid="uid://d2wf4r7to1idh" path="res://assets/UI/icons/tower 1 selected.png" id="7_f1en0"]
-[ext_resource type="Texture2D" uid="uid://totq1vd5blq5" path="res://assets/UI/icons/tower 1 hover.png" id="8_hj2vv"]
-[ext_resource type="Texture2D" uid="uid://bv5o3hvvsrwsh" path="res://assets/UI/icons/health.png" id="11_rgo4r"]
+[ext_resource type="Texture2D" uid="uid://cwov8dykse5es" path="res://assets/UI/icons/crossbowtower.png" id="3_bkq4m"]
+[ext_resource type="Texture2D" uid="uid://8w50su20j7la" path="res://assets/UI/icons/crossbowtower selected.png" id="4_x7j0p"]
+[ext_resource type="Texture2D" uid="uid://ccmcnqoxgnng4" path="res://assets/UI/icons/crossbowtower hover.png" id="5_lfxb3"]
+[ext_resource type="Texture2D" uid="uid://dj52iftgicoog" path="res://assets/UI/icons/locked icon.png" id="6_m37x7"]
+[ext_resource type="Texture2D" uid="uid://cl0eo3l7jumuo" path="res://assets/UI/icons/tower 1.png" id="6_rgo4r"]
+[ext_resource type="Texture2D" uid="uid://cnpcb8nhfklb7" path="res://assets/UI/icons/gold.png" id="7_bkq4m"]
+[ext_resource type="Texture2D" uid="uid://caaxsx4japjnk" path="res://assets/UI/icons/tower 1 selected.png" id="7_f1en0"]
+[ext_resource type="Texture2D" uid="uid://dty4r81raxqke" path="res://assets/UI/icons/tower 1 hover.png" id="8_hj2vv"]
+[ext_resource type="Texture2D" uid="uid://d2d7vq4o6vtku" path="res://assets/UI/icons/health.png" id="11_rgo4r"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bkq4m"]
 font_size = 27
@@ -99,7 +99,6 @@ custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-disabled = true
 toggle_mode = true
 button_group = ExtResource("2_q2cnw")
 texture_normal = ExtResource("6_m37x7")

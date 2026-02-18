@@ -34,6 +34,7 @@ signal update_gold(value: int)
 @onready var grid_map: = %GridMap
 var crossbow_tower: = preload("res://assets/scenes/towers/crossbow_tower.tscn")
 var cauldron_tower: = preload("res://assets/scenes/towers/cauldron_tower.tscn")
+var ballista_tower: = preload("res://assets/scenes/towers/Ballista_tower.tscn")
 var highlight_tile_y: = preload("res://assets/scenes/highlight_tile_yellow.tscn")
 var highlight_tile_r: = preload("res://assets/scenes/highlight_tile_red.tscn")
 
@@ -113,6 +114,8 @@ func _input(event: InputEvent) -> void:
 							bought_position = grid_map.add_tower(crossbow_tower, position)
 						"1":
 							bought_position = grid_map.add_tower(cauldron_tower, position)
+						"2":
+							bought_position = grid_map.add_tower(ballista_tower, position)
 					if bought_position.is_finite():
 						print(str("You just bought tower "), selected_tower)
 						gold -= %"2dHud"._get_price(int(selected_tower))
@@ -133,6 +136,8 @@ func _input(event: InputEvent) -> void:
 				price = (%"2dHud"._get_price(int(0))) / 2
 			elif(tower.name.to_lower().contains("cauldron")):
 				price = (%"2dHud"._get_price(int(1))) / 2
+			elif(tower.name.to_lower().contains("ballista")):
+				price = (%"2dHud"._get_price(int(2))) / 2
 			if grid_map.remove_tower_at_position(position) != -1:
 				# Gain back half the cost of a tower when you sell it
 				# TODO: Determine the ID of the sold tower and subtract the corresponding price / 2
