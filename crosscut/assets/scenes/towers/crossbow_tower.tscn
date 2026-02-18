@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dy6py3ylmvkm5" path="res://assets/scripts/towers/crossbow_tower.gd" id="1_et1c7"]
 [ext_resource type="PackedScene" uid="uid://dw40cmtrt8qw0" path="res://assets/3D assets/tower.blend" id="2_30uou"]
 [ext_resource type="PackedScene" uid="uid://6eyynlw8urvy" path="res://assets/scenes/projectiles/crossbow_bolt.tscn" id="2_pqafd"]
-[ext_resource type="PackedScene" uid="uid://dgdes3bah2fep" path="res://assets/3D assets/Crossbow.blend" id="4_pqafd"]
+[ext_resource type="PackedScene" uid="uid://cr285eam1cjjx" path="res://assets/3D assets/Crossbow.blend" id="4_pqafd"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_pqafd"]
 height = 3.0

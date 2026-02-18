@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://dy6py3ylmvkm5" path="res://assets/scripts/towers/crossbow_tower.gd" id="1_wvwoq"]
 [ext_resource type="PackedScene" uid="uid://b2ppkux2l3rph" path="res://assets/scenes/projectiles/ballista_bolt.tscn" id="2_wvwoq"]
 [ext_resource type="PackedScene" uid="uid://dw40cmtrt8qw0" path="res://assets/3D assets/tower.blend" id="3_jxrch"]
-[ext_resource type="PackedScene" uid="uid://dgdes3bah2fep" path="res://assets/3D assets/Crossbow.blend" id="4_mo7ky"]
+[ext_resource type="PackedScene" uid="uid://cr285eam1cjjx" path="res://assets/3D assets/Crossbow.blend" id="4_mo7ky"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_chvo0"]
 size = Vector3(2.8, 1.93896, 2.8)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_et1c7"]
 
-[node name="CrossbowTower" type="StaticBody3D" groups=["tower"]]
+[node name="Ballistatower" type="StaticBody3D" groups=["tower"]]
 script = ExtResource("1_wvwoq")
 tower_turnspeed = 5.0
 targeting = 1
