@@ -8,6 +8,10 @@ var enemyList: Dictionary = {
 	"test3": preload("res://assets/scenes/Enemy3.tscn")
 }
 
+# values for spawn location variation
+var x_variation: float = 5.0
+var z_variation: float = 5.0
+
 var enemyCount: int = 0
 var enemyName: String = ""
 var locations: Array[String] = []
@@ -48,6 +52,9 @@ func spawn() -> void:
 			var enemyInstance: Object = enemyScene.instantiate()
 			get_tree().current_scene.call_deferred("add_child", enemyInstance)
 			var spawnPos: Vector3 = spawnPoints[locations[spawnLocationIndex]].global_position
+			# Add variation via randomness to x and z
+			spawnPos.x = spawnPos.x + (x_variation * randf() * ((randi() % 2) - 1))
+			spawnPos.z = spawnPos.z + (z_variation * randf() * ((randi() % 2) - 1))
 			enemyInstance.call_deferred("set_global_position", spawnPos)
 			enemyInstance.name = enemyName
 		
