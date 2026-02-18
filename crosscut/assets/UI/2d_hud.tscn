@@ -1,16 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://dlichn2b72vr7"]
+[gd_scene load_steps=16 format=3 uid="uid://dlichn2b72vr7"]
 
 [ext_resource type="Script" uid="uid://bo63nho4fqqub" path="res://assets/UI/2d_hud.gd" id="1_r3mer"]
 [ext_resource type="ButtonGroup" uid="uid://dgoxbso65ctny" path="res://assets/UI/tower_button_group.tres" id="2_q2cnw"]
-[ext_resource type="Texture2D" uid="uid://cwov8dykse5es" path="res://assets/UI/icons/crossbowtower.png" id="3_bkq4m"]
-[ext_resource type="Texture2D" uid="uid://8w50su20j7la" path="res://assets/UI/icons/crossbowtower selected.png" id="4_x7j0p"]
-[ext_resource type="Texture2D" uid="uid://ccmcnqoxgnng4" path="res://assets/UI/icons/crossbowtower hover.png" id="5_lfxb3"]
-[ext_resource type="Texture2D" uid="uid://dj52iftgicoog" path="res://assets/UI/icons/locked icon.png" id="6_m37x7"]
-[ext_resource type="Texture2D" uid="uid://cl0eo3l7jumuo" path="res://assets/UI/icons/tower 1.png" id="6_rgo4r"]
-[ext_resource type="Texture2D" uid="uid://cnpcb8nhfklb7" path="res://assets/UI/icons/gold.png" id="7_bkq4m"]
-[ext_resource type="Texture2D" uid="uid://caaxsx4japjnk" path="res://assets/UI/icons/tower 1 selected.png" id="7_f1en0"]
-[ext_resource type="Texture2D" uid="uid://dty4r81raxqke" path="res://assets/UI/icons/tower 1 hover.png" id="8_hj2vv"]
-[ext_resource type="Texture2D" uid="uid://d2d7vq4o6vtku" path="res://assets/UI/icons/health.png" id="11_rgo4r"]
+[ext_resource type="Texture2D" uid="uid://bj7nkebgabu2i" path="res://assets/UI/icons/crossbowtower.png" id="3_bkq4m"]
+[ext_resource type="Texture2D" uid="uid://b2wtjqy40thta" path="res://assets/UI/icons/crossbowtower selected.png" id="4_x7j0p"]
+[ext_resource type="Texture2D" uid="uid://bx1ul34tuvpkx" path="res://assets/UI/icons/crossbowtower hover.png" id="5_lfxb3"]
+[ext_resource type="Texture2D" uid="uid://c5mjyk5430n5v" path="res://assets/UI/icons/cauldrontower.png" id="6_bb804"]
+[ext_resource type="Texture2D" uid="uid://g412d3xa78ih" path="res://assets/UI/icons/locked icon.png" id="6_m37x7"]
+[ext_resource type="Texture2D" uid="uid://cvudq3jua4401" path="res://assets/UI/icons/gold.png" id="7_bkq4m"]
+[ext_resource type="Texture2D" uid="uid://cg7cvaikjwq23" path="res://assets/UI/icons/cauldrontower selected.png" id="7_sbfc4"]
+[ext_resource type="Texture2D" uid="uid://bgvscjulxyb2e" path="res://assets/UI/icons/cauldrontower hover.png" id="8_chh7u"]
+[ext_resource type="Texture2D" uid="uid://dw60ma1aep1bq" path="res://assets/UI/icons/ballistatower.png" id="9_yp5th"]
+[ext_resource type="Texture2D" uid="uid://0to1nal6lv3l" path="res://assets/UI/icons/ballistatower selected.png" id="10_qo30f"]
+[ext_resource type="Texture2D" uid="uid://blijnh2wwdf27" path="res://assets/UI/icons/ballistatower hover.png" id="11_06o27"]
+[ext_resource type="Texture2D" uid="uid://bv5o3hvvsrwsh" path="res://assets/UI/icons/health.png" id="11_rgo4r"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bkq4m"]
 font_size = 27
@@ -88,9 +91,9 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 toggle_mode = true
 button_group = ExtResource("2_q2cnw")
-texture_normal = ExtResource("6_rgo4r")
-texture_pressed = ExtResource("7_f1en0")
-texture_hover = ExtResource("8_hj2vv")
+texture_normal = ExtResource("6_bb804")
+texture_pressed = ExtResource("7_sbfc4")
+texture_hover = ExtResource("8_chh7u")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -101,7 +104,9 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 toggle_mode = true
 button_group = ExtResource("2_q2cnw")
-texture_normal = ExtResource("6_m37x7")
+texture_normal = ExtResource("9_yp5th")
+texture_pressed = ExtResource("10_qo30f")
+texture_hover = ExtResource("11_06o27")
 ignore_texture_size = true
 stretch_mode = 5
 
