@@ -46,6 +46,9 @@ func getCurrentLevel() -> Array:
 	return levelGenerator.generateLevel(currentLevelIndex)
 
 func startWave(waveInfo: Array) -> void:
+	
+	AudioManager.play_sfx("wave_start")
+	
 	totalEnemies = 0
 	aliveEnemies = 0
 	

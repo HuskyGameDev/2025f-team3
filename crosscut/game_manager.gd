@@ -117,6 +117,7 @@ func _input(event: InputEvent) -> void:
 						print(str("You just bought tower "), selected_tower)
 						gold -= %"2dHud"._get_price(int(selected_tower))
 						update_gold.emit(gold)
+						AudioManager.play_sfx("place_tower")
 					else:
 						print("Buying error: Cannot place tower")
 				else:
@@ -206,6 +207,10 @@ func _connect_to_objective() -> void:
 
 func _on_objective_destroyed() -> void:
 	print("GAME OVER - OBJECTIVE DESTROYED!")
+	# Play game over sound.
+	AudioManager.stop_music()
+	AudioManager.stop_sfx()
+	AudioManager.play_sfx("game_over")
 	# Pause the game and show game over UI
 	get_tree().paused = true
 	%"3dHud".visible = false

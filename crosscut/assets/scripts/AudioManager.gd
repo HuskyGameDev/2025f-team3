@@ -13,7 +13,14 @@ var master_volume:float = 1.0
 func _ready() -> void: 
 	for player in sfx_player: 
 		add_child(player)
+		player.process_mode = Node.PROCESS_MODE_ALWAYS
 	add_child(music_player)
+
+	sfx_dict["start_wave"] = preload("res://assets/audio/sfx/Wave Start/Wave Start.wav")
+
+	sfx_dict["game_over"] = preload("res://assets/audio/sfx/Game Over/Game Over.wav")
+
+	sfx_dict["place_tower"] = preload("res://assets/audio/sfx/Tower Placement/Tower Construction.wav")
 
 	sfx_dict["ui_click"] = preload("res://assets/audio/sfx/UI Button Click/UI Button Click.wav")
 	
@@ -21,7 +28,7 @@ func _ready() -> void:
 	var crossbow_rand := AudioStreamRandomizer.new() 
 	crossbow_rand.add_stream(0, preload("res://assets/audio/sfx/Crossbow/Crossbow Firing - 1.wav"), 1.0)
 	crossbow_rand.add_stream(1, preload("res://assets/audio/sfx/Crossbow/Crossbow Firing - 2.wav"), 1.0)
-	crossbow_rand.add_stream(3, preload("res://assets/audio/sfx/Crossbow/Crossbow Firing - 3.wav"), 1.0)
+	crossbow_rand.add_stream(2, preload("res://assets/audio/sfx/Crossbow/Crossbow Firing - 3.wav"), 1.0)
 	crossbow_rand.random_pitch = .05
 	sfx_dict["crossbow"] = crossbow_rand
 	
@@ -49,6 +56,8 @@ func _ready() -> void:
 	goblin_death_rand.random_pitch = .05
 	sfx_dict["goblin_death"] = goblin_death_rand
 	
+	#Music
+	
 	score_dict["menu"] = preload("res://assets/audio/music/Crosscut Main Theme Demo.mp3")
 	score_dict["placement"] = preload("res://assets/audio/music/Crosscut Placement Theme.mp3")
 	
@@ -60,12 +69,17 @@ func play_sfx(name: String) -> void:
 				player.play()
 				break
 
+func stop_sfx() -> void:
+	for player in sfx_player:
+		player.stop()
+
 func play_music(name: String) -> void:
 	if score_dict.has(name):
 		music_player.stream = score_dict[name]
 		music_player.play()
 
-
+func stop_music() -> void:
+	music_player.stop()
 # Divide by 100 because the HSlider uses a max of 100
 # Range for audio is 0-1.0
 
