@@ -31,7 +31,7 @@ var objective_health_width: float
 	4: [
 		"The crossbow tower fires arrows at the nearest enemy.",
 		"The cauldron tower pours down boiling oil onto surrounding enemies.",
-		"The ballista tower fires an inaccurate piercing bolt.",
+		"The ballista tower fires a piercing bolt at the furthest enemy.",
 		"This is tower 3. It's a tower. Yeah!"
 	],
 	# Price
