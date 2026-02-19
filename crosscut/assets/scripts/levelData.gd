@@ -8,6 +8,56 @@ static var DEFAULT_LEVELS: Array = [
 	[
 		# Wave 1
 		[
+			spawn(5, "test1", ["north"], 1)
+		],
+		# Wave 2
+		[
+			spawn(10, "test1", ["north"], 0.8)
+		]
+	],
+	# Level 2
+	[
+		# Wave 1
+		[
+			spawn(8, "test1", ["north","south"], 0.6)
+		],
+		# Wave 2
+		[
+			spawn(14, "test1", ["north","south"], 0.5)
+		]
+	],
+	# Level 3
+	[
+		# Wave 1
+		[
+			spawn(10, "test1", ["north"], 0.7),
+			spawn(3, "test2", ["south"], 5)
+		],
+		# Wave 2
+		[
+			spawn(20, "test1", ["north","south"], 0.4),
+			spawn(10, "test2", ["south"], 3)
+		]
+	],
+	# Level 4
+	[
+		# Wave 1
+		[
+			spawn(1, "test3", ["south"], 0.7),
+			spawn(10, "test1", ["north"], 0.6),
+			spawn(7, "test1", ["south"], 1.2)
+		],
+		# Wave 2
+		[
+			spawn(4, "test3", ["south"], 5),
+			spawn(15, "test1", ["north"], 0.6),
+			spawn(10, "test1", ["south"], 1.2)
+		]
+	],
+	# Level 5
+	[
+		# Wave 1
+		[
 			spawn(7, "test1", ["north"], 0.7)
 		],
 		# Wave 2
@@ -15,7 +65,7 @@ static var DEFAULT_LEVELS: Array = [
 			spawn(12, "test1", ["west","east"], 0.4)
 		]
 	],
-	# Level 2
+	# Level 6
 	[
 		# Wave 1
 		[
@@ -27,7 +77,7 @@ static var DEFAULT_LEVELS: Array = [
 			spawn(15, "test1", ["east"], 0.6)
 		]
 	],
-	# Level 3
+	# Level 7
 	[
 		# Wave 1
 		[
@@ -44,7 +94,7 @@ static var DEFAULT_LEVELS: Array = [
 			spawn(1, "test3", ["north"], 1.0)
 		]
 	],
-	# Level 4
+	# Level 8
 	[
 		# Wave 1
 		[
@@ -63,7 +113,7 @@ static var DEFAULT_LEVELS: Array = [
 			spawn(3, "test2", ["east"], 1.0)
 		]
 	],
-	# Level 5 - boss wave
+	# Level 9 - boss wave
 	[
 		# Wave 1
 		[
@@ -73,7 +123,7 @@ static var DEFAULT_LEVELS: Array = [
 			spawn(8, "test3", ["south", "north", "east", "west"], 0.5)
 		]
 	],
-	# Level 6
+	# Level 10
 	[
 		# Wave 1
 		[
@@ -96,7 +146,7 @@ static var DEFAULT_LEVELS: Array = [
 			spawn(31, "test1", ["east"], 0.01)
 		]
 	],
-	# Level 7
+	# Level 11
 	[
 		# Wave 1
 		[

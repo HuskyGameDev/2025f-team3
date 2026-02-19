@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b304tw4wnh0i1" path="res://assets/UI/game_over.tscn" id="8_n6pjd"]
 [ext_resource type="PackedScene" uid="uid://b5rhrfigqrejf" path="res://assets/scenes/spawn_library.tscn" id="10_m00bm"]
 [ext_resource type="Shader" uid="uid://blaja5xkgy2c5" path="res://assets/shaders/grass_map.gdshader" id="11_shader"]
-[ext_resource type="Texture2D" uid="uid://dsy23jl5fjgfs" path="res://assets/3D assets/rocky_terrain_02_diff_4k.jpg" id="12_texture"]
+[ext_resource type="Texture2D" uid="uid://dquuj7674551w" path="res://assets/3D assets/rocky_terrain_02_diff_4k.jpg" id="12_texture"]
 [ext_resource type="PackedScene" uid="uid://t4rpgnwied1k" path="res://assets/scenes/myHero.tscn" id="15_v6yin"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vio1o"]

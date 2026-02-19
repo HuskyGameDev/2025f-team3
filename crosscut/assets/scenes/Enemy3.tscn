@@ -10,7 +10,8 @@ albedo_color = Color(1, 1, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_2xnwa"]
 material = SubResource("StandardMaterial3D_4i0at")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_skmw1"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_swqku"]
+radius = 0.4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mkjcs"]
 size = Vector3(1.0556, 1, 1.08734)
@@ -29,7 +30,7 @@ max_health = 300
 mesh = SubResource("BoxMesh_2xnwa")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_skmw1")
+shape = SubResource("CylinderShape3D_swqku")
 
 [node name="DamageArea" type="Area3D" parent="."]
 script = ExtResource("3_fgdkg")

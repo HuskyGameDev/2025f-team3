@@ -1,9 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://24rx1xopqqrv"]
+[gd_scene load_steps=8 format=3 uid="uid://24rx1xopqqrv"]
 
 [ext_resource type="Script" uid="uid://gqm3f8mtgyof" path="res://assets/scripts/towers/cauldron_tower.gd" id="1_uoh5i"]
 [ext_resource type="PackedScene" uid="uid://dw40cmtrt8qw0" path="res://assets/3D assets/tower.blend" id="2_5vs04"]
 [ext_resource type="PackedScene" uid="uid://6ku42vxt6y3f" path="res://assets/scenes/projectiles/cauldron_splash.tscn" id="2_vmgpg"]
 [ext_resource type="PackedScene" uid="uid://dls216ngqyqkm" path="res://assets/3D assets/bucket.blend" id="3_uoh5i"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vmgpg"]
+height = 3.0
+radius = 1.9
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_chvo0"]
 size = Vector3(2.8, 7.5, 2.8)
@@ -11,10 +15,17 @@ size = Vector3(2.8, 7.5, 2.8)
 [sub_resource type="SphereShape3D" id="SphereShape3D_et1c7"]
 
 [node name="CauldronTower" type="StaticBody3D" groups=["tower"]]
+collision_layer = 5
+collision_mask = 5
 script = ExtResource("1_uoh5i")
 splash_radius_vision_offset = 2.0
-damage = 5.0
+damage = 29.0
+firing_speed = 5.0
 tower_Attack_Visual = ExtResource("2_vmgpg")
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38418e-07, 1.56957, 2.38418e-07)
+shape = SubResource("CylinderShape3D_vmgpg")
 
 [node name="Pivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31, 0, -1.31)
@@ -42,11 +53,6 @@ shape = SubResource("SphereShape3D_et1c7")
 debug_color = Color(0.918557, 0, 0.222529, 1)
 
 [node name="SplashSource" type="Node3D" parent="."]
-
-[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
-radius = 2.5
-affect_navigation_mesh = true
-carve_navigation_mesh = true
 
 [connection signal="timeout" from="FiringTimer" to="." method="_on_firing_timer_timeout"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
