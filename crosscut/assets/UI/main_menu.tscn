@@ -103,6 +103,7 @@ visible = false
 layout_mode = 2
 
 [node name="Credits" type="PanelContainer" parent="MainPanel"]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tdcik")
 
