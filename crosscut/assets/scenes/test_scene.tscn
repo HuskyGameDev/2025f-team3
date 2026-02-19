@@ -219,6 +219,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)
 [connection signal="damaged_sig" from="First-Person view/Player/Health" to="First-Person view/3dHud" method="_on_health_damaged_sig"]
 [connection signal="end_buying" from="GameManager" to="Top-down view/2dHud" method="_on_game_manager_end_buying"]
 [connection signal="player_died" from="GameManager" to="First-Person view/3dHud" method="_on_game_manager_player_died"]
+[connection signal="player_revived" from="GameManager" to="First-Person view/3dHud" method="_on_game_manager_player_revived"]
 [connection signal="update_gold" from="GameManager" to="Top-down view/2dHud" method="_on_game_manager_update_gold"]
 [connection signal="damaged_sig" from="Objective/Health" to="First-Person view/3dHud" method="_on_objective_damaged_sig"]
 [connection signal="damaged_sig" from="Objective/Health" to="Top-down view/2dHud" method="_on_objective_damaged_sig"]

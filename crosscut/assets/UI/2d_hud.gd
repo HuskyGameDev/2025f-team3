@@ -24,9 +24,9 @@ var objective_health_width: float
 	# Health
 	1: [20, 20, 20, 4],
 	# Damage
-	2: [15, 5, 25, 5],
+	2: [15, 4, 25, 5],
 	# Speed
-	3: [1.5, 1.0, 3.0, 6],
+	3: [1.5, 4, 3.0, 6],
 	# Description
 	4: [
 		"The crossbow tower fires arrows at the nearest enemy.",

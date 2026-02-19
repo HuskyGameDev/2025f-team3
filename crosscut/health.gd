@@ -8,6 +8,9 @@ signal killed_sig
 
 @onready var health: float = max_health
 
+func restore_health() -> void:
+	health = max_health
+
 func take_damage(damage: int) -> void:
 	if debug: print("Current health is ", health)
 	health -= damage

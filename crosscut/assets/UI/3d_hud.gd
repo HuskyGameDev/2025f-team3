@@ -74,3 +74,7 @@ func _on_objective_damaged_sig(_damage_taken: Variant, health_after_damage: Vari
 
 func _on_game_manager_player_died() -> void:
 	$DeadLabel.visible = true
+
+func _on_game_manager_player_revived() -> void:
+	$DeadLabel.visible = false
+	health = max_health

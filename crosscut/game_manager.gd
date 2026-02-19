@@ -15,6 +15,7 @@ const SPECTATOR_SPRINT_MULTIPLIER = 2.0
 const SPECTATOR_MOUSE_SENSITIVITY = 0.002
 var spectator_velocity: Vector3 = Vector3.ZERO
 signal player_died
+signal player_revived
 
 # Game state enums
 enum GameState { PRE_WAVE, WAVE_STARTING, DURING_WAVE }
@@ -186,18 +187,21 @@ func _toggle_mode() -> void:
 		top_down_HUD.show()
 	elif control_mode == ControlMode.TOPDOWN:
 		control_mode = ControlMode.PLAYER
-		
+
 		# Change controls
 		player.disabled = false
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		
+
 		# Change camera
 		first_person_camera.make_current()
-		
+
 		# Change huds
 		first_person_HUD.show()
 		grid_map.toggle_highlight()
 		top_down_HUD.hide()
+	elif control_mode == ControlMode.SPECTATOR:
+		# Player died - revive and go to top-down view
+		_switch_to_topdown_from_spectator()
 	print(control_mode)
 
 func _connect_to_objective() -> void:
@@ -303,6 +307,9 @@ func _switch_to_topdown_from_spectator() -> void:
 	print("Wave ended - Switching to top-down mode for tower placement")
 	control_mode = ControlMode.TOPDOWN
 
+	# Revive the player
+	_revive_player()
+
 	# Change controls
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
@@ -311,7 +318,24 @@ func _switch_to_topdown_from_spectator() -> void:
 
 	# Change HUDs
 	first_person_HUD.hide()
+	grid_map.toggle_highlight()
 	top_down_HUD.show()
+
+func _revive_player() -> void:
+	print("Reviving player!")
+
+	# Restore health
+	var health_node: = player.get_node_or_null("Health")
+	if health_node:
+		health_node.restore_health()
+
+	# Restore visibility and collision
+	player.visible = true
+	player.set_collision_layer_value(1, true)
+	player.set_collision_mask_value(1, true)
+
+	# Notify HUD to hide dead label and update health display
+	player_revived.emit()
 
 func _connect_to_player() -> void:
 	if player:
