@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3oy2gcplojiq"]
+[gd_scene load_steps=7 format=3 uid="uid://b3oy2gcplojiq"]
 
 [ext_resource type="Script" uid="uid://bc0h2ikfpg18h" path="res://assets/UI/main_menu.gd" id="1_tdcik"]
+[ext_resource type="Texture2D" uid="uid://ce355xw1m8gdc" path="res://assets/UI/icons/logo.png" id="2_g6pa2"]
+[ext_resource type="Texture2D" uid="uid://cxp8kr33wc5gw" path="res://assets/UI/icons/Screenshot 2026-02-18 191018blur.png" id="2_okjdd"]
 [ext_resource type="PackedScene" uid="uid://ikri6xa5ivlr" path="res://assets/UI/settings_menu.tscn" id="2_qsvht"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tdcik"]
@@ -23,6 +25,14 @@ corner_radius_bottom_left = 15
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_tdcik")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_okjdd")
+
 [node name="MainPanel" type="PanelContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,18 +47,26 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_tdcik")
 
 [node name="BoxContainer" type="BoxContainer" parent="MainPanel/MainMenu"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 15
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
 vertical = true
 
 [node name="Label" type="Label" parent="MainPanel/MainMenu/BoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 56
 text = "CrossCut"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MainPanel/MainMenu/BoxContainer"]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_g6pa2")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Play" type="Button" parent="MainPanel/MainMenu/BoxContainer"]
 layout_mode = 2
