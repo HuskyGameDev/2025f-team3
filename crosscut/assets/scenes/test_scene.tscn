@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b304tw4wnh0i1" path="res://assets/UI/game_over.tscn" id="8_n6pjd"]
 [ext_resource type="PackedScene" uid="uid://b5rhrfigqrejf" path="res://assets/scenes/spawn_library.tscn" id="10_m00bm"]
 [ext_resource type="Shader" uid="uid://blaja5xkgy2c5" path="res://assets/shaders/grass_map.gdshader" id="11_shader"]
-[ext_resource type="Texture2D" uid="uid://dsy23jl5fjgfs" path="res://assets/3D assets/rocky_terrain_02_diff_4k.jpg" id="12_texture"]
+[ext_resource type="Texture2D" uid="uid://ds4ec4lj4w2if" path="res://assets/3D assets/rocky_terrain_02_diff_4k.jpg" id="12_texture"]
 [ext_resource type="PackedScene" uid="uid://t4rpgnwied1k" path="res://assets/scenes/myHero.tscn" id="15_v6yin"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vio1o"]
@@ -219,6 +219,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)
 [connection signal="damaged_sig" from="First-Person view/Player/Health" to="First-Person view/3dHud" method="_on_health_damaged_sig"]
 [connection signal="end_buying" from="GameManager" to="Top-down view/2dHud" method="_on_game_manager_end_buying"]
 [connection signal="player_died" from="GameManager" to="First-Person view/3dHud" method="_on_game_manager_player_died"]
+[connection signal="player_revived" from="GameManager" to="First-Person view/3dHud" method="_on_game_manager_player_revived"]
 [connection signal="update_gold" from="GameManager" to="Top-down view/2dHud" method="_on_game_manager_update_gold"]
 [connection signal="damaged_sig" from="Objective/Health" to="First-Person view/3dHud" method="_on_objective_damaged_sig"]
 [connection signal="damaged_sig" from="Objective/Health" to="Top-down view/2dHud" method="_on_objective_damaged_sig"]
