@@ -103,7 +103,6 @@ visible = false
 layout_mode = 2
 
 [node name="Credits" type="PanelContainer" parent="MainPanel"]
-visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tdcik")
 
@@ -125,15 +124,18 @@ vertical_alignment = 1
 [node name="Label2" type="Label" parent="MainPanel/Credits/BoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 24
 text = "Evan Zimmermann - Team Leader
-Alex Symanzik - Tester
-Andrew Sadler - Programmer/Tester
-Caeden Kidd - 3D Artist
-Collin McFarland - UI Artist
-Ezra Crocker - Programmer
+Collin McFarland - Team Leader/UI Artist
+Alex Symanzik - Programmer
+Andrew Martin - Programmer
+Andrew Sadler - 3D Artist/Tester
 Kai Stack - Programmer
-Mason Connor - Programmer"
+Mason Connor - Programmer
+Nathan Brewer - Programmer
+Robert Phillips - Programmer
+Caeden Kidd - 3D Artist
+Ezra Crocker - Programmer"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -171,11 +173,9 @@ theme_override_font_sizes/font_size = 30
 text = "WASD: Move
 Space: Jump
 Mouse: Interact with menus
-X: Cancel tower buying
 Esc: Pause
 
 (Playtesting-only controls below)
-M: Switch perspectives
 G: Add 100 Gold (to test tower buying)"
 horizontal_alignment = 1
 vertical_alignment = 1

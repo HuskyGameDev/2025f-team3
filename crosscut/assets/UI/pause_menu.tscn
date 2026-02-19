@@ -79,7 +79,6 @@ text = "Quit"
 visible = false
 
 [node name="Controls" type="PanelContainer" parent="."]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -117,11 +116,9 @@ theme_override_font_sizes/font_size = 30
 text = "WASD: Move
 Space: Jump
 Mouse: Interact with menus
-X: Cancel tower buying
 Esc: Pause
 
 (Playtesting-only controls below)
-M: Switch perspectives
 G: Add 100 Gold (to test tower buying)"
 horizontal_alignment = 1
 vertical_alignment = 1
