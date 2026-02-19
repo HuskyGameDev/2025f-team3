@@ -1,7 +1,13 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=2 format=3 uid="uid://dcx3hhqd30an8"]
+[gd_resource type="Resource" script_class="GameWeaponData" load_steps=2 format=3 uid="uid://dcx3hhqd30an8"]
 
 [ext_resource type="Script" uid="uid://goo6xl8pqgqi" path="res://assets/scripts/weapon_data.gd" id="1_eeu5d"]
 
 [resource]
 script = ExtResource("1_eeu5d")
+name = ""
+type = 0
+cooldown = 0.19
+damage = 10.0
+range_m = 3.0
+attack_sounds = Array[AudioStream]([])
 metadata/_custom_type_script = "uid://goo6xl8pqgqi"

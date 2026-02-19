@@ -2,12 +2,23 @@ extends CharacterBody3D
 
 @onready var grid_map: Node3D = %GridMap
 
+
 # Exposing child health node to other scripts
 @onready var health: Node3D = $Health
 
 # Just here for spawning towers at player pos with keys. Keeping here for testing.
 #var crossbow_tower = preload("res://assets/scenes/towers/crossbow_tower.tscn")
 
+# For first person weapon, current default weapon
+@export var weapon_scene: PackedScene = preload("res://assets/scenes/Weapon.tscn")
+
+@export var starting_weapon: GameWeaponData = preload("res://assets/weapons/sword.tres")
+
+@export var in_round: bool = false
+
+@onready var weapon_socket: Node3D = $WeaponSocket
+
+var equipped_weapon: Weapon = null
 
 var disabled: bool = false
 
@@ -24,10 +35,28 @@ var mouse_sensitivity: float = 0.002
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	
 
+	
 func _input(event: InputEvent) -> void:
 	if disabled: 
 		return
+	
+	if in_round and event.is_action_pressed("Attack") and equipped_weapon != null:
+		var origin: Vector3 = global_position + Vector3(0, 1.0, 0)
+		var dir: Vector3 = -global_transform.basis.z
+		
+		# Mainly for testing
+		equipped_weapon.try_fire(origin, dir)
+		print("ATTACK TEST fired")
+
+	
+	#if event is InputEventKey and event.pressed:
+	#	print("Key pressed:", event.keycode)
+	
+	
+		
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * mouse_sensitivity)
 		$PlayerCam.rotate_x(-event.relative.y * mouse_sensitivity)
@@ -68,3 +97,39 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
+
+
+
+func equip_weapon(new_data: GameWeaponData) -> void:
+	# If something is equipped, replace it (or just return if you never swap)
+	if equipped_weapon != null:
+		
+		weapon_socket.remove_child(equipped_weapon)
+		
+		equipped_weapon.queue_free()
+		
+		equipped_weapon = null
+
+	var inst: Node = weapon_scene.instantiate()
+	
+	var w: Weapon = inst as Weapon
+	
+	if w == null:
+		
+		push_error("weapon_scene does not instance a Weapon node.")
+		
+		return
+
+	weapon_socket.add_child(w)
+	
+	w.transform = Transform3D.IDENTITY
+	
+	w.data = new_data
+	
+	equipped_weapon = w
+
+func ensure_equipped() -> void:
+	
+	if equipped_weapon == null:
+		
+		equip_weapon(starting_weapon)

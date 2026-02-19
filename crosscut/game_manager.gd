@@ -191,7 +191,11 @@ func _toggle_mode() -> void:
 		# Change controls
 		player.disabled = false
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
+		
+		# Ensure weapon is equipped
+		player.in_round = true
+		player.ensure_equipped()
+		
 		# Change camera
 		first_person_camera.make_current()
 
