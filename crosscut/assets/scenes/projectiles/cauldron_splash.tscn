@@ -15,7 +15,7 @@ material = SubResource("StandardMaterial3D_j1ttl")
 script = ExtResource("1_j1ttl")
 ticks_per_damage_tick = 10
 damage = 10
-splash_time = 0.5
+splash_time = 2.5
 
 [node name="SplashArea" type="Area3D" parent="."]
 
