@@ -12,10 +12,10 @@ func restore_health() -> void:
 	health = max_health
 
 func take_damage(damage: int) -> void:
-	print("Current health is ", health)
-	health = maxf(health - damage, 0)
+	if debug: print("Current health is ", health)
+	health -= damage
 	damaged_sig.emit(damage, health)
-	print("Health after damage: ", health, " (max: ", max_health, ")")
+	if debug: print("Health after damage: ", health, " (max: ", max_health, ")")
 	if health <= 0:
 		if debug: print("HEALTH ZERO - EMITTING KILLED SIGNAL for: ", get_parent().name)
 		killed_sig.emit()
