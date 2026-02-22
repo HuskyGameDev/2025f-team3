@@ -4,6 +4,7 @@ var tarPos: Vector3
 
 func _ready() -> void:
 	tarPos = target.global_position
+	tarPos.y += .4
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
