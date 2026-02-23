@@ -126,6 +126,7 @@ func _connect_to_spawnManager() -> void:
 		
 func _update_next_level_text(next_level: int) -> void:
 	$RightPanel/VBoxContainer/Label.text = str(next_level + 2)
+	%"3dHud"._update_level_number(next_level + 2)
 	
 func _on_objective_damaged(current_health: float, max_health: float) -> void:
 	objective_health = current_health

@@ -173,7 +173,8 @@ size_flags_vertical = 6
 theme_override_font_sizes/font_size = 30
 text = "WASD: Move
 Space: Jump
-Mouse: Interact with menus
+Left click: Place tower at cursor
+Right click: Sell tower at cursor
 Esc: Pause
 
 (Playtesting-only controls below)
