@@ -27,16 +27,18 @@ max_health = 300
 [node name="Pivot" type="Node3D" parent="."]
 
 [node name="ReplaceThisWithEnemy3Model" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("BoxMesh_2xnwa")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_swqku")
 
 [node name="DamageArea" type="Area3D" parent="."]
 script = ExtResource("3_fgdkg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00350952, 0, -0.0027771)
+transform = Transform3D(1, 0, 0, 0, 1.05, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_mkjcs")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
