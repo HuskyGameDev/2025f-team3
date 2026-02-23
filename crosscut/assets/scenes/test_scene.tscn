@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ccy5pg6ws1kk4"]
+[gd_scene load_steps=26 format=3 uid="uid://ccy5pg6ws1kk4"]
 
 [ext_resource type="PackedScene" uid="uid://qwd7i00v37t2" path="res://assets/scenes/game_manager.tscn" id="1_21mu2"]
 [ext_resource type="PackedScene" uid="uid://x18icxf4xg6e" path="res://assets/scenes/player.tscn" id="1_41fjk"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://dlichn2b72vr7" path="res://assets/UI/2d_hud.tscn" id="6_22ejr"]
 [ext_resource type="PackedScene" uid="uid://b304tw4wnh0i1" path="res://assets/UI/game_over.tscn" id="8_n6pjd"]
 [ext_resource type="PackedScene" uid="uid://b5rhrfigqrejf" path="res://assets/scenes/spawn_library.tscn" id="10_m00bm"]
-[ext_resource type="PackedScene" uid="uid://d4mi06tvmdmoe" path="res://assets/scenes/towers/crossbow_tower.tscn" id="11_kaujs"]
 [ext_resource type="Shader" uid="uid://blaja5xkgy2c5" path="res://assets/shaders/grass_map.gdshader" id="11_shader"]
 [ext_resource type="Texture2D" uid="uid://dquuj7674551w" path="res://assets/3D assets/rocky_terrain_02_diff_4k.jpg" id="12_texture"]
 [ext_resource type="PackedScene" uid="uid://t4rpgnwied1k" path="res://assets/scenes/myHero.tscn" id="15_v6yin"]
@@ -49,8 +48,8 @@ shader_parameter/grid_color = Color(0.1, 0.15, 0.05, 1)
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_m00bm"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_m00bm"]
-vertices = PackedVector3Array(-98.0637, 0.5, -1.66499, -26.8137, 0.5, -1.66499, -25.8137, 0.5, -2.41499, -98.0637, 0.5, -171.165, -23.5637, 0.5, -2.16499, -22.5637, 0.5, -0.164993, 98.1863, 0.5, -0.164993, 98.1863, 0.5, -171.165, -25.0637, 0.5, 2.58501, -25.0637, 0.5, 2.33501, -26.0637, 0.5, 2.33501, -26.3137, 0.5, 2.83501, -98.0637, 0.5, 6.58501, -27.3137, 0.5, 6.08501, -27.3137, 0.5, 3.83501, -27.3137, 0.5, 1.08501, -27.3137, 0.5, -1.16499, -26.8137, 0.5, 6.58501, -26.0637, 8.75, -0.914993, -26.0637, 8.75, 1.08501, -24.0637, 8.75, 1.08501, -24.0637, 8.75, -0.914993, -25.5637, 0.5, -0.414993, -25.5637, 0.5, 0.585007, -24.5637, 0.5, 0.585007, -24.5637, 0.5, -0.414993, -25.3137, 3.5, -0.164993, -25.3137, 3.5, 0.335007, -24.8137, 3.5, 0.335007, -24.8137, 3.5, -0.164993, -23.5637, 0.5, 2.83501, -23.5637, 0.5, 2.08501, -22.8137, 0.5, 1.33501, -22.5637, 0.5, 5.08501, 98.1863, 0.5, 5.08501, -26.0637, 8.75, 4.08501, -26.0637, 8.75, 6.08501, -24.0637, 8.75, 6.08501, -24.0637, 8.75, 4.08501, -25.5637, 0.5, 4.58501, -25.5637, 0.5, 5.58501, -24.5637, 0.5, 5.58501, -24.5637, 0.5, 4.58501, -25.3137, 3.5, 4.83501, -25.3137, 3.5, 5.33501, -24.8137, 3.5, 5.33501, -24.8137, 3.5, 4.83501, -26.0637, 0.5, 7.33501, -98.0637, 0.5, 171.085, -22.8137, 0.5, 6.33501, -24.0637, 0.5, 7.33501, 98.1863, 0.5, 171.085)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(6, 5, 4), PackedInt32Array(4, 2, 6), PackedInt32Array(6, 2, 7), PackedInt32Array(7, 2, 3), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(14, 13, 12), PackedInt32Array(11, 14, 10), PackedInt32Array(10, 14, 15), PackedInt32Array(15, 14, 12), PackedInt32Array(15, 12, 0), PackedInt32Array(0, 16, 15), PackedInt32Array(13, 17, 12), PackedInt32Array(0, 1, 16), PackedInt32Array(21, 20, 18), PackedInt32Array(18, 20, 19), PackedInt32Array(25, 24, 22), PackedInt32Array(22, 24, 23), PackedInt32Array(29, 28, 26), PackedInt32Array(26, 28, 27), PackedInt32Array(9, 31, 8), PackedInt32Array(8, 31, 30), PackedInt32Array(32, 5, 33), PackedInt32Array(33, 5, 6), PackedInt32Array(33, 6, 34), PackedInt32Array(31, 32, 30), PackedInt32Array(30, 32, 33), PackedInt32Array(38, 37, 35), PackedInt32Array(35, 37, 36), PackedInt32Array(42, 41, 39), PackedInt32Array(39, 41, 40), PackedInt32Array(46, 45, 43), PackedInt32Array(43, 45, 44), PackedInt32Array(17, 47, 12), PackedInt32Array(12, 47, 48), PackedInt32Array(34, 49, 33), PackedInt32Array(49, 34, 50), PackedInt32Array(50, 34, 51), PackedInt32Array(50, 51, 48), PackedInt32Array(48, 47, 50)]
+vertices = PackedVector3Array(-98.0637, 0.5, -171.165, -98.0637, 0.5, 171.085, 98.1863, 0.5, 171.085, 98.1863, 0.5, -171.165)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_41fjk"]
 
@@ -165,9 +164,6 @@ unique_name_in_owner = true
 navigation_mesh = SubResource("NavigationMesh_m00bm")
 navigation_layers = 8
 
-[node name="CrossbowTower2" parent="NavigationArea" instance=ExtResource("11_kaujs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 0)
-
 [node name="GridMap" type="GridMap" parent="NavigationArea"]
 unique_name_in_owner = true
 cell_size = Vector3(5, 5, 5)
@@ -181,9 +177,6 @@ layers = 8
 mesh = SubResource("PlaneMesh_41fjk")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_abcw6")
-
-[node name="CrossbowTower3" parent="NavigationArea" instance=ExtResource("11_kaujs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 5)
 
 [node name="Top-down view" type="Node" parent="."]
 
