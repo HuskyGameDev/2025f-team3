@@ -241,6 +241,26 @@ If your towers manage to defeat the remaining enemies, you will be revived and a
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="WaveStatus" type="Label" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -284.0
+offset_top = -99.0
+offset_right = 284.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 23
+text = "Wave ## complete. Beginning wave ## soon...
+This is a second line."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
 [node name="Crosshair" type="TextureRect" parent="."]
 anchors_preset = 8
 anchor_left = 0.5

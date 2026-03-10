@@ -208,16 +208,7 @@ theme_override_font_sizes/font_size = 16
 text = "999"
 horizontal_alignment = 2
 
-[node name="Description" type="Label" parent="LeftPanel/VBoxContainer"]
-custom_minimum_size = Vector2(1, 110)
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "Descriptions should be one long sentence or two short ones like these. Briefly describe what the tower does and why it's different."
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="Description2" type="Label" parent="LeftPanel/VBoxContainer"]
+[node name="PriceHeader" type="Label" parent="LeftPanel/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
@@ -247,6 +238,15 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 36
 text = "9999"
 horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Description" type="Label" parent="LeftPanel/VBoxContainer"]
+custom_minimum_size = Vector2(1, 110)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Descriptions should be one long sentence or two short ones like these. Briefly describe what the tower does and why it's different."
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Buy" type="Button" parent="LeftPanel/VBoxContainer"]
