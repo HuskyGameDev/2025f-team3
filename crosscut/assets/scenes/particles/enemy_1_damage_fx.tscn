@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqlc4fgsk26uq"]
+
+[ext_resource type="Texture2D" uid="uid://v53ox30drace" path="res://assets/WIP assets - REMOVE/wood_chip.png" id="1_5cjhu"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_amphg"]
+emission_shape = 1
+emission_sphere_radius = 2.0
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_max = 28.73
+gravity = Vector3(0, 0, 0)
+damping_max = 24.138
+color = Color(0.792157, 0, 0.0509804, 0.901961)
+turbulence_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x6hhb"]
+transparency = 1
+albedo_texture = ExtResource("1_5cjhu")
+albedo_texture_force_srgb = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_ysbjr"]
+material = SubResource("StandardMaterial3D_x6hhb")
+size = Vector2(0.2, 0.2)
+
+[node name="GPUParticles3D" type="GPUParticles3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.487471, 0)
+cast_shadow = 0
+emitting = false
+amount = 24
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_amphg")
+draw_pass_1 = SubResource("QuadMesh_ysbjr")
