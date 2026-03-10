@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://xg2jxg4h1xna"]
+[gd_scene load_steps=9 format=3 uid="uid://xg2jxg4h1xna"]
 
 [ext_resource type="Script" uid="uid://hjydycdj4n18" path="res://assets/scripts/enemy3_stats.gd" id="1_rram2"]
 [ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="2_ot5xq"]
 [ext_resource type="Script" uid="uid://bksnh1nri3ati" path="res://assets/scenes/damage_area.gd" id="3_fgdkg"]
+[ext_resource type="PackedScene" uid="uid://re87lfquiuv7" path="res://assets/scenes/particles/enemy_3_damage_fx.tscn" id="3_ok0ik"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4i0at"]
 albedo_color = Color(1, 1, 0, 1)
@@ -21,8 +22,11 @@ collision_mask = 4
 script = ExtResource("1_rram2")
 speed = 2.0
 
-[node name="Health" parent="." instance=ExtResource("2_ot5xq")]
+[node name="Health" parent="." node_paths=PackedStringArray("hitFX") instance=ExtResource("2_ot5xq")]
 max_health = 300
+hitFX = NodePath("GPUParticles3D")
+
+[node name="GPUParticles3D" parent="Health" instance=ExtResource("3_ok0ik")]
 
 [node name="Pivot" type="Node3D" parent="."]
 

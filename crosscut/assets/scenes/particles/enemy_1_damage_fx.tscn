@@ -11,7 +11,6 @@ spread = 180.0
 initial_velocity_max = 28.73
 gravity = Vector3(0, 0, 0)
 damping_max = 24.138
-color = Color(0.792157, 0, 0.0509804, 0.901961)
 turbulence_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x6hhb"]
@@ -19,7 +18,6 @@ transparency = 1
 albedo_texture = ExtResource("1_5cjhu")
 albedo_texture_force_srgb = true
 billboard_mode = 3
-billboard_keep_scale = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
