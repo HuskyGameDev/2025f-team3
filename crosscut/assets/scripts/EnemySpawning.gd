@@ -4,6 +4,7 @@ extends Node2D
 @onready var levelDelay: Timer = $LevelDelay
 @onready var waveDelay: Timer = $WaveDelay
 
+var currentLevel: Array
 var currentLevelIndex: int = -1
 var currentWaveIndex: int = 0
 var totalEnemies: int = 0
@@ -22,7 +23,7 @@ func _ready() -> void:
 	#startSpawning()
 
 func startSpawning() -> void:
-	var currentLevel: Array = getCurrentLevel()
+	currentLevel = getCurrentLevel()
 	
 	if currentWaveIndex < currentLevel.size():
 		var currentWave: Array = currentLevel[currentWaveIndex]
@@ -73,6 +74,11 @@ func killedEnemy() -> void:
 	
 	if aliveEnemies == 0 && doneSpawning:
 		print("All enemies killed, going to next wave")
+		if currentWaveIndex + 1 < currentLevel.size():
+			%"3dHud"/WaveStatus.text = str("Wave ", currentWaveIndex + 1, " complete. Beginning wave ", currentWaveIndex + 2, " soon...")
+		else:
+			%"3dHud"/WaveStatus.text = str("Final wave of level ", currentLevelIndex + 1 ," complete.\nReturning to tower placement soon...")
+		%"3dHud"/WaveStatus.visible = true
 		nextWave()
 
 func nextWave() -> void:
@@ -94,6 +100,7 @@ func _input(event: InputEvent) -> void:
 
 func _on_wave_delay_timeout() -> void:
 	print("Wave delay finished")
+	%"3dHud"/WaveStatus.visible = false
 	%"3dHud"._update_wave_number(currentWaveIndex + 1)
 	startSpawning()
 

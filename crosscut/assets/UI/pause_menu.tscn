@@ -79,6 +79,7 @@ text = "Quit"
 visible = false
 
 [node name="Controls" type="PanelContainer" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
