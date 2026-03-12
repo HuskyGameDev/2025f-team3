@@ -185,6 +185,10 @@ func _toggle_mode() -> void:
 		first_person_HUD.hide()
 		grid_map.toggle_highlight()
 		top_down_HUD.show()
+		
+		# Change music
+		AudioManager.play_music("placement")
+		
 	elif control_mode == ControlMode.TOPDOWN:
 		control_mode = ControlMode.PLAYER
 
@@ -203,6 +207,10 @@ func _toggle_mode() -> void:
 		first_person_HUD.show()
 		grid_map.toggle_highlight()
 		top_down_HUD.hide()
+		
+		# Change music
+		AudioManager.play_music("battle")
+		
 	elif control_mode == ControlMode.SPECTATOR:
 		# Player died - revive and go to top-down view
 		_switch_to_topdown_from_spectator()

@@ -27,3 +27,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_3qeih")
 
 [node name="WeaponSocket" type="Node3D" parent="."]
+
+[connection signal="damaged_sig" from="Health" to="." method="_on_health_damaged_sig"]

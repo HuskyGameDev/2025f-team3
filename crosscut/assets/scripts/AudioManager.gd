@@ -5,6 +5,7 @@ var sfx_dict := {}
 
 @onready var sfx_player: Array[AudioStreamPlayer] = [AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(),  AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new(), AudioStreamPlayer.new()]
 @onready var music_player := AudioStreamPlayer.new()
+@onready var music_player_2 := AudioStreamPlayer.new()
 
 var sfx_volume: float = 1.0
 var music_volume: float = 1.0
@@ -56,10 +57,25 @@ func _ready() -> void:
 	goblin_death_rand.random_pitch = .05
 	sfx_dict["goblin_death"] = goblin_death_rand
 	
+	# Player Hurt sounds
+	var player_hurt_rand := AudioStreamRandomizer.new()
+	player_hurt_rand.add_stream(0, preload("res://assets/audio/sfx/Player Hurt/Player Hurt 1.wav"), 1.0)
+	player_hurt_rand.add_stream(0, preload("res://assets/audio/sfx/Player Hurt/Player Hurt 2.wav"), 1.0)	
+	player_hurt_rand.add_stream(0, preload("res://assets/audio/sfx/Player Hurt/Player Hurt 3.wav"), 1.0)	
+	player_hurt_rand.add_stream(0, preload("res://assets/audio/sfx/Player Hurt/Player Hurt 4.wav"), 1.0)	
+	player_hurt_rand.add_stream(0, preload("res://assets/audio/sfx/Player Hurt/Player Hurt 5.wav"), 1.0)	
+	player_hurt_rand.add_stream(0, preload("res://assets/audio/sfx/Player Hurt/Player Hurt 6.wav"), 1.0)	
+	player_hurt_rand.add_stream(0, preload("res://assets/audio/sfx/Player Hurt/Player Hurt 7.wav"), 1.0)
+	player_hurt_rand.add_stream(0, preload("res://assets/audio/sfx/Player Hurt/Player Hurt 8.wav"), 1.0)
+	player_hurt_rand.random_pitch = .05
+	sfx_dict["player_hurt"]	= player_hurt_rand	
+	
 	#Music
 	
 	score_dict["menu"] = preload("res://assets/audio/music/Crosscut Main Theme Demo.mp3")
 	score_dict["placement"] = preload("res://assets/audio/music/Crosscut Placement Theme.mp3")
+	score_dict["battle"] = preload("res://assets/audio/music/Crosscut Battle Theme.mp3")
+
 	
 func play_sfx(name: String) -> void: 
 	if sfx_dict.has(name):
@@ -77,11 +93,12 @@ func play_music(name: String) -> void:
 	if score_dict.has(name):
 		music_player.stream = score_dict[name]
 		music_player.play()
-
+		
+		
 func stop_music() -> void:
 	music_player.stop()
-# Divide by 100 because the HSlider uses a max of 100
-# Range for audio is 0-1.0
+	music_player_2.stop()
+
 
 func update_volume(master_vol: float, music_vol: float, sfx_vol: float,) -> void:
 	master_volume = (master_vol/100)

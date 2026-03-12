@@ -133,3 +133,7 @@ func ensure_equipped() -> void:
 	if equipped_weapon == null:
 		
 		equip_weapon(starting_weapon)
+
+
+func _on_health_damaged_sig(damage_taken: int, health_after_damage: int) -> void:
+	AudioManager.play_sfx("player_hurt")
