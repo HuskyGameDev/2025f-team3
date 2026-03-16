@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://dy6py3ylmvkm5" path="res://assets/scripts/towers/crossbow_tower.gd" id="1_et1c7"]
 [ext_resource type="PackedScene" uid="uid://dw40cmtrt8qw0" path="res://assets/3D assets/tower.blend" id="2_30uou"]
 [ext_resource type="PackedScene" uid="uid://6eyynlw8urvy" path="res://assets/scenes/projectiles/crossbow_bolt.tscn" id="2_pqafd"]
-[ext_resource type="PackedScene" uid="uid://v2sr7dbr4dfi" path="res://assets/3D assets/Crossbow.blend" id="4_pqafd"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_pqafd"]
 height = 3.0
@@ -60,6 +59,9 @@ collision_mask = 5
 [node name="TowerBodyCollision" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19209e-07, 3.752, 1.19209e-07)
 shape = SubResource("BoxShape3D_chvo0")
+
+[node name="Health" parent="." instance=ExtResource("5_t0vpq")]
+max_health = 30
 
 [connection signal="timeout" from="IdleLookaroundTimer" to="." method="_on_idle_lookaround_timer_timeout"]
 [connection signal="timeout" from="FiringTimer" to="." method="_on_firing_timer_timeout"]

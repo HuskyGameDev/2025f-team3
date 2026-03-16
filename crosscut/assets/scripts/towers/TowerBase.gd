@@ -3,10 +3,6 @@ class_name Tower
 
 const debug = false
 
-# Health Settings
-@export var maxHealth: float = 20 
-@onready var Health: float = maxHealth
-
 # Attack settings
 @export var damage: float = 10
 @export var firing_speed: float = 1
@@ -23,6 +19,7 @@ enum TowerState {IDLE, Active}
 @onready var player: CharacterBody3D = get_tree().current_scene.find_child("Player")
 @onready var objective: Node3D = get_tree().current_scene.find_child("Objective")
 @onready var attack_area: Area3D = $AttackArea
+@onready var health: Node3D = $Health
 
 # Attack packed scene
 @export var tower_Attack_Visual: PackedScene
@@ -56,11 +53,3 @@ func _active_state() -> void:
 # Getters and setters
 func set_firing_speed(new_value: float) -> void:
 	firing_timer.wait_time = new_value
-
-func take_damage(_damage: float) -> void:
-	Health-=_damage
-	if(Health<=0):
-		queue_free()
-
-func repair() -> void:
-	Health += maxHealth * 0.5 
