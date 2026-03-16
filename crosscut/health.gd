@@ -16,7 +16,7 @@ func take_damage(damage: int) -> void:
 	if debug: print("Current health is ", health)
 	health -= damage
 	damaged_sig.emit(damage, health)
-	hitFX.restart() #display hit particle FX
+	#hitFX.restart() #display hit particle FX
 	if debug: print("Health after damage: ", health, " (max: ", max_health, ")")
 	if health <= 0:
 		if debug: print("HEALTH ZERO - EMITTING KILLED SIGNAL for: ", get_parent().name)
