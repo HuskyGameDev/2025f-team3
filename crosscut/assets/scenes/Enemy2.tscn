@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://128v07ijnbt2"]
+[gd_scene load_steps=9 format=3 uid="uid://128v07ijnbt2"]
 
 [ext_resource type="Script" uid="uid://t4fs3uasdc8w" path="res://assets/scripts/enemy2_stats.gd" id="1_3850e"]
 [ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="2_bp46k"]
 [ext_resource type="Script" uid="uid://bksnh1nri3ati" path="res://assets/scenes/damage_area.gd" id="3_e0lwv"]
+[ext_resource type="Texture2D" uid="uid://bv5o3hvvsrwsh" path="res://assets/UI/icons/health.png" id="4_oeo2h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xd48f"]
 albedo_color = Color(0, 1, 1, 1)
@@ -20,8 +21,11 @@ size = Vector3(1.04517, 1, 1.04352)
 collision_mask = 4
 script = ExtResource("1_3850e")
 
-[node name="Health" parent="." instance=ExtResource("2_bp46k")]
+[node name="Health" parent="." node_paths=PackedStringArray("healthBarL", "healthBarR") instance=ExtResource("2_bp46k")]
 max_health = 45
+healthBarL = NodePath("../HealthBar/HealthBarL")
+healthBarR = NodePath("../HealthBar/HealthBarR")
+has_health_bar = true
 
 [node name="Pivot" type="Node3D" parent="."]
 
@@ -42,6 +46,26 @@ shape = SubResource("BoxShape3D_lvmi4")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 navigation_layers = 8
 debug_enabled = true
+
+[node name="HealthBar" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.15, 0, 0, 0, 0.175, 0, 1.095, 0)
+
+[node name="HealthBarL" type="Sprite3D" parent="HealthBar"]
+centered = false
+offset = Vector2(-32, 0)
+billboard = 1
+texture = ExtResource("4_oeo2h")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 64)
+
+[node name="HealthBarR" type="Sprite3D" parent="HealthBar"]
+centered = false
+offset = Vector2(32, 0)
+modulate = Color(0.31, 0.31, 0.31, 1)
+billboard = 1
+texture = ExtResource("4_oeo2h")
+region_enabled = true
+region_rect = Rect2(0, 0, 0, 64)
 
 [connection signal="killed_sig" from="Health" to="." method="_on_health_killed_sig"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
