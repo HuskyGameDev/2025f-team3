@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://4brfnmssujli"]
+
+[ext_resource type="Texture2D" uid="uid://bb1lcm4xahn4" path="res://assets/3D assets/crown.png" id="1_t0qt5"]
+
+[node name="Crown" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+axis = 1
+billboard = 2
+texture = ExtResource("1_t0qt5")
