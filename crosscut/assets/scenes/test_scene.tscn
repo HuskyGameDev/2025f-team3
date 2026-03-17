@@ -86,7 +86,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45076, 0)
 [node name="OmniLight3D" type="OmniLight3D" parent="First-Person view/Player/PlayerCam"]
 
 [node name="Crown" parent="First-Person view/Player" instance=ExtResource("3_v6yin")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
 
 [node name="3dHud" parent="First-Person view" instance=ExtResource("5_3f7cn")]
 unique_name_in_owner = true
