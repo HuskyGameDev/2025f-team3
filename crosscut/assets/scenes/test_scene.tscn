@@ -1,10 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://ccy5pg6ws1kk4"]
+[gd_scene load_steps=28 format=3 uid="uid://ccy5pg6ws1kk4"]
 
 [ext_resource type="PackedScene" uid="uid://qwd7i00v37t2" path="res://assets/scenes/game_manager.tscn" id="1_21mu2"]
 [ext_resource type="PackedScene" uid="uid://x18icxf4xg6e" path="res://assets/scenes/player.tscn" id="1_41fjk"]
 [ext_resource type="Texture2D" uid="uid://cqedqgd8kybb0" path="res://assets/sky/DaySkyHDRI051B_2K-HDR.exr" id="1_376kr"]
 [ext_resource type="PackedScene" uid="uid://boly0jg6h7ff6" path="res://assets/scenes/particles/player_stab_attack_fx.tscn" id="2_kaujs"]
 [ext_resource type="PackedScene" uid="uid://c8vq7xm3p4r2a" path="res://assets/scenes/objective.tscn" id="2_objective"]
+[ext_resource type="PackedScene" uid="uid://4brfnmssujli" path="res://assets/scenes/player_crown.tscn" id="3_v6yin"]
 [ext_resource type="Script" uid="uid://by0kcrtjmydqp" path="res://assets/scripts/tower_grid.gd" id="3_vio1o"]
 [ext_resource type="PackedScene" uid="uid://cgudj1wf88k62" path="res://assets/UI/pause_menu.tscn" id="4_1npq7"]
 [ext_resource type="PackedScene" uid="uid://dckpdofm2vrvg" path="res://assets/UI/3d_hud.tscn" id="5_3f7cn"]
@@ -83,6 +84,9 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45076, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="First-Person view/Player/PlayerCam"]
+
+[node name="Crown" parent="First-Person view/Player" instance=ExtResource("3_v6yin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
 
 [node name="3dHud" parent="First-Person view" instance=ExtResource("5_3f7cn")]
 unique_name_in_owner = true
