@@ -14,6 +14,8 @@ extends CharacterBody3D
 
 @export var starting_weapon: GameWeaponData = preload("res://assets/weapons/sword.tres")
 
+@export var weapon_fx: GPUParticles3D
+
 @export var in_round: bool = false
 
 @onready var weapon_socket: Node3D = $WeaponSocket
@@ -46,10 +48,15 @@ func _input(event: InputEvent) -> void:
 	if in_round and event.is_action_pressed("Attack") and equipped_weapon != null:
 		var origin: Vector3 = global_position + Vector3(0, 1.0, 0)
 		var dir: Vector3 = -global_transform.basis.z
+		var can_attack: bool = false
 		
 		# Mainly for testing
-		equipped_weapon.try_fire(origin, dir)
+		can_attack = equipped_weapon.try_fire(origin, dir)
 		print("ATTACK TEST fired")
+		
+		#Attack Particle FX TODO: move this to the weapon
+		if can_attack:
+			weapon_fx.restart()
 
 	
 	#if event is InputEventKey and event.pressed:

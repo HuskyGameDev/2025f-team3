@@ -6,7 +6,7 @@
 script = ExtResource("1_eeu5d")
 name = ""
 type = 0
-cooldown = 0.19
+cooldown = 0.33
 damage = 10.0
 range_m = 3.0
 attack_sounds = Array[AudioStream]([])

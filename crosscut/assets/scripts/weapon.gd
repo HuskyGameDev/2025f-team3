@@ -12,18 +12,18 @@ func can_fire() -> bool:
 	
 	return Time.get_unix_time_from_system() >= _ready_time
 
-func try_fire(origin: Vector3, direction: Vector3) -> void:
+func try_fire(origin: Vector3, direction: Vector3) -> bool:
 	
 	if data == null:
 		
-		return
+		return false
 		
 	if not can_fire():
 		
-		return
+		return false
 
 	_ready_time = Time.get_unix_time_from_system() + data.cooldown
-
+	
 	match data.type:
 		
 		GameWeaponData.WeaponType.MELEE:
@@ -33,8 +33,10 @@ func try_fire(origin: Vector3, direction: Vector3) -> void:
 		GameWeaponData.WeaponType.BOW:
 			
 			_do_bow_hitscan(origin, direction)
-
+	
 	_play_random_attack_sound()
+	
+	return true
 
 func _do_melee(origin: Vector3, dir: Vector3) -> void:
 	
