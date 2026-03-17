@@ -24,6 +24,7 @@ speed = 2.0
 
 [node name="Health" parent="." node_paths=PackedStringArray("hitFX") instance=ExtResource("2_ot5xq")]
 max_health = 300
+has_particles = true
 hitFX = NodePath("GPUParticles3D")
 
 [node name="GPUParticles3D" parent="Health" instance=ExtResource("3_ok0ik")]

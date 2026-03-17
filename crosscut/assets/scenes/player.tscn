@@ -12,6 +12,7 @@
 script = ExtResource("1_nljuj")
 
 [node name="Health" parent="." node_paths=PackedStringArray("hitFX") instance=ExtResource("2_6ra0c")]
+has_particles = true
 hitFX = NodePath("GPUParticles3D")
 
 [node name="GPUParticles3D" parent="Health" instance=ExtResource("3_14505")]
