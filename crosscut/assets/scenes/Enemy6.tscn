@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://evcw5jxt1bwb"]
+
+[ext_resource type="Script" uid="uid://bc6quxucpigy5" path="res://assets/scripts/enemy6_stats.gd" id="1_fkpdm"]
+[ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="2_re45p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fkpdm"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_re45p"]
+material = SubResource("StandardMaterial3D_fkpdm")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kdqy7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xufq1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_trkud"]
+
+[node name="Enemy6" type="CharacterBody3D" groups=["enemy"]]
+script = ExtResource("1_fkpdm")
+
+[node name="Health" parent="." instance=ExtResource("2_re45p")]
+max_health = 70
+
+[node name="pivot" type="Node3D" parent="."]
+
+[node name="ReplaceThisWithEnemy6Model" type="MeshInstance3D" parent="pivot"]
+mesh = SubResource("BoxMesh_re45p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.05, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_kdqy7")
+
+[node name="DamageArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
+transform = Transform3D(1.05, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_xufq1")
+
+[node name="ExplodeArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExplodeArea"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("SphereShape3D_trkud")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[connection signal="killed_sig" from="Health" to="." method="_on_health_killed_sig"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]
+[connection signal="body_entered" from="ExplodeArea" to="." method="_on_explode_area_body_entered"]

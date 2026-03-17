@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bg6dnilvgidxj"]
+
+[ext_resource type="Script" uid="uid://3wn3ivyqoamt" path="res://assets/scripts/enemy_bolt.gd" id="1_vupke"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dqn4q"]
+
+[node name="enemy_bolt" type="Node3D"]
+script = ExtResource("1_vupke")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_dqn4q")
+
+[node name="Model" type="Node3D" parent="."]
