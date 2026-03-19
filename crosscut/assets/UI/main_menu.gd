@@ -9,23 +9,19 @@ func _on_play_pressed() -> void:
 
 func _on_settings_pressed() -> void:
 	AudioManager.play_sfx("ui_click")
-	$MainPanel/Settings.visible = true
+	%SettingsMenu.visible = true
 
 func _on_credits_pressed() -> void:
 	AudioManager.play_sfx("ui_click")
-	$MainPanel/Credits.visible = true
+	$Credits.visible = true
 
 func _on_back2_pressed() -> void:
 	AudioManager.play_sfx("ui_click")
-	$MainPanel/Credits.visible = false
+	$Credits.visible = false
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 
 func _on_controls_pressed() -> void:
 	AudioManager.play_sfx("ui_click")
-	$MainPanel/Controls.visible = true
-
-func _on_back3_pressed() -> void:
-	AudioManager.play_sfx("ui_click")
-	$MainPanel/Controls.visible = false
+	%Controls.visible = true

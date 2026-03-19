@@ -77,3 +77,9 @@ func _on_reset_pressed() -> void:
 	settings.save("res://assets/settings.cfg")
 	
 	AudioManager.play_sfx("ui_click")
+
+
+func _on_rebind_pressed() -> void:
+	AudioManager.play_sfx("ui_click")
+	visible = false
+	%Controls.visible = true

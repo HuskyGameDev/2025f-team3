@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b304tw4wnh0i1"]
+[gd_scene load_steps=6 format=3 uid="uid://b304tw4wnh0i1"]
 
 [ext_resource type="Script" uid="uid://d4msgcm60nnk1" path="res://assets/UI/game_over.gd" id="1_x3bbd"]
+[ext_resource type="StyleBox" uid="uid://5a8cxfqwxso4" path="res://assets/UI/buttonshover_stylebox.tres" id="2_8bqmm"]
+[ext_resource type="StyleBox" uid="uid://32wk4y14554e" path="res://assets/UI/buttons_stylebox.tres" id="2_bthgx"]
+[ext_resource type="StyleBox" uid="uid://bayafbaywjad0" path="res://assets/UI/buttonspress_stylebox.tres" id="3_qu5oj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_py84k"]
 font_size = 48
@@ -42,6 +45,9 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 36
+theme_override_styles/hover = ExtResource("2_8bqmm")
+theme_override_styles/pressed = ExtResource("3_qu5oj")
+theme_override_styles/normal = ExtResource("2_bthgx")
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

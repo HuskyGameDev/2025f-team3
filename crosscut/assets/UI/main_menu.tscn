@@ -1,9 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3oy2gcplojiq"]
+[gd_scene load_steps=14 format=3 uid="uid://b3oy2gcplojiq"]
 
 [ext_resource type="Script" uid="uid://bc0h2ikfpg18h" path="res://assets/UI/main_menu.gd" id="1_tdcik"]
 [ext_resource type="Texture2D" uid="uid://ce355xw1m8gdc" path="res://assets/UI/icons/logo.png" id="2_g6pa2"]
 [ext_resource type="Texture2D" uid="uid://cxp8kr33wc5gw" path="res://assets/UI/icons/Screenshot 2026-02-18 191018blur.png" id="2_okjdd"]
 [ext_resource type="PackedScene" uid="uid://ikri6xa5ivlr" path="res://assets/UI/settings_menu.tscn" id="2_qsvht"]
+[ext_resource type="StyleBox" uid="uid://di57b77ruqg1t" path="res://assets/UI/mainmenubuttons_stylebox.tres" id="4_4jisb"]
+[ext_resource type="StyleBox" uid="uid://ceh4ovb5wdy5s" path="res://assets/UI/mainmenubuttonshover_stylebox.tres" id="4_ahylr"]
+[ext_resource type="StyleBox" uid="uid://c76d1q4lkihhw" path="res://assets/UI/mainmenubuttonspress_stylebox.tres" id="5_t8dbu"]
+[ext_resource type="PackedScene" uid="uid://cejej7vi4ktb1" path="res://assets/UI/controls.tscn" id="5_uffa0"]
+[ext_resource type="StyleBox" uid="uid://5a8cxfqwxso4" path="res://assets/UI/buttonshover_stylebox.tres" id="7_hdv0t"]
+[ext_resource type="StyleBox" uid="uid://bayafbaywjad0" path="res://assets/UI/buttonspress_stylebox.tres" id="8_1td14"]
+[ext_resource type="StyleBox" uid="uid://32wk4y14554e" path="res://assets/UI/buttons_stylebox.tres" id="9_73vn6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tdcik"]
 content_margin_left = 120.0
@@ -72,49 +79,69 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = ExtResource("4_ahylr")
+theme_override_styles/pressed = ExtResource("5_t8dbu")
+theme_override_styles/normal = ExtResource("4_4jisb")
 text = "Play"
 
 [node name="Controls" type="Button" parent="MainPanel/MainMenu/BoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = ExtResource("4_ahylr")
+theme_override_styles/pressed = ExtResource("5_t8dbu")
+theme_override_styles/normal = ExtResource("4_4jisb")
 text = "Controls"
 
 [node name="Settings" type="Button" parent="MainPanel/MainMenu/BoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = ExtResource("4_ahylr")
+theme_override_styles/pressed = ExtResource("5_t8dbu")
+theme_override_styles/normal = ExtResource("4_4jisb")
 text = "Settings"
 
 [node name="Credits" type="Button" parent="MainPanel/MainMenu/BoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = ExtResource("4_ahylr")
+theme_override_styles/pressed = ExtResource("5_t8dbu")
+theme_override_styles/normal = ExtResource("4_4jisb")
 text = "Credits"
 
 [node name="Quit" type="Button" parent="MainPanel/MainMenu/BoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = ExtResource("4_ahylr")
+theme_override_styles/pressed = ExtResource("5_t8dbu")
+theme_override_styles/normal = ExtResource("4_4jisb")
 text = "Quit"
 
-[node name="Settings" parent="MainPanel" instance=ExtResource("2_qsvht")]
+[node name="Credits" type="PanelContainer" parent="."]
 visible = false
-layout_mode = 2
-
-[node name="Credits" type="PanelContainer" parent="MainPanel"]
-visible = false
-layout_mode = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -336.0
+offset_top = -328.0
+offset_right = 336.0
+offset_bottom = 328.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tdcik")
 
-[node name="BoxContainer" type="BoxContainer" parent="MainPanel/Credits"]
+[node name="BoxContainer" type="BoxContainer" parent="Credits"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 20
+size_flags_horizontal = 4
+theme_override_constants/separation = 40
 vertical = true
 
-[node name="Label" type="Label" parent="MainPanel/Credits/BoxContainer"]
+[node name="Label" type="Label" parent="Credits/BoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 56
@@ -122,14 +149,13 @@ text = "Credits"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="MainPanel/Credits/BoxContainer"]
+[node name="Label2" type="Label" parent="Credits/BoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 24
 text = "Evan Zimmermann - Team Leader
 Collin McFarland - Team Leader/UI Artist
 Alex Symanzik - Programmer
-Andrew Martin - Programmer
 Andrew Sadler - 3D Artist/Tester
 Kai Stack - Programmer
 Mason Connor - Programmer
@@ -140,59 +166,27 @@ Ezra Crocker - Programmer"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Back" type="Button" parent="MainPanel/Credits/BoxContainer"]
+[node name="Back" type="Button" parent="Credits/BoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = ExtResource("7_hdv0t")
+theme_override_styles/pressed = ExtResource("8_1td14")
+theme_override_styles/normal = ExtResource("9_73vn6")
 text = "Back
 "
 
-[node name="Controls" type="PanelContainer" parent="MainPanel"]
+[node name="Controls" parent="." instance=ExtResource("5_uffa0")]
+unique_name_in_owner = true
 visible = false
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_tdcik")
 
-[node name="BoxContainer" type="BoxContainer" parent="MainPanel/Controls"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 20
-vertical = true
-
-[node name="Label" type="Label" parent="MainPanel/Controls/BoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 56
-text = "Controls"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="MainPanel/Controls/BoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 30
-text = "WASD: Move
-Space: Jump
-Left click: Place tower at cursor
-Right click: Sell tower at cursor
-Esc: Pause
-
-(Playtesting-only controls below)
-G: Add 100 Gold (to test tower buying)"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Back" type="Button" parent="MainPanel/Controls/BoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 40
-text = "Back
-"
+[node name="SettingsMenu" parent="." instance=ExtResource("2_qsvht")]
+unique_name_in_owner = true
+visible = false
 
 [connection signal="pressed" from="MainPanel/MainMenu/BoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainPanel/MainMenu/BoxContainer/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="MainPanel/MainMenu/BoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MainPanel/MainMenu/BoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="MainPanel/MainMenu/BoxContainer/Quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="MainPanel/Credits/BoxContainer/Back" to="." method="_on_back2_pressed"]
-[connection signal="pressed" from="MainPanel/Controls/BoxContainer/Back" to="." method="_on_back3_pressed"]
+[connection signal="pressed" from="Credits/BoxContainer/Back" to="." method="_on_back2_pressed"]
