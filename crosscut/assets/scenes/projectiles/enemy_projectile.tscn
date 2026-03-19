@@ -3,23 +3,29 @@
 [ext_resource type="Script" uid="uid://wu17u6vseog0" path="res://assets/scripts/projectiles/enemy_projectile.gd" id="1_p0bp5"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ngvqf"]
+height = 1.2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pw2c1"]
+radius = 0.15
+height = 1.0
 
 [node name="Enemy_Projectile" type="Area3D"]
+collision_layer = 2
+collision_mask = 12
 script = ExtResource("1_p0bp5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, -3.27835e-08, -0.25, 0, 0.75, -1.09278e-08, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_ngvqf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_pw2c1")
 
-[node name="Timer" type="Timer" parent="MeshInstance3D/CollisionShape3D"]
+[node name="Timer" type="Timer" parent="CollisionShape3D"]
 wait_time = 5.0
 one_shot = true
 autostart = true
 
 [connection signal="body_entered" from="." to="." method="_on_Enemy_Projectile_body_entered"]
-[connection signal="timeout" from="MeshInstance3D/CollisionShape3D/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="CollisionShape3D/Timer" to="." method="_on_timer_timeout"]

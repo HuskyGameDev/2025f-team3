@@ -9,6 +9,8 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3qeih"]
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
+collision_layer = 9
+collision_mask = 3
 script = ExtResource("1_nljuj")
 
 [node name="Health" parent="." node_paths=PackedStringArray("hitFX") instance=ExtResource("2_6ra0c")]

@@ -4,6 +4,7 @@ extends CharacterBody3D
 @export var rotation_speed: float = 7
 @export var atk: float = 5
 @export var atk_cooldown: int = 50 # how many frames between damage ticks
+@export var firing_cooldown: int = 50 # how many frames between firing projectiles
 @export var Projectile := preload("res://assets/scenes/projectiles/enemy_projectile.tscn")
 
 # exposing health node
@@ -13,6 +14,9 @@ extends CharacterBody3D
 
 #array to hold bodies in contact with enemy
 var in_contact_arr: Array[Node3D] = []
+
+#array to hold bodies in range of enemy
+var in_range_arr: Array[Node3D] = []
 
 #flags for contact damage
 var in_contact_player: bool = false
@@ -27,8 +31,8 @@ var has_target: bool = false
 func _ready() -> void:
 	# did not let me use the nav_agent from the enemy1
 	#nav_agent.process_mode = Node.PROCESS_MODE_DISABLED
-	get_tree().process_frame
-	get_tree().process_frame
+	#get_tree().process_frame
+	#get_tree().process_frame
 	#nav_agent.process_mode = Node.PROCESS_MODE_INHERIT
 
 	has_target = true
@@ -40,7 +44,7 @@ func _input(event: InputEvent) -> void:
 		get_parent().get_node("SpawnLibrary").killedEnemy()
 		queue_free()
 
-# enemy attack based on cooldown
+# detect player or objective entering contact
 func _on_damage_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		in_contact_arr.append(body)
@@ -53,6 +57,21 @@ func _on_damage_area_body_exited(body: Node3D) -> void:
 		in_contact_arr.erase(body)
 	elif body.is_in_group("objective"):
 		in_contact_arr.erase(body)
+
+# detect player or objective entering AOE
+func _on_attack_area_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		in_range_arr.append(body)
+	elif body.is_in_group("objective"):
+		in_range_arr.append(body)
+
+# detect player or objective leaving AOE
+func _on_attack_area_body_exited(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		in_range_arr.erase(body)
+	elif body.is_in_group("objective"):
+		in_range_arr.erase(body)
+
 
 func shoot_target(target_global_position : Vector3) -> void:
 	var new_projectile := Projectile.instantiate()
@@ -67,7 +86,6 @@ const GRAVITY: int = -300
 
 func _physics_process(delta:=) -> void:
 	#Had to disable this part to test in the test_scene
-	"""
 	target_pos = obj.global_position
 	if has_target:
 		nav_agent.target_position = target_pos
@@ -81,19 +99,28 @@ func _physics_process(delta:=) -> void:
 		if abs(target_rotation - rotation.y) > deg_to_rad(60):
 			ROTATION_SPEED = 20
 		rotation.y = move_toward(rotation.y, target_rotation, delta * ROTATION_SPEED)
-	"""	
+		
 	move_and_slide()
 	
+	#contact damage
 	if (Engine.get_physics_frames() % atk_cooldown == 0): #attack cooldown is based on delta % attack cooldown
 		for body: Node3D in in_contact_arr:
-			if player_exist and player_exist.get_node("Health").health > 0:
-				if body.is_in_group("player"):
-					shoot_target(body.position)
-					body.health.take_damage(atk)
-			else:
-				if body.is_in_group("objective"):
-					shoot_target(body.position)
-					body.health.take_damage(atk)
+			body.health.take_damage(atk)
+		
+	if (Engine.get_physics_frames() % firing_cooldown == 0):
+		for body: Node3D in in_range_arr:
+			shoot_target(body.position)
+			break #Comment remove this to make it shoot at every valid target in range
+		
+		#for body: Node3D in in_contact_arr:
+			#if player_exist and player_exist.get_node("Health").health > 0:
+				#if body.is_in_group("player"):
+					#shoot_target(body.position)
+					#body.health.take_damage(atk)
+			#else:
+				#if body.is_in_group("objective"):
+					#shoot_target(body.position)
+					#body.health.take_damage(atk)
 
 func _on_health_killed_sig() -> void:
 	get_parent().get_node("SpawnLibrary").killedEnemy()
