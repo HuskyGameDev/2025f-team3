@@ -26,7 +26,7 @@ sky_material = SubResource("PanoramaSkyMaterial_vio1o")
 background_mode = 2
 sky = SubResource("Sky_1npq7")
 ambient_light_color = Color(1, 1, 1, 1)
-tonemap_mode = 2
+tonemap_mode = 1
 ssao_enabled = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_map"]
