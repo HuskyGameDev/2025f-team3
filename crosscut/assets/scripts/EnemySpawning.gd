@@ -1,6 +1,5 @@
 extends Node2D
 @onready var playerUI: CanvasLayer = %"3dHud"
-
 @onready var levelDelay: Timer = $LevelDelay
 @onready var waveDelay: Timer = $WaveDelay
 
@@ -58,11 +57,6 @@ func startWave(waveInfo: Array) -> void:
 			continue
 		add_child(enemy)
 		enemy.startSpawning()
-		totalEnemies += enemy.enemyCount
-		aliveEnemies += enemy.enemyCount
-	
-	playerUI._update_enemies_left(totalEnemies)
-	playerUI._update_enemies_killed(aliveEnemies)
 	
 	print("Wave started: ", totalEnemies, " total enemies, ", aliveEnemies, " alive enemies")
 	doneSpawning = true

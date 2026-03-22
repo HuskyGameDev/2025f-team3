@@ -6,6 +6,7 @@ extends CharacterBody3D
 @export var rotation_speed: float = 5
 @export var atk: float = 10
 @export var atk_cooldown: int = 20 # how many frames between damage ticks
+var killValue: int = 1
 
 @export var babyEnemy: PackedScene = preload("res://assets/scenes/Enemy1.tscn")
 @export var babyNum: int = 2
@@ -89,9 +90,17 @@ func _on_health_killed_sig() -> void:
 	queue_free()
 
 func split() -> void:
+	var spawnManager:Object = get_parent().get_node("SpawnLibrary")
+	print("Found Manager: " + spawnManager.name)
+	var playerUI:CanvasLayer = spawnManager.playerUI
+	print(playerUI)
 	for i in range(babyNum):
 		var splitChild: Node3D = babyEnemy.instantiate()
 		get_parent().add_child(splitChild)
 		var offset: Vector3 = Vector3(randf_range(-1,1), 0, randf_range(-1,1))
 		splitChild.global_position = global_position + offset
+		spawnManager.aliveEnemies += 1
+		spawnManager.totalEnemies += 1
+	playerUI._update_enemies_left(spawnManager.totalEnemies)
+	playerUI._update_enemies_killed(spawnManager.aliveEnemies)
 		

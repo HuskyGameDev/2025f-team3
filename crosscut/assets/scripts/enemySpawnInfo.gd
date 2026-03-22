@@ -1,14 +1,14 @@
 class_name EnemySpawnInfo extends Node
 
+var playerUI: CanvasLayer
+@onready var spawnManager:Object = get_parent()
 var spawnPoints: Dictionary = {}
 
 var enemyList: Dictionary = {
 	"test1": preload("res://assets/scenes/Enemy1.tscn"),
 	"test2": preload("res://assets/scenes/Enemy2.tscn"),
 	"test3": preload("res://assets/scenes/Enemy3.tscn"),
-	"test4": preload("res://assets/scenes/Enemy4.tscn"),
-	"test5": preload("res://assets/scenes/Enemy5.tscn"),
-	"test6": preload("res://assets/scenes/Enemy6.tscn")
+	"test4": preload("res://assets/scenes/Enemy4.tscn")
 }
 
 # values for spawn location variation
@@ -46,6 +46,8 @@ func startSpawning() -> void:
 		spawn()
 	
 func spawn() -> void:
+	playerUI = get_parent().playerUI
+	print(spawnManager)
 	if currentEnemyCount < enemyCount:
 		currentEnemyCount += 1
 		print("Spawning ", enemyList[enemyName], " at ", locations[spawnLocationIndex])
@@ -60,7 +62,11 @@ func spawn() -> void:
 			spawnPos.z = spawnPos.z + (z_variation * randf() * ((randi() % 2) - 1))
 			enemyInstance.call_deferred("set_global_position", spawnPos)
 			enemyInstance.name = enemyName
-		
+			spawnManager.aliveEnemies += 1
+			spawnManager.totalEnemies += 1
+			playerUI._update_enemies_left(spawnManager.totalEnemies)
+			playerUI._update_enemies_killed(spawnManager.aliveEnemies)
+			
 		spawnLocationIndex = (spawnLocationIndex + 1) % locations.size()
 		spawnTimer.start()
 	else:
