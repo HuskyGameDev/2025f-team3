@@ -1,21 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgudj1wf88k62"]
+[gd_scene load_steps=8 format=3 uid="uid://cgudj1wf88k62"]
 
 [ext_resource type="Script" uid="uid://dvyxhx8p1r272" path="res://assets/UI/pause_menu.gd" id="1_82k73"]
 [ext_resource type="PackedScene" uid="uid://ikri6xa5ivlr" path="res://assets/UI/settings_menu.tscn" id="2_6jc1k"]
+[ext_resource type="StyleBox" uid="uid://32wk4y14554e" path="res://assets/UI/buttons_stylebox.tres" id="2_6tv43"]
+[ext_resource type="StyleBox" uid="uid://5a8cxfqwxso4" path="res://assets/UI/buttonshover_stylebox.tres" id="2_m5rbs"]
+[ext_resource type="PackedScene" uid="uid://cejej7vi4ktb1" path="res://assets/UI/controls.tscn" id="3_cf4gc"]
+[ext_resource type="StyleBox" uid="uid://bayafbaywjad0" path="res://assets/UI/buttonspress_stylebox.tres" id="3_px2t2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_py84k"]
 font_size = 48
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jc1k"]
-content_margin_left = 20.0
-content_margin_top = 20.0
-content_margin_right = 20.0
-content_margin_bottom = 20.0
-bg_color = Color(0.099986, 0.099986, 0.099986, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 2
@@ -54,12 +47,18 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 36
+theme_override_styles/hover = ExtResource("2_m5rbs")
+theme_override_styles/pressed = ExtResource("3_px2t2")
+theme_override_styles/normal = ExtResource("2_6tv43")
 text = "Resume"
 
 [node name="Settings" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 36
+theme_override_styles/hover = ExtResource("2_m5rbs")
+theme_override_styles/pressed = ExtResource("3_px2t2")
+theme_override_styles/normal = ExtResource("2_6tv43")
 text = "Settings
 "
 
@@ -67,73 +66,29 @@ text = "Settings
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 36
+theme_override_styles/hover = ExtResource("2_m5rbs")
+theme_override_styles/pressed = ExtResource("3_px2t2")
+theme_override_styles/normal = ExtResource("2_6tv43")
 text = "Controls"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 36
+theme_override_styles/hover = ExtResource("2_m5rbs")
+theme_override_styles/pressed = ExtResource("3_px2t2")
+theme_override_styles/normal = ExtResource("2_6tv43")
 text = "Quit"
 
 [node name="SettingsMenu" parent="." instance=ExtResource("2_6jc1k")]
+unique_name_in_owner = true
 visible = false
 
-[node name="Controls" type="PanelContainer" parent="."]
+[node name="Controls" parent="." instance=ExtResource("3_cf4gc")]
+unique_name_in_owner = true
 visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -359.67
-offset_top = -282.587
-offset_right = 359.67
-offset_bottom = 282.587
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_6jc1k")
-
-[node name="BoxContainer" type="BoxContainer" parent="Controls"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 20
-vertical = true
-
-[node name="Label" type="Label" parent="Controls/BoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 56
-text = "Controls"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="Controls/BoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 30
-text = "WASD: Move
-Space: Jump
-Left click: Place tower at cursor
-Right click: Sell tower at cursor
-Esc: Pause
-
-(Playtesting-only controls below)
-G: Add 100 Gold (to test tower buying)"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Back" type="Button" parent="Controls/BoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 40
-text = "Back
-"
 
 [connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="Controls/BoxContainer/Back" to="." method="_on_back_pressed"]

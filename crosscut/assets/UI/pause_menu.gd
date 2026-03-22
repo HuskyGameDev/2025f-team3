@@ -10,14 +10,14 @@ func _on_resume_pressed() -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED # Only return to mouse camera controls if not in 2D
 
 func _on_settings_pressed() -> void:
-	$SettingsMenu.visible = true
+	%SettingsMenu.visible = true
 
 func _on_quit_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://assets/scenes/main_menu_scene.tscn")
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Pause"):
+	if event.is_action_pressed("Pause") and %Controls.visible == false:
 		if get_tree().paused == false:
 			show()
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -29,7 +29,4 @@ func _input(event: InputEvent) -> void:
 				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _on_controls_pressed() -> void:
-	$Controls.visible = true
-
-func _on_back_pressed() -> void:
-	$Controls.visible = false
+	%Controls.visible = true

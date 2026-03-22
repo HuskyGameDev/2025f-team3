@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://ikri6xa5ivlr"]
+[gd_scene load_steps=6 format=3 uid="uid://ikri6xa5ivlr"]
 
 [ext_resource type="StyleBox" uid="uid://dk1dg8em3lxgg" path="res://assets/UI/settings_menu_stylebox.tres" id="1_v7x8l"]
 [ext_resource type="Script" uid="uid://dqir6wj0tysun" path="res://assets/UI/settings_menu.gd" id="2_8oaw2"]
+[ext_resource type="StyleBox" uid="uid://32wk4y14554e" path="res://assets/UI/buttons_stylebox.tres" id="3_2j0bd"]
+[ext_resource type="StyleBox" uid="uid://5a8cxfqwxso4" path="res://assets/UI/buttonshover_stylebox.tres" id="3_8vi67"]
+[ext_resource type="StyleBox" uid="uid://bayafbaywjad0" path="res://assets/UI/buttonspress_stylebox.tres" id="4_6kg4x"]
 
 [node name="SettingsMenu" type="PanelContainer"]
 anchors_preset = 8
@@ -21,7 +24,7 @@ script = ExtResource("2_8oaw2")
 [node name="BoxContainer" type="BoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/separation = 60
+theme_override_constants/separation = 30
 vertical = true
 
 [node name="Label" type="Label" parent="BoxContainer"]
@@ -34,6 +37,7 @@ vertical_alignment = 1
 
 [node name="MainVolume" type="HBoxContainer" parent="BoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 40
 
 [node name="Label" type="Label" parent="BoxContainer/MainVolume"]
@@ -54,6 +58,7 @@ ticks_on_borders = true
 
 [node name="MusicVolume" type="HBoxContainer" parent="BoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 40
 
 [node name="Label" type="Label" parent="BoxContainer/MusicVolume"]
@@ -74,6 +79,7 @@ ticks_on_borders = true
 
 [node name="SFXVolume" type="HBoxContainer" parent="BoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="BoxContainer/SFXVolume"]
@@ -94,13 +100,29 @@ ticks_on_borders = true
 
 [node name="Reset" type="Button" parent="BoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = ExtResource("3_8vi67")
+theme_override_styles/pressed = ExtResource("4_6kg4x")
+theme_override_styles/normal = ExtResource("3_2j0bd")
 text = "Reset to Defaults"
+
+[node name="Rebind" type="Button" parent="BoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = ExtResource("3_8vi67")
+theme_override_styles/pressed = ExtResource("4_6kg4x")
+theme_override_styles/normal = ExtResource("3_2j0bd")
+text = "Rebind controls"
 
 [node name="Back" type="Button" parent="BoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = ExtResource("3_8vi67")
+theme_override_styles/pressed = ExtResource("4_6kg4x")
+theme_override_styles/normal = ExtResource("3_2j0bd")
 text = "Back
 "
 
@@ -108,4 +130,5 @@ text = "Back
 [connection signal="value_changed" from="BoxContainer/MusicVolume/HSlider" to="." method="_on_h_slider_value_changed_music"]
 [connection signal="value_changed" from="BoxContainer/SFXVolume/HSlider" to="." method="_on_h_slider_value_changed_sfx"]
 [connection signal="pressed" from="BoxContainer/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="BoxContainer/Rebind" to="." method="_on_rebind_pressed"]
 [connection signal="pressed" from="BoxContainer/Back" to="." method="_on_back_pressed"]

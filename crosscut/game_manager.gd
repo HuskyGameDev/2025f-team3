@@ -101,7 +101,7 @@ func _input(event: InputEvent) -> void:
 		var position: Vector3 = _get_mouse_position_on_board()
 		grid_map.highlight_tile(highlight_tile_y, highlight_tile_r, position)
 	
-	if control_mode == ControlMode.TOPDOWN and event is InputEventMouseButton and event.pressed and event.button_index == 1:
+	if control_mode == ControlMode.TOPDOWN and event.is_action_pressed("Place"):
 		var position: Vector3 = _get_mouse_position_on_board()
 		if (position.x >= -27 and position.x <= 27) and (position.z >= -27 and position.z <= 27):
 			print(position)
@@ -127,7 +127,7 @@ func _input(event: InputEvent) -> void:
 				else:
 					print("Buying error: Not enough gold")
 			
-	elif control_mode == ControlMode.TOPDOWN and event is InputEventMouseButton and event.pressed and event.button_index == 2:
+	elif control_mode == ControlMode.TOPDOWN and event.is_action_pressed("Sell"):
 		var position: Vector3 = _get_mouse_position_on_board()
 		var price: int = 50
 		var tower: Tower = grid_map.get_tower_at_position(position)
@@ -146,11 +146,6 @@ func _input(event: InputEvent) -> void:
 				update_gold.emit(gold)
 		else:
 			print("Selling error")
-			
-	if event.is_action_pressed("Cancel"):
-		print("Buying cancelled")
-		buying_tower = false
-		end_buying.emit()
 		
 	if event.is_action_pressed("Test2"):
 		_change_gold(100)

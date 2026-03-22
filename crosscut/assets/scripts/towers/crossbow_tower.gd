@@ -23,7 +23,7 @@ func _process(_delta: float) -> void:
 	if (tower_look_desired.normalized().is_zero_approx()):
 		return
 	var look_direction: Basis = Basis.looking_at(tower_look_desired.normalized())
-	tower_head.transform.basis = tower_head.transform.basis.slerp(look_direction, tower_turnspeed*_delta)
+	tower_head.transform.basis = tower_head.transform.basis.orthonormalized().slerp(look_direction, tower_turnspeed*_delta)
 
 # Idle state:
 #	Maybe look around in random directions every couple seconds
