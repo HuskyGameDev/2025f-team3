@@ -21,6 +21,9 @@ var in_contact_objective: bool = false
 
 var target_pos: Vector3
 var has_target: bool = false
+
+var alreadyDied: bool = false
+
 func _ready() -> void:
 	has_target = true
 	target_pos = obj.position
@@ -69,5 +72,9 @@ func _physics_process(delta:=) -> void:
 
 func _on_health_killed_sig() -> void:
 	AudioManager.play_sfx("goblin_death")
-	get_parent().get_node("SpawnLibrary").killedEnemy()
+	
+	if !alreadyDied:
+		alreadyDied = true
+		get_parent().get_node("SpawnLibrary").killedEnemy()
+		
 	queue_free()
