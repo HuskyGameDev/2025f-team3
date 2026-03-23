@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://j8fven75hqdi"]
+
+[ext_resource type="PackedScene" uid="uid://dls216ngqyqkm" path="res://assets/3D assets/bucket.blend" id="1_n8klc"]
+[ext_resource type="Material" uid="uid://mvw57xm7qvaa" path="res://assets/shaders/bucket_material.tres" id="2_sr6l3"]
+
+[node name="bucket" instance=ExtResource("1_n8klc")]
+
+[node name="Plane" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_sr6l3")
+
+[node name="Cylinder" parent="." index="1"]
+surface_material_override/0 = ExtResource("2_sr6l3")
+
+[node name="Circle_001" parent="." index="2"]
+surface_material_override/0 = ExtResource("2_sr6l3")
+
+[node name="Circle" parent="." index="3"]
+surface_material_override/0 = ExtResource("2_sr6l3")
