@@ -2,12 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bc6quxucpigy5" path="res://assets/scripts/enemy6_stats.gd" id="1_fkpdm"]
 [ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="2_re45p"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fkpdm"]
-albedo_color = Color(1, 0, 1, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_re45p"]
-material = SubResource("StandardMaterial3D_fkpdm")
+[ext_resource type="PackedScene" uid="uid://bc80jf58vpley" path="res://assets/3D assets/TNTEnemy.glb" id="3_re45p"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kdqy7"]
 
@@ -23,8 +18,7 @@ max_health = 70
 
 [node name="pivot" type="Node3D" parent="."]
 
-[node name="ReplaceThisWithEnemy6Model" type="MeshInstance3D" parent="pivot"]
-mesh = SubResource("BoxMesh_re45p")
+[node name="TNTEnemy" parent="pivot" instance=ExtResource("3_re45p")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.05, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
