@@ -12,6 +12,7 @@ uniform float map_size : hint_range(10.0, 500.0) = 100.0;      // match PlaneMes
 uniform float grid_opacity : hint_range(0.0, 1.0) = 0.5;
 uniform float line_width : hint_range(0.01, 2.0) = 0.1;         // world units (meters)
 uniform vec4 grid_color : source_color = vec4(0.1, 0.15, 0.05, 1.0);
+uniform float brightness : hint_range(0.1, 2.0) = 0.5;
 
 vec2 hash(vec2 p) {
 	p = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));
@@ -51,5 +52,5 @@ void fragment() {
 	// On an edge if either axis is within line_width of the cell border
 	float is_edge = max(step(edge.x, line_width), step(edge.y, line_width));
 
-	ALBEDO = mix(grass, grid_color.rgb, is_edge * grid_opacity);
+	ALBEDO = mix(grass * brightness, grid_color.rgb, is_edge * grid_opacity);
 }
