@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b2ppkux2l3rph"]
 
 [ext_resource type="Script" uid="uid://bcdutwbssjy3m" path="res://assets/scripts/projectiles/piercing_projectile.gd" id="1_2ybqr"]
-[ext_resource type="PackedScene" uid="uid://bmb0x3h0wr7ni" path="res://assets/3D assets/arrow.blend" id="2_4yi8s"]
+[ext_resource type="PackedScene" uid="uid://brrw7s6m6ah3t" path="res://assets/3D assets/arrow.blend" id="2_4yi8s"]
 [ext_resource type="PackedScene" uid="uid://du8xiwshasr60" path="res://assets/scenes/particles/bolt_trail.tscn" id="3_4yi8s"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_thkk1"]

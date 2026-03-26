@@ -6,14 +6,18 @@
 [sub_resource type="BoxMesh" id="BoxMesh_m3v3g"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_chvo0"]
-size = Vector3(2.8, 8.6095, 2.8)
+size = Vector3(2.8, 8.69928, 2.8)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_et1c7"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_vqfyx"]
 
 [node name="Wall" type="StaticBody3D" groups=["tower"]]
+collision_layer = 5
 script = ExtResource("1_lyect")
 damage = 0.0
 firing_speed = 0.0
+
+[node name="Health" parent="." instance=ExtResource("2_m3v3g")]
+max_health = 30
 
 [node name="Pivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31, 0, -1.31)
@@ -23,7 +27,7 @@ transform = Transform3D(2.51, 0, 0, 0, 8.33, 0, 0, 0, 2.51, -1.36919, 4.18442, 1
 mesh = SubResource("BoxMesh_m3v3g")
 
 [node name="TowerBodyCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19209e-07, 4.30675, 1.19209e-07)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19209e-07, 4.26186, 1.19209e-07)
 shape = SubResource("BoxShape3D_chvo0")
 
 [node name="TowerHead" type="Node3D" parent="."]
@@ -35,20 +39,18 @@ autostart = true
 [node name="FiringTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="SplashSource" type="Node3D" parent="."]
+
 [node name="AttackArea" type="Area3D" parent="." groups=["enemy"]]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 
 [node name="AttackShape" type="CollisionShape3D" parent="AttackArea"]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
-shape = SubResource("SphereShape3D_et1c7")
+shape = SubResource("BoxShape3D_vqfyx")
 debug_color = Color(0.918557, 0, 0.222529, 1)
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
-radius = 2.5
-affect_navigation_mesh = true
-carve_navigation_mesh = true
-
-[node name="Health" parent="." instance=ExtResource("2_m3v3g")]
-max_health = 30
+height = 0.0
+avoidance_enabled = false
 
 [connection signal="timeout" from="IdleLookaroundTimer" to="." method="_on_idle_lookaround_timer_timeout"]
 [connection signal="timeout" from="FiringTimer" to="." method="_on_firing_timer_timeout"]

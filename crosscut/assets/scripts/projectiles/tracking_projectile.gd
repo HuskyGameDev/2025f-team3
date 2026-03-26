@@ -12,7 +12,8 @@ func _process(delta: float) -> void:
 	global_position = global_position.move_toward(target.global_position, speed*delta)
 		
 	# Look at target
-	look_at(target.global_position)
+	if !global_position.is_equal_approx(target.global_position):
+		look_at(target.global_position)
 	
 	# Handle collision
 	if global_position.distance_to(target.global_position) < 0.5:
