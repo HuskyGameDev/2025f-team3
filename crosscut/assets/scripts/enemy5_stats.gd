@@ -50,12 +50,16 @@ func _on_damage_area_body_entered(body: Node3D) -> void:
 		in_contact_arr.append(body)
 	elif body.is_in_group("objective"):
 		in_contact_arr.append(body)
+	elif body.is_in_group("wall"):
+		in_contact_arr.append(body)
 
 # detect player or objective leaving contact
 func _on_damage_area_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		in_contact_arr.erase(body)
 	elif body.is_in_group("objective"):
+		in_contact_arr.erase(body)
+	elif body.is_in_group("wall"):
 		in_contact_arr.erase(body)
 
 # detect player or objective entering AOE
@@ -64,12 +68,16 @@ func _on_attack_area_body_entered(body: Node3D) -> void:
 		in_range_arr.append(body)
 	elif body.is_in_group("objective"):
 		in_range_arr.append(body)
+	elif body.is_in_group("wall"):
+		in_range_arr.append(body)
 
 # detect player or objective leaving AOE
 func _on_attack_area_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		in_range_arr.erase(body)
 	elif body.is_in_group("objective"):
+		in_range_arr.erase(body)
+	elif body.is_in_group("wall"):
 		in_range_arr.erase(body)
 
 

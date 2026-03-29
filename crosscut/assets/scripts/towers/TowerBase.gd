@@ -53,3 +53,6 @@ func _active_state() -> void:
 # Getters and setters
 func set_firing_speed(new_value: float) -> void:
 	firing_timer.wait_time = new_value
+
+func _on_health_killed_sig() -> void:
+	queue_free()
