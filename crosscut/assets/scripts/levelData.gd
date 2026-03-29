@@ -1,9 +1,9 @@
 class_name LevelData extends Resource
 
-static func spawn(count: int, enemy: String, locations: Array[String], delay: float) -> EnemySpawnInfo:
+func spawn(count: int, enemy: String, locations: Array[String], delay: float) -> EnemySpawnInfo:
 	return preload("res://assets/scripts/enemySpawnInfo.gd").new(count, enemy, locations, delay)
 
-static var DEFAULT_LEVELS: Array = [
+var DEFAULT_LEVELS: Array = [
 	# Level 1
 	[
 		# Wave 1
@@ -168,7 +168,7 @@ static var DEFAULT_LEVELS: Array = [
 	],
 ]
 
-static func getDefaultLevel(levelIndex: int) -> Array:
+func getDefaultLevel(levelIndex: int) -> Array:
 	if levelIndex < DEFAULT_LEVELS.size():
 		return DEFAULT_LEVELS[levelIndex]
 	else:

@@ -12,11 +12,13 @@ var doneSpawning: bool = false
 var levelDone: bool = false
 
 var levelGenerator: LevelGenerator
+var levelData: LevelData
 
 func _ready() -> void:
 	currentLevelIndex = -1
 	currentWaveIndex = 0
 	levelGenerator = LevelGenerator.new()
+	levelData = LevelData.new()
 	add_child(levelGenerator)
 	
 	#startSpawning()
@@ -37,7 +39,7 @@ func startSpawning() -> void:
 	
 
 func getCurrentLevel() -> Array:
-	var presetLevel: Array = LevelData.getDefaultLevel(currentLevelIndex)
+	var presetLevel: Array = levelData.getDefaultLevel(currentLevelIndex)
 	if not presetLevel.is_empty():
 		print("Using premade level ", currentLevelIndex)
 		return presetLevel
@@ -103,4 +105,4 @@ func _on_level_delay_timeout() -> void:
 	startSpawning()
 	
 func _get_next_level_size() -> int:
-	return LevelData.getDefaultLevel(currentLevelIndex + 1).size()
+	return levelData.getDefaultLevel(currentLevelIndex + 1).size()

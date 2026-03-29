@@ -27,7 +27,6 @@ var game_state: = GameState.DURING_WAVE
 
 var buying_tower: = false
 var selected_tower: String
-signal end_buying
 
 var gold: int = 250
 signal update_gold(value: int)

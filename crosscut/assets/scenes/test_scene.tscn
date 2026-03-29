@@ -1,9 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://ccy5pg6ws1kk4"]
+[gd_scene load_steps=29 format=3 uid="uid://ccy5pg6ws1kk4"]
 
 [ext_resource type="PackedScene" uid="uid://qwd7i00v37t2" path="res://assets/scenes/game_manager.tscn" id="1_21mu2"]
 [ext_resource type="PackedScene" uid="uid://x18icxf4xg6e" path="res://assets/scenes/player.tscn" id="1_41fjk"]
 [ext_resource type="Texture2D" uid="uid://cqedqgd8kybb0" path="res://assets/sky/DaySkyHDRI051B_2K-HDR.exr" id="1_376kr"]
-[ext_resource type="PackedScene" uid="uid://boly0jg6h7ff6" path="res://assets/scenes/particles/player_stab_attack_fx.tscn" id="2_kaujs"]
+[ext_resource type="PackedScene" path="res://assets/scenes/particles/player_stab_attack_fx.tscn" id="2_kaujs"]
 [ext_resource type="PackedScene" uid="uid://c8vq7xm3p4r2a" path="res://assets/scenes/objective.tscn" id="2_objective"]
 [ext_resource type="PackedScene" uid="uid://4brfnmssujli" path="res://assets/scenes/player_crown.tscn" id="3_v6yin"]
 [ext_resource type="Script" uid="uid://by0kcrtjmydqp" path="res://assets/scripts/tower_grid.gd" id="3_vio1o"]
@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b304tw4wnh0i1" path="res://assets/UI/game_over.tscn" id="8_n6pjd"]
 [ext_resource type="PackedScene" uid="uid://b5rhrfigqrejf" path="res://assets/scenes/spawn_library.tscn" id="10_m00bm"]
 [ext_resource type="Shader" uid="uid://blaja5xkgy2c5" path="res://assets/shaders/grass_map.gdshader" id="11_shader"]
-[ext_resource type="Texture2D" uid="uid://ds4ec4lj4w2if" path="res://assets/3D assets/rocky_terrain_02_diff_4k.jpg" id="12_texture"]
+[ext_resource type="Texture2D" uid="uid://b8hwevivbl2vb" path="res://assets/3D assets/rocky_terrain_02_diff_4k.jpg" id="12_texture"]
 [ext_resource type="PackedScene" uid="uid://t4rpgnwied1k" path="res://assets/scenes/myHero.tscn" id="15_v6yin"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vio1o"]
@@ -59,6 +59,9 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 albedo_color = Color(0.281187, 0.281187, 0.281187, 1)
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_21mu2"]
+allow_unpress = true
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_v6yin"]
 allow_unpress = true
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m00bm"]
@@ -162,12 +165,6 @@ collision_layer = 2
 shape = SubResource("WorldBoundaryShape3D_m00bm")
 debug_color = Color(0, 0.6, 0.701961, 0.890196)
 
-[node name="PauseMenu" parent="." instance=ExtResource("4_1npq7")]
-process_mode = 3
-
-[node name="GameOver" parent="." instance=ExtResource("8_n6pjd")]
-unique_name_in_owner = true
-
 [node name="NavigationArea" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_m00bm")
 navigation_layers = 8
@@ -202,6 +199,13 @@ collision_mask = 15
 [node name="2dHud" parent="Top-down view" instance=ExtResource("6_22ejr")]
 unique_name_in_owner = true
 button_group = SubResource("ButtonGroup_21mu2")
+weapon_button_group = SubResource("ButtonGroup_v6yin")
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_1npq7")]
+process_mode = 3
+
+[node name="GameOver" parent="." instance=ExtResource("8_n6pjd")]
+unique_name_in_owner = true
 
 [node name="SpectatorCam" type="CharacterBody3D" parent="."]
 unique_name_in_owner = true
@@ -225,7 +229,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)
 
 [connection signal="damaged_sig" from="First-Person view/Player/Health" to="First-Person view/3dHud" method="_on_health_damaged_sig"]
-[connection signal="end_buying" from="GameManager" to="Top-down view/2dHud" method="_on_game_manager_end_buying"]
 [connection signal="player_died" from="GameManager" to="First-Person view/3dHud" method="_on_game_manager_player_died"]
 [connection signal="player_revived" from="GameManager" to="First-Person view/3dHud" method="_on_game_manager_player_revived"]
 [connection signal="update_gold" from="GameManager" to="Top-down view/2dHud" method="_on_game_manager_update_gold"]

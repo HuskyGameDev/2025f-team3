@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://dlichn2b72vr7"]
+[gd_scene load_steps=22 format=3 uid="uid://dlichn2b72vr7"]
 
 [ext_resource type="Script" uid="uid://bo63nho4fqqub" path="res://assets/UI/2d_hud.gd" id="1_r3mer"]
 [ext_resource type="ButtonGroup" uid="uid://dgoxbso65ctny" path="res://assets/UI/tower_button_group.tres" id="2_q2cnw"]
 [ext_resource type="Texture2D" uid="uid://bj7nkebgabu2i" path="res://assets/UI/icons/crossbowtower.png" id="3_bkq4m"]
+[ext_resource type="Texture2D" uid="uid://ct3d8lycp6w01" path="res://assets/UI/icons/arrow.png" id="3_qo30f"]
 [ext_resource type="Texture2D" uid="uid://b2wtjqy40thta" path="res://assets/UI/icons/crossbowtower selected.png" id="4_x7j0p"]
 [ext_resource type="Texture2D" uid="uid://bx1ul34tuvpkx" path="res://assets/UI/icons/crossbowtower hover.png" id="5_lfxb3"]
 [ext_resource type="Texture2D" uid="uid://c5mjyk5430n5v" path="res://assets/UI/icons/cauldrontower.png" id="6_bb804"]
@@ -16,7 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://bv5o3hvvsrwsh" path="res://assets/UI/icons/health.png" id="11_rgo4r"]
 [ext_resource type="StyleBox" uid="uid://32wk4y14554e" path="res://assets/UI/buttons_stylebox.tres" id="14_sbfc4"]
 [ext_resource type="StyleBox" uid="uid://5a8cxfqwxso4" path="res://assets/UI/buttonshover_stylebox.tres" id="14_yp5th"]
+[ext_resource type="Texture2D" uid="uid://64vl8dhjq5xi" path="res://icon.svg" id="15_06o27"]
 [ext_resource type="StyleBox" uid="uid://bayafbaywjad0" path="res://assets/UI/buttonspress_stylebox.tres" id="15_qo30f"]
+[ext_resource type="ButtonGroup" uid="uid://ivbvqi731auo" path="res://assets/UI/weapon_button_group.tres" id="15_r2pin"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bkq4m"]
 font_size = 27
@@ -25,6 +28,7 @@ outline_size = 2
 [node name="2dHud" type="CanvasLayer"]
 script = ExtResource("1_r3mer")
 button_group = ExtResource("2_q2cnw")
+weapon_button_group = ExtResource("15_r2pin")
 
 [node name="LeftPanel" type="PanelContainer" parent="."]
 anchors_preset = 9
@@ -62,19 +66,46 @@ theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 34
 text = "999"
 
-[node name="Label" type="Label" parent="LeftPanel/VBoxContainer"]
+[node name="TowerVBox" type="VBoxContainer" parent="LeftPanel/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/VBoxContainer/TowerVBox"]
+layout_mode = 2
+
+[node name="Hidden" type="TextureButton" parent="LeftPanel/VBoxContainer/TowerVBox/HBoxContainer"]
+custom_minimum_size = Vector2(20, 35)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+disabled = true
+ignore_texture_size = true
+stretch_mode = 0
+flip_h = true
+
+[node name="Label" type="Label" parent="LeftPanel/VBoxContainer/TowerVBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
 theme_override_font_sizes/font_size = 40
-text = "      Towers      "
+text = " Towers "
 horizontal_alignment = 1
 justification_flags = 161
 
-[node name="GridContainer" type="GridContainer" parent="LeftPanel/VBoxContainer"]
+[node name="WeaponButton" type="TextureButton" parent="LeftPanel/VBoxContainer/TowerVBox/HBoxContainer"]
+custom_minimum_size = Vector2(20, 35)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture_normal = ExtResource("3_qo30f")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="LeftPanel/VBoxContainer/TowerVBox"]
 layout_mode = 2
 size_flags_vertical = 4
 columns = 4
 
-[node name="0" type="TextureButton" parent="LeftPanel/VBoxContainer/GridContainer"]
+[node name="0" type="TextureButton" parent="LeftPanel/VBoxContainer/TowerVBox/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -87,7 +118,7 @@ texture_hover = ExtResource("5_lfxb3")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="1" type="TextureButton" parent="LeftPanel/VBoxContainer/GridContainer"]
+[node name="1" type="TextureButton" parent="LeftPanel/VBoxContainer/TowerVBox/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -100,7 +131,7 @@ texture_hover = ExtResource("8_chh7u")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="2" type="TextureButton" parent="LeftPanel/VBoxContainer/GridContainer"]
+[node name="2" type="TextureButton" parent="LeftPanel/VBoxContainer/TowerVBox/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -113,7 +144,7 @@ texture_hover = ExtResource("11_06o27")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="3" type="TextureButton" parent="LeftPanel/VBoxContainer/GridContainer"]
+[node name="3" type="TextureButton" parent="LeftPanel/VBoxContainer/TowerVBox/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -125,7 +156,7 @@ texture_normal = ExtResource("6_m37x7")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Name" type="Label" parent="LeftPanel/VBoxContainer"]
+[node name="Name" type="Label" parent="LeftPanel/VBoxContainer/TowerVBox"]
 custom_minimum_size = Vector2(1, 85)
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
@@ -134,20 +165,20 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/VBoxContainer/TowerVBox"]
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_right = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/VBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/VBoxContainer/TowerVBox/MarginContainer"]
 layout_mode = 2
 
-[node name="HealthBox" type="HBoxContainer" parent="LeftPanel/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HealthBox" type="HBoxContainer" parent="LeftPanel/VBoxContainer/TowerVBox/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 0
 
-[node name="Label2" type="Label" parent="LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/HealthBox"]
+[node name="Label2" type="Label" parent="LeftPanel/VBoxContainer/TowerVBox/MarginContainer/VBoxContainer/HealthBox"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -155,7 +186,7 @@ size_flags_vertical = 6
 theme_override_font_sizes/font_size = 16
 text = "Health?:"
 
-[node name="Health" type="Label" parent="LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/HealthBox"]
+[node name="Health" type="Label" parent="LeftPanel/VBoxContainer/TowerVBox/MarginContainer/VBoxContainer/HealthBox"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -165,12 +196,12 @@ theme_override_font_sizes/font_size = 16
 text = "999"
 horizontal_alignment = 2
 
-[node name="DamageBox" type="HBoxContainer" parent="LeftPanel/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="DamageBox" type="HBoxContainer" parent="LeftPanel/VBoxContainer/TowerVBox/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 0
 
-[node name="Label2" type="Label" parent="LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/DamageBox"]
+[node name="Label2" type="Label" parent="LeftPanel/VBoxContainer/TowerVBox/MarginContainer/VBoxContainer/DamageBox"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -178,7 +209,7 @@ size_flags_vertical = 6
 theme_override_font_sizes/font_size = 16
 text = "Attack damage:"
 
-[node name="Damage" type="Label" parent="LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/DamageBox"]
+[node name="Damage" type="Label" parent="LeftPanel/VBoxContainer/TowerVBox/MarginContainer/VBoxContainer/DamageBox"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -188,12 +219,12 @@ theme_override_font_sizes/font_size = 16
 text = "999"
 horizontal_alignment = 2
 
-[node name="SpeedBox" type="HBoxContainer" parent="LeftPanel/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="SpeedBox" type="HBoxContainer" parent="LeftPanel/VBoxContainer/TowerVBox/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 0
 
-[node name="Label2" type="Label" parent="LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/SpeedBox"]
+[node name="Label2" type="Label" parent="LeftPanel/VBoxContainer/TowerVBox/MarginContainer/VBoxContainer/SpeedBox"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -201,7 +232,7 @@ size_flags_vertical = 6
 theme_override_font_sizes/font_size = 16
 text = "Attack speed:"
 
-[node name="Speed" type="Label" parent="LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/SpeedBox"]
+[node name="Speed" type="Label" parent="LeftPanel/VBoxContainer/TowerVBox/MarginContainer/VBoxContainer/SpeedBox"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -211,7 +242,7 @@ theme_override_font_sizes/font_size = 16
 text = "999"
 horizontal_alignment = 2
 
-[node name="PriceHeader" type="Label" parent="LeftPanel/VBoxContainer"]
+[node name="PriceHeader" type="Label" parent="LeftPanel/VBoxContainer/TowerVBox"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
@@ -220,12 +251,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Price" type="HBoxContainer" parent="LeftPanel/VBoxContainer"]
+[node name="Price" type="HBoxContainer" parent="LeftPanel/VBoxContainer/TowerVBox"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = -50
 
-[node name="TextureRect" type="TextureRect" parent="LeftPanel/VBoxContainer/Price"]
+[node name="TextureRect" type="TextureRect" parent="LeftPanel/VBoxContainer/TowerVBox/Price"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -234,7 +265,7 @@ texture = ExtResource("7_bkq4m")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="LeftPanel/VBoxContainer/Price"]
+[node name="Label" type="Label" parent="LeftPanel/VBoxContainer/TowerVBox/Price"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -243,7 +274,7 @@ text = "9999"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Description" type="Label" parent="LeftPanel/VBoxContainer"]
+[node name="Description" type="Label" parent="LeftPanel/VBoxContainer/TowerVBox"]
 custom_minimum_size = Vector2(1, 110)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
@@ -252,7 +283,226 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Buy" type="Button" parent="LeftPanel/VBoxContainer"]
+[node name="Buy" type="Button" parent="LeftPanel/VBoxContainer/TowerVBox"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 40
+disabled = true
+text = "Buy"
+
+[node name="WeaponVBox" type="VBoxContainer" parent="LeftPanel/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/VBoxContainer/WeaponVBox"]
+layout_mode = 2
+
+[node name="TowerButton" type="TextureButton" parent="LeftPanel/VBoxContainer/WeaponVBox/HBoxContainer"]
+custom_minimum_size = Vector2(20, 35)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("3_qo30f")
+ignore_texture_size = true
+stretch_mode = 0
+flip_h = true
+
+[node name="Label" type="Label" parent="LeftPanel/VBoxContainer/WeaponVBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 40
+text = "Weapons"
+horizontal_alignment = 1
+justification_flags = 161
+
+[node name="TextureButton2" type="TextureButton" parent="LeftPanel/VBoxContainer/WeaponVBox/HBoxContainer"]
+custom_minimum_size = Vector2(20, 35)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+disabled = true
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="LeftPanel/VBoxContainer/WeaponVBox"]
+layout_mode = 2
+size_flags_vertical = 4
+columns = 4
+
+[node name="0" type="TextureButton" parent="LeftPanel/VBoxContainer/WeaponVBox/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+toggle_mode = true
+button_group = ExtResource("15_r2pin")
+texture_normal = ExtResource("15_06o27")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="1" type="TextureButton" parent="LeftPanel/VBoxContainer/WeaponVBox/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+toggle_mode = true
+button_group = ExtResource("15_r2pin")
+texture_normal = ExtResource("15_06o27")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="2" type="TextureButton" parent="LeftPanel/VBoxContainer/WeaponVBox/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+toggle_mode = true
+button_group = ExtResource("15_r2pin")
+texture_normal = ExtResource("15_06o27")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="3" type="TextureButton" parent="LeftPanel/VBoxContainer/WeaponVBox/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+toggle_mode = true
+button_group = ExtResource("15_r2pin")
+texture_normal = ExtResource("15_06o27")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="LeftPanel/VBoxContainer/WeaponVBox"]
+custom_minimum_size = Vector2(1, 85)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Name of current weapon"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/VBoxContainer/WeaponVBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/VBoxContainer/WeaponVBox/MarginContainer"]
+layout_mode = 2
+
+[node name="HealthBox" type="HBoxContainer" parent="LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="Label2" type="Label" parent="LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer/HealthBox"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 16
+text = "Health?:"
+
+[node name="Health" type="Label" parent="LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer/HealthBox"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 16
+text = "999"
+horizontal_alignment = 2
+
+[node name="DamageBox" type="HBoxContainer" parent="LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="Label2" type="Label" parent="LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer/DamageBox"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 16
+text = "Attack damage:"
+
+[node name="Damage" type="Label" parent="LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer/DamageBox"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 16
+text = "999"
+horizontal_alignment = 2
+
+[node name="SpeedBox" type="HBoxContainer" parent="LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="Label2" type="Label" parent="LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer/SpeedBox"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 16
+text = "Attack speed:"
+
+[node name="Speed" type="Label" parent="LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer/SpeedBox"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 16
+text = "999"
+horizontal_alignment = 2
+
+[node name="PriceHeader" type="Label" parent="LeftPanel/VBoxContainer/WeaponVBox"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Price:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Price" type="HBoxContainer" parent="LeftPanel/VBoxContainer/WeaponVBox"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = -50
+
+[node name="TextureRect" type="TextureRect" parent="LeftPanel/VBoxContainer/WeaponVBox/Price"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+texture = ExtResource("7_bkq4m")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="LeftPanel/VBoxContainer/WeaponVBox/Price"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+text = "9999"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Description" type="Label" parent="LeftPanel/VBoxContainer/WeaponVBox"]
+custom_minimum_size = Vector2(1, 110)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Descriptions should be one long sentence or two short ones like these. Briefly describe the weapon and why it's different."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Buy" type="Button" parent="LeftPanel/VBoxContainer/WeaponVBox"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 4
@@ -345,6 +595,7 @@ texture = ExtResource("11_rgo4r")
 expand_mode = 1
 
 [node name="BuyingPanel" type="PanelContainer" parent="."]
+visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -367,9 +618,16 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[connection signal="pressed" from="LeftPanel/VBoxContainer/GridContainer/0" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="LeftPanel/VBoxContainer/GridContainer/1" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="LeftPanel/VBoxContainer/GridContainer/2" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="LeftPanel/VBoxContainer/GridContainer/3" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="LeftPanel/VBoxContainer/Buy" to="." method="_on_buy_pressed"]
+[connection signal="pressed" from="LeftPanel/VBoxContainer/TowerVBox/HBoxContainer/WeaponButton" to="." method="_on_weapon_button_pressed"]
+[connection signal="pressed" from="LeftPanel/VBoxContainer/TowerVBox/GridContainer/0" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="LeftPanel/VBoxContainer/TowerVBox/GridContainer/1" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="LeftPanel/VBoxContainer/TowerVBox/GridContainer/2" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="LeftPanel/VBoxContainer/TowerVBox/GridContainer/3" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="LeftPanel/VBoxContainer/TowerVBox/Buy" to="." method="_on_buy_pressed"]
+[connection signal="pressed" from="LeftPanel/VBoxContainer/WeaponVBox/HBoxContainer/TowerButton" to="." method="_on_tower_button_pressed"]
+[connection signal="pressed" from="LeftPanel/VBoxContainer/WeaponVBox/GridContainer/0" to="." method="_on_weapon_selection_button_pressed"]
+[connection signal="pressed" from="LeftPanel/VBoxContainer/WeaponVBox/GridContainer/1" to="." method="_on_weapon_selection_button_pressed"]
+[connection signal="pressed" from="LeftPanel/VBoxContainer/WeaponVBox/GridContainer/2" to="." method="_on_weapon_selection_button_pressed"]
+[connection signal="pressed" from="LeftPanel/VBoxContainer/WeaponVBox/GridContainer/3" to="." method="_on_weapon_selection_button_pressed"]
+[connection signal="pressed" from="LeftPanel/VBoxContainer/WeaponVBox/Buy" to="." method="_on_buy_pressed"]
 [connection signal="pressed" from="RightPanel/VBoxContainer/StartWave" to="." method="_on_start_wave_pressed"]

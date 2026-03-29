@@ -1,7 +1,9 @@
 extends CanvasLayer
 var library: Node
 @export var button_group: ButtonGroup
+@export var weapon_button_group: ButtonGroup
 var selected_tower: String = "-1"
+var selected_weapon: String = "-1"
 var buying_tower: bool = false
 signal begin_buying(selected: String)
 signal end_buying
@@ -47,24 +49,33 @@ func _select_tower(i: String) -> void:
 		buying_tower = false
 		end_buying.emit()
 	else:
-		$LeftPanel/VBoxContainer/Name.text = str(tower_info[0][int(i)])
-		$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/HealthBox/Health.text = str(tower_info[1][int(i)])
-		$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/DamageBox/Damage.text = str(tower_info[2][int(i)])
-		$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/SpeedBox/Speed.text = str(tower_info[3][int(i)])
-		$LeftPanel/VBoxContainer/Description.text = str(tower_info[4][int(i)])
-		$LeftPanel/VBoxContainer/Price/Label.text = str(tower_info[5][int(i)])
+		$LeftPanel/VBoxContainer/TowerVBox/Name.text = str(tower_info[0][int(i)])
+		$LeftPanel/VBoxContainer/TowerVBox/MarginContainer/VBoxContainer/HealthBox/Health.text = str(tower_info[1][int(i)])
+		$LeftPanel/VBoxContainer/TowerVBox/MarginContainer/VBoxContainer/DamageBox/Damage.text = str(tower_info[2][int(i)])
+		$LeftPanel/VBoxContainer/TowerVBox/MarginContainer/VBoxContainer/SpeedBox/Speed.text = str(tower_info[3][int(i)])
+		$LeftPanel/VBoxContainer/TowerVBox/Description.text = str(tower_info[4][int(i)])
+		$LeftPanel/VBoxContainer/TowerVBox/Price/Label.text = str(tower_info[5][int(i)])
 		_on_buy_pressed()
 		
 func _reset_tower_values() -> void:
-	$LeftPanel/VBoxContainer/Name.text = "No tower selected"
-	$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/HealthBox/Health.text = "N/A"
-	$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/DamageBox/Damage.text = "N/A"
-	$LeftPanel/VBoxContainer/MarginContainer/VBoxContainer/SpeedBox/Speed.text = "N/A"
-	$LeftPanel/VBoxContainer/Description.text = "Select a tower to see its statistics, description, and price."
-	$LeftPanel/VBoxContainer/Price/Label.text = "N/A"
+	$LeftPanel/VBoxContainer/TowerVBox/Name.text = "No tower selected"
+	$LeftPanel/VBoxContainer/TowerVBox/MarginContainer/VBoxContainer/HealthBox/Health.text = "N/A"
+	$LeftPanel/VBoxContainer/TowerVBox/MarginContainer/VBoxContainer/DamageBox/Damage.text = "N/A"
+	$LeftPanel/VBoxContainer/TowerVBox/MarginContainer/VBoxContainer/SpeedBox/Speed.text = "N/A"
+	$LeftPanel/VBoxContainer/TowerVBox/Description.text = "Select a tower to see its statistics, description, and price."
+	$LeftPanel/VBoxContainer/TowerVBox/Price/Label.text = "N/A"
+	
+func _reset_weapon_values() -> void:
+	$LeftPanel/VBoxContainer/WeaponVBox/Name.text = "No weapon selected"
+	$LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer/HealthBox/Health.text = "N/A"
+	$LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer/DamageBox/Damage.text = "N/A"
+	$LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer/SpeedBox/Speed.text = "N/A"
+	$LeftPanel/VBoxContainer/WeaponVBox/Description.text = "Select a weapon to see its statistics, description, and price."
+	$LeftPanel/VBoxContainer/WeaponVBox/Price/Label.text = "N/A"
 
 func _ready() -> void:
 	_reset_tower_values()
+	_reset_weapon_values()
 
 	# Initialize objective health bar
 	await get_tree().process_frame
@@ -142,7 +153,23 @@ func _on_start_wave_pressed() -> void:
 	$"../../GameManager"._toggle_mode()
 	library.nextLevel()
 	
-	
 # Update UI health on objective health change
 func _on_objective_damaged_sig(_damage_taken: Variant, health_after_damage: Variant) -> void:
 	objective_health = health_after_damage
+
+# Switch between tower and weapon buying and vice versa
+func _on_weapon_button_pressed() -> void:
+	$LeftPanel/VBoxContainer/TowerVBox.visible = false
+	$LeftPanel/VBoxContainer/WeaponVBox.visible = true
+
+func _on_tower_button_pressed() -> void:
+	$LeftPanel/VBoxContainer/TowerVBox.visible = true
+	$LeftPanel/VBoxContainer/WeaponVBox.visible = false
+
+func _on_weapon_selection_button_pressed() -> void:
+	if weapon_button_group.get_pressed_button() == null:
+		selected_weapon = "-1"
+	else:
+		selected_weapon = weapon_button_group.get_pressed_button().name
+	
+	print("You selected weapon ", selected_weapon)
