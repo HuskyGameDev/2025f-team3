@@ -136,13 +136,13 @@ func _input(event: InputEvent) -> void:
 		if (tower != null):
 			# check what this tower is
 			if(tower.name.to_lower().contains("crossbow")):
-				price = (%"2dHud"._get_price(int(0))) / 2
+				price = ceil((%"2dHud"._get_price(int(0))) / 2.0)
 			elif(tower.name.to_lower().contains("cauldron")):
-				price = (%"2dHud"._get_price(int(1))) / 2
+				price = ceil((%"2dHud"._get_price(int(1))) / 2.0)
 			elif(tower.name.to_lower().contains("ballista")):
-				price = (%"2dHud"._get_price(int(2))) / 2
+				price = ceil((%"2dHud"._get_price(int(2))) / 2.0)
 			elif(tower.name.to_lower().contains("wall")):
-				price = (%"2dHud"._get_price(int(3))) / 2
+				price = ceil((%"2dHud"._get_price(int(3))) / 2.0)
 			if grid_map.remove_tower_at_position(position) != -1:
 				# Gain back half the cost of a tower when you sell it
 				# TODO: Determine the ID of the sold tower and subtract the corresponding price / 2

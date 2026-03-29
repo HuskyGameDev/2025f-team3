@@ -40,6 +40,31 @@ var objective_health_width: float
 	5: [75, 200, 150, 100]
 }
 
+# Dictionary containing info for available weapons.
+# Info is accessed with weapon_info[x][y] such that x is the dictionary key and y is the weapon ID.
+@export var weapon_info: Dictionary = {
+	# Name
+	0: [
+		"Sword",
+		"Bow",
+		"Super Sword",
+		"Super Bow"
+	],
+	# Damage
+	1: [15, 4, 25, 0],
+	# Cooldown
+	2: [1.5, 4, 3.0, 0],
+	# Description
+	3: [
+		"You can use the sword to hit enemies up close.",
+		"The bow can fire arrows at enemies from farther away.",
+		"The can super use the super sword to super hit enemies up super close.",
+		"The super bow can fire super arrows at super enemies from super farther away."
+	],
+	# Price
+	4: [75, 200, 150, 100]
+}
+
 func _get_price(i: int) -> int:
 	return tower_info[5][i]
 
@@ -55,7 +80,18 @@ func _select_tower(i: String) -> void:
 		$LeftPanel/VBoxContainer/TowerVBox/MarginContainer/VBoxContainer/SpeedBox/Speed.text = str(tower_info[3][int(i)])
 		$LeftPanel/VBoxContainer/TowerVBox/Description.text = str(tower_info[4][int(i)])
 		$LeftPanel/VBoxContainer/TowerVBox/Price/Label.text = str(tower_info[5][int(i)])
-		_on_buy_pressed()
+		_buying_tower()
+		
+func _select_weapon(i: String) -> void:
+	if i == "-1":
+		_reset_weapon_values()
+	else:
+		$LeftPanel/VBoxContainer/WeaponVBox/Buy.disabled = false
+		$LeftPanel/VBoxContainer/WeaponVBox/Name.text = str(weapon_info[0][int(i)])
+		$LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer/DamageBox/Damage.text = str(weapon_info[1][int(i)])
+		$LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer/SpeedBox/Speed.text = str(weapon_info[2][int(i)])
+		$LeftPanel/VBoxContainer/WeaponVBox/Description.text = str(weapon_info[3][int(i)])
+		$LeftPanel/VBoxContainer/WeaponVBox/Price/Label.text = str(weapon_info[4][int(i)])
 		
 func _reset_tower_values() -> void:
 	$LeftPanel/VBoxContainer/TowerVBox/Name.text = "No tower selected"
@@ -66,8 +102,8 @@ func _reset_tower_values() -> void:
 	$LeftPanel/VBoxContainer/TowerVBox/Price/Label.text = "N/A"
 	
 func _reset_weapon_values() -> void:
+	$LeftPanel/VBoxContainer/WeaponVBox/Buy.disabled = true
 	$LeftPanel/VBoxContainer/WeaponVBox/Name.text = "No weapon selected"
-	$LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer/HealthBox/Health.text = "N/A"
 	$LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer/DamageBox/Damage.text = "N/A"
 	$LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer/SpeedBox/Speed.text = "N/A"
 	$LeftPanel/VBoxContainer/WeaponVBox/Description.text = "Select a weapon to see its statistics, description, and price."
@@ -112,6 +148,9 @@ func _on_button_pressed() -> void:
 	_select_tower(selected_tower)
 
 func _on_buy_pressed() -> void:
+	print(selected_weapon)
+	
+func _buying_tower() -> void:
 	$BuyingPanel/Label.text = str(str(tower_info[0][int(selected_tower)]), " is selected. Click on any valid area of the map to buy the tower. Select the tower again to cancel tower placement.")
 	buying_tower = true
 	begin_buying.emit(selected_tower)
@@ -173,3 +212,5 @@ func _on_weapon_selection_button_pressed() -> void:
 		selected_weapon = weapon_button_group.get_pressed_button().name
 	
 	print("You selected weapon ", selected_weapon)
+	
+	_select_weapon(selected_weapon)

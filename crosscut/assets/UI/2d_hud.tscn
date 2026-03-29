@@ -187,7 +187,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 16
-text = "Health?:"
+text = "Health:"
 
 [node name="Health" type="Label" parent="LeftPanel/VBoxContainer/TowerVBox/MarginContainer/VBoxContainer/HealthBox"]
 custom_minimum_size = Vector2(1, 1)
@@ -395,29 +395,6 @@ theme_override_constants/margin_right = 30
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/VBoxContainer/WeaponVBox/MarginContainer"]
 layout_mode = 2
 
-[node name="HealthBox" type="HBoxContainer" parent="LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/separation = 0
-
-[node name="Label2" type="Label" parent="LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer/HealthBox"]
-custom_minimum_size = Vector2(1, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 16
-text = "Health?:"
-
-[node name="Health" type="Label" parent="LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer/HealthBox"]
-custom_minimum_size = Vector2(1, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 16
-text = "999"
-horizontal_alignment = 2
-
 [node name="DamageBox" type="HBoxContainer" parent="LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
@@ -452,7 +429,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 16
-text = "Attack speed:"
+text = "Attack cooldown:"
 
 [node name="Speed" type="Label" parent="LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer/SpeedBox"]
 custom_minimum_size = Vector2(1, 1)
@@ -506,10 +483,12 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Buy" type="Button" parent="LeftPanel/VBoxContainer/WeaponVBox"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = ExtResource("14_yp5th")
+theme_override_styles/pressed = ExtResource("15_qo30f")
+theme_override_styles/normal = ExtResource("14_sbfc4")
 disabled = true
 text = "Buy"
 
