@@ -10,5 +10,6 @@ ignore_occlusion_culling = true
 pixel_size = 0.075
 axis = 1
 billboard = 2
+double_sided = false
 texture_filter = 0
 texture = ExtResource("1_t0qt5")
