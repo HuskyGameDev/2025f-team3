@@ -16,6 +16,7 @@ material = SubResource("StandardMaterial3D_cthh4")
 [sub_resource type="SphereShape3D" id="SphereShape3D_730lf"]
 
 [node name="Enemy5" type="CharacterBody3D" groups=["enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.508814, 0)
 collision_mask = 4
 script = ExtResource("1_8jdxt")
 
@@ -33,6 +34,7 @@ shape = SubResource("BoxShape3D_8y4hj")
 [node name="DamageArea" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
+transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
 shape = SubResource("BoxShape3D_8jdxt")
 
 [node name="AttackArea" type="Area3D" parent="." groups=["enemy"]]

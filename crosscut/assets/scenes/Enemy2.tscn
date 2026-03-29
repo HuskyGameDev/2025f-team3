@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://t4fs3uasdc8w" path="res://assets/scripts/enemy2_stats.gd" id="1_3850e"]
 [ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="2_bp46k"]
 [ext_resource type="Script" uid="uid://bksnh1nri3ati" path="res://assets/scenes/damage_area.gd" id="3_e0lwv"]
-[ext_resource type="Texture2D" uid="uid://braxadp5t05cv" path="res://assets/UI/icons/health.png" id="4_oeo2h"]
+[ext_resource type="Texture2D" uid="uid://d2d7vq4o6vtku" path="res://assets/UI/icons/health.png" id="4_oeo2h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xd48f"]
 albedo_color = Color(0, 1, 1, 1)
@@ -12,6 +12,7 @@ albedo_color = Color(0, 1, 1, 1)
 material = SubResource("StandardMaterial3D_xd48f")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_kth7i"]
+height = 1.0
 radius = 0.4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lvmi4"]
@@ -34,13 +35,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("BoxMesh_xfvwa")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_kth7i")
 
 [node name="DamageArea" type="Area3D" parent="."]
 script = ExtResource("3_e0lwv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
-transform = Transform3D(1, 0, 0, 0, 1.05, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_lvmi4")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
