@@ -21,23 +21,23 @@ var objective_health_width: float
 		"Crossbow Tower",
 		"Cauldron Tower",
 		"Ballista Tower",
-		"Tower 3"
+		"Wall Tower"
 	],
 	# Health
-	1: [20, 20, 20, 4],
+	1: ["N/A", "N/A", "N/A", 100],
 	# Damage
-	2: [15, 4, 25, 5],
+	2: [15, 4, 25, 0],
 	# Speed
-	3: [1.5, 4, 3.0, 6],
+	3: [1.5, 4, 3.0, 0],
 	# Description
 	4: [
 		"The crossbow tower fires arrows at the nearest enemy.",
 		"The cauldron tower pours down boiling oil onto surrounding enemies.",
 		"The ballista tower fires a piercing bolt at the furthest enemy.",
-		"This is tower 3. It's a tower. Yeah!"
+		"The wall tower blocks the path of enemies for a short time."
 	],
 	# Price
-	5: [75, 200, 150, 400]
+	5: [75, 200, 150, 100]
 }
 
 func _get_price(i: int) -> int:

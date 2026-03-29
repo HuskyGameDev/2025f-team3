@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dlichn2b72vr7"]
+[gd_scene load_steps=24 format=3 uid="uid://dlichn2b72vr7"]
 
 [ext_resource type="Script" uid="uid://bo63nho4fqqub" path="res://assets/UI/2d_hud.gd" id="1_r3mer"]
 [ext_resource type="ButtonGroup" uid="uid://dgoxbso65ctny" path="res://assets/UI/tower_button_group.tres" id="2_q2cnw"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://b2wtjqy40thta" path="res://assets/UI/icons/crossbowtower selected.png" id="4_x7j0p"]
 [ext_resource type="Texture2D" uid="uid://bx1ul34tuvpkx" path="res://assets/UI/icons/crossbowtower hover.png" id="5_lfxb3"]
 [ext_resource type="Texture2D" uid="uid://c5mjyk5430n5v" path="res://assets/UI/icons/cauldrontower.png" id="6_bb804"]
-[ext_resource type="Texture2D" uid="uid://g412d3xa78ih" path="res://assets/UI/icons/locked icon.png" id="6_m37x7"]
 [ext_resource type="Texture2D" uid="uid://cvudq3jua4401" path="res://assets/UI/icons/gold.png" id="7_bkq4m"]
 [ext_resource type="Texture2D" uid="uid://cg7cvaikjwq23" path="res://assets/UI/icons/cauldrontower selected.png" id="7_sbfc4"]
 [ext_resource type="Texture2D" uid="uid://bgvscjulxyb2e" path="res://assets/UI/icons/cauldrontower hover.png" id="8_chh7u"]
@@ -15,11 +14,14 @@
 [ext_resource type="Texture2D" uid="uid://0to1nal6lv3l" path="res://assets/UI/icons/ballistatower selected.png" id="10_qo30f"]
 [ext_resource type="Texture2D" uid="uid://blijnh2wwdf27" path="res://assets/UI/icons/ballistatower hover.png" id="11_06o27"]
 [ext_resource type="Texture2D" uid="uid://bv5o3hvvsrwsh" path="res://assets/UI/icons/health.png" id="11_rgo4r"]
+[ext_resource type="Texture2D" uid="uid://c8w4qqf8a2061" path="res://assets/UI/icons/walltower.png" id="14_7yk0u"]
 [ext_resource type="StyleBox" uid="uid://32wk4y14554e" path="res://assets/UI/buttons_stylebox.tres" id="14_sbfc4"]
 [ext_resource type="StyleBox" uid="uid://5a8cxfqwxso4" path="res://assets/UI/buttonshover_stylebox.tres" id="14_yp5th"]
 [ext_resource type="Texture2D" uid="uid://64vl8dhjq5xi" path="res://icon.svg" id="15_06o27"]
+[ext_resource type="Texture2D" uid="uid://ire8dm5g4yno" path="res://assets/UI/icons/walltower selected.png" id="15_ckblw"]
 [ext_resource type="StyleBox" uid="uid://bayafbaywjad0" path="res://assets/UI/buttonspress_stylebox.tres" id="15_qo30f"]
 [ext_resource type="ButtonGroup" uid="uid://ivbvqi731auo" path="res://assets/UI/weapon_button_group.tres" id="15_r2pin"]
+[ext_resource type="Texture2D" uid="uid://dlp6co5yiqe40" path="res://assets/UI/icons/walltower hover.png" id="16_ellp8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bkq4m"]
 font_size = 27
@@ -149,10 +151,11 @@ custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-disabled = true
 toggle_mode = true
 button_group = ExtResource("2_q2cnw")
-texture_normal = ExtResource("6_m37x7")
+texture_normal = ExtResource("14_7yk0u")
+texture_pressed = ExtResource("15_ckblw")
+texture_hover = ExtResource("16_ellp8")
 ignore_texture_size = true
 stretch_mode = 5
 
