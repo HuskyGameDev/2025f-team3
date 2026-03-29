@@ -10,7 +10,7 @@ size = Vector3(2.8, 8.69928, 2.8)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vqfyx"]
 
-[node name="Wall" type="StaticBody3D" groups=["tower"]]
+[node name="Wall" type="StaticBody3D" groups=["tower", "wall"]]
 collision_layer = 5
 script = ExtResource("1_lyect")
 damage = 0.0
