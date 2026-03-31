@@ -2,11 +2,15 @@
 
 [ext_resource type="Script" uid="uid://bc6quxucpigy5" path="res://assets/scripts/enemy6_stats.gd" id="1_fkpdm"]
 [ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="2_re45p"]
-[ext_resource type="PackedScene" uid="uid://b631oirvdnu1h" path="res://assets/3D assets/TNTEnemy.glb" id="3_re45p"]
+[ext_resource type="PackedScene" uid="uid://chanyixfxi2dh" path="res://assets/3D assets/TNTEnemy.glb" id="3_re45p"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_kdqy7"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_re45p"]
+radius = 1.52325
+height = 6.0154
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_xufq1"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kdqy7"]
+radius = 1.56897
+height = 6.28557
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_trkud"]
 
@@ -21,14 +25,14 @@ max_health = 70
 [node name="TNTEnemy" parent="pivot" instance=ExtResource("3_re45p")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
-shape = SubResource("BoxShape3D_kdqy7")
+transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 1.57576, 0)
+shape = SubResource("CapsuleShape3D_re45p")
 
 [node name="DamageArea" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
-transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
-shape = SubResource("BoxShape3D_xufq1")
+transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 1.53485, 0)
+shape = SubResource("CapsuleShape3D_kdqy7")
 
 [node name="ExplodeArea" type="Area3D" parent="."]
 

@@ -5,14 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://re87lfquiuv7" path="res://assets/scenes/particles/splitter_enemy_damage_fx.tscn" id="3_cmj1h"]
 [ext_resource type="Script" uid="uid://bksnh1nri3ati" path="res://assets/scenes/damage_area.gd" id="3_lwiw8"]
 [ext_resource type="PackedScene" uid="uid://dr70c2niytyrr" path="res://assets/3D assets/slime.tscn" id="3_ybm3u"]
-[ext_resource type="Texture2D" uid="uid://d2d7vq4o6vtku" path="res://assets/UI/icons/health.png" id="4_uckwj"]
+[ext_resource type="Texture2D" uid="uid://c6ecwoxhp4mx1" path="res://assets/UI/icons/health.png" id="4_uckwj"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_kth7i"]
 height = 1.0
 radius = 0.4
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_lvmi4"]
-size = Vector3(1.04517, 1, 1.04352)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ybm3u"]
+radius = 3.07666
 
 [node name="Enemy4" type="CharacterBody3D" groups=["enemy"]]
 collision_mask = 4
@@ -42,8 +42,8 @@ shape = SubResource("CylinderShape3D_kth7i")
 script = ExtResource("3_lwiw8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_lvmi4")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0186303, 1.2059, -0.0519488)
+shape = SubResource("CylinderShape3D_ybm3u")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 navigation_layers = 8
