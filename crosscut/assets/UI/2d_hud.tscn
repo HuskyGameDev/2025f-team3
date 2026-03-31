@@ -69,6 +69,7 @@ theme_override_font_sizes/font_size = 34
 text = "999"
 
 [node name="TowerVBox" type="VBoxContainer" parent="LeftPanel/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 
@@ -295,7 +296,6 @@ disabled = true
 text = "Buy"
 
 [node name="WeaponVBox" type="VBoxContainer" parent="LeftPanel/VBoxContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 
@@ -415,7 +415,7 @@ size_flags_horizontal = 3
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 16
-text = "999"
+text = "N/A"
 horizontal_alignment = 2
 
 [node name="SpeedBox" type="HBoxContainer" parent="LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer"]
@@ -438,7 +438,7 @@ size_flags_horizontal = 3
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 16
-text = "999"
+text = "N/A"
 horizontal_alignment = 2
 
 [node name="PriceHeader" type="Label" parent="LeftPanel/VBoxContainer/WeaponVBox"]
@@ -469,7 +469,7 @@ custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 36
-text = "9999"
+text = "N/A"
 horizontal_alignment = 1
 autowrap_mode = 3
 
@@ -486,11 +486,24 @@ autowrap_mode = 3
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 40
+theme_override_styles/disabled = ExtResource("14_sbfc4")
 theme_override_styles/hover = ExtResource("14_yp5th")
 theme_override_styles/pressed = ExtResource("15_qo30f")
 theme_override_styles/normal = ExtResource("14_sbfc4")
 disabled = true
 text = "Buy"
+
+[node name="Equip" type="Button" parent="LeftPanel/VBoxContainer/WeaponVBox"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 40
+theme_override_styles/disabled = ExtResource("14_sbfc4")
+theme_override_styles/hover = ExtResource("14_yp5th")
+theme_override_styles/pressed = ExtResource("15_qo30f")
+theme_override_styles/normal = ExtResource("14_sbfc4")
+disabled = true
+text = "Equip"
 
 [node name="RightPanel" type="PanelContainer" parent="."]
 anchors_preset = 11
@@ -612,4 +625,5 @@ autowrap_mode = 2
 [connection signal="pressed" from="LeftPanel/VBoxContainer/WeaponVBox/GridContainer/2" to="." method="_on_weapon_selection_button_pressed"]
 [connection signal="pressed" from="LeftPanel/VBoxContainer/WeaponVBox/GridContainer/3" to="." method="_on_weapon_selection_button_pressed"]
 [connection signal="pressed" from="LeftPanel/VBoxContainer/WeaponVBox/Buy" to="." method="_on_buy_pressed"]
+[connection signal="pressed" from="LeftPanel/VBoxContainer/WeaponVBox/Equip" to="." method="_on_equip_pressed"]
 [connection signal="pressed" from="RightPanel/VBoxContainer/StartWave" to="." method="_on_start_wave_pressed"]

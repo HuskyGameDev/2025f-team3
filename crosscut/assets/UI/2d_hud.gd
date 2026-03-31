@@ -5,6 +5,7 @@ var library: Node
 var selected_tower: String = "-1"
 var selected_weapon: String = "-1"
 var buying_tower: bool = false
+var owned_weapons: Array[int] = [0, 0, 0, 0] # weapons are 1 when you own them
 signal begin_buying(selected: String)
 signal end_buying
 
@@ -62,7 +63,7 @@ var objective_health_width: float
 		"The super bow can fire super arrows at super enemies from super farther away."
 	],
 	# Price
-	4: [75, 200, 150, 100]
+	4: [1, 10, 100, 1000]
 }
 
 func _get_price(i: int) -> int:
@@ -148,7 +149,14 @@ func _on_button_pressed() -> void:
 	_select_tower(selected_tower)
 
 func _on_buy_pressed() -> void:
-	print(selected_weapon)
+	var weapon_id: int = int(selected_weapon)
+	var price: int = weapon_info[4][weapon_id]
+	if $"../../GameManager".gold - price >= 0:
+		$"../../GameManager"._change_gold(price * -1)
+		print("You bought weapon " + selected_weapon)
+		
+		owned_weapons[weapon_id] = 1
+		_check_for_weapon_own(weapon_id)
 	
 func _buying_tower() -> void:
 	$BuyingPanel/Label.text = str(str(tower_info[0][int(selected_tower)]), " is selected. Click on any valid area of the map to buy the tower. Select the tower again to cancel tower placement.")
@@ -212,5 +220,17 @@ func _on_weapon_selection_button_pressed() -> void:
 		selected_weapon = weapon_button_group.get_pressed_button().name
 	
 	print("You selected weapon ", selected_weapon)
-	
+	_check_for_weapon_own(int(selected_weapon))
 	_select_weapon(selected_weapon)
+
+func _on_equip_pressed() -> void:
+	pass # add stuff here when equipping is added
+
+# Hide buy button and show equip button if you select a weapon that you already have
+func _check_for_weapon_own(id: int) -> void:
+	if owned_weapons[id] == 1:
+		$LeftPanel/VBoxContainer/WeaponVBox/Buy.visible = false
+		$LeftPanel/VBoxContainer/WeaponVBox/Equip.visible = true
+	else:
+		$LeftPanel/VBoxContainer/WeaponVBox/Buy.visible = true
+		$LeftPanel/VBoxContainer/WeaponVBox/Equip.visible = false
