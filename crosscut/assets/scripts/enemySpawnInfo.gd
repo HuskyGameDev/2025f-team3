@@ -8,7 +8,9 @@ var enemyList: Dictionary = {
 	"test1": preload("res://assets/scenes/Enemy1.tscn"),
 	"test2": preload("res://assets/scenes/Enemy2.tscn"),
 	"test3": preload("res://assets/scenes/Enemy3.tscn"),
-	"test4": preload("res://assets/scenes/Enemy4.tscn")
+	"test4": preload("res://assets/scenes/Enemy4.tscn"),
+	"test5": preload("res://assets/scenes/Enemy5.tscn"),
+	"test6": preload("res://assets/scenes/Enemy6.tscn")
 }
 
 # values for spawn location variation
