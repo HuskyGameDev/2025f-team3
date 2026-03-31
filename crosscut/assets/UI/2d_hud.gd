@@ -49,12 +49,12 @@ var objective_health_width: float
 		"Sword",
 		"Bow",
 		"Super Sword",
-		"Super Bow"
+		"Crossbow"
 	],
 	# Damage
-	1: [15, 4, 25, 0],
+	1: [10, 10, 20, 10],
 	# Cooldown
-	2: [1.5, 4, 3.0, 0],
+	2: [0.33, 0.5, 0.25, 0.15],
 	# Description
 	3: [
 		"You can use the sword to hit enemies up close.",

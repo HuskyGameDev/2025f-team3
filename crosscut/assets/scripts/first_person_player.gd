@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 # For first person weapon, current default weapon
-@export var default_weapon: PackedScene = preload("res://assets/weapons/Sword.tscn")
+@export var default_weapon: PackedScene = preload("res://assets/weapons/Wooden Sword.tscn")
 
 @export var in_round: bool = false
 
