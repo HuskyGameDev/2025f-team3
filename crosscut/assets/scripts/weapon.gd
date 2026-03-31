@@ -4,10 +4,12 @@ class_name Weapon
 
 @export var data: GameWeaponData
 
+@onready var animation: AnimationPlayer = $AnimationPlayer
+
 var _ready_time: float = 0.0
 
-var _model: Node3D = null	
-	
+var _model: Node3D = null
+
 func can_fire() -> bool:
 	
 	return Time.get_unix_time_from_system() >= _ready_time
@@ -40,6 +42,8 @@ func try_fire(origin: Vector3, direction: Vector3) -> bool:
 
 func _do_melee(origin: Vector3, dir: Vector3) -> void:
 	
+	animation.play("Stab")
+	
 	var q: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(origin,origin + dir * data.range_m)
 	#For testing:
 	print("Ray:", origin, "->", origin + dir * data.range_m)
@@ -51,6 +55,8 @@ func _do_melee(origin: Vector3, dir: Vector3) -> void:
 		_apply_damage(hit)
 
 func _do_bow_hitscan(origin: Vector3, dir: Vector3) -> void:
+	
+	animation.play("Shoot")
 	
 	var q: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(origin, origin + dir * data.range_m)
 	

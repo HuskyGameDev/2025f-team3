@@ -1,15 +1,18 @@
-[gd_resource type="Resource" script_class="GameWeaponData" load_steps=2 format=3 uid="uid://du06m57cuwkx0"]
+[gd_resource type="Resource" script_class="GameWeaponData" load_steps=6 format=3 uid="uid://du06m57cuwkx0"]
 
+[ext_resource type="AudioStream" uid="uid://c4bi8rn5i1qxe" path="res://assets/audio/sfx/Crossbow/Crossbow Firing - 1.wav" id="1_cld8o"]
 [ext_resource type="Script" uid="uid://goo6xl8pqgqi" path="res://assets/scripts/weapon_data.gd" id="1_r3qjb"]
+[ext_resource type="AudioStream" uid="uid://c4726tj53kpht" path="res://assets/audio/sfx/Crossbow/Crossbow Firing - 2.wav" id="2_ixbes"]
+[ext_resource type="AudioStream" uid="uid://byf6gf2cnj3lg" path="res://assets/audio/sfx/Crossbow/Crossbow Firing - 3.wav" id="3_pudcg"]
+[ext_resource type="PackedScene" uid="uid://cykpvj0yuv854" path="res://assets/3D assets/bow.glb" id="4_pow8b"]
 
 [resource]
 script = ExtResource("1_r3qjb")
-name = ""
-type = 0
-cooldown = 0.25
-automatic = false
+name = "Bow"
+type = 1
+cooldown = 0.5
 damage = 10.0
-headshot_multiplier = 1.5
-range_m = 3.0
-attack_sounds = Array[AudioStream]([])
+range_m = 12.0
+attack_sounds = Array[AudioStream]([ExtResource("1_cld8o"), ExtResource("2_ixbes"), ExtResource("3_pudcg")])
+model_scene = ExtResource("4_pow8b")
 metadata/_custom_type_script = "uid://goo6xl8pqgqi"

@@ -1,9 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://ccy5pg6ws1kk4"]
+[gd_scene load_steps=28 format=3 uid="uid://ccy5pg6ws1kk4"]
 
 [ext_resource type="PackedScene" uid="uid://qwd7i00v37t2" path="res://assets/scenes/game_manager.tscn" id="1_21mu2"]
 [ext_resource type="PackedScene" uid="uid://x18icxf4xg6e" path="res://assets/scenes/player.tscn" id="1_41fjk"]
 [ext_resource type="Texture2D" uid="uid://cqedqgd8kybb0" path="res://assets/sky/DaySkyHDRI051B_2K-HDR.exr" id="1_376kr"]
-[ext_resource type="PackedScene" uid="uid://boly0jg6h7ff6" path="res://assets/scenes/particles/player_stab_attack_fx.tscn" id="2_kaujs"]
 [ext_resource type="PackedScene" uid="uid://c8vq7xm3p4r2a" path="res://assets/scenes/objective.tscn" id="2_objective"]
 [ext_resource type="PackedScene" uid="uid://4brfnmssujli" path="res://assets/scenes/player_crown.tscn" id="3_v6yin"]
 [ext_resource type="Script" uid="uid://by0kcrtjmydqp" path="res://assets/scripts/tower_grid.gd" id="3_vio1o"]
@@ -70,16 +69,12 @@ allow_unpress = true
 
 [node name="First-Person view" type="Node" parent="."]
 
-[node name="Player" parent="First-Person view" node_paths=PackedStringArray("weapon_fx") instance=ExtResource("1_41fjk")]
+[node name="Player" parent="First-Person view" instance=ExtResource("1_41fjk")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.33311, 0, 4.02174)
-weapon_fx = NodePath("WeaponSocket/PlayerAttackFx")
 
 [node name="Health" parent="First-Person view/Player" index="0"]
 max_health = 100
-
-[node name="PlayerAttackFx" parent="First-Person view/Player/WeaponSocket" index="0" instance=ExtResource("2_kaujs")]
-lifetime = 0.1
 
 [node name="PlayerCam" type="Camera3D" parent="First-Person view/Player"]
 unique_name_in_owner = true

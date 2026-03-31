@@ -1,26 +1,22 @@
 extends CharacterBody3D
 
-@onready var grid_map: Node3D = %GridMap
+# For first person weapon, current default weapon
+@export var default_weapon: PackedScene = preload("res://assets/weapons/Sword.tscn")
 
+@export var in_round: bool = false
+
+@onready var grid_map: Node3D = %GridMap
 
 # Exposing child health node to other scripts
 @onready var health: Node3D = $Health
 
-# Just here for spawning towers at player pos with keys. Keeping here for testing.
-#var crossbow_tower = preload("res://assets/scenes/towers/crossbow_tower.tscn")
-
-# For first person weapon, current default weapon
-@export var weapon_scene: PackedScene = preload("res://assets/scenes/Weapon.tscn")
-
-@export var starting_weapon: GameWeaponData = preload("res://assets/weapons/sword.tres")
-
-@export var weapon_fx: GPUParticles3D
-
-@export var in_round: bool = false
-
 @onready var weapon_socket: Node3D = $WeaponSocket
 
+var weapon_data: GameWeaponData
+
 var equipped_weapon: Weapon = null
+
+var weapon_scene: Node3D
 
 var disabled: bool = false
 
@@ -39,6 +35,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	
+	
 
 	
 func _input(event: InputEvent) -> void:
@@ -53,10 +50,6 @@ func _input(event: InputEvent) -> void:
 		# Mainly for testing
 		can_attack = equipped_weapon.try_fire(origin, dir)
 		print("ATTACK TEST fired")
-		
-		#Attack Particle FX TODO: move this to the weapon
-		if can_attack:
-			weapon_fx.restart()
 
 	
 	#if event is InputEventKey and event.pressed:
@@ -106,7 +99,7 @@ func _physics_process(delta: float) -> void:
 
 
 
-func equip_weapon(new_data: GameWeaponData) -> void:
+func equip_weapon(new_weapon: Node3D) -> void:
 	# If something is equipped, replace it (or just return if you never swap)
 	if equipped_weapon != null:
 		
@@ -115,10 +108,10 @@ func equip_weapon(new_data: GameWeaponData) -> void:
 		equipped_weapon.queue_free()
 		
 		equipped_weapon = null
-
-	var inst: Node = weapon_scene.instantiate()
 	
-	var w: Weapon = inst as Weapon
+	#var inst: Node = weapon_scene.instantiate()
+	
+	var w: Weapon = weapon_scene as Weapon
 	
 	if w == null:
 		
@@ -126,19 +119,26 @@ func equip_weapon(new_data: GameWeaponData) -> void:
 		
 		return
 
-	weapon_socket.add_child(w)
+	#weapon_socket.add_child(w)
 	
-	w.transform = Transform3D.IDENTITY
+	#w.transform = Transform3D.IDENTITY
 	
-	w.data = new_data
+	#w.data = new_data
 	
 	equipped_weapon = w
 
 func ensure_equipped() -> void:
-	
-	if equipped_weapon == null:
-		
-		equip_weapon(starting_weapon)
+	#equip default weapon if none given in editor
+	if not weapon_socket.has_node("Weapon"):
+		weapon_scene = default_weapon.instantiate()
+		weapon_socket.add_child(weapon_scene)
+		weapon_data = weapon_scene.data
+		equipped_weapon = weapon_scene as Weapon
+	else:
+		weapon_scene = weapon_socket.get_child(0)
+		weapon_data = weapon_scene.data
+		equipped_weapon = weapon_scene as Weapon
+
 
 
 func _on_health_damaged_sig(damage_taken: int, health_after_damage: int) -> void:

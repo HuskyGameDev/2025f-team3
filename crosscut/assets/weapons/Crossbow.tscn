@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://byh8by44t3e1n"]
+
+[ext_resource type="Script" uid="uid://5s7231xq1qwb" path="res://assets/scripts/weapon.gd" id="1_cyevl"]
+[ext_resource type="Resource" uid="uid://bqtl1octfreaa" path="res://assets/weapons/crossbow.tres" id="2_vex0s"]
+[ext_resource type="PackedScene" uid="uid://bmb0x3h0wr7ni" path="res://assets/3D assets/arrow.blend" id="3_fcjrc"]
+[ext_resource type="PackedScene" uid="uid://dgdes3bah2fep" path="res://assets/3D assets/Crossbow.blend" id="3_vex0s"]
+
+[sub_resource type="Animation" id="Animation_bmlh2"]
+resource_name = "Shoot"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("arrow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(15, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("arrow:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_difu4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("arrow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("arrow:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qw4ov"]
+_data = {
+&"RESET": SubResource("Animation_difu4"),
+&"Shoot": SubResource("Animation_bmlh2")
+}
+
+[node name="Weapon" type="Node3D"]
+script = ExtResource("1_cyevl")
+data = ExtResource("2_vex0s")
+
+[node name="Crossbow" parent="." instance=ExtResource("3_vex0s")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qw4ov")
+}
+
+[node name="arrow" parent="." instance=ExtResource("3_fcjrc")]
+transform = Transform3D(1.03182e-05, 0.1, 1.35616e-05, -0.0999999, 1.02952e-05, 0.000166683, 0.000166682, -1.35791e-05, 0.1, 0, 0, 0)
+visible = false
