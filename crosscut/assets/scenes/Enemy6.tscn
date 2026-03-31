@@ -1,37 +1,43 @@
-[gd_scene load_steps=7 format=3 uid="uid://evcw5jxt1bwb"]
+[gd_scene load_steps=8 format=3 uid="uid://evcw5jxt1bwb"]
 
 [ext_resource type="Script" uid="uid://bc6quxucpigy5" path="res://assets/scripts/enemy6_stats.gd" id="1_fkpdm"]
 [ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="2_re45p"]
 [ext_resource type="PackedScene" uid="uid://chanyixfxi2dh" path="res://assets/3D assets/TNTEnemy.glb" id="3_re45p"]
+[ext_resource type="Texture2D" uid="uid://c6ecwoxhp4mx1" path="res://assets/UI/icons/health.png" id="4_kdqy7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_re45p"]
-radius = 1.52325
-height = 6.0154
+radius = 0.298824
+height = 1.26922
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kdqy7"]
-radius = 1.56897
-height = 6.28557
+radius = 0.31057
+height = 1.30526
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_trkud"]
+radius = 0.231342
 
 [node name="Enemy6" type="CharacterBody3D" groups=["enemy"]]
 script = ExtResource("1_fkpdm")
 
-[node name="Health" parent="." instance=ExtResource("2_re45p")]
+[node name="Health" parent="." node_paths=PackedStringArray("healthBarL", "healthBarR") instance=ExtResource("2_re45p")]
 max_health = 70
+healthBarL = NodePath("../HealthBar/HealthBarL")
+healthBarR = NodePath("../HealthBar/HealthBarR")
+has_health_bar = true
 
 [node name="pivot" type="Node3D" parent="."]
 
 [node name="TNTEnemy" parent="pivot" instance=ExtResource("3_re45p")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 1.57576, 0)
+transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0.322628, 0)
 shape = SubResource("CapsuleShape3D_re45p")
 
 [node name="DamageArea" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
-transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 1.53485, 0)
+transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0.348806, 0)
 shape = SubResource("CapsuleShape3D_kdqy7")
 
 [node name="ExplodeArea" type="Area3D" parent="."]
@@ -41,6 +47,26 @@ transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 shape = SubResource("SphereShape3D_trkud")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="HealthBar" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.15, 0, 0, 0, 0.175, 0, 1.11513, 0)
+
+[node name="HealthBarL" type="Sprite3D" parent="HealthBar"]
+centered = false
+offset = Vector2(-32, 0)
+billboard = 1
+texture = ExtResource("4_kdqy7")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 64)
+
+[node name="HealthBarR" type="Sprite3D" parent="HealthBar"]
+centered = false
+offset = Vector2(32, 0)
+modulate = Color(0.31, 0.31, 0.31, 1)
+billboard = 1
+texture = ExtResource("4_kdqy7")
+region_enabled = true
+region_rect = Rect2(0, 0, 0, 64)
 
 [connection signal="killed_sig" from="Health" to="." method="_on_health_killed_sig"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
