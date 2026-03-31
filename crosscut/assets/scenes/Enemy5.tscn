@@ -2,13 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dw4hm3y7vv33j" path="res://assets/scripts/enemy5_stats.gd" id="1_8jdxt"]
 [ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="2_uwaki"]
-[ext_resource type="Texture2D" uid="uid://c6ecwoxhp4mx1" path="res://assets/UI/icons/health.png" id="3_uwaki"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cthh4"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_qk1lw"]
-material = SubResource("StandardMaterial3D_cthh4")
+[ext_resource type="PackedScene" uid="uid://br7ayys7efxi6" path="res://assets/3D assets/Catapult.glb" id="3_cthh4"]
+[ext_resource type="Texture2D" uid="uid://d3nl3a2q5sihj" path="res://assets/UI/icons/health.png" id="3_uwaki"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8y4hj"]
 
@@ -29,8 +24,8 @@ has_health_bar = true
 
 [node name="Pivot" type="Node3D" parent="."]
 
-[node name="ReplaceThisWithEnemy5Model" type="MeshInstance3D" parent="Pivot"]
-mesh = SubResource("BoxMesh_qk1lw")
+[node name="Catapult" parent="Pivot" instance=ExtResource("3_cthh4")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_8y4hj")
