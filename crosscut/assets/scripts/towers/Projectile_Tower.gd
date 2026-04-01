@@ -1,8 +1,5 @@
 extends Tower
 
-#TODO: Rename to Projectile Tower
-
-
 # Behavior settings
 @export var tower_lookaround_time_range: Vector2 = Vector2(1, 2) # The range of time intervals when looking around randomly
 @export var tower_turnspeed: float = 4 # How quickly the tower turns to where it wants to look

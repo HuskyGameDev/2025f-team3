@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cfikctct4bdl1"]
 
-[ext_resource type="Script" uid="uid://dy6py3ylmvkm5" path="res://assets/scripts/towers/crossbow_tower.gd" id="1_wvwoq"]
+[ext_resource type="Script" uid="uid://dy6py3ylmvkm5" path="res://assets/scripts/towers/Projectile_Tower.gd" id="1_wvwoq"]
 [ext_resource type="PackedScene" uid="uid://b2ppkux2l3rph" path="res://assets/scenes/projectiles/ballista_bolt.tscn" id="2_wvwoq"]
 [ext_resource type="PackedScene" uid="uid://dw40cmtrt8qw0" path="res://assets/3D assets/tower.blend" id="3_jxrch"]
 [ext_resource type="PackedScene" uid="uid://cr285eam1cjjx" path="res://assets/3D assets/Crossbow.blend" id="4_mo7ky"]

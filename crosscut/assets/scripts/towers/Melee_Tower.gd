@@ -1,7 +1,4 @@
 extends Tower
-
-#TODO: rename to Melee tower
-
 # Attack settings
 # look to TowerBase for basline settings 
 
