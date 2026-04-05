@@ -29,19 +29,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(12.159, -4.88712, -12.3362)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("bow:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.573393, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_l3j0h"]
@@ -54,7 +42,7 @@ tracks/0/path = NodePath("arrow:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.500403),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -70,18 +58,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(12.159, -4.88712, -12.3362)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("bow:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.573393, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_horfc"]
@@ -104,5 +80,6 @@ libraries = {
 }
 
 [node name="arrow" parent="." instance=ExtResource("4_p4v0v")]
-transform = Transform3D(0.0332878, 0.0663138, 0.0670404, -0.0726163, -0.0273276, 0.063088, 0.0601565, -0.0696828, 0.0390579, 12.159, -4.88712, -12.3362)
+physics_interpolation_mode = 2
+transform = Transform3D(0.0499317, 0.0994707, 0.100561, -0.108924, -0.0409914, 0.0946318, 0.0902347, -0.104524, 0.0585867, 0, 0, 0)
 visible = false

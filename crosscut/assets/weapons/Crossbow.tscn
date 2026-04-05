@@ -79,5 +79,5 @@ libraries = {
 }
 
 [node name="arrow" parent="." instance=ExtResource("3_fcjrc")]
-transform = Transform3D(1.03182e-05, 0.1, 1.35616e-05, -0.0999999, 1.02952e-05, 0.000166683, 0.000166682, -1.35791e-05, 0.1, 0, 0, 0)
+transform = Transform3D(1.54769e-05, 0.15, 2.03429e-05, -0.15, 1.54429e-05, 0.000250025, 0.000250023, -2.03687e-05, 0.15, 0, 0, 0)
 visible = false
