@@ -502,8 +502,17 @@ theme_override_styles/disabled = ExtResource("14_sbfc4")
 theme_override_styles/hover = ExtResource("14_yp5th")
 theme_override_styles/pressed = ExtResource("15_qo30f")
 theme_override_styles/normal = ExtResource("14_sbfc4")
-disabled = true
 text = "Equip"
+
+[node name="Equipped" type="Label" parent="LeftPanel/VBoxContainer/WeaponVBox"]
+custom_minimum_size = Vector2(1, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Currently equipped:
+Super Sword"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="RightPanel" type="PanelContainer" parent="."]
 anchors_preset = 11

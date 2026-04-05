@@ -64,6 +64,7 @@ func _ready() -> void:
 	_connect_to_spawner()
 	
 	_toggle_mode.call_deferred()
+	player.ensure_equipped()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -197,7 +198,6 @@ func _toggle_mode() -> void:
 		
 		# Ensure weapon is equipped
 		player.in_round = true
-		player.ensure_equipped()
 		
 		# Change camera
 		first_person_camera.make_current()
