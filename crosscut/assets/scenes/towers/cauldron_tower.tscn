@@ -50,6 +50,10 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.0155218, 3.93761, -0.006464
 amount = 12
 lifetime = 3.0
 
+[node name="IdleLookaroundTimer" type="Timer" parent="."]
+wait_time = 7.0
+autostart = true
+
 [node name="FiringTimer" type="Timer" parent="."]
 one_shot = true
 
