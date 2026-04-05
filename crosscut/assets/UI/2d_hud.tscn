@@ -505,11 +505,10 @@ theme_override_styles/normal = ExtResource("14_sbfc4")
 text = "Equip"
 
 [node name="Equipped" type="Label" parent="LeftPanel/VBoxContainer/WeaponVBox"]
-custom_minimum_size = Vector2(1, 50)
+custom_minimum_size = Vector2(1, 20)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Currently equipped:
-Super Sword"
+theme_override_font_sizes/font_size = 14
+text = "Currently equipped: Wooden Sword"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
