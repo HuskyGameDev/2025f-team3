@@ -14,6 +14,13 @@ var objective_health: float = 500
 var objective_max_health: float = 500
 var objective_health_width: float
 
+@onready var player: CharacterBody3D = %Player
+
+var sword: PackedScene = preload("res://assets/weapons/Sword.tscn")
+var bow: PackedScene = preload("res://assets/weapons/Bow.tscn")
+var super_sword: PackedScene = preload("res://assets/weapons/Super_sword.tscn")
+var crossbow: PackedScene = preload("res://assets/weapons/Crossbow.tscn")
+
 # Dictionary containing info for available towers.
 # Info is accessed with tower_info[x][y] such that x is the dictionary key and y is the tower ID.
 @export var tower_info: Dictionary = {
@@ -157,6 +164,8 @@ func _on_buy_pressed() -> void:
 		
 		owned_weapons[weapon_id] = 1
 		_check_for_weapon_own(weapon_id)
+		
+		_on_equip_pressed()
 	
 func _buying_tower() -> void:
 	$BuyingPanel/Label.text = str(str(tower_info[0][int(selected_tower)]), " is selected. Click on any valid area of the map to buy the tower. Select the tower again to cancel tower placement.")
@@ -224,7 +233,19 @@ func _on_weapon_selection_button_pressed() -> void:
 	_select_weapon(selected_weapon)
 
 func _on_equip_pressed() -> void:
-	pass # add stuff here when equipping is added
+	var this_weapon: Node3D
+	
+	match selected_weapon:
+		"0":
+			this_weapon = sword.instantiate()
+		"1":
+			this_weapon = bow.instantiate()
+		"2":
+			this_weapon = super_sword.instantiate()
+		"3":
+			this_weapon = crossbow.instantiate()
+	
+	player.equip_weapon(this_weapon)
 
 # Hide buy button and show equip button if you select a weapon that you already have
 func _check_for_weapon_own(id: int) -> void:

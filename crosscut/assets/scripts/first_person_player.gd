@@ -97,21 +97,24 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 
-
-
 func equip_weapon(new_weapon: Node3D) -> void:
 	# If something is equipped, replace it (or just return if you never swap)
-	if equipped_weapon != null:
+	#if equipped_weapon != null:
 		
-		weapon_socket.remove_child(equipped_weapon)
+	#	weapon_socket.remove_child(equipped_weapon)
 		
-		equipped_weapon.queue_free()
+	#	equipped_weapon.queue_free()
 		
-		equipped_weapon = null
+	#	equipped_weapon = null
+	
+	var current_weapon: Array = weapon_socket.get_children()
+	for child: Node3D in current_weapon:
+		child.name = "No"
+		child.queue_free()
 	
 	#var inst: Node = weapon_scene.instantiate()
 	
-	var w: Weapon = weapon_scene as Weapon
+	var w: Weapon = new_weapon as Weapon
 	
 	if w == null:
 		
@@ -119,13 +122,15 @@ func equip_weapon(new_weapon: Node3D) -> void:
 		
 		return
 
-	#weapon_socket.add_child(w)
+	weapon_socket.add_child(w)
+	w.name = "Weapon"
 	
 	#w.transform = Transform3D.IDENTITY
 	
 	#w.data = new_data
 	
 	equipped_weapon = w
+	# ensure_equipped()
 
 func ensure_equipped() -> void:
 	#equip default weapon if none given in editor
