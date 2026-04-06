@@ -243,16 +243,16 @@ func _on_equip_pressed() -> void:
 		match selected_weapon:
 			"0":
 				this_weapon = sword.instantiate()
-				$LeftPanel/VBoxContainer/WeaponVBox/Equipped.text = "Currently equipped: Sword"
+				$LeftPanel/VBoxContainer/WeaponVBox/Equipped.text = "Currently equipped: " + str(tower_info[0][int(selected_weapon)])
 			"1":
 				this_weapon = bow.instantiate()
-				$LeftPanel/VBoxContainer/WeaponVBox/Equipped.text = "Currently equipped: Bow"
+				$LeftPanel/VBoxContainer/WeaponVBox/Equipped.text = "Currently equipped: " + str(tower_info[0][int(selected_weapon)])
 			"2":
 				this_weapon = super_sword.instantiate()
-				$LeftPanel/VBoxContainer/WeaponVBox/Equipped.text = "Currently equipped: Super Sword"
+				$LeftPanel/VBoxContainer/WeaponVBox/Equipped.text = "Currently equipped: " + str(tower_info[0][int(selected_weapon)])
 			"3":
 				this_weapon = crossbow.instantiate()
-				$LeftPanel/VBoxContainer/WeaponVBox/Equipped.text = "Currently equipped: Crossbow"
+				$LeftPanel/VBoxContainer/WeaponVBox/Equipped.text = "Currently equipped: " + str(tower_info[0][int(selected_weapon)])
 		$LeftPanel/VBoxContainer/WeaponVBox/Equip.text = "Unequip"
 	else:
 		this_weapon = wooden_sword.instantiate()
