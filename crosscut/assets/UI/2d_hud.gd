@@ -20,6 +20,7 @@ var sword: PackedScene = preload("res://assets/weapons/Sword.tscn")
 var bow: PackedScene = preload("res://assets/weapons/Bow.tscn")
 var super_sword: PackedScene = preload("res://assets/weapons/Super_sword.tscn")
 var crossbow: PackedScene = preload("res://assets/weapons/Crossbow.tscn")
+var wooden_sword: PackedScene = preload("res://assets/weapons/Wooden Sword.tscn")
 
 # Dictionary containing info for available towers.
 # Info is accessed with tower_info[x][y] such that x is the dictionary key and y is the tower ID.
@@ -93,8 +94,10 @@ func _select_tower(i: String) -> void:
 func _select_weapon(i: String) -> void:
 	if i == "-1":
 		_reset_weapon_values()
+		$LeftPanel/VBoxContainer/WeaponVBox/Equip.disabled = true
 	else:
 		$LeftPanel/VBoxContainer/WeaponVBox/Buy.disabled = false
+		$LeftPanel/VBoxContainer/WeaponVBox/Equip.disabled = false
 		$LeftPanel/VBoxContainer/WeaponVBox/Name.text = str(weapon_info[0][int(i)])
 		$LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer/DamageBox/Damage.text = str(weapon_info[1][int(i)])
 		$LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer/SpeedBox/Speed.text = str(weapon_info[2][int(i)])
@@ -165,6 +168,7 @@ func _on_buy_pressed() -> void:
 		owned_weapons[weapon_id] = 1
 		_check_for_weapon_own(weapon_id)
 		
+		$LeftPanel/VBoxContainer/WeaponVBox/Equip.text = "Equip"
 		_on_equip_pressed()
 	
 func _buying_tower() -> void:
@@ -235,15 +239,25 @@ func _on_weapon_selection_button_pressed() -> void:
 func _on_equip_pressed() -> void:
 	var this_weapon: Node3D
 	
-	match selected_weapon:
-		"0":
-			this_weapon = sword.instantiate()
-		"1":
-			this_weapon = bow.instantiate()
-		"2":
-			this_weapon = super_sword.instantiate()
-		"3":
-			this_weapon = crossbow.instantiate()
+	if $LeftPanel/VBoxContainer/WeaponVBox/Equip.text == "Equip":
+		match selected_weapon:
+			"0":
+				this_weapon = sword.instantiate()
+				$LeftPanel/VBoxContainer/WeaponVBox/Equipped.text = "Currently equipped: Sword"
+			"1":
+				this_weapon = bow.instantiate()
+				$LeftPanel/VBoxContainer/WeaponVBox/Equipped.text = "Currently equipped: Bow"
+			"2":
+				this_weapon = super_sword.instantiate()
+				$LeftPanel/VBoxContainer/WeaponVBox/Equipped.text = "Currently equipped: Super Sword"
+			"3":
+				this_weapon = crossbow.instantiate()
+				$LeftPanel/VBoxContainer/WeaponVBox/Equipped.text = "Currently equipped: Crossbow"
+		$LeftPanel/VBoxContainer/WeaponVBox/Equip.text = "Unequip"
+	else:
+		this_weapon = wooden_sword.instantiate()
+		$LeftPanel/VBoxContainer/WeaponVBox/Equipped.text = "Currently equipped: Wooden Sword"
+		$LeftPanel/VBoxContainer/WeaponVBox/Equip.text = "Equip"
 	
 	player.equip_weapon(this_weapon)
 
