@@ -56,22 +56,22 @@ var wooden_sword: PackedScene = preload("res://assets/weapons/Wooden Sword.tscn"
 	0: [
 		"Sword",
 		"Bow",
-		"Super Sword",
+		"Midas Sword",
 		"Crossbow"
 	],
 	# Damage
-	1: [10, 10, 20, 10],
+	1: [15, 10, 20, 10],
 	# Cooldown
-	2: [0.33, 0.5, 0.25, 0.15],
+	2: [0.33, 0.4, 0.4, 0.15],
 	# Description
 	3: [
-		"You can use the sword to hit enemies up close.",
-		"The bow can fire arrows at enemies from farther away.",
-		"The can super use the super sword to super hit enemies up super close.",
-		"The super bow can fire super arrows at super enemies from super farther away."
+		"The sword can be swung at enemies to hit them up close.",
+		"The bow can fire arrows at enemies to hit them from farther away.",
+		"The Midas sword is a stronger sword that turns enemies into gold, granting you more gold for each enemy you defeat.",
+		"The crossbow can fire arrows much farther and faster than a standard bow."
 	],
 	# Price
-	4: [1, 10, 100, 1000]
+	4: [75, 100, 300, 500]
 }
 
 func _get_price(i: int) -> int:

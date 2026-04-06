@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dlichn2b72vr7"]
+[gd_scene load_steps=35 format=3 uid="uid://dlichn2b72vr7"]
 
 [ext_resource type="Script" uid="uid://bo63nho4fqqub" path="res://assets/UI/2d_hud.gd" id="1_r3mer"]
 [ext_resource type="ButtonGroup" uid="uid://dgoxbso65ctny" path="res://assets/UI/tower_button_group.tres" id="2_q2cnw"]
@@ -17,11 +17,22 @@
 [ext_resource type="Texture2D" uid="uid://c8w4qqf8a2061" path="res://assets/UI/icons/walltower.png" id="14_7yk0u"]
 [ext_resource type="StyleBox" uid="uid://32wk4y14554e" path="res://assets/UI/buttons_stylebox.tres" id="14_sbfc4"]
 [ext_resource type="StyleBox" uid="uid://5a8cxfqwxso4" path="res://assets/UI/buttonshover_stylebox.tres" id="14_yp5th"]
-[ext_resource type="Texture2D" uid="uid://64vl8dhjq5xi" path="res://icon.svg" id="15_06o27"]
 [ext_resource type="Texture2D" uid="uid://ire8dm5g4yno" path="res://assets/UI/icons/walltower selected.png" id="15_ckblw"]
 [ext_resource type="StyleBox" uid="uid://bayafbaywjad0" path="res://assets/UI/buttonspress_stylebox.tres" id="15_qo30f"]
 [ext_resource type="ButtonGroup" uid="uid://ivbvqi731auo" path="res://assets/UI/weapon_button_group.tres" id="15_r2pin"]
 [ext_resource type="Texture2D" uid="uid://dlp6co5yiqe40" path="res://assets/UI/icons/walltower hover.png" id="16_ellp8"]
+[ext_resource type="Texture2D" uid="uid://dv3lwgq0aagbq" path="res://assets/UI/icons/swordweapon.png" id="18_2vkg6"]
+[ext_resource type="Texture2D" uid="uid://cxhmmqrcn2kg0" path="res://assets/UI/icons/swordweapon selected.png" id="19_70rku"]
+[ext_resource type="Texture2D" uid="uid://bcxo08ihv6mpl" path="res://assets/UI/icons/swordweapon hover.png" id="20_ikli4"]
+[ext_resource type="Texture2D" uid="uid://bva5f0v8nwti1" path="res://assets/UI/icons/bowweapon.png" id="21_63cun"]
+[ext_resource type="Texture2D" uid="uid://bqx1aqbgn14c" path="res://assets/UI/icons/bowweapon selected.png" id="22_k5loi"]
+[ext_resource type="Texture2D" uid="uid://c04nsvj65oyye" path="res://assets/UI/icons/bowweapon hover.png" id="23_10pop"]
+[ext_resource type="Texture2D" uid="uid://c6efik86fdbsl" path="res://assets/UI/icons/midasswordweapon.png" id="24_pe0bb"]
+[ext_resource type="Texture2D" uid="uid://dde4ayldjwmog" path="res://assets/UI/icons/midasswordweapon selected.png" id="25_ul5m7"]
+[ext_resource type="Texture2D" uid="uid://d04ovfvel7yol" path="res://assets/UI/icons/midasswordweapon hover.png" id="26_hi010"]
+[ext_resource type="Texture2D" uid="uid://bl0uolh2ijvil" path="res://assets/UI/icons/crossbowweapon.png" id="27_aghpb"]
+[ext_resource type="Texture2D" uid="uid://nb2lgd0ug3ef" path="res://assets/UI/icons/crossbowweapon selected.png" id="28_mvndk"]
+[ext_resource type="Texture2D" uid="uid://covfnqjn2xm1f" path="res://assets/UI/icons/crossbowweapon hover.png" id="29_lt45a"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bkq4m"]
 font_size = 27
@@ -341,7 +352,9 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 toggle_mode = true
 button_group = ExtResource("15_r2pin")
-texture_normal = ExtResource("15_06o27")
+texture_normal = ExtResource("18_2vkg6")
+texture_pressed = ExtResource("19_70rku")
+texture_hover = ExtResource("20_ikli4")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -352,7 +365,9 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 toggle_mode = true
 button_group = ExtResource("15_r2pin")
-texture_normal = ExtResource("15_06o27")
+texture_normal = ExtResource("21_63cun")
+texture_pressed = ExtResource("22_k5loi")
+texture_hover = ExtResource("23_10pop")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -363,7 +378,9 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 toggle_mode = true
 button_group = ExtResource("15_r2pin")
-texture_normal = ExtResource("15_06o27")
+texture_normal = ExtResource("24_pe0bb")
+texture_pressed = ExtResource("25_ul5m7")
+texture_hover = ExtResource("26_hi010")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -374,7 +391,9 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 toggle_mode = true
 button_group = ExtResource("15_r2pin")
-texture_normal = ExtResource("15_06o27")
+texture_normal = ExtResource("27_aghpb")
+texture_pressed = ExtResource("28_mvndk")
+texture_hover = ExtResource("29_lt45a")
 ignore_texture_size = true
 stretch_mode = 5
 
