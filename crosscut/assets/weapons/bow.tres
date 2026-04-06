@@ -10,9 +10,9 @@
 script = ExtResource("1_r3qjb")
 name = "Bow"
 type = 1
-cooldown = 0.5
+cooldown = 0.4
 damage = 10.0
-range_m = 12.0
+range_m = 15.0
 attack_sounds = Array[AudioStream]([ExtResource("1_cld8o"), ExtResource("2_ixbes"), ExtResource("3_pudcg")])
 model_scene = ExtResource("4_pow8b")
 metadata/_custom_type_script = "uid://goo6xl8pqgqi"
