@@ -74,6 +74,10 @@ var wooden_sword: PackedScene = preload("res://assets/weapons/Wooden Sword.tscn"
 	4: [75, 100, 300, 500]
 }
 
+var level_blurbs: Array = [
+	"Level 1"
+]
+
 func _get_price(i: int) -> int:
 	return tower_info[5][i]
 
@@ -204,7 +208,7 @@ func _connect_to_spawnManager() -> void:
 		push_warning("2D HUD: No spawn manager found in scene!")
 		
 func _update_next_level_text(next_level: int) -> void:
-	$RightPanel/VBoxContainer/Label.text = str(next_level + 2)
+	$RightPanel/VBoxWithBlurb/VBoxContainer/Label.text = str(next_level + 2)
 	%"3dHud"._update_level_number(next_level + 2)
 	
 func _on_objective_damaged(current_health: float, max_health: float) -> void:

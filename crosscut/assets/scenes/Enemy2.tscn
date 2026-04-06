@@ -1,5 +1,4 @@
 [gd_scene load_steps=9 format=3 uid="uid://128v07ijnbt2"]
-[gd_scene load_steps=8 format=3 uid="uid://128v07ijnbt2"]
 
 [ext_resource type="Script" uid="uid://t4fs3uasdc8w" path="res://assets/scripts/enemy2_stats.gd" id="1_3850e"]
 [ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="2_bp46k"]
