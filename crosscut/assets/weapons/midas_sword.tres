@@ -6,7 +6,7 @@
 script = ExtResource("1_5hlq0")
 name = "Super Sword"
 type = 0
-cooldown = 0.25
+cooldown = 0.4
 damage = 20.0
 range_m = 3.5
 attack_sounds = Array[AudioStream]([])
