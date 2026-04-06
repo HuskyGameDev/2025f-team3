@@ -28,7 +28,7 @@ var has_target: bool = false
 var alreadyDied: bool = false
 
 var lifeTimer: Timer
-@export var checkDistance: float = 5.0
+@export var checkDistance: float = 4.0
 signal valid(success: bool)
 
 func _ready() -> void:

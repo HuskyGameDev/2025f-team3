@@ -12,9 +12,10 @@ radius = 0.4
 radius = 0.410575
 
 [node name="Ghost" type="CharacterBody3D" groups=["enemy"]]
+physics_interpolation_mode = 1
 collision_mask = 4
 script = ExtResource("1_sopgx")
-speed = 100.0
+speed = 200.0
 rotation_speed = 99999.0
 atk = 0.0
 atk_cooldown = 0
@@ -37,10 +38,8 @@ avoidance_enabled = true
 use_3d_avoidance = true
 debug_enabled = true
 
-[node name="Health" parent="." node_paths=PackedStringArray("healthBarL", "healthBarR") instance=ExtResource("3_2madj")]
+[node name="Health" parent="." instance=ExtResource("3_2madj")]
 max_health = 9000000000
-healthBarL = NodePath("")
-healthBarR = NodePath("")
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]
