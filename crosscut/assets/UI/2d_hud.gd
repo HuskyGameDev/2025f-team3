@@ -18,7 +18,7 @@ var objective_health_width: float
 
 var sword: PackedScene = preload("res://assets/weapons/Sword.tscn")
 var bow: PackedScene = preload("res://assets/weapons/Bow.tscn")
-var super_sword: PackedScene = preload("res://assets/weapons/Super_sword.tscn")
+var super_sword: PackedScene = preload("res://assets/weapons/Midas_Sword.tscn")
 var crossbow: PackedScene = preload("res://assets/weapons/Crossbow.tscn")
 var wooden_sword: PackedScene = preload("res://assets/weapons/Wooden Sword.tscn")
 
