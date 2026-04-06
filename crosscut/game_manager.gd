@@ -185,7 +185,7 @@ func _input(event: InputEvent) -> void:
 			print("Selling error")
 		
 	if event.is_action_pressed("Test2"):
-		_change_gold(100)
+		_change_gold(100000)
 	
 func _get_mouse_position_on_board() -> Vector3:
 	var space_state: = get_world_3d().direct_space_state
