@@ -5,6 +5,7 @@ extends Node3D
 @onready var first_person_camera: Camera3D = %PlayerCam
 @onready var spectator_camera_body: CharacterBody3D = get_node_or_null("%SpectatorCam")
 @onready var spectator_camera: Camera3D = spectator_camera_body.get_node("Camera3D") if spectator_camera_body else null
+var spawnManager:Object
 
 @onready var first_person_HUD: CanvasLayer = %"3dHud"
 @onready var top_down_HUD: CanvasLayer = %"2dHud"
@@ -35,6 +36,8 @@ signal update_gold(value: int)
 var crossbow_tower: = preload("res://assets/scenes/towers/crossbow_tower.tscn")
 var cauldron_tower: = preload("res://assets/scenes/towers/cauldron_tower.tscn")
 var ballista_tower: = preload("res://assets/scenes/towers/Ballista_tower.tscn")
+var ghost:= preload("res://assets/scenes/towers/ghost.tscn")
+var ghostMob:= preload("res://assets/scenes/ghostMob.tscn")
 var wall_tower: = preload("res://assets/scenes/towers/Wall.tscn")
 var highlight_tile_y: = preload("res://assets/scenes/highlight_tile_yellow.tscn")
 var highlight_tile_r: = preload("res://assets/scenes/highlight_tile_red.tscn")
@@ -42,6 +45,9 @@ var highlight_tile_r: = preload("res://assets/scenes/highlight_tile_red.tscn")
 # Raycasting
 @onready var tower_placement_raycast: RayCast3D = %TowerPlacementRaycast
 const RAY_LENGTH = 500
+
+var legalTower: bool
+var currentChecker: Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -109,8 +115,31 @@ func _input(event: InputEvent) -> void:
 			if buying_tower:
 				var bought_position: Vector3
 				var price: int = %"2dHud"._get_price(int(selected_tower))
-				
-				if gold >= price:
+				# IF TOWER !=3:
+				var success:bool
+				if selected_tower != "3":
+					if (currentChecker != null):
+						print("CANT SPAWN ANOTHER TOWER CURERNTLY CHECKING")
+						return
+					# PLACE INVISIBLE TOWER
+					bought_position = grid_map.add_tower(ghost, position)
+					
+					await grid_map.finishedBakingSignal
+					
+					# SEND SHADOW ENEMY
+					currentChecker = ghostMob.instantiate()
+					get_parent().get_node("NavigationArea").add_child(currentChecker)
+					currentChecker.global_position = Vector3(-40,0,0)
+					# OTHERWISE DELETE GHOST TOWER AND DONT PLACE TOWER AND REBAKE
+					grid_map.remove_tower_at_position(position)
+					
+					success = await currentChecker.valid
+					currentChecker.queue_free()
+					currentChecker = null
+						
+
+				# IF ENEMY GETS TO OBJECTIVE DELETE GHOST TOWER AND PLACE REAL TOWER
+				if gold >= price && (selected_tower == "3" || success):
 					match selected_tower:
 						"0":
 							bought_position = grid_map.add_tower(crossbow_tower, position)
@@ -127,6 +156,8 @@ func _input(event: InputEvent) -> void:
 						AudioManager.play_sfx("place_tower")
 					else:
 						print("Buying error: Cannot place tower")
+				elif !success:
+					grid_map.force_bake()
 				else:
 					print("Buying error: Not enough gold")
 			
@@ -149,6 +180,7 @@ func _input(event: InputEvent) -> void:
 				# TODO: Determine the ID of the sold tower and subtract the corresponding price / 2
 				gold += price
 				update_gold.emit(gold)
+				grid_map.force_bake()
 		else:
 			print("Selling error")
 		
@@ -372,10 +404,9 @@ func _connect_to_player() -> void:
 		push_warning("GameManager: Player node not found!")
 
 func _connect_to_spawner() -> void:
-	var spawner: = get_node_or_null("%EnemySpawning")
-	if spawner:
+	spawnManager = get_parent().get_node("SpawnLibrary")
+	if spawnManager:
 		# We'll connect to the wave delay timeout to detect wave ends
-		spawner.get_node("WaveDelay").timeout.connect(_on_wave_ended)
 		print("GameManager connected to enemy spawner")
 	else:
 		push_warning("GameManager: Enemy spawner not found!")

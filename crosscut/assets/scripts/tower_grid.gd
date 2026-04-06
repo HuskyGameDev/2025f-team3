@@ -12,8 +12,12 @@ var towers: Dictionary[Vector2i, Node3D] = {}
 var highlights:  Dictionary[Vector2i, Node3D] = {} #TODO: remove the Node3d portion????
 
 @onready var navigationThing: NavigationRegion3D = $".."
+
+signal finishedBakingSignal()
+
 func _ready() -> void:
-	pass
+	navigationThing.bake_finished.connect(finishedBaking)
+
 	
 func get_grid_center() -> Vector3:
 	return position;
@@ -139,3 +143,10 @@ func get_closest_position_on_grid(place_pos: Vector2) -> Vector2i:
 		return Vector2.INF
 	
 	return closest_pos
+	
+func force_bake() -> void:
+	navigationThing.bake_navigation_mesh()
+	print("BAKING HAS BEEN FORCED")
+	
+func finishedBaking() -> void:
+	finishedBakingSignal.emit()

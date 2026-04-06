@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkg0810sieaf1"]
+
+[ext_resource type="Script" uid="uid://028kc1dojwsw" path="res://assets/scripts/ghost_checker.gd" id="1_sopgx"]
+[ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="3_2madj"]
+[ext_resource type="Script" uid="uid://bksnh1nri3ati" path="res://assets/scenes/damage_area.gd" id="5_or6ip"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7adb0"]
+height = 1.0
+radius = 0.4
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ubmvo"]
+radius = 0.410575
+
+[node name="Ghost" type="CharacterBody3D" groups=["enemy"]]
+collision_mask = 4
+script = ExtResource("1_sopgx")
+speed = 100.0
+rotation_speed = 99999.0
+atk = 0.0
+atk_cooldown = 0
+lifeTime = 1.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.489188, 0)
+shape = SubResource("CylinderShape3D_7adb0")
+
+[node name="DamageArea" type="Area3D" parent="."]
+script = ExtResource("5_or6ip")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00260394, 0.51739, -0.00156437)
+shape = SubResource("CapsuleShape3D_ubmvo")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+navigation_layers = 8
+avoidance_enabled = true
+use_3d_avoidance = true
+debug_enabled = true
+
+[node name="Health" parent="." node_paths=PackedStringArray("healthBarL", "healthBarR") instance=ExtResource("3_2madj")]
+max_health = 9000000000
+healthBarL = NodePath("")
+healthBarR = NodePath("")
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]

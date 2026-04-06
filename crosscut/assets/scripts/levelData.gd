@@ -8,7 +8,7 @@ var DEFAULT_LEVELS: Array = [
 	[
 		# Wave 1
 		[
-			spawn(5, "test1", ["north"], 1),
+			spawn(1, "test1", ["north"], 1),
 			spawn(1, "test4", ["south"], 1)
 		],
 		# Wave 2

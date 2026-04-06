@@ -6,10 +6,11 @@ extends CharacterBody3D
 @export var rotation_speed: float = 5
 @export var atk: float = 10
 @export var atk_cooldown: int = 20 # how many frames between damage ticks
+@export var lifeTime: float = 0.5
+@onready var health: Node3D = $Health
+
 var spawnValue: int = 1
 
-# exposing health node
-@onready var health: Node3D = $Health
 @onready var obj: Node3D = get_tree().get_nodes_in_group("objective").front() #TODO: make this pick just the objective
 
 #array to hold bodies in contact with enemy
@@ -26,6 +27,10 @@ var has_target: bool = false
 
 var alreadyDied: bool = false
 
+var lifeTimer: Timer
+@export var checkDistance: float = 5.0
+signal valid(success: bool)
+
 func _ready() -> void:
 	nav_agent.process_mode = Node.PROCESS_MODE_DISABLED
 	get_tree().process_frame
@@ -34,11 +39,8 @@ func _ready() -> void:
 
 	has_target = true
 	target_pos = obj.global_position
-	
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Test"):
-		get_parent().get_node("SpawnLibrary").killedEnemy()
-		queue_free()
+	lifeTimer = makeTimer()
+	lifeTimer.start()
 
 # enemy attack based on cooldown
 func _on_damage_area_body_entered(body: Node3D) -> void:
@@ -55,6 +57,7 @@ func _on_damage_area_body_exited(body: Node3D) -> void:
 		in_contact_arr.erase(body)
 	elif body.is_in_group("objective"):
 		in_contact_arr.erase(body)
+		validLocation()
 	elif body.is_in_group("wall"):
 		in_contact_arr.erase(body)
 
@@ -66,13 +69,14 @@ const GRAVITY: int = -300
 
 
 func _physics_process(delta:=) -> void:
+	if alreadyDied:
+		return
 	target_pos = obj.global_position
 	if has_target:
 		nav_agent.target_position = target_pos
-		print("TARGET IS: " + str(target_pos))
 		var next_path_pos := nav_agent.get_next_path_position()
+		print("CURRENT POSITION IS " + str(global_position))
 		print("Next POSITION IS: " + str(next_path_pos))
-		
 		var direction := global_position.direction_to(next_path_pos)
 		velocity = direction * speed
 		
@@ -83,16 +87,29 @@ func _physics_process(delta:=) -> void:
 		rotation.y = move_toward(rotation.y, target_rotation, delta * ROTATION_SPEED)
 		
 	move_and_slide()
+	validLocation()
 	
-	if (Engine.get_physics_frames() % atk_cooldown == 0): #attack cooldown is based on delta % attack cooldown
-		for body: Node3D in in_contact_arr:
-			body.health.take_damage(atk)
+	
+func makeTimer() -> Timer:
+	var timer := Timer.new()
+	add_child(timer)
+	timer.wait_time = lifeTime
+	timer.one_shot = true
+	timer.timeout.connect(_on_timer_timeout)
 
-func _on_health_killed_sig() -> void:
-	AudioManager.play_sfx("goblin_death")
+	return timer
 	
-	if !alreadyDied:
+func _on_timer_timeout() -> void:
+	if not alreadyDied:
 		alreadyDied = true
-		get_parent().get_node("SpawnLibrary").killedEnemy()
-		
-	queue_free()
+		velocity = Vector3.ZERO
+		valid.emit(false)
+		queue_free()
+
+func validLocation() -> void:
+	if alreadyDied:
+		return
+	var distance:float = global_position.distance_to(obj.global_position)
+	if distance <= checkDistance:
+		valid.emit(true)
+		queue_free()
