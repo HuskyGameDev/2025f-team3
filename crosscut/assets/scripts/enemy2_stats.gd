@@ -22,6 +22,7 @@ var in_contact_objective: bool = false
 var target_pos: Vector3
 var has_target: bool = false
 var player_exist: CharacterBody3D = null
+var lookat_pos: Vector3
 
 var alreadyDied: bool = false
 
@@ -71,11 +72,13 @@ const GRAVITY: int = -300
 func _physics_process(delta:=) -> void:
 	if has_target:
 		if player_exist and player_exist.get_node("Health").health > 0:
+			lookat_pos = player_exist.global_position
 			nav_agent.target_position = player_exist.global_position
 			var next_path_pos := nav_agent.get_next_path_position()
 			var direction := global_position.direction_to(next_path_pos)
 			velocity = direction * speed
 		else:
+			lookat_pos = target_pos
 			nav_agent.target_position = target_pos
 			var next_path_pos := nav_agent.get_next_path_position()
 			var direction := global_position.direction_to(next_path_pos)
@@ -86,7 +89,7 @@ func _physics_process(delta:=) -> void:
 			if abs(target_rotation - rotation.y) > deg_to_rad(60):
 				ROTATION_SPEED = 20
 			rotation.y = move_toward(rotation.y, target_rotation, delta * ROTATION_SPEED)
-	
+	look_at(lookat_pos)
 	move_and_slide()
 	
 	if (Engine.get_physics_frames() % atk_cooldown == 0): #attack cooldown is based on delta % attack cooldown
