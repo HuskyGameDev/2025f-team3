@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="2_ot5xq"]
 [ext_resource type="Script" uid="uid://bksnh1nri3ati" path="res://assets/scenes/damage_area.gd" id="3_fgdkg"]
 [ext_resource type="PackedScene" uid="uid://re87lfquiuv7" path="res://assets/scenes/particles/splitter_enemy_damage_fx.tscn" id="3_ok0ik"]
-[ext_resource type="Texture2D" uid="uid://c6ecwoxhp4mx1" path="res://assets/UI/icons/health.png" id="5_1lccy"]
+[ext_resource type="Texture2D" uid="uid://braxadp5t05cv" path="res://assets/UI/icons/health.png" id="5_1lccy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4i0at"]
 albedo_color = Color(1, 1, 0, 1)

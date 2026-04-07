@@ -133,8 +133,15 @@ func _input(event: InputEvent) -> void:
 					# OTHERWISE DELETE GHOST TOWER AND DONT PLACE TOWER AND REBAKE
 					grid_map.remove_tower_at_position(position)
 					
-					success = await currentChecker.valid
-					currentChecker.queue_free()
+					if currentChecker && is_instance_valid(currentChecker):
+						success = await currentChecker.valid
+						
+					else:
+						success = false
+					
+					if currentChecker && is_instance_valid(currentChecker):
+						currentChecker.queue_free()
+						
 					currentChecker = null
 						
 
