@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dlichn2b72vr7"]
+[gd_scene load_steps=37 format=3 uid="uid://dlichn2b72vr7"]
 
 [ext_resource type="Script" uid="uid://bo63nho4fqqub" path="res://assets/UI/2d_hud.gd" id="1_r3mer"]
 [ext_resource type="ButtonGroup" uid="uid://dgoxbso65ctny" path="res://assets/UI/tower_button_group.tres" id="2_q2cnw"]
@@ -33,6 +33,12 @@
 [ext_resource type="Texture2D" uid="uid://bl0uolh2ijvil" path="res://assets/UI/icons/crossbowweapon.png" id="27_aghpb"]
 [ext_resource type="Texture2D" uid="uid://nb2lgd0ug3ef" path="res://assets/UI/icons/crossbowweapon selected.png" id="28_mvndk"]
 [ext_resource type="Texture2D" uid="uid://covfnqjn2xm1f" path="res://assets/UI/icons/crossbowweapon hover.png" id="29_lt45a"]
+[ext_resource type="Texture2D" uid="uid://cynwdbbwgxlht" path="res://assets/UI/icons/speechbubble.png" id="34_70rku"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_70rku"]
+content_margin_top = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0, 0, 0, 0.403922)
 
 [sub_resource type="LabelSettings" id="LabelSettings_bkq4m"]
 font_size = 27
@@ -80,7 +86,6 @@ theme_override_font_sizes/font_size = 34
 text = "999"
 
 [node name="TowerVBox" type="VBoxContainer" parent="LeftPanel/VBoxContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 
@@ -307,6 +312,7 @@ disabled = true
 text = "Buy"
 
 [node name="WeaponVBox" type="VBoxContainer" parent="LeftPanel/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 
@@ -540,16 +546,32 @@ anchor_bottom = 1.0
 offset_left = -280.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_70rku")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="RightPanel"]
+[node name="VBoxWithBlurb" type="VBoxContainer" parent="RightPanel"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Blurb" type="Label" parent="RightPanel/VBoxWithBlurb"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 19
+text = "This is placeholder text for a short notice or announcement before the level. It will include information about upcoming enemies or potential strategies. This is three sentences of decent length, which is about what each description should be at most. You can make it longer with four sentences, but who is going to want to read this much?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxWithBlurb"]
 custom_minimum_size = Vector2(225, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 8
 theme_override_constants/separation = 25
 alignment = 1
 
-[node name="Label2" type="Label" parent="RightPanel/VBoxContainer"]
+[node name="Label3" type="Label" parent="RightPanel/VBoxWithBlurb/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -558,7 +580,7 @@ theme_override_font_sizes/font_size = 27
 text = "Next level:"
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="RightPanel/VBoxContainer"]
+[node name="Label" type="Label" parent="RightPanel/VBoxWithBlurb/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -568,7 +590,7 @@ theme_override_font_sizes/font_size = 34
 text = "1"
 horizontal_alignment = 1
 
-[node name="StartWave" type="Button" parent="RightPanel/VBoxContainer"]
+[node name="StartWave" type="Button" parent="RightPanel/VBoxWithBlurb/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 40
@@ -640,6 +662,25 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="SpeechBubble" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.188235)
+offset_left = 269.0
+offset_top = 60.0
+offset_right = 532.0
+offset_bottom = 125.0
+texture = ExtResource("34_70rku")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="SpeechBubble"]
+layout_mode = 0
+offset_right = 262.0
+offset_bottom = 43.0
+theme_override_font_sizes/font_size = 19
+text = "Click here to buy weapons"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
 [connection signal="pressed" from="LeftPanel/VBoxContainer/TowerVBox/HBoxContainer/WeaponButton" to="." method="_on_weapon_button_pressed"]
 [connection signal="pressed" from="LeftPanel/VBoxContainer/TowerVBox/GridContainer/0" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="LeftPanel/VBoxContainer/TowerVBox/GridContainer/1" to="." method="_on_button_pressed"]
@@ -653,4 +694,4 @@ autowrap_mode = 2
 [connection signal="pressed" from="LeftPanel/VBoxContainer/WeaponVBox/GridContainer/3" to="." method="_on_weapon_selection_button_pressed"]
 [connection signal="pressed" from="LeftPanel/VBoxContainer/WeaponVBox/Buy" to="." method="_on_buy_pressed"]
 [connection signal="pressed" from="LeftPanel/VBoxContainer/WeaponVBox/Equip" to="." method="_on_equip_pressed"]
-[connection signal="pressed" from="RightPanel/VBoxContainer/StartWave" to="." method="_on_start_wave_pressed"]
+[connection signal="pressed" from="RightPanel/VBoxWithBlurb/VBoxContainer/StartWave" to="." method="_on_start_wave_pressed"]

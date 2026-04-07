@@ -25,7 +25,7 @@ script = ExtResource("1_rram2")
 speed = 2.0
 
 [node name="Health" parent="." node_paths=PackedStringArray("hitFX", "healthBarL", "healthBarR") instance=ExtResource("2_ot5xq")]
-max_health = 300
+max_health = 150
 has_particles = true
 hitFX = NodePath("GPUParticles3D")
 healthBarL = NodePath("../HealthBar/HealthBarL")

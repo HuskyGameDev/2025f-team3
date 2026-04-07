@@ -16,7 +16,7 @@ script = ExtResource("1_lyect")
 damage = 0.0
 
 [node name="Health" parent="." instance=ExtResource("2_m3v3g")]
-max_health = 100
+max_health = 200
 
 [node name="Pivot" type="Node3D" parent="."]
 

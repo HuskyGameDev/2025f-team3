@@ -74,6 +74,10 @@ var wooden_sword: PackedScene = preload("res://assets/weapons/Wooden Sword.tscn"
 	4: [75, 100, 300, 500]
 }
 
+var level_blurbs: Array = [
+	"Level 1"
+]
+
 func _get_price(i: int) -> int:
 	return tower_info[5][i]
 
@@ -96,13 +100,13 @@ func _select_weapon(i: String) -> void:
 		_reset_weapon_values()
 		$LeftPanel/VBoxContainer/WeaponVBox/Equip.disabled = true
 	else:
-		$LeftPanel/VBoxContainer/WeaponVBox/Buy.disabled = false
 		$LeftPanel/VBoxContainer/WeaponVBox/Equip.disabled = false
 		$LeftPanel/VBoxContainer/WeaponVBox/Name.text = str(weapon_info[0][int(i)])
 		$LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer/DamageBox/Damage.text = str(weapon_info[1][int(i)])
 		$LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer/SpeedBox/Speed.text = str(weapon_info[2][int(i)])
 		$LeftPanel/VBoxContainer/WeaponVBox/Description.text = str(weapon_info[3][int(i)])
 		$LeftPanel/VBoxContainer/WeaponVBox/Price/Label.text = str(weapon_info[4][int(i)])
+		_refresh_buy_button()
 		
 func _reset_tower_values() -> void:
 	$LeftPanel/VBoxContainer/TowerVBox/Name.text = "No tower selected"
@@ -119,6 +123,12 @@ func _reset_weapon_values() -> void:
 	$LeftPanel/VBoxContainer/WeaponVBox/MarginContainer/VBoxContainer/SpeedBox/Speed.text = "N/A"
 	$LeftPanel/VBoxContainer/WeaponVBox/Description.text = "Select a weapon to see its statistics, description, and price."
 	$LeftPanel/VBoxContainer/WeaponVBox/Price/Label.text = "N/A"
+
+func _refresh_buy_button() -> void:
+	if weapon_info[4][int(selected_weapon)] > $"../../GameManager".gold:
+		$LeftPanel/VBoxContainer/WeaponVBox/Buy.disabled = true
+	else:
+		$LeftPanel/VBoxContainer/WeaponVBox/Buy.disabled = false
 
 func _ready() -> void:
 	_reset_tower_values()
@@ -171,6 +181,8 @@ func _on_buy_pressed() -> void:
 		$LeftPanel/VBoxContainer/WeaponVBox/Equip.text = "Equip"
 		_on_equip_pressed()
 	
+	_refresh_buy_button()
+	
 func _buying_tower() -> void:
 	$BuyingPanel/Label.text = str(str(tower_info[0][int(selected_tower)]), " is selected. Click on any valid area of the map to buy the tower. Select the tower again to cancel tower placement.")
 	buying_tower = true
@@ -196,7 +208,7 @@ func _connect_to_spawnManager() -> void:
 		push_warning("2D HUD: No spawn manager found in scene!")
 		
 func _update_next_level_text(next_level: int) -> void:
-	$RightPanel/VBoxContainer/Label.text = str(next_level + 2)
+	$RightPanel/VBoxWithBlurb/VBoxContainer/Label.text = str(next_level + 2)
 	%"3dHud"._update_level_number(next_level + 2)
 	
 func _on_objective_damaged(current_health: float, max_health: float) -> void:
@@ -221,6 +233,7 @@ func _on_objective_damaged_sig(_damage_taken: Variant, health_after_damage: Vari
 func _on_weapon_button_pressed() -> void:
 	$LeftPanel/VBoxContainer/TowerVBox.visible = false
 	$LeftPanel/VBoxContainer/WeaponVBox.visible = true
+	$SpeechBubble.visible = false
 
 func _on_tower_button_pressed() -> void:
 	$LeftPanel/VBoxContainer/TowerVBox.visible = true
