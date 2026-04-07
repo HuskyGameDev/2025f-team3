@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://24rx1xopqqrv"]
+[gd_scene load_steps=12 format=3 uid="uid://24rx1xopqqrv"]
 
 [ext_resource type="Script" uid="uid://gqm3f8mtgyof" path="res://assets/scripts/towers/Melee_Tower.gd" id="1_uoh5i"]
 [ext_resource type="PackedScene" uid="uid://dw40cmtrt8qw0" path="res://assets/3D assets/tower.blend" id="2_5vs04"]
@@ -13,6 +13,18 @@ radius = 1.7
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_chvo0"]
 size = Vector3(2.8, 7.5, 2.8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ddlvf"]
+transparency = 1
+albedo_color = Color(1, 0.894118, 0.294118, 0.482353)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jm1sn"]
+material = SubResource("StandardMaterial3D_ddlvf")
+top_radius = 2.2
+bottom_radius = 1.5
+height = 4.0
+radial_segments = 16
+cap_bottom = false
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_et1c7"]
 
@@ -49,6 +61,11 @@ transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -0.0206044, -0.705676, 
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.0155218, 3.93761, -0.00646432)
 amount = 12
 lifetime = 3.0
+
+[node name="Oil" type="MeshInstance3D" parent="TowerHead"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.73, 0)
+mesh = SubResource("CylinderMesh_jm1sn")
+skeleton = NodePath("../..")
 
 [node name="IdleLookaroundTimer" type="Timer" parent="."]
 wait_time = 7.0
