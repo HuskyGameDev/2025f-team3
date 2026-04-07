@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://24rx1xopqqrv"]
 
-[ext_resource type="Script" uid="uid://gqm3f8mtgyof" path="res://assets/scripts/towers/Melee_Tower.gd" id="1_uoh5i"]
+[ext_resource type="Script" path="res://assets/scripts/towers/Melee_Tower.gd" id="1_uoh5i"]
 [ext_resource type="PackedScene" uid="uid://dw40cmtrt8qw0" path="res://assets/3D assets/tower.blend" id="2_5vs04"]
 [ext_resource type="PackedScene" uid="uid://6ku42vxt6y3f" path="res://assets/scenes/projectiles/cauldron_splash.tscn" id="2_vmgpg"]
 [ext_resource type="PackedScene" uid="uid://j8fven75hqdi" path="res://assets/3D assets/bucket.tscn" id="4_ddlvf"]
@@ -29,7 +29,7 @@ cap_bottom = false
 [sub_resource type="SphereShape3D" id="SphereShape3D_et1c7"]
 
 [node name="CauldronTower" type="StaticBody3D" groups=["tower"]]
-collision_layer = 5
+collision_layer = 13
 collision_mask = 5
 script = ExtResource("1_uoh5i")
 splash_radius_vision_offset = 2.0
