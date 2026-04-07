@@ -54,5 +54,5 @@ func _active_state() -> void:
 func set_firing_speed(new_value: float) -> void:
 	firing_timer.wait_time = new_value
 
-func _on_health_killed_sig() -> void:
+func _on_health_killed_sig(_isGoldTouched: bool) -> void:
 	queue_free()

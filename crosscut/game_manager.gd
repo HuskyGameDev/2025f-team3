@@ -418,7 +418,7 @@ func _connect_to_spawner() -> void:
 	else:
 		push_warning("GameManager: Enemy spawner not found!")
 
-func _on_player_killed() -> void:
+func _on_player_killed(_isGoldTouched: bool) -> void:
 	print("===== PLAYER KILLED SIGNAL RECEIVED =====")
 	print("Current control mode: ", control_mode)
 	print("Spectator camera exists: ", spectator_camera != null)
