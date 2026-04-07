@@ -83,6 +83,7 @@ func _on_attack_area_body_exited(body: Node3D) -> void:
 
 func shoot_target(target_global_position : Vector3) -> void:
 	var new_projectile := Projectile.instantiate()
+	new_projectile.targetpos = (target_global_position - global_position) #give projectile target
 	get_tree().current_scene.add_child(new_projectile)
 	new_projectile.global_transform.origin = shootingpoint.global_transform.origin
 	new_projectile.direction = (target_global_position - shootingpoint.global_transform.origin).normalized()

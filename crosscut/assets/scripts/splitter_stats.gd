@@ -8,7 +8,7 @@ extends CharacterBody3D
 @export var atk_cooldown: int = 20 # how many frames between damage ticks
 var killValue: int = 1
 
-@export var babyEnemy: PackedScene = preload("res://assets/scenes/Enemy1.tscn")
+@export var babyEnemy: PackedScene = preload("res://assets/scenes/enemies/Enemy1.tscn")
 @export var babyNum: int = 2
 
 # exposing health node

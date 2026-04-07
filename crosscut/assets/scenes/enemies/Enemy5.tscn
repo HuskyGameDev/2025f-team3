@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dw4hm3y7vv33j" path="res://assets/scripts/enemy5_stats.gd" id="1_8jdxt"]
 [ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="2_uwaki"]
-[ext_resource type="PackedScene" uid="uid://425jwax4gsxe" path="res://assets/3D assets/Catapult.glb" id="3_cthh4"]
-[ext_resource type="Texture2D" uid="uid://c6ecwoxhp4mx1" path="res://assets/UI/icons/health.png" id="3_uwaki"]
+[ext_resource type="PackedScene" uid="uid://c14onxt232fxo" path="res://assets/3D assets/Catapult.glb" id="3_cthh4"]
+[ext_resource type="Texture2D" uid="uid://d2d7vq4o6vtku" path="res://assets/UI/icons/health.png" id="3_uwaki"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8y4hj"]
 size = Vector3(2.39624, 2.15051, 3.99523)
