@@ -38,7 +38,7 @@ func _on_Enemy_Projectile_body_entered(body: Node3D) -> void:
 	#if body.has_method("take_damage"):
 		#body.take_damage(damage)
 	if body.is_in_group("player") or body.is_in_group("objective"):
-		body.health.take_damage(damage)
+		body.health.take_damage(damage, false)
 	# Destroy the projectile on impact
 	queue_free()
 

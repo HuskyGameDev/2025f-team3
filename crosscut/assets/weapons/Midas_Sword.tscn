@@ -68,6 +68,7 @@ _data = {
 [node name="Weapon" type="Node3D"]
 script = ExtResource("1_em1nf")
 data = ExtResource("2_bdl5c")
+isGoldTouched = true
 
 [node name="midas_sword" parent="." instance=ExtResource("3_u6wmg")]
 transform = Transform3D(0.575576, -0.00796047, 0.817709, 0.784491, -0.276898, -0.554889, 0.230839, 0.960867, -0.153131, 0, 0, 0)

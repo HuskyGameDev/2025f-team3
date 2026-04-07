@@ -63,10 +63,13 @@ func startWave(waveInfo: Array) -> void:
 	print("Wave started: ", totalEnemies, " total enemies, ", aliveEnemies, " alive enemies")
 	doneSpawning = true
 
-func killedEnemy() -> void:
+func killedEnemy(isGoldTouched: bool) -> void:
 	aliveEnemies -= 1
 	playerUI._update_enemies_killed(aliveEnemies)
 	print("Killed enemy ", aliveEnemies, " remain")
+	
+	if isGoldTouched:
+		$"../GameManager"._change_gold(15) #gain 15 gold per kill with midas sword
 	
 	if aliveEnemies == 0 && doneSpawning:
 		print("All enemies killed, going to next wave")

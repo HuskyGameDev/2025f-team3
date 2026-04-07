@@ -1,7 +1,7 @@
 extends Node
 
 signal damaged_sig(damage_taken: int, health_after_damage: int)
-signal killed_sig
+signal killed_sig(isGoldTouched: bool)
 
 @export var debug: bool = false
 @export var max_health: int
@@ -19,7 +19,7 @@ func restore_health() -> void:
 	health = max_health
 	update_health_bar()
 
-func take_damage(damage: int) -> void:
+func take_damage(damage: int, isGoldTouched: bool) -> void:
 	if debug: print("Current health is ", health)
 	health -= damage
 	damaged_sig.emit(damage, health)
@@ -30,7 +30,7 @@ func take_damage(damage: int) -> void:
 	if debug: print("Health after damage: ", health, " (max: ", max_health, ")")
 	if health <= 0:
 		if debug: print("HEALTH ZERO - EMITTING KILLED SIGNAL for: ", get_parent().name)
-		killed_sig.emit()
+		killed_sig.emit(isGoldTouched)
 		
 	update_health_bar()
 		

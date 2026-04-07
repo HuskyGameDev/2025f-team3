@@ -61,9 +61,9 @@ func explode() -> void:
 	in_explotion = explode_area.get_overlapping_bodies()
 	for body in in_explotion:
 		if body.is_in_group("player"):
-			body.health.take_damage(explotion)
+			body.health.take_damage(explotion, false)
 		elif body.is_in_group("objective"):
-			body.health.take_damage(explotion)
+			body.health.take_damage(explotion, false)
 """
 func _on_explode_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
@@ -94,10 +94,10 @@ func _physics_process(delta:=) -> void:
 	
 	if (Engine.get_physics_frames() % atk_cooldown == 0): #attack cooldown is based on delta % attack cooldown
 		for body: Node3D in in_contact_arr:
-			body.health.take_damage(atk)
+			body.health.take_damage(atk, false)
 
-func _on_health_killed_sig() -> void:
+func _on_health_killed_sig(isGoldTouched: bool) -> void:
 	explode()
 	#AudioManager.play_sfx("goblin_death")
-	get_parent().get_node("SpawnLibrary").killedEnemy()
+	get_parent().get_node("SpawnLibrary").killedEnemy(isGoldTouched)
 	queue_free()

@@ -94,12 +94,12 @@ func _physics_process(delta:=) -> void:
 	
 	if (Engine.get_physics_frames() % atk_cooldown == 0): #attack cooldown is based on delta % attack cooldown
 		for body: Node3D in in_contact_arr:
-			body.health.take_damage(atk)
+			body.health.take_damage(atk, false)
 
-func _on_health_killed_sig() -> void:
+func _on_health_killed_sig(isGoldTouched: bool) -> void:
 	AudioManager.play_sfx("goblin_death")
 	if !alreadyDied:
 		alreadyDied = true
-		get_parent().get_node("SpawnLibrary").killedEnemy()
+		get_parent().get_node("SpawnLibrary").killedEnemy(isGoldTouched)
 		
 	queue_free()

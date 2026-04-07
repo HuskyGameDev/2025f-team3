@@ -4,11 +4,14 @@ class_name Weapon
 
 @export var data: GameWeaponData
 
+@export var isGoldTouched: bool = false
+
 @onready var animation: AnimationPlayer = $AnimationPlayer
 
 var _ready_time: float = 0.0
 
 var _model: Node3D = null
+
 
 func can_fire() -> bool:
 	
@@ -96,7 +99,7 @@ func _apply_damage(hit: Dictionary) -> void:
 		
 		if health_node.has_method("take_damage"):
 			
-			health_node.call("take_damage", int(data.damage))
+			health_node.call("take_damage", int(data.damage), isGoldTouched)
 			
 			return
 
@@ -107,7 +110,7 @@ func _apply_damage(hit: Dictionary) -> void:
 		
 		if health2.has_method("take_damage"):
 			
-			health2.call("take_damage", int(data.damage))
+			health2.call("take_damage", int(data.damage), isGoldTouched)
 
 
 func _play_random_attack_sound() -> void:

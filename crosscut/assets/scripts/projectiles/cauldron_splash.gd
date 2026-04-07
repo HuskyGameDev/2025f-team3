@@ -30,7 +30,7 @@ func _physics_process(_delta: float) -> void:
 func _damage_enemies() -> void:
 	var enemies: Array[Node3D] = splash_area.get_overlapping_bodies().filter(func(b:Node3D) -> bool: return b.is_in_group("enemy"))
 	for enemy : Node3D in enemies:
-		enemy.health.take_damage(damage)
+		enemy.health.take_damage(damage, false)
 	# print("SPLASH: damaging enemies")
 
 func _cleanup() -> void:

@@ -114,7 +114,7 @@ func _physics_process(delta:=) -> void:
 	#contact damage
 	if (Engine.get_physics_frames() % atk_cooldown == 0): #attack cooldown is based on delta % attack cooldown
 		for body: Node3D in in_contact_arr:
-			body.health.take_damage(atk)
+			body.health.take_damage(atk, false)
 		
 	if (Engine.get_physics_frames() % firing_cooldown == 0):
 		for body: Node3D in in_range_arr:
@@ -131,6 +131,6 @@ func _physics_process(delta:=) -> void:
 					#shoot_target(body.position)
 					#body.health.take_damage(atk)
 
-func _on_health_killed_sig() -> void:
-	get_parent().get_node("SpawnLibrary").killedEnemy()
+func _on_health_killed_sig(isGoldTouched: bool) -> void:
+	get_parent().get_node("SpawnLibrary").killedEnemy(isGoldTouched)
 	queue_free()
