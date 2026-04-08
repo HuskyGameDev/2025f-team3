@@ -32,6 +32,7 @@ has_health_bar = true
 [node name="GPUParticles3D" parent="Health" instance=ExtResource("3_60w87")]
 
 [node name="pivot" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="TNTEnemy" parent="pivot" instance=ExtResource("3_re45p")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)

@@ -11,6 +11,7 @@ extends CharacterBody3D
 @onready var health: Node3D = $Health
 @onready var obj: Node3D = get_tree().get_nodes_in_group("objective").front() #TODO: make this pick just the objective
 @onready var explode_area : Area3D = $ExplodeArea
+@onready var explode_fx: PackedScene = load("res://assets/scenes/particles/explosion.tscn")
 
 #array to hold bodies in contact with enemy
 var in_contact_arr: Array[Node3D] = []
@@ -57,12 +58,21 @@ func _on_damage_area_body_exited(body: Node3D) -> void:
 		in_contact_arr.erase(body)
 
 func explode() -> void:
+	#explosion fx
+	var fx: Node3D = explode_fx.instantiate()
+	fx.global_position = global_position
+	get_parent().add_child(fx)
+	fx.explode()
+	
+	#explosion damage
 	explode_area.monitoring = true
 	in_explotion = explode_area.get_overlapping_bodies()
 	for body in in_explotion:
 		if body.is_in_group("player"):
 			body.health.take_damage(explotion, false)
 		elif body.is_in_group("objective"):
+			body.health.take_damage(explotion, false)
+		elif body.is_in_group("wall"):
 			body.health.take_damage(explotion, false)
 """
 func _on_explode_area_body_entered(body: Node3D) -> void:
