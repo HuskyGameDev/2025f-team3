@@ -1,9 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://7fuh6qgibu1s"]
 
 [ext_resource type="Script" uid="uid://wu17u6vseog0" path="res://assets/scripts/projectiles/enemy_projectile.gd" id="1_p0bp5"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ngvqf"]
-height = 1.2
+[ext_resource type="PackedScene" uid="uid://bglfwnu6lseeb" path="res://assets/3D assets/Goblin.glb" id="2_ngvqf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pw2c1"]
 radius = 0.15
@@ -14,9 +12,8 @@ collision_layer = 2
 collision_mask = 12
 script = ExtResource("1_p0bp5")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.25, 0, 0, 0, -3.27835e-08, -0.25, 0, 0.75, -1.09278e-08, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_ngvqf")
+[node name="Goblin" parent="." instance=ExtResource("2_ngvqf")]
+transform = Transform3D(2.86603e-16, 6.55671e-09, 0.15, 0.15, -6.55671e-09, 0, 6.55671e-09, 0.15, -6.55671e-09, 0, 0, -0.3)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
