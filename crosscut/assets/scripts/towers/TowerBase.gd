@@ -20,6 +20,7 @@ enum TowerState {IDLE, Active}
 @onready var objective: Node3D = get_tree().current_scene.find_child("Objective")
 @onready var attack_area: Area3D = $AttackArea
 @onready var health: Node3D = $Health
+@onready var grid_map: = get_tree().current_scene.find_child("GridMap")
 
 # Attack packed scene
 @export var tower_Attack_Visual: PackedScene
@@ -55,4 +56,5 @@ func set_firing_speed(new_value: float) -> void:
 	firing_timer.wait_time = new_value
 
 func _on_health_killed_sig(_isGoldTouched: bool) -> void:
-	queue_free()
+	grid_map.remove_tower_at_position(self.global_position)
+	# queue_free()
