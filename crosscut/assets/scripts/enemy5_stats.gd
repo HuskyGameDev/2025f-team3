@@ -11,6 +11,8 @@ extends CharacterBody3D
 @onready var health: Node3D = $Health
 @onready var obj: Node3D = get_tree().get_nodes_in_group("objective").front() #TODO: make this pick just the objective
 @onready var shootingpoint : Node3D = $ProjectileShootingPoint
+@onready var path: Path3D = $ProjectileShootingPoint/Path3D
+@onready var followpath: PathFollow3D = $ProjectileShootingPoint/Path3D/PathFollow3D
 
 #array to hold bodies in contact with enemy
 var in_contact_arr: Array[Node3D] = []
@@ -82,11 +84,24 @@ func _on_attack_area_body_exited(body: Node3D) -> void:
 
 
 func shoot_target(target_global_position : Vector3) -> void:
+	if not followpath.get_child_count() == 0: #do not fire if there is already a projectile out
+		return
+		
 	var new_projectile := Projectile.instantiate()
-	new_projectile.targetpos = (target_global_position - global_position) #give projectile target
-	get_tree().current_scene.add_child(new_projectile)
-	new_projectile.global_transform.origin = shootingpoint.global_transform.origin
-	new_projectile.direction = (target_global_position - shootingpoint.global_transform.origin).normalized()
+	var targetpos: Vector3 = target_global_position #give projectile target
+	
+	path.look_at(target_global_position, Vector3.UP)
+	
+	#get midpoint between target and start
+	var midpoint: Vector3 = path.to_local(targetpos) / 2
+	midpoint.y = sqrt((midpoint.x ** 2) + (midpoint.z ** 2))
+	
+	#point 0 already set, move others
+	path.curve.set_point_position(1, midpoint)
+	path.curve.set_point_position(2, path.to_local(targetpos))
+	followpath.add_child(new_projectile) #projectile added as child of followpath
+	
+	new_projectile.direction = (target_global_position - shootingpoint.global_position).normalized()
 	new_projectile.look_at(target_global_position, Vector3.UP)
 
 # from down here, it is enemy movement
@@ -118,7 +133,7 @@ func _physics_process(delta:=) -> void:
 		
 	if (Engine.get_physics_frames() % firing_cooldown == 0):
 		for body: Node3D in in_range_arr:
-			shoot_target(body.position)
+			shoot_target(body.global_position)
 			break #Comment remove this to make it shoot at every valid target in range
 		
 		#for body: Node3D in in_contact_arr:
