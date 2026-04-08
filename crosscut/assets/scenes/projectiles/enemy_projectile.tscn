@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://7fuh6qgibu1s"]
+[gd_scene load_steps=4 format=3 uid="uid://7fuh6qgibu1s"]
 
 [ext_resource type="Script" uid="uid://wu17u6vseog0" path="res://assets/scripts/projectiles/enemy_projectile.gd" id="1_p0bp5"]
 
@@ -8,13 +8,6 @@ height = 1.2
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pw2c1"]
 radius = 0.15
 height = 1.0
-
-[sub_resource type="Curve3D" id="Curve3D_p0bp5"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0),
-"tilts": PackedFloat32Array(0)
-}
-point_count = 1
 
 [node name="Enemy_Projectile" type="Area3D"]
 collision_layer = 2
@@ -29,15 +22,10 @@ mesh = SubResource("CapsuleMesh_ngvqf")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_pw2c1")
 
-[node name="Timer" type="Timer" parent="CollisionShape3D"]
+[node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 autostart = true
 
-[node name="Path3D" type="Path3D" parent="."]
-curve = SubResource("Curve3D_p0bp5")
-
-[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-
 [connection signal="body_entered" from="." to="." method="_on_Enemy_Projectile_body_entered"]
-[connection signal="timeout" from="CollisionShape3D/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

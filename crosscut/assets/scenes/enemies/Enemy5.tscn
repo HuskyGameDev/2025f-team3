@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://l2s1lcfq6je5"]
+[gd_scene load_steps=9 format=3 uid="uid://l2s1lcfq6je5"]
 
 [ext_resource type="Script" uid="uid://dw4hm3y7vv33j" path="res://assets/scripts/enemy5_stats.gd" id="1_8jdxt"]
 [ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="2_uwaki"]
@@ -13,9 +13,15 @@ size = Vector3(2.40656, 2.1012, 3.90134)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_730lf"]
 
+[sub_resource type="Curve3D" id="Curve3D_xwx80"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 2, -1, 0, 0, 0, 0, 0, 1, 0, 0, -1, 0, 3, -3, 0, 2, 1, 0, 0, 0, 0, -1.422, -6),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
 [node name="Enemy5" type="CharacterBody3D" groups=["enemy"]]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0.508814, 0)
-collision_mask = 4
+collision_mask = 12
 script = ExtResource("1_8jdxt")
 
 [node name="Health" parent="." node_paths=PackedStringArray("healthBarL", "healthBarR") instance=ExtResource("2_uwaki")]
@@ -27,16 +33,16 @@ has_health_bar = true
 [node name="Pivot" type="Node3D" parent="."]
 
 [node name="Catapult" parent="Pivot" instance=ExtResource("3_cthh4")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.407781, 0)
+transform = Transform3D(0.357, 0, 0, 0, 0.357, 0, 0, 0, 0.357, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0032959, 0.575256, 0.46578)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0.9, 0)
 shape = SubResource("BoxShape3D_8y4hj")
 
 [node name="DamageArea" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
-transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, -0.012529, 0.586844, 0.480315)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.9, 0)
 shape = SubResource("BoxShape3D_8jdxt")
 
 [node name="AttackArea" type="Area3D" parent="." groups=["enemy"]]
@@ -46,7 +52,15 @@ transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
 shape = SubResource("SphereShape3D_730lf")
 
 [node name="ProjectileShootingPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.58991, -1.83417)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.42202, -1.3724)
+
+[node name="Path3D" type="Path3D" parent="ProjectileShootingPoint"]
+curve = SubResource("Curve3D_xwx80")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="ProjectileShootingPoint/Path3D"]
+transform = Transform3D(0.999986, 0, 0, 0, 0.447212, -0.894424, 0, 0.894425, 0.447212, 0, 0, 0)
+loop = false
+tilt_enabled = false
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 navigation_layers = 8
