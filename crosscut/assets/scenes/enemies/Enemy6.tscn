@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://evcw5jxt1bwb"]
+[gd_scene load_steps=10 format=3 uid="uid://evcw5jxt1bwb"]
 
 [ext_resource type="Script" uid="uid://bc6quxucpigy5" path="res://assets/scripts/enemy6_stats.gd" id="1_fkpdm"]
 [ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="2_re45p"]
-[ext_resource type="PackedScene" uid="uid://chanyixfxi2dh" path="res://assets/3D assets/TNTEnemy.glb" id="3_re45p"]
-[ext_resource type="Texture2D" uid="uid://c6ecwoxhp4mx1" path="res://assets/UI/icons/health.png" id="4_kdqy7"]
+[ext_resource type="PackedScene" uid="uid://bqlc4fgsk26uq" path="res://assets/scenes/particles/enemy_1_damage_fx.tscn" id="3_60w87"]
+[ext_resource type="PackedScene" uid="uid://b631oirvdnu1h" path="res://assets/3D assets/TNTEnemy.glb" id="3_re45p"]
+[ext_resource type="Texture2D" uid="uid://d2d7vq4o6vtku" path="res://assets/UI/icons/health.png" id="4_kdqy7"]
+[ext_resource type="PackedScene" uid="uid://4yekipvj4ynf" path="res://assets/scenes/particles/smoke_small.tscn" id="5_ms2ev"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_re45p"]
 radius = 0.298824
@@ -19,16 +21,23 @@ radius = 0.231342
 [node name="Enemy6" type="CharacterBody3D" groups=["enemy"]]
 script = ExtResource("1_fkpdm")
 
-[node name="Health" parent="." node_paths=PackedStringArray("healthBarL", "healthBarR") instance=ExtResource("2_re45p")]
+[node name="Health" parent="." node_paths=PackedStringArray("hitFX", "healthBarL", "healthBarR") instance=ExtResource("2_re45p")]
 max_health = 70
+has_particles = true
+hitFX = NodePath("GPUParticles3D")
 healthBarL = NodePath("../HealthBar/HealthBarL")
 healthBarR = NodePath("../HealthBar/HealthBarR")
 has_health_bar = true
+
+[node name="GPUParticles3D" parent="Health" instance=ExtResource("3_60w87")]
 
 [node name="pivot" type="Node3D" parent="."]
 
 [node name="TNTEnemy" parent="pivot" instance=ExtResource("3_re45p")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="Smoke" parent="pivot" instance=ExtResource("5_ms2ev")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.376803, 0.855868, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0.322628, 0)
