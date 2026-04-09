@@ -12,10 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://b304tw4wnh0i1" path="res://assets/UI/game_over.tscn" id="8_n6pjd"]
 [ext_resource type="PackedScene" uid="uid://b5rhrfigqrejf" path="res://assets/scenes/spawn_library.tscn" id="10_m00bm"]
 [ext_resource type="Shader" uid="uid://blaja5xkgy2c5" path="res://assets/shaders/grass_map.gdshader" id="11_shader"]
-[ext_resource type="Texture2D" uid="uid://ds4ec4lj4w2if" path="res://assets/3D assets/rocky_terrain_02_diff_4k.jpg" id="12_texture"]
+[ext_resource type="Texture2D" uid="uid://dquuj7674551w" path="res://assets/3D assets/rocky_terrain_02_diff_4k.jpg" id="12_texture"]
 [ext_resource type="PackedScene" uid="uid://t4rpgnwied1k" path="res://assets/scenes/myHero.tscn" id="15_v6yin"]
-[ext_resource type="PackedScene" uid="uid://bs74lxcr1y6h2" path="res://assets/3D assets/map_wall.glb" id="16_n6pjd"]
-[ext_resource type="PackedScene" uid="uid://cdo7ui67v7hpl" path="res://assets/3D assets/map_walls.glb" id="16_r84xx"]
+[ext_resource type="PackedScene" uid="uid://d30e38ffgt00p" path="res://assets/3D assets/map_wall.glb" id="16_n6pjd"]
+[ext_resource type="PackedScene" uid="uid://dl0yhwaih82kh" path="res://assets/3D assets/map_walls.glb" id="16_r84xx"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vio1o"]
 panorama = ExtResource("1_376kr")
@@ -180,6 +180,20 @@ mesh = SubResource("PlaneMesh_41fjk")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_abcw6")
 
+[node name="EastWall" parent="NavigationArea" instance=ExtResource("16_n6pjd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30.5)
+
+[node name="WestWall" parent="NavigationArea" instance=ExtResource("16_n6pjd")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 30.5)
+
+[node name="NorthWall" parent="NavigationArea" instance=ExtResource("16_n6pjd")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -30.5, 0, 0)
+
+[node name="SouthWall" parent="NavigationArea" instance=ExtResource("16_n6pjd")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 30.5, 0, 0)
+
+[node name="map_walls" parent="NavigationArea" instance=ExtResource("16_r84xx")]
+
 [node name="Top-down view" type="Node" parent="."]
 
 [node name="TopDownCam" type="Camera3D" parent="Top-down view"]
@@ -224,20 +238,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0)
 
 [node name="WestCoconut" parent="." instance=ExtResource("15_v6yin")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)
-
-[node name="EastWall" parent="." instance=ExtResource("16_n6pjd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30.5)
-
-[node name="WestWall" parent="." instance=ExtResource("16_n6pjd")]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 30.5)
-
-[node name="NorthWall" parent="." instance=ExtResource("16_n6pjd")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -30.5, 0, 0)
-
-[node name="SouthWall" parent="." instance=ExtResource("16_n6pjd")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 30.5, 0, 0)
-
-[node name="map_walls" parent="." instance=ExtResource("16_r84xx")]
 
 [connection signal="damaged_sig" from="First-Person view/Player/Health" to="First-Person view/3dHud" method="_on_health_damaged_sig"]
 [connection signal="player_died" from="GameManager" to="First-Person view/3dHud" method="_on_game_manager_player_died"]

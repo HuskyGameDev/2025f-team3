@@ -11,7 +11,7 @@ radius = 0.4
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ubmvo"]
 radius = 0.410575
 
-[node name="Ghost" type="CharacterBody3D"]
+[node name="Ghost" type="CharacterBody3D" groups=["ghost"]]
 physics_interpolation_mode = 1
 collision_mask = 8
 script = ExtResource("1_sopgx")

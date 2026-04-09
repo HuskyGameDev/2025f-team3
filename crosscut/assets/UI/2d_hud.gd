@@ -222,8 +222,10 @@ func _on_game_manager_update_gold(value: Variant) -> void:
 	$LeftPanel/VBoxContainer/GoldBox/Gold.text = str(value)
 
 func _on_start_wave_pressed() -> void:
-	$"../../GameManager"._toggle_mode()
-	library.nextLevel()
+	var ghosts: = get_tree().get_nodes_in_group("ghost")
+	if ghosts.size() == 0:
+		$"../../GameManager"._toggle_mode()
+		library.nextLevel()
 	
 # Update UI health on objective health change
 func _on_objective_damaged_sig(_damage_taken: Variant, health_after_damage: Variant) -> void:

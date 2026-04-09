@@ -41,6 +41,7 @@ enemy=""
 objective=""
 spawnLibrary=""
 wall=""
+ghost=""
 
 [input]
 
