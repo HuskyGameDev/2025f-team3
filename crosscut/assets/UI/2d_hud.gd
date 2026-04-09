@@ -43,7 +43,7 @@ var wooden_sword: PackedScene = preload("res://assets/weapons/Wooden Sword.tscn"
 		"The crossbow tower fires arrows at the nearest enemy.",
 		"The cauldron tower pours down boiling oil onto surrounding enemies.",
 		"The ballista tower fires a piercing bolt at the furthest enemy.",
-		"The wall tower blocks the path of enemies for a short time."
+		"The wall tower blocks the path of enemies, though it can be damaged and broken down."
 	],
 	# Price
 	5: [75, 200, 150, 100]
