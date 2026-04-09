@@ -94,7 +94,8 @@ func add_tower(tower: PackedScene, pos: Vector3) -> Vector3:
 	if !new_tower.name.to_lower().contains("wall"):
 		add_child(new_tower, true)
 	else:
-		get_tree().root.add_child(new_tower,true)
+		get_parent().get_parent().add_child(new_tower,true)
+		#get_tree().root.add_child(new_tower,true)
 	
 	new_tower.global_position = Vector3(closest_pos.x, position.y, closest_pos.y)
 	towers[closest_pos] = new_tower
