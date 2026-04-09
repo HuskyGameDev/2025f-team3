@@ -554,6 +554,7 @@ size_flags_horizontal = 4
 alignment = 1
 
 [node name="Blurb" type="Label" parent="RightPanel/VBoxWithBlurb"]
+visible = false
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_horizontal = 3

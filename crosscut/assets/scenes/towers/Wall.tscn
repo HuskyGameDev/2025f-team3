@@ -21,6 +21,9 @@ max_health = 200
 
 [node name="Pivot" type="Node3D" parent="."]
 
+[node name="walltower" parent="Pivot" instance=ExtResource("3_vqfyx")]
+transform = Transform3D(0.5, 0, 0, 0, 0.6, 0, 0, 0, 0.5, 0, 0, 0)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]
 transform = Transform3D(6, 0, 0, 0, 8, 0, 0, 0, 6, 0, 4, 0)
 visible = false
@@ -47,9 +50,6 @@ transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 [node name="AttackShape" type="CollisionShape3D" parent="AttackArea"]
 shape = SubResource("BoxShape3D_vqfyx")
 debug_color = Color(0.918557, 0, 0.222529, 1)
-
-[node name="walltower" parent="." instance=ExtResource("3_vqfyx")]
-transform = Transform3D(0.5, 0, 0, 0, 0.6, 0, 0, 0, 0.5, 0, 0, 0)
 
 [connection signal="killed_sig" from="Health" to="." method="_on_health_killed_sig"]
 [connection signal="timeout" from="IdleLookaroundTimer" to="." method="_on_idle_lookaround_timer_timeout"]
