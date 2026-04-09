@@ -122,7 +122,13 @@ func _input(event: InputEvent) -> void:
 						print("CANT SPAWN ANOTHER TOWER CURERNTLY CHECKING")
 						return
 					# PLACE INVISIBLE TOWER
+					
 					bought_position = grid_map.add_tower(ghost, position)
+					
+					await grid_map.finishedBakingSignal
+					
+					# OTHERWISE DELETE GHOST TOWER AND DONT PLACE TOWER AND REBAKE
+					grid_map.remove_tower_at_position(position)
 					
 					await grid_map.finishedBakingSignal
 					
@@ -130,8 +136,7 @@ func _input(event: InputEvent) -> void:
 					currentChecker = ghostMob.instantiate()
 					get_parent().get_node("NavigationArea").add_child(currentChecker)
 					currentChecker.global_position = Vector3(-40,0,0)
-					# OTHERWISE DELETE GHOST TOWER AND DONT PLACE TOWER AND REBAKE
-					grid_map.remove_tower_at_position(position)
+					
 					
 					if currentChecker && is_instance_valid(currentChecker):
 						success = await currentChecker.valid
@@ -143,7 +148,6 @@ func _input(event: InputEvent) -> void:
 						currentChecker.queue_free()
 						
 					currentChecker = null
-						
 
 				# IF ENEMY GETS TO OBJECTIVE DELETE GHOST TOWER AND PLACE REAL TOWER
 				if gold >= price && (selected_tower == "3" || success):
@@ -156,6 +160,7 @@ func _input(event: InputEvent) -> void:
 							bought_position = grid_map.add_tower(ballista_tower, position)
 						"3":
 							bought_position = grid_map.add_tower(wall_tower, position)
+					await grid_map.finishedBakingSignal
 					if bought_position.is_finite():
 						print(str("You just bought tower "), selected_tower)
 						gold -= %"2dHud"._get_price(int(selected_tower))
@@ -165,6 +170,7 @@ func _input(event: InputEvent) -> void:
 						print("Buying error: Cannot place tower")
 				elif !success:
 					grid_map.force_bake()
+					await grid_map.finishedBakingSignal
 				else:
 					print("Buying error: Not enough gold")
 			

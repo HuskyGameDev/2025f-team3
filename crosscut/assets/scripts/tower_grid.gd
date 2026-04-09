@@ -14,6 +14,7 @@ var highlights:  Dictionary[Vector2i, Node3D] = {} #TODO: remove the Node3d port
 @onready var navigationThing: NavigationRegion3D = $".."
 
 signal finishedBakingSignal()
+var isBaking: bool = false
 
 func _ready() -> void:
 	navigationThing.bake_finished.connect(finishedBaking)
@@ -98,8 +99,12 @@ func add_tower(tower: PackedScene, pos: Vector3) -> Vector3:
 	new_tower.global_position = Vector3(closest_pos.x, position.y, closest_pos.y)
 	towers[closest_pos] = new_tower
 	
-	navigationThing.bake_navigation_mesh()
-	print("I AM BAKING")
+	if !isBaking:
+		isBaking = true
+		navigationThing.bake_navigation_mesh()
+		print("I AM BAKING")
+	else:
+		print("ALREADY BAKING")
 	
 	return position
 
@@ -114,6 +119,8 @@ func remove_tower_at_position(pos: Vector3) -> int:
 	var the_tower: Node3D = towers[closest_pos]
 	the_tower.queue_free()
 	towers.erase(closest_pos)
+	
+	force_bake()
 	return 0
 	
 func get_tower_at_position(pos: Vector3) -> Tower:
@@ -145,8 +152,11 @@ func get_closest_position_on_grid(place_pos: Vector2) -> Vector2i:
 	return closest_pos
 	
 func force_bake() -> void:
-	navigationThing.bake_navigation_mesh()
-	print("BAKING HAS BEEN FORCED")
-	
+	if !isBaking:
+		isBaking = true
+		navigationThing.bake_navigation_mesh()
+		print("BAKING HAS BEEN FORCED")
+
 func finishedBaking() -> void:
+	isBaking = false
 	finishedBakingSignal.emit()

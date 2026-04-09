@@ -13,6 +13,7 @@ config_version=5
 config/name="CrossCut"
 run/main_scene="uid://b3j6n1d7ef0th"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
