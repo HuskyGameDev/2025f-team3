@@ -17,9 +17,10 @@ size = Vector3(1.04517, 1, 1.04352)
 [node name="Enemy2" type="CharacterBody3D" groups=["enemy"]]
 collision_mask = 4
 script = ExtResource("1_3850e")
+speed = 4.5
 
 [node name="Health" parent="." node_paths=PackedStringArray("hitFX", "healthBarL", "healthBarR") instance=ExtResource("2_bp46k")]
-max_health = 45
+max_health = 50
 has_particles = true
 hitFX = NodePath("GPUParticles3D")
 healthBarL = NodePath("../HealthBar/HealthBarL")

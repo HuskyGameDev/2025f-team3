@@ -26,7 +26,7 @@ collision_mask = 12
 script = ExtResource("1_8jdxt")
 
 [node name="Health" parent="." node_paths=PackedStringArray("hitFX", "healthBarL", "healthBarR") instance=ExtResource("2_uwaki")]
-max_health = 50
+max_health = 100
 has_particles = true
 hitFX = NodePath("GPUParticles3D")
 healthBarL = NodePath("../HealthBar/HealthBarL")

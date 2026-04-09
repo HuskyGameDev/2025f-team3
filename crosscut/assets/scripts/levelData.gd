@@ -8,8 +8,8 @@ var DEFAULT_LEVELS: Array = [
 	[
 		# Wave 1
 		[
-			spawn(1, "test1", ["north"], 1),
-			spawn(1, "test4", ["south"], 1)
+			spawn(3, "test1", ["north"], 1),
+			#spawn(1, "test4", ["south"], 1)
 		],
 		# Wave 2
 		[
@@ -37,10 +37,23 @@ var DEFAULT_LEVELS: Array = [
 		# Wave 2
 		[
 			spawn(20, "test1", ["north","south"], 0.4),
-			spawn(10, "test2", ["south"], 0.8)
+			spawn(8, "test2", ["south"], 0.8)
 		]
 	],
 	# Level 4
+	[
+		# Wave 1
+		[
+			spawn(7, "test1", ["north"], 0.7),
+			spawn(5, "test2", ["east", "west"], 0.8)
+		],
+		# Wave 2
+		[
+			spawn(12, "test1", ["west","east"], 0.4),
+			spawn(8, "test2", ["north", "south", "east", "west"], 0.3)
+		]
+	],
+	# Level 5
 	[
 		# Wave 1
 		[
@@ -54,23 +67,13 @@ var DEFAULT_LEVELS: Array = [
 			spawn(15, "test1", ["north"], 0.6),
 			spawn(10, "test1", ["south"], 1.2)
 		]
-	],
-	# Level 5
-	[
-		# Wave 1
-		[
-			spawn(7, "test1", ["north"], 0.7)
-		],
-		# Wave 2
-		[
-			spawn(12, "test1", ["west","east"], 0.4)
-		]
+		
 	],
 	# Level 6
 	[
 		# Wave 1
 		[
-			spawn(1, "test2", ["west"], 1.0),
+			spawn(1, "test4", ["west"], 1.0),
 			spawn(20, "test1", ["south", "north", "east", "west"], 0.2)
 		],
 		# Wave 2
@@ -83,7 +86,7 @@ var DEFAULT_LEVELS: Array = [
 		# Wave 1
 		[
 			spawn(5, "test1", ["east"], 0.1),
-			spawn(5, "test1", ["north"], 0.1),
+			spawn(3, "test4", ["north"], 1.0),
 			spawn(5, "test1", ["west"], 0.1)
 		],
 		# Wave 2
@@ -120,8 +123,13 @@ var DEFAULT_LEVELS: Array = [
 		[
 			spawn(12, "test1", ["south", "north", "east", "west"], 1.3),
 			spawn(24, "test1", ["south", "north", "east", "west"], 0.5),
-			spawn(12, "test2", ["south", "north", "east", "west"], 0.7),
-			spawn(8, "test3", ["south", "north", "east", "west"], 0.5)
+			spawn(8, "test2", ["south", "north", "east", "west"], 0.7),
+			spawn(4, "test3", ["south", "north", "east", "west"], 0.5)
+		],
+		# Wave 2
+		[
+			spawn(2, "test5", ["east", "west"], 0.1),
+			spawn(2, "test3", ["north", "south"], 0.1)
 		]
 	],
 	# Level 10
@@ -135,11 +143,11 @@ var DEFAULT_LEVELS: Array = [
 		],
 		# Wave 2
 		[
-			spawn(1, "test2", ["east"], 5.0)
+			spawn(3, "test4", ["east"], 5.0)
 		],
 		# Wave 3
 		[
-			spawn(1, "test2", ["east"], 5.0)
+			spawn(1, "test5", ["east"], 5.0)
 		],
 		# Wave 4
 		[
@@ -166,6 +174,19 @@ var DEFAULT_LEVELS: Array = [
 			spawn(5, "test1", ["east"], 0.01),
 		]
 	],
+	# Level 12
+	[
+		# Wave 1
+		[
+			spawn(2, "test6", ["north"], 0.8)
+		],
+		# Wave 2
+		[
+			spawn(6, "test5", ["east", "north"], 0.1),
+			spawn(3, "test6", ["west"], 0.1),
+			spawn(3, "test2", ["south"], 0.1)
+		]
+	]
 ]
 
 func getDefaultLevel(levelIndex: int) -> Array:

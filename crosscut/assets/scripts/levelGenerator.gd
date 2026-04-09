@@ -2,11 +2,11 @@ class_name LevelGenerator extends Node
 
 var minWaves: int = 2
 var maxWaves: int = 5
-var baseEnemies: int = 2
+var baseEnemies: int = 3
 var levelScalingMult: float = 1.2
 
 # Available enemies and spawn locations
-var availableEnemies: Array[String] = ["test1"]
+var availableEnemies: Array[String] = ["test1", "test2", "test3", "test4", "test5", "test6"]
 var availableLocations: Array[String] = ["north", "south", "west", "east"]
 
 func generateLevel(level: int) -> Array:
@@ -29,12 +29,12 @@ func generateWave(level: int, wave: int) -> Array:
 	var generatedWave: Array = []
 	
 	var maxVariation: int
-	if level < 5:
-		maxVariation = ceil(availableEnemies.size() * .2)
-	elif level < 10:
-		maxVariation = ceil(availableEnemies.size() * .5)
+	if level < 20:
+		maxVariation = ceil(availableEnemies.size() * 0.8)
+	elif level < 30:
+		maxVariation = ceil(availableEnemies.size() * 1.2)
 	else:
-		maxVariation = availableEnemies.size()
+		maxVariation = ceil(availableEnemies.size() * 3.0)
 	
 	maxVariation = clamp(maxVariation, 1, availableEnemies.size())
 	

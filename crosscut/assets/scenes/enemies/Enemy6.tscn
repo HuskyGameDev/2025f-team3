@@ -20,6 +20,8 @@ radius = 0.231342
 
 [node name="Enemy6" type="CharacterBody3D" groups=["enemy"]]
 script = ExtResource("1_fkpdm")
+speed = 4.0
+explotion = 30.0
 
 [node name="Health" parent="." node_paths=PackedStringArray("hitFX", "healthBarL", "healthBarR") instance=ExtResource("2_re45p")]
 max_health = 70
