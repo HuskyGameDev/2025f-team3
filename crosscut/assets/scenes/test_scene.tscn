@@ -113,7 +113,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 40)
 [node name="EastSpawn" type="Node3D" parent="SpawnLibrary"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -40)
 
-[node name="Objective" parent="." groups=["navNode"] instance=ExtResource("2_objective")]
+[node name="Objective" parent="." instance=ExtResource("2_objective")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.030894, 0, -0.0147674)
 
