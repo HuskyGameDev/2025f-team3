@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ccy5pg6ws1kk4"]
+[gd_scene load_steps=31 format=3 uid="uid://ccy5pg6ws1kk4"]
 
 [ext_resource type="PackedScene" uid="uid://qwd7i00v37t2" path="res://assets/scenes/game_manager.tscn" id="1_21mu2"]
 [ext_resource type="PackedScene" uid="uid://x18icxf4xg6e" path="res://assets/scenes/player.tscn" id="1_41fjk"]
@@ -51,13 +51,20 @@ shader_parameter/brightness = 0.5
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_m00bm"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_m00bm"]
-vertices = PackedVector3Array(-98.0637, 0.5, -171.165, -98.0637, 0.5, 171.085, 98.1863, 0.5, 171.085, 98.1863, 0.5, -171.165)
+vertices = PackedVector3Array(-49.5, 0.5, -49.5, -49.5, 0.5, 49.5, 49.5, 0.5, 49.5, 49.5, 0.5, -49.5)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+sample_partition_type = 1
+geometry_collision_mask = 4294901764
+geometry_source_geometry_mode = 1
+geometry_source_group_name = &"navNode"
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_41fjk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abcw6"]
 albedo_color = Color(0.281187, 0.281187, 0.281187, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n6pjd"]
+size = Vector2(10, 27)
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_21mu2"]
 allow_unpress = true
@@ -172,27 +179,78 @@ cell_size = Vector3(5, 5, 5)
 script = ExtResource("3_vio1o")
 metadata/_editor_floor_ = Vector3(0, -19, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationArea"]
-transform = Transform3D(98.5637, 0, 0, 0, 1, 0, 0, 0, 171.665, 0, 0, 0)
-visible = false
+[node name="Wall Colliders" type="Node3D" parent="NavigationArea" groups=["navNode"]]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationArea/Wall Colliders"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
 layers = 8
 mesh = SubResource("PlaneMesh_41fjk")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_abcw6")
 
-[node name="EastWall" parent="NavigationArea" instance=ExtResource("16_n6pjd")]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationArea/Wall Colliders"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 30, 5, 17)
+layers = 0
+mesh = SubResource("PlaneMesh_n6pjd")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationArea/Wall Colliders"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 30, 5, -17)
+layers = 0
+mesh = SubResource("PlaneMesh_n6pjd")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="NavigationArea/Wall Colliders"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -30, 5, 17)
+layers = 0
+mesh = SubResource("PlaneMesh_n6pjd")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="NavigationArea/Wall Colliders"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -30, 5, -17)
+layers = 0
+mesh = SubResource("PlaneMesh_n6pjd")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="NavigationArea/Wall Colliders"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 17, 5, 30)
+layers = 0
+mesh = SubResource("PlaneMesh_n6pjd")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="NavigationArea/Wall Colliders"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, -17, 5, 30)
+layers = 0
+mesh = SubResource("PlaneMesh_n6pjd")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="NavigationArea/Wall Colliders"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, -17, 5, -30)
+layers = 4
+mesh = SubResource("PlaneMesh_n6pjd")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="NavigationArea/Wall Colliders"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, -17, 5, -30)
+layers = 0
+mesh = SubResource("PlaneMesh_n6pjd")
+skeleton = NodePath("../..")
+
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="EastWall" parent="Walls" instance=ExtResource("16_n6pjd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30.5)
 
-[node name="WestWall" parent="NavigationArea" instance=ExtResource("16_n6pjd")]
+[node name="WestWall" parent="Walls" instance=ExtResource("16_n6pjd")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 30.5)
 
-[node name="NorthWall" parent="NavigationArea" instance=ExtResource("16_n6pjd")]
+[node name="NorthWall" parent="Walls" instance=ExtResource("16_n6pjd")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -30.5, 0, 0)
 
-[node name="SouthWall" parent="NavigationArea" instance=ExtResource("16_n6pjd")]
+[node name="SouthWall" parent="Walls" instance=ExtResource("16_n6pjd")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 30.5, 0, 0)
 
-[node name="map_walls" parent="NavigationArea" instance=ExtResource("16_r84xx")]
+[node name="map_walls" parent="Walls" instance=ExtResource("16_r84xx")]
 
 [node name="Top-down view" type="Node" parent="."]
 
