@@ -126,15 +126,15 @@ func _input(event: InputEvent) -> void:
 					bought_position = grid_map.add_tower(ghost, position)
 					
 					await grid_map.finishedBakingSignal
-					
-					# OTHERWISE DELETE GHOST TOWER AND DONT PLACE TOWER AND REBAKE
-					grid_map.remove_tower_at_position(position)
+	
 					
 					# SEND SHADOW ENEMY
 					currentChecker = ghostMob.instantiate()
 					get_parent().get_node("NavigationArea").add_child(currentChecker)
 					currentChecker.global_position = Vector3(-40,0,0)
 					
+					# OTHERWISE DELETE GHOST TOWER AND DONT PLACE TOWER AND REBAKE
+					grid_map.remove_tower_at_position(position)
 					
 					if currentChecker && is_instance_valid(currentChecker):
 						success = await currentChecker.valid

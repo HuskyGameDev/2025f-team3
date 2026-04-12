@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ccy5pg6ws1kk4"]
+[gd_scene load_steps=30 format=3 uid="uid://ccy5pg6ws1kk4"]
 
 [ext_resource type="PackedScene" uid="uid://qwd7i00v37t2" path="res://assets/scenes/game_manager.tscn" id="1_21mu2"]
 [ext_resource type="PackedScene" uid="uid://x18icxf4xg6e" path="res://assets/scenes/player.tscn" id="1_41fjk"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://b5rhrfigqrejf" path="res://assets/scenes/spawn_library.tscn" id="10_m00bm"]
 [ext_resource type="Shader" uid="uid://blaja5xkgy2c5" path="res://assets/shaders/grass_map.gdshader" id="11_shader"]
 [ext_resource type="Texture2D" uid="uid://dquuj7674551w" path="res://assets/3D assets/rocky_terrain_02_diff_4k.jpg" id="12_texture"]
-[ext_resource type="PackedScene" uid="uid://t4rpgnwied1k" path="res://assets/scenes/myHero.tscn" id="15_v6yin"]
 [ext_resource type="PackedScene" uid="uid://d30e38ffgt00p" path="res://assets/3D assets/map_wall.glb" id="16_n6pjd"]
 [ext_resource type="PackedScene" uid="uid://dl0yhwaih82kh" path="res://assets/3D assets/map_walls.glb" id="16_r84xx"]
 
@@ -284,18 +283,6 @@ motion_mode = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SpectatorCam"]
 shape = SubResource("CapsuleShape3D_m00bm")
-
-[node name="NorthCoconut" parent="." instance=ExtResource("15_v6yin")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
-
-[node name="EastCoconut" parent="." instance=ExtResource("15_v6yin")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
-
-[node name="SouthCoconut" parent="." instance=ExtResource("15_v6yin")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0)
-
-[node name="WestCoconut" parent="." instance=ExtResource("15_v6yin")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)
 
 [connection signal="damaged_sig" from="First-Person view/Player/Health" to="First-Person view/3dHud" method="_on_health_damaged_sig"]
 [connection signal="player_died" from="GameManager" to="First-Person view/3dHud" method="_on_game_manager_player_died"]
