@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cfikctct4bdl1"]
+[gd_scene load_steps=8 format=3 uid="uid://cfikctct4bdl1"]
 
 [ext_resource type="Script" uid="uid://dy6py3ylmvkm5" path="res://assets/scripts/towers/Projectile_Tower.gd" id="1_wvwoq"]
 [ext_resource type="PackedScene" uid="uid://b2ppkux2l3rph" path="res://assets/scenes/projectiles/ballista_bolt.tscn" id="2_wvwoq"]
@@ -9,9 +9,6 @@
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wvwoq"]
 height = 3.0
 radius = 1.699
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_chvo0"]
-size = Vector3(2.8, 1.93896, 2.8)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_et1c7"]
 
@@ -34,10 +31,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31, 0, -1.31)
 
 [node name="Tower" parent="Pivot" instance=ExtResource("3_jxrch")]
 transform = Transform3D(0.1, 0, 0, 0, 0.0176983, 0, 0, 0, 0.1, -1.36919, 0, 1.21323)
-
-[node name="TowerBodyCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19209e-07, 0.971483, 1.19209e-07)
-shape = SubResource("BoxShape3D_chvo0")
 
 [node name="TowerHead" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57711, 0)
