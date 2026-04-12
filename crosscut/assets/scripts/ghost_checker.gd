@@ -75,8 +75,8 @@ func _physics_process(delta:=) -> void:
 	if has_target:
 		nav_agent.target_position = target_pos
 		var next_path_pos := nav_agent.get_next_path_position()
-		print("CURRENT POSITION IS " + str(global_position))
-		print("Next POSITION IS: " + str(next_path_pos))
+		#print("CURRENT POSITION IS " + str(global_position))
+		#print("Next POSITION IS: " + str(next_path_pos))
 		var direction := global_position.direction_to(next_path_pos)
 		velocity = direction * speed
 		
