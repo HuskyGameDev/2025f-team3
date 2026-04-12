@@ -29,7 +29,7 @@ var game_state: = GameState.DURING_WAVE
 var buying_tower: = false
 var selected_tower: String
 
-var gold: int = 250
+var gold: int = 250000
 signal update_gold(value: int)
 
 @onready var grid_map: = %GridMap
@@ -112,9 +112,9 @@ func _input(event: InputEvent) -> void:
 		var position: Vector3 = _get_mouse_position_on_board()
 		if (position.x >= -27 and position.x <= 27) and (position.z >= -27 and position.z <= 27):
 			print(position)
-			if buying_tower:
+			var price: int = %"2dHud"._get_price(int(selected_tower))
+			if buying_tower && gold >= price:
 				var bought_position: Vector3
-				var price: int = %"2dHud"._get_price(int(selected_tower))
 				# IF TOWER !=3:
 				var success:bool
 				if selected_tower != "3":
@@ -126,17 +126,15 @@ func _input(event: InputEvent) -> void:
 					bought_position = grid_map.add_tower(ghost, position)
 					
 					await grid_map.finishedBakingSignal
-					
-					# OTHERWISE DELETE GHOST TOWER AND DONT PLACE TOWER AND REBAKE
-					grid_map.remove_tower_at_position(position)
-					
-					await grid_map.finishedBakingSignal
+	
 					
 					# SEND SHADOW ENEMY
 					currentChecker = ghostMob.instantiate()
 					get_parent().get_node("NavigationArea").add_child(currentChecker)
 					currentChecker.global_position = Vector3(-40,0,0)
 					
+					# OTHERWISE DELETE GHOST TOWER AND DONT PLACE TOWER AND REBAKE
+					grid_map.remove_tower_at_position(position)
 					
 					if currentChecker && is_instance_valid(currentChecker):
 						success = await currentChecker.valid

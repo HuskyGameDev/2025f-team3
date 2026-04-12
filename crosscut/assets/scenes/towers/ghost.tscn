@@ -7,7 +7,7 @@ radius = 1.9
 [node name="CrossbowTower2" type="StaticBody3D" groups=["ghost", "navNode", "tower"]]
 disable_mode = 1
 collision_layer = 13
-collision_mask = 5
+collision_mask = 13
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38418e-07, 1.56957, 2.38418e-07)
