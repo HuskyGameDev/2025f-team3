@@ -120,8 +120,7 @@ func remove_tower_at_position(pos: Vector3) -> int:
 	var the_tower: Node3D = towers[closest_pos]
 	the_tower.queue_free()
 	towers.erase(closest_pos)
-	
-	force_bake()
+
 	return 0
 	
 func get_tower_at_position(pos: Vector3) -> Tower:

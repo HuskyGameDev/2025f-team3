@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bcfp0xq2i4k8d" path="res://assets/scripts/towers/TowerBase.gd" id="1_lyect"]
 [ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="2_m3v3g"]
-[ext_resource type="PackedScene" uid="uid://bm57gorpjrosq" path="res://assets/3D assets/walltower.glb" id="3_vqfyx"]
+[ext_resource type="PackedScene" uid="uid://b2rykve6ohi8s" path="res://assets/3D assets/walltower.glb" id="3_vqfyx"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_m3v3g"]
 
