@@ -12,9 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://b304tw4wnh0i1" path="res://assets/UI/game_over.tscn" id="8_n6pjd"]
 [ext_resource type="PackedScene" uid="uid://b5rhrfigqrejf" path="res://assets/scenes/spawn_library.tscn" id="10_m00bm"]
 [ext_resource type="Shader" uid="uid://blaja5xkgy2c5" path="res://assets/shaders/grass_map.gdshader" id="11_shader"]
-[ext_resource type="Texture2D" uid="uid://dsy23jl5fjgfs" path="res://assets/3D assets/rocky_terrain_02_diff_4k.jpg" id="12_texture"]
-[ext_resource type="PackedScene" uid="uid://bfdnb0o6km731" path="res://assets/3D assets/map_wall.glb" id="16_n6pjd"]
-[ext_resource type="PackedScene" uid="uid://okko0lllow5a" path="res://assets/3D assets/map_walls.glb" id="16_r84xx"]
+[ext_resource type="Texture2D" uid="uid://dquuj7674551w" path="res://assets/3D assets/rocky_terrain_02_diff_4k.jpg" id="12_texture"]
+[ext_resource type="PackedScene" uid="uid://d30e38ffgt00p" path="res://assets/3D assets/map_wall.glb" id="16_n6pjd"]
+[ext_resource type="PackedScene" uid="uid://dl0yhwaih82kh" path="res://assets/3D assets/map_walls.glb" id="16_r84xx"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vio1o"]
 panorama = ExtResource("1_376kr")
@@ -235,6 +235,46 @@ transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.371
 layers = 0
 mesh = SubResource("PlaneMesh_n6pjd")
 skeleton = NodePath("../..")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="NavigationArea/Wall Colliders"]
+transform = Transform3D(0.173648, -0.984808, -4.37114e-08, 3.54569e-08, 5.06377e-08, -1, 0.984808, 0.173648, 4.37114e-08, -31.2924, -2.04392, -8.39717)
+layers = 0
+mesh = SubResource("PlaneMesh_n6pjd")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="NavigationArea/Wall Colliders"]
+transform = Transform3D(0.173648, 0.984808, -4.30473e-08, 0, -4.37114e-08, -1, -0.984808, 0.173648, -7.5904e-09, -31.2924, -2.04392, 8.61405)
+layers = 0
+mesh = SubResource("PlaneMesh_n6pjd")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="NavigationArea/Wall Colliders"]
+transform = Transform3D(-0.122493, 0.992469, 4.59132e-08, 3.54569e-08, 5.06377e-08, -1, -0.992469, -0.122493, -4.13927e-08, 31.1507, -2.04392, 8.60267)
+layers = 0
+mesh = SubResource("PlaneMesh_n6pjd")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="NavigationArea/Wall Colliders"]
+transform = Transform3D(-0.224339, -0.974511, 4.25972e-08, 0, -4.37114e-08, -1, 0.974511, -0.224339, 9.80616e-09, 32.0303, -2.04392, -8.38579)
+layers = 0
+mesh = SubResource("PlaneMesh_n6pjd")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="NavigationArea/Wall Colliders"]
+transform = Transform3D(-0.9881, -0.153814, -4.28238e-08, 3.54569e-08, 5.06377e-08, -1, 0.153814, -0.9881, -4.45814e-08, 8.60432, -2.04392, -31.711)
+layers = 0
+mesh = SubResource("PlaneMesh_n6pjd")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="NavigationArea/Wall Colliders"]
+transform = Transform3D(0.981118, -0.193413, 8.45433e-09, 0, -4.37114e-08, -1, 0.193413, 0.981118, -4.2886e-08, -8.40346, -2.04392, -32.053)
+layers = 0
+mesh = SubResource("PlaneMesh_n6pjd")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="NavigationArea/Wall Colliders"]
+transform = Transform3D(0.995388, 0.0959326, 4.01512e-08, 3.54569e-08, 5.06377e-08, -1, -0.0959326, 0.995388, 4.70027e-08, -9.57073, -2.04392, 30.3456)
+layers = 0
+mesh = SubResource("PlaneMesh_n6pjd")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="NavigationArea/Wall Colliders"]
+transform = Transform3D(-0.96817, 0.250296, -1.09408e-08, 1.14908e-15, -4.37114e-08, -1, -0.250296, -0.96817, 4.232e-08, 7.38816, -2.04392, 31.6789)
+layers = 0
+mesh = SubResource("PlaneMesh_n6pjd")
 
 [node name="Walls" type="Node3D" parent="."]
 

@@ -19,7 +19,7 @@ speed = 275.0
 rotation_speed = 99999.0
 atk = 0.0
 atk_cooldown = 0
-lifeTime = 1.0
+lifeTime = 1.25
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.489188, 0)
