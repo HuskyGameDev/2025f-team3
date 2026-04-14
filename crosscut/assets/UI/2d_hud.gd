@@ -79,7 +79,7 @@ var level_blurbs: Array = [
 	"The enemies will only grow in numbers from here. Whenever you find that you're just scraping by, look into buying some more towers or upgrading your weapon.",
 	"You will encounter a variety of enemies across the waves, each with its own unique ability. Some enemies will be more focused on getting rid of you instead of the objective, so be prepared to deal with them.",
 	"Enemies can come from all four directions, but so far they have only come from the north and south. Make sure you're ready for enemies to come from every potential entry point.",
-	"Level 1",
+	"",
 	"Level 2",
 	"Level 1",
 	"Level 2",
