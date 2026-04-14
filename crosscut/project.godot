@@ -34,6 +34,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="CrossCut"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/cmcfa/2025f-team3/crosscut/crosscut.avi"
+
 [global_group]
 
 player=""

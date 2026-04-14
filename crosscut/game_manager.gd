@@ -29,7 +29,7 @@ var game_state: = GameState.DURING_WAVE
 var buying_tower: = false
 var selected_tower: String
 
-var gold: int = 250000
+var gold: int = 250
 signal update_gold(value: int)
 
 @onready var grid_map: = %GridMap

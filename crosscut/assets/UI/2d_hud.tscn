@@ -554,7 +554,6 @@ size_flags_horizontal = 4
 alignment = 1
 
 [node name="Blurb" type="Label" parent="RightPanel/VBoxWithBlurb"]
-visible = false
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -562,6 +561,7 @@ size_flags_vertical = 2
 theme_override_font_sizes/font_size = 19
 text = "This is placeholder text for a short notice or announcement before the level. It will include information about upcoming enemies or potential strategies. This is three sentences of decent length, which is about what each description should be at most. You can make it longer with four sentences, but who is going to want to read this much?"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxWithBlurb"]
