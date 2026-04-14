@@ -36,7 +36,6 @@ shape = SubResource("CapsuleShape3D_ubmvo")
 navigation_layers = 8
 avoidance_enabled = true
 use_3d_avoidance = true
-debug_enabled = true
 
 [node name="Health" parent="." instance=ExtResource("3_2madj")]
 max_health = 9000000000

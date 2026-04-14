@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://dw4hm3y7vv33j" path="res://assets/scripts/enemy5_stats.gd" id="1_8jdxt"]
 [ext_resource type="PackedScene" uid="uid://b1ha4lc7tscr8" path="res://assets/scenes/health.tscn" id="2_uwaki"]
 [ext_resource type="PackedScene" uid="uid://bqlc4fgsk26uq" path="res://assets/scenes/particles/enemy_1_damage_fx.tscn" id="3_8ggbf"]
-[ext_resource type="PackedScene" uid="uid://c14onxt232fxo" path="res://assets/3D assets/Catapult.glb" id="3_cthh4"]
-[ext_resource type="Texture2D" uid="uid://d2d7vq4o6vtku" path="res://assets/UI/icons/health.png" id="3_uwaki"]
+[ext_resource type="PackedScene" uid="uid://bx4fsw7ped53c" path="res://assets/3D assets/Catapult.glb" id="3_cthh4"]
+[ext_resource type="Texture2D" uid="uid://bv5o3hvvsrwsh" path="res://assets/UI/icons/health.png" id="3_uwaki"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8y4hj"]
 size = Vector3(2.39624, 2.15051, 3.99523)
@@ -73,7 +73,6 @@ tilt_enabled = false
 navigation_layers = 8
 avoidance_enabled = true
 use_3d_avoidance = true
-debug_enabled = true
 
 [node name="HealthBar" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.15, 0, 0, 0, 0.175, 0, 1.53214, 0)

@@ -75,6 +75,18 @@ var wooden_sword: PackedScene = preload("res://assets/weapons/Wooden Sword.tscn"
 }
 
 var level_blurbs: Array = [
+	"Welcome to CrossCut! Use the left panel to place some towers on the map, and when you're ready, click Start Level to join your towers and help them in fending off the waves of enemies. Or, if you're feeling brave, go in with only your default wooden sword.",
+	"The enemies will only grow in numbers from here. Whenever you find that you're just scraping by, look into buying some more towers or upgrading your weapon.",
+	"You will encounter a variety of enemies across the waves, each with its own unique ability. Some enemies will be more focused on getting rid of you instead of the objective, so be prepared to deal with them.",
+	"Enemies can come from all four directions, but so far they have only come from the north and south. Make sure you're ready for enemies to come from every potential entry point.",
+	"Level 1",
+	"Level 2",
+	"Level 1",
+	"Level 2",
+	"Level 1",
+	"Level 2",
+	"Level 1",
+	"Level 2",
 	"Level 1"
 ]
 
@@ -144,6 +156,8 @@ func _ready() -> void:
 
 	_connect_to_spawnManager()
 	
+	_set_level_blurb()
+	
 var t: float = 0.0
 
 func _process(delta: float) -> void:
@@ -206,10 +220,14 @@ func _connect_to_spawnManager() -> void:
 		print("HUD Connected to spawn manager")
 	else:
 		push_warning("2D HUD: No spawn manager found in scene!")
-		
+
+func _set_level_blurb() -> void:
+	$RightPanel/VBoxWithBlurb/Blurb.text = level_blurbs[int($RightPanel/VBoxWithBlurb/VBoxContainer/Label.text) - 1]
+	
 func _update_next_level_text(next_level: int) -> void:
 	$RightPanel/VBoxWithBlurb/VBoxContainer/Label.text = str(next_level + 2)
 	%"3dHud"._update_level_number(next_level + 2)
+	_set_level_blurb()
 	
 func _on_objective_damaged(current_health: float, max_health: float) -> void:
 	objective_health = current_health

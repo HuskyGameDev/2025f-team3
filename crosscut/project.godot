@@ -20,10 +20,6 @@ config/icon="res://icon.svg"
 
 AudioManager="*res://assets/scripts/AudioManager.gd"
 
-[debug]
-
-gdscript/warnings/untyped_declaration=2
-
 [display]
 
 window/size/viewport_width=1280
