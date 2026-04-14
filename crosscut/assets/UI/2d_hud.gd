@@ -79,15 +79,15 @@ var level_blurbs: Array = [
 	"The enemies will only grow in numbers from here. Whenever you find that you're just scraping by, look into buying some more towers or upgrading your weapon.",
 	"You will encounter a variety of enemies across the waves, each with its own unique ability. Some enemies will be more focused on getting rid of you instead of the objective, so be prepared to deal with them.",
 	"Enemies can come from all four directions, but so far they have only come from the north and south. Make sure you're ready for enemies to come from every potential entry point.",
-	"",
-	"Level 2",
-	"Level 1",
-	"Level 2",
-	"Level 1",
-	"Level 2",
-	"Level 1",
-	"Level 2",
-	"Level 1"
+	"In this upcoming level, you'll have to deal with a type of enemy that's stronger than all the others you've seen before. If you've been keeping up with your towers and weapons, it shouldn't be too much trouble.",
+	"This next level will introduce another new enemy, the slime, with its own special ability of splitting into more enemies when defeated, so don't let your guard down until you've taken care of everything that it leaves behind.",
+	"If you've been relying on one particular type of weapon or tower to carry you through, now might be a good time to branch out and try something new. You might be surprised by the different advantages that you can get from the variety.",
+	"If you struggled to deal with those stronger enemies before, this time they'll be coming from all directions. You've made it this far, so keep trying your best and refining your strategy.",
+	"Get ready for the upcoming boss level, where you will have to face the most amount of strong enemies yet, along with a truly terrifying catapult that can target both you and the objective. The enemies won't hold back, so neither should you.",
+	"How was that? If you're seeing this, then that means you've managed to make it past the boss level! Let's cool down with some waves that have a completely normal number of enemies.",
+	"The enemies are starting to get mad at you because you've survived for this long, so more of them will be directly targeting you in this level while some strong enemies focus on your objective. Try not to get too distracted by one or the other.",
+	"This next level is the last of the pre-made levels, with the later ones being automatically generated so that each one is significantly harder than the last. Good luck on trying to go for as long as possible, because the true challenge starts soon.",
+	"The next level is automatically generated. Good luck!"
 ]
 
 func _get_price(i: int) -> int:
@@ -222,7 +222,11 @@ func _connect_to_spawnManager() -> void:
 		push_warning("2D HUD: No spawn manager found in scene!")
 
 func _set_level_blurb() -> void:
-	$RightPanel/VBoxWithBlurb/Blurb.text = level_blurbs[int($RightPanel/VBoxWithBlurb/VBoxContainer/Label.text) - 1]
+	var this_level: int = int($RightPanel/VBoxWithBlurb/VBoxContainer/Label.text) - 1
+	if this_level >= 13:
+		$RightPanel/VBoxWithBlurb/Blurb.text = level_blurbs[12]
+	else:
+		$RightPanel/VBoxWithBlurb/Blurb.text = level_blurbs[this_level]
 	
 func _update_next_level_text(next_level: int) -> void:
 	$RightPanel/VBoxWithBlurb/VBoxContainer/Label.text = str(next_level + 2)
