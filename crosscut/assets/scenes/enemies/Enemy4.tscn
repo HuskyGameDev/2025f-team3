@@ -5,17 +5,18 @@
 [ext_resource type="PackedScene" uid="uid://re87lfquiuv7" path="res://assets/scenes/particles/splitter_enemy_damage_fx.tscn" id="3_cmj1h"]
 [ext_resource type="Script" uid="uid://bksnh1nri3ati" path="res://assets/scenes/damage_area.gd" id="3_lwiw8"]
 [ext_resource type="PackedScene" uid="uid://dr70c2niytyrr" path="res://assets/3D assets/slime.tscn" id="3_ybm3u"]
-[ext_resource type="Texture2D" uid="uid://bv5o3hvvsrwsh" path="res://assets/UI/icons/health.png" id="4_uckwj"]
+[ext_resource type="Texture2D" uid="uid://dxbk1y1rmmay0" path="res://assets/UI/icons/health.png" id="4_uckwj"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_kth7i"]
 height = 1.37842
-radius = 1.79492
+radius = 1.35498
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ybm3u"]
 height = 1.20166
-radius = 1.91455
+radius = 1.68604
 
 [node name="Enemy4" type="CharacterBody3D" groups=["enemy"]]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 collision_mask = 4
 script = ExtResource("1_42e5e")
 
@@ -51,7 +52,7 @@ shape = SubResource("CylinderShape3D_ybm3u")
 navigation_layers = 8
 
 [node name="HealthBar" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.15, 0, 0, 0, 0.175, 0, 2.53727, 0)
+transform = Transform3D(1, 0, 0, 0, 0.15, 0, 0, 0, 0.175, 0, 1.63495, 0)
 
 [node name="HealthBarL" type="Sprite3D" parent="HealthBar"]
 centered = false
