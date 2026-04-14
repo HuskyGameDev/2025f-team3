@@ -295,7 +295,7 @@ func _on_d_hud_end_buying() -> void:
 
 func _handle_spectator_movement(_delta: float) -> void:
 	# Get input direction
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input_dir := Input.get_vector("Left", "Right", "Forward", "Back")
 
 	# Calculate movement direction based on camera orientation
 	# Move in the exact direction the camera is looking (no horizontal projection)
@@ -303,11 +303,17 @@ func _handle_spectator_movement(_delta: float) -> void:
 	var right: = spectator_camera_body.global_transform.basis.x
 
 	var direction: = (right * input_dir.x + forward * input_dir.y).normalized()
-
+	var up_direction: int = 0
+	
 	# Calculate speed with sprint
 	var current_speed: = SPECTATOR_SPEED
 	if Input.is_physical_key_pressed(KEY_SHIFT):
 		current_speed *= SPECTATOR_SPRINT_MULTIPLIER
+		
+	if Input.is_physical_key_pressed(KEY_Q):
+		up_direction = 1
+	if Input.is_physical_key_pressed(KEY_E):
+		up_direction = -1
 
 	# Apply movement in the direction you're looking with collision detection
 	if direction != Vector3.ZERO:
@@ -317,6 +323,7 @@ func _handle_spectator_movement(_delta: float) -> void:
 
 	# Use move_and_slide for collision detection
 	spectator_camera_body.velocity = spectator_velocity
+	spectator_camera_body.position.y += up_direction * _delta
 	spectator_camera_body.move_and_slide()
 
 func _switch_to_spectator_mode() -> void:
