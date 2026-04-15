@@ -39,6 +39,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Test"):
 		get_parent().get_node("SpawnLibrary").killedEnemy()
 		queue_free()
+	if event.is_action_pressed("EnemyCam"):
+		$EnemyCam.make_current()
+	if event.is_action_pressed("EnemyCam2"):
+		$EnemyCam2.make_current()
 
 # enemy attack based on cooldown
 func _on_damage_area_body_entered(body: Node3D) -> void:
@@ -81,7 +85,16 @@ func _physics_process(delta:=) -> void:
 		if abs(target_rotation - rotation.y) > deg_to_rad(60):
 			ROTATION_SPEED = 20
 		rotation.y = move_toward(rotation.y, target_rotation, delta * ROTATION_SPEED)
-		
+	
+	if Input.is_physical_key_pressed(KEY_5):
+		$EnemyCam.rotation.x += 0.4 * delta
+	if Input.is_physical_key_pressed(KEY_G):
+		$EnemyCam.rotation.x -= 0.4 * delta
+	if Input.is_physical_key_pressed(KEY_R):
+		$EnemyCam.rotation.y += 0.4 * delta
+	if Input.is_physical_key_pressed(KEY_Y):
+		$EnemyCam.rotation.y -= 0.4 * delta
+	
 	move_and_slide()
 	
 	if (Engine.get_physics_frames() % atk_cooldown == 0): #attack cooldown is based on delta % attack cooldown

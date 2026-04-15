@@ -88,6 +88,8 @@ func _physics_process(delta: float) -> void:
 		spectator_camera_body.global_position = player.global_position + Vector3(0, 1000, 0)  # Way above, out of the way
 	
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Spectator"):
+		_switch_to_spectator_mode()
 	if event.is_action_pressed("View Map") and control_mode != ControlMode.SPECTATOR:
 		_toggle_mode()
 
@@ -364,6 +366,9 @@ func _switch_to_spectator_mode() -> void:
 	first_person_HUD.show()
 	top_down_HUD.hide()
 
+func _switch_to_enemy_cam() -> void:
+	get_parent().find_child("test1")._set_camera()
+	
 func _switch_to_topdown_from_spectator() -> void:
 	print("Wave ended - Switching to top-down mode for tower placement")
 	control_mode = ControlMode.TOPDOWN

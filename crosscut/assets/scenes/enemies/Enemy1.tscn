@@ -70,6 +70,12 @@ texture = ExtResource("6_ubmvo")
 region_enabled = true
 region_rect = Rect2(0, 0, 0, 64)
 
+[node name="EnemyCam" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0.473576, 0.161078)
+
+[node name="EnemyCam2" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, -6.3573e-08, 0, 1, 0, 6.3573e-08, 0, 1, 0, 0.788637, 0.737123)
+
 [connection signal="killed_sig" from="Health" to="." method="_on_health_killed_sig"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]
