@@ -4,6 +4,7 @@ var library: Node
 @export var weapon_button_group: ButtonGroup
 var selected_tower: String = "-1"
 var selected_weapon: String = "-1"
+var equipped_weapon: String = "-1"
 var buying_tower: bool = false
 var owned_weapons: Array[int] = [0, 0, 0, 0] # weapons are 1 when you own them
 signal begin_buying(selected: String)
@@ -296,6 +297,7 @@ func _on_equip_pressed() -> void:
 		$LeftPanel/VBoxContainer/WeaponVBox/Equipped.text = "Currently equipped: Wooden Sword"
 		$LeftPanel/VBoxContainer/WeaponVBox/Equip.text = "Equip"
 	
+	equipped_weapon = selected_weapon
 	player.equip_weapon(this_weapon)
 
 # Hide buy button and show equip button if you select a weapon that you already have
@@ -303,6 +305,10 @@ func _check_for_weapon_own(id: int) -> void:
 	if owned_weapons[id] == 1:
 		$LeftPanel/VBoxContainer/WeaponVBox/Buy.visible = false
 		$LeftPanel/VBoxContainer/WeaponVBox/Equip.visible = true
+		if id == int(equipped_weapon):
+			$LeftPanel/VBoxContainer/WeaponVBox/Equip.text = "Unequip"
+		else:
+			$LeftPanel/VBoxContainer/WeaponVBox/Equip.text = "Equip"
 	else:
 		$LeftPanel/VBoxContainer/WeaponVBox/Buy.visible = true
 		$LeftPanel/VBoxContainer/WeaponVBox/Equip.visible = false
