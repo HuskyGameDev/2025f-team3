@@ -19,7 +19,7 @@ func _ready() -> void:
 		
 func _process(delta: float) -> void:
 	if health.health <= 0:
-		objective_destroyed.emit()
+		# objective_destroyed.emit()
 		health.health = 1 # To prevent an infinite loop
 
 func get_health() -> float:

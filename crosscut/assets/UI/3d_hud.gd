@@ -81,3 +81,10 @@ func _on_game_manager_player_died() -> void:
 func _on_game_manager_player_revived() -> void:
 	$DeadLabel.visible = false
 	health = max_health
+
+func _input(event):
+	if event.is_action_pressed("HideHUD"):
+		if $".".visible == true:
+			$".".visible = false
+		else:
+			$".".visible = true
