@@ -5,28 +5,27 @@ CrossCut is a tower defense game with a twist. During waves, you are placed onto
 Controls:
 WASD: Move
 Space: Jump
-Mouse: Interact with menus
-X: Cancel tower buying
+Left mouse button: Place towers (top-down mode) or attack (first-person mode)
+Right mouse button: Sell towers
 Esc: Pause
-
-Playtesting controls:
-M: Switch perspectives
-G: Add 100 Gold
 
 Credits:
 Evan Zimmermann - Team Leader
-Alex Symanzik - Tester
-Andrew Sadler - Programmer/Tester
-Caeden Kidd - 3D Artist
-Collin McFarland - UI Artist
-Ezra Crocker - Programmer
+Collin McFarland - Team Leader/UI Artist
+Alex Symanzik - Programmer
+Andrew Sadler - 3D Artist/Tester
 Kai Stack - Programmer
 Mason Connor - Programmer
 Nathan Brewer - Programmer
+Robert Phillips - 3D Artist/Programmer
+
+Former team members:
+Caeden Kidd - 3D Artist
+Ezra Crocker - Programmer
 
 Instructions:
 Unzip CrossCut.zip and run CrossCut.exe within the build directory to play.
-Controls and credits can be viewed in-game on the main menu.
+Controls can be viewed and changed in-game on the main menu or pause menu.
 
 
 
