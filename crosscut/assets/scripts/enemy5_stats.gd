@@ -3,8 +3,8 @@ extends CharacterBody3D
 @export var speed: float = 3
 @export var rotation_speed: float = 7
 @export var atk: float = 5
-@export var atk_cooldown: int = 50 # how many frames between damage ticks
-@export var firing_cooldown: int = 50 # how many frames between firing projectiles
+@export var atk_cooldown: int = 300 # how many frames between damage ticks
+@export var firing_cooldown: int = 300 # how many frames between firing projectiles
 @export var Projectile := preload("res://assets/scenes/projectiles/enemy_projectile.tscn")
 
 # exposing health node

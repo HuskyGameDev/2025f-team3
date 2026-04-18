@@ -13,7 +13,7 @@ material = SubResource("StandardMaterial3D_j1ttl")
 
 [node name="CauldronSplash" type="Node3D"]
 script = ExtResource("1_j1ttl")
-ticks_per_damage_tick = 10
+ticks_per_damage_tick = 60
 damage = 10
 splash_time = 2.5
 

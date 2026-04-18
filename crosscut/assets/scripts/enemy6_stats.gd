@@ -4,7 +4,7 @@ extends CharacterBody3D
 @export var rotation_speed: float = 5
 @export var atk: float = 15
 @export var explotion : float = 50
-@export var atk_cooldown: int = 25 # how many frames between damage ticks
+@export var atk_cooldown: int = 150 # how many frames between damage ticks
 
 
 # exposing health node
